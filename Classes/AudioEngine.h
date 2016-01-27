@@ -24,7 +24,7 @@ public:
 	float GetEffectVolume();
 	void BGMPlaylistNext();
 	void SetBGMPlaylist(std::string fileLocations[5]);
-	void MuteAllAudio();
+	void MuteAllAudio(bool mute);
 	void ResumeEffect(int soundID);
 	void ResumeAllEffects();
 	void ResumeBackgroundMusic();
@@ -37,7 +37,7 @@ private:
 	std::string itemLocation[5];
 	int playlistLocation;
 	void VarLock();
-	CocosDenshion::SimpleAudioEngine* engine;
+	CocosDenshion::SimpleAudioEngine* audioManager;
 	bool isMuted;
 };
 

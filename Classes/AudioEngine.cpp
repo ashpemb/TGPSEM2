@@ -8,6 +8,8 @@ AudioEngine::AudioEngine()
 	isPlaylistSet = false;
 	playlistLocation = 0;
 	isMuted = false;
+	audioManager = CocosDenshion::SimpleAudioEngine::getInstance();
+
 }
 
 
@@ -17,7 +19,7 @@ AudioEngine::~AudioEngine()
 
 void AudioEngine::Update()
 {
-	bgmPlaying = CocosDenshion::SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying();
+	bgmPlaying = audioManager->sharedEngine()->isBackgroundMusicPlaying();
 	if (bgmPlaying == false && isPlaylistSet == true)
 	{
 		BGMPlaylistNext();
@@ -45,45 +47,51 @@ void AudioEngine::BGMPlaylistNext()
 
 void AudioEngine::PlayBackgroundMusic(std::string fileLocation, bool loop)
 {
-	const char * c = fileLocation.c_str();
+	if (isMuted == false)
+	{
+		const char * c = fileLocation.c_str();
 
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
-		c, true);
+		audioManager->sharedEngine()->playBackgroundMusic(
+			c, true);
+	}
 }
 
 void AudioEngine::SetBackgroundVolume(float volume)
 {
 	bgmVolume = volume;
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(bgmVolume);
+	audioManager->sharedEngine()->setBackgroundMusicVolume(volume);
 }
 
 void AudioEngine::StopBackgroundMusic()
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	audioManager->sharedEngine()->stopBackgroundMusic();
 }
 
 int AudioEngine::PlaySoundEffect(std::string fileLocation, bool loop)
 {
-	const char * c = fileLocation.c_str();
+	if (isMuted == false)
+	{
+		const char * c = fileLocation.c_str();
 
-	int id =	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(c, loop, 1, 0, 1);
-	return id;
+		int id = audioManager->sharedEngine()->playEffect(c, loop, 1, 0, 1);
+		return id;
+	}
 }
 
 void AudioEngine::SetSoundEffectsVolume(float volume)
 {
 	effectVolume = volume;
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(effectVolume);
+	audioManager->sharedEngine()->setEffectsVolume(effectVolume);
 }
 
 void AudioEngine::StopAllEffects()
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();	
+	audioManager->sharedEngine()->stopAllEffects();	
 }
 
 void AudioEngine::StopSoundEffect(int soundID)
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopEffect(soundID);
+	audioManager->sharedEngine()->stopEffect(soundID);
 }
 
 float AudioEngine::GetBackgroundVolume()
@@ -98,32 +106,32 @@ float AudioEngine::GetEffectVolume()
 
 void AudioEngine::PauseBackgroundMusic()
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	audioManager->sharedEngine()->pauseBackgroundMusic();
 }
 
 void AudioEngine::PauseAllEffects()
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseAllEffects();
+	audioManager->sharedEngine()->pauseAllEffects();
 }
 
 void AudioEngine::PauseEffect(int soundID)
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseEffect(soundID);
+	audioManager->sharedEngine()->pauseEffect(soundID);
 }
 
 void AudioEngine::ResumeEffect(int soundID)
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeEffect(soundID);
+	audioManager->sharedEngine()->resumeEffect(soundID);
 }
 
 void AudioEngine::ResumeAllEffects()
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+	audioManager->sharedEngine()->resumeAllEffects();
 }
 
 void AudioEngine::ResumeBackgroundMusic()
 {
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	audioManager->sharedEngine()->resumeBackgroundMusic();
 }
 
 
@@ -135,17 +143,17 @@ void AudioEngine::VarLock()
 	}
 }
 
-void AudioEngine::MuteAllAudio()
+void AudioEngine::MuteAllAudio(bool mute)
 {
-	isMuted != isMuted;
-	if (isMuted == true)
-	{
-		SetSoundEffectsVolume(0);
-		SetBackgroundVolume(0);
-	}
+	isMuted = mute;
 	if (isMuted == false)
 	{
-		SetSoundEffectsVolume(1);
-		SetBackgroundVolume(1);
+		ResumeAllEffects();
+		ResumeBackgroundMusic();
+	}
+	else if (isMuted == true)
+	{
+		PauseAllEffects();
+		PauseBackgroundMusic();
 	}
 }
