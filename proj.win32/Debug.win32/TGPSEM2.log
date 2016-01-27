@@ -1,0 +1,51 @@
+﻿Build started 27/01/2016 02:32:08 PM.
+     1>Project "F:\TGPSEM2\proj.win32\TGPSEM2.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.9\external" /I"C:\Cocos\frameworks\cocos2d-x-3.9\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.9\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\freetype2\include\win32\freetype2" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\freetype2\include\win32\\" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AudioEngine.cpp ..\Classes\HelloWorldScene.cpp
+         AudioEngine.cpp
+         HelloWorldScene.cpp
+     1>f:\tgpsem2\classes\audioengine.cpp(20): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(51): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(57): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(62): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(69): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(76): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(81): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(86): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(101): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(106): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(111): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(116): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(121): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(126): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.9\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
+     1>f:\tgpsem2\classes\audioengine.cpp(140): warning C4552: '!=' : operator has no effect; expected operator with side-effect
+       PreLinkEvent:
+         if not exist "F:\TGPSEM2\proj.win32\Debug.win32\" mkdir "F:\TGPSEM2\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.9\prebuilt\win32\*.*" "F:\TGPSEM2\proj.win32\Debug.win32\"
+         
+         :VCEnd
+         File not found - *.*
+         0 File(s) copied
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(127,5): error MSB3073: The command "if not exist "F:\TGPSEM2\proj.win32\Debug.win32\" mkdir "F:\TGPSEM2\proj.win32\Debug.win32\"
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(127,5): error MSB3073: xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.9\prebuilt\win32\*.*" "F:\TGPSEM2\proj.win32\Debug.win32\"
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(127,5): error MSB3073: 
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(127,5): error MSB3073: :VCEnd" exited with code 4.
+     1>Done Building Project "F:\TGPSEM2\proj.win32\TGPSEM2.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:08.66

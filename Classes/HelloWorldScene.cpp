@@ -1,7 +1,8 @@
 #include "HelloWorldScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
-
+#include "AudioEngine.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -35,5 +36,11 @@ bool HelloWorld::init()
 
     addChild(rootNode);
 
+	AudioEngine* auEngine = new AudioEngine();
+	std::string str1 = "Conquer Divide - Nightmares(Pro).mp3";
+	const char* string1 = str1.c_str();
+
+	auEngine->PlayBackgroundMusic(string1, true);
+	auEngine->SetBackgroundVolume(1.0f);
     return true;
 }
