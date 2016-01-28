@@ -22,6 +22,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MenuScene.cpp">
+	<Filter>src</Filter>
+	</ClCompile>
+    <ClCompile Include="..\Classes\GameManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScoreManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,6 +42,15 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MenuScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScoreManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
