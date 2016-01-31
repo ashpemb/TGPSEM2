@@ -5,7 +5,13 @@
 class Platforms
 {
 public:
+	static Platforms* sharedPlatform();
+
 	Platforms();
 	~Platforms();
 
+	virtual bool Init();
+
+private:
+	static Platforms* instance;
 };
