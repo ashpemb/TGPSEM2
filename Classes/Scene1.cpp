@@ -34,3 +34,8 @@ bool Scene1::init()
 
 	return true;
 }
+
+void Scene1::Update(float delta)
+{
+
+}
