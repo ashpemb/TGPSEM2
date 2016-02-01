@@ -5,6 +5,8 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "AudioEngine.h"
+#include "SimpleAudioEngine.h"
 
 #include "stdio.h"
 #include <iomanip>
@@ -23,6 +25,8 @@ public:
 	static cocos2d::Scene* createScene();
 	virtual bool init();
 	CREATE_FUNC(MenuScene);
+
+	void AudioTesting();
 
 	// Touch input
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
