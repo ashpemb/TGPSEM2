@@ -7,8 +7,9 @@
 #include "cocostudio/CocoStudio.h"
 
 #include "stdio.h"
-
 #include <iomanip>
+
+#include "Scene1.h"
 
 USING_NS_CC;
 

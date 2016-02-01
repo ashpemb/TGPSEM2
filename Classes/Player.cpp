@@ -5,6 +5,16 @@ Player::Player()
 {
 }
 
+Player* Player::create()
+{
+	Player* player = new Player();
+	if (!player->init()) {
+		return nullptr;
+	}
+	player->autorelease();
+
+	return player;
+}
 
 Player::~Player()
 {

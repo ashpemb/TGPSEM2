@@ -7,6 +7,7 @@ class Player : public Node
 {
 public:
 	Player();
+	static Player* create();
 	~Player();
 
 	virtual bool init() override;

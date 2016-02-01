@@ -70,12 +70,12 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	}
 }
 
-//void MenuScene::StartGame()
-//{
-//	auto gameScene = new Level1();
-//	CCDirector::getInstance()->replaceScene(gameScene->createScene());
-//	auto winSize = Director::getInstance()->getVisibleSize();
-//}
+void MenuScene::StartGame()
+{
+	auto gameScene = new Scene1();
+	CCDirector::getInstance()->replaceScene(gameScene->createScene());
+	auto winSize = Director::getInstance()->getVisibleSize();
+}
 
 //Touch Functions
 bool MenuScene::onTouchBegan(Touch* touch, Event* event)
