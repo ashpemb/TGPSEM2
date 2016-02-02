@@ -24,6 +24,10 @@
     <ClCompile Include="..\Classes\AudioEngine.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="LevelSelect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="LSCube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -38,6 +42,10 @@
     <ClInclude Include="..\Classes\AudioEngine.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="LevelSelect.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LSCube.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

@@ -3,6 +3,7 @@
 #include "ui/CocosGUI.h"
 #include "AudioEngine.h"
 #include "SimpleAudioEngine.h"
+#include "LevelSelect.h"
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -36,8 +37,24 @@ bool HelloWorld::init()
 
     addChild(rootNode);
 
+	cocos2d::Size frameSize = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize();
+	int screenSizeY = frameSize.height;
+	int screenSizeX = frameSize.width;
+
+	auto playItem = MenuItemImage::create("Play Button.png", "Play Button Clicked.png", CC_CALLBACK_1(HelloWorld::GoToGameScene, this));
+	auto menu = Menu::create(playItem, NULL);
+	menu->setPosition(Vec2(screenSizeX / 2, screenSizeY / 2));
+
+	addChild(menu);
 	AudioTesting();
     return true;
+}
+
+void HelloWorld::GoToGameScene(cocos2d::Ref *sender)
+{
+	auto scene = LevelSelect::createScene();
+
+	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
 
 void HelloWorld::AudioTesting()
