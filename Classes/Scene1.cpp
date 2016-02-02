@@ -42,9 +42,14 @@ bool Scene1::init()
 	this->scheduleUpdate();
 
 	// PLAYER
-	player = Player::create();
+	player = Player::create(gravity);
 	player->setName("Player");
 
 	addChild(player);
 	return true;
+}
+
+void Scene1::update(float delta)
+{
+
 }

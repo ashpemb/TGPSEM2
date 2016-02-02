@@ -17,11 +17,16 @@ public:
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init();
 
+	void update(float delta);
+
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
 
 private:
 	Player* player;
+	
+	// Gravity
+	const float gravity = -9.81f;
 };
 
 #endif // __SCENE1_SCENE_H__
