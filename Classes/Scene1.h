@@ -22,9 +22,6 @@ public:
 
 private:
 	Player* player;
-
-	cocos2d::PhysicsWorld * scene;
-	void SetPhysicsWorld(cocos2d::PhysicsWorld *level) { scene = level; };
 };
 
 #endif // __SCENE1_SCENE_H__
