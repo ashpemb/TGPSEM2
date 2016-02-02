@@ -46,7 +46,8 @@ bool Scene1::init()
 	// PLAYER
 	player = Player::create();
 	player->setName("Player");
-	player->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, 80));
+	//player->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, 80));
 
+	addChild(player);
 	return true;
 }
