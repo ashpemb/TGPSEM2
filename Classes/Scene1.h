@@ -1,26 +1,30 @@
-#pragma once
+#ifndef __SCENE1_SCENE_H__
+#define __SCENE1_SCENE_H__
 
 #include "cocos2d.h"
-#include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "stdio.h"
-USING_NS_CC;
-
+#include "ui/CocosGUI.h"
+#include "Define.h"
 #include "Player.h"
+#include "SimpleAudioEngine.h"
 
 class Scene1 : public cocos2d::Layer
 {
-private:
-	Player* player;
 public:
-	Scene1();
-	~Scene1();
-
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
 	static cocos2d::Scene* createScene();
 
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init();
-	virtual void Update(float delta);
+
+	// implement the "static create()" method manually
+	CREATE_FUNC(Scene1);
+
+private:
+	Player* player;
+
+	cocos2d::PhysicsWorld * scene;
+	void SetPhysicsWorld(cocos2d::PhysicsWorld *level) { scene = level; };
 };
 
+#endif // __SCENE1_SCENE_H__
