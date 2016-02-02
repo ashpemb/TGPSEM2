@@ -4,7 +4,13 @@
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
         <Image Name="HelloWorld.png" />
+<<<<<<< HEAD
         <Project Name="MainScene.csd" Type="Scene" />
+=======
+        <Project Name="MenuScene.csd" Type="Scene" />
+        <Image Name="MutePressed.png" />
+        <Image Name="MuteUnPressed.png" />
+>>>>>>> refs/remotes/origin/master
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+>>>>>>> refs/remotes/origin/master
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -147,18 +151,33 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="..\Classes\AudioEngine.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
     <ClCompile Include="LSCube.cpp" />
+=======
+    <ClCompile Include="..\Classes\GameManager.cpp" />
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\MenuScene.cpp" />
+    <ClCompile Include="..\Classes\ScoreManager.cpp" />
+>>>>>>> refs/remotes/origin/master
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+<<<<<<< HEAD
     <ClInclude Include="..\Classes\AudioEngine.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="LevelSelect.h" />
     <ClInclude Include="LSCube.h" />
+=======
+    <ClInclude Include="..\Classes\GameManager.h" />
+    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\MenuScene.h" />
+    <ClInclude Include="..\Classes\ScoreManager.h" />
+    <ClInclude Include="Define.h" />
+>>>>>>> refs/remotes/origin/master
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

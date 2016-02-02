@@ -16,6 +16,10 @@ public:
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+
+private:
+	cocos2d::PhysicsWorld * scene;
+	void SetPhysicsWorld(cocos2d::PhysicsWorld *level) { scene = level; };
 };
 
 #endif // __HELLOWORLD_SCENE_H__
