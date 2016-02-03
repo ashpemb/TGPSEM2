@@ -21,25 +21,21 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="..\Classes\AudioEngine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelSelect.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="LSCube.cpp" />
-=======
     <ClCompile Include="..\Classes\MenuScene.cpp">
-	<Filter>src</Filter>
-	</ClCompile>
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\GameManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ScoreManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
->>>>>>> refs/remotes/origin/master
+    <ClCompile Include="..\Classes\AudioEngine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LevelSelect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -51,15 +47,6 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="..\Classes\AudioEngine.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelSelect.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="LSCube.h" />
-=======
     <ClInclude Include="..\Classes\MenuScene.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -72,7 +59,12 @@
     <ClInclude Include="Define.h">
       <Filter>src</Filter>
     </ClInclude>
->>>>>>> refs/remotes/origin/master
+    <ClInclude Include="..\Classes\AudioEngine.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LevelSelect.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

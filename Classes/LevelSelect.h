@@ -18,7 +18,12 @@ public:
 	void onAcceleration(cocos2d::Acceleration* accel, cocos2d::Event* event);
 	void update(float);
 	void UpdateTimer(float dt);
-
+	void GoToGameScene(cocos2d::Ref *sender);
+	void LevelLeft(cocos2d::Ref *sender);
+	void LevelRight(cocos2d::Ref *sender);
+	void LevelMovement(); 
+	void LevelRotation();
+	void LevelScaling();
 	// implement the "static create()" method manually
 	CREATE_FUNC(LevelSelect);
 private:

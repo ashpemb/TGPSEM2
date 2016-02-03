@@ -1,4 +1,5 @@
 #include "MenuScene.h"
+#include "LevelSelect.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -65,8 +66,9 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		CCLOG("touch ended.");
-		//this->StartGame();
+		auto scene = LevelSelect::createScene();
+
+		Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 	}
 }
 
