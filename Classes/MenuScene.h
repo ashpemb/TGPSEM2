@@ -49,6 +49,8 @@ private:
 	cocos2d::ui::Button*    _exitButton;
 	cocos2d::ui::Button*    _muteButton;
 
+	cocos2d::Sprite*		_background;
+
 	Scene1 * gameScene;
 	bool muted;
 };

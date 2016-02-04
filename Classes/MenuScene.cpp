@@ -74,6 +74,16 @@ bool MenuScene::init()
 	_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
 	_muteButton->setPosition(Vec2(winSize.width*0.1f, winSize.height*0.9f));
 
+	//BACKGROUND
+	//_background = (Sprite*)rootNode->getChildByName("Background");
+	_background = Sprite::create("MainMenuBackground.png");
+	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background->setScaleX(winSize.width / _background->getContentSize().width);
+	_background->setScaleY(winSize.height / _background->getContentSize().height);
+	_background->setLocalZOrder(-1);
+
+	this->addChild(_background);
+
 	// AUDIO
 	AudioTesting();
 

@@ -10,6 +10,7 @@
         <Image Name="MuteUnPressed.png" />
         <Project Name="Scene1.csd" Type="Scene" />
         <Image Name="Platform.jpg" />
+        <Image Name="MainMenuBackground.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
