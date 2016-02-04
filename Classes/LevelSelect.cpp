@@ -1,11 +1,4 @@
 #include "LevelSelect.h"
-#include "HelloWorldScene.h"
-#include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
-#include <cstdlib>
-#include <ctime>
-#include <string>
-#include "SimpleAudioEngine.h"  
 
 USING_NS_CC;
 
@@ -28,6 +21,7 @@ float scale2;
 float scale3;
 float levelSelectRotation;
 int SceneSelected;
+
 Scene* LevelSelect::createScene()
 {
 	// 'scene' is an autorelease object
@@ -64,9 +58,6 @@ bool LevelSelect::init()
 	screenSizeY = frameSize.height;
 	screenSizeX = frameSize.width;
 	Device::setAccelerometerEnabled(true);
-
-
-
 
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -724,7 +715,7 @@ void LevelSelect::update(float delta)
 
 void LevelSelect::GoToGameScene(cocos2d::Ref *sender)
 {
-	auto scene = HelloWorld::createScene();
+	auto scene = Scene1::createScene();
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
