@@ -6,6 +6,7 @@
       <ObjectData Name="Scene" Tag="3" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
+<<<<<<< HEAD
           <AbstractNodeData Name="GroundPlat" ActionTag="484469341" Tag="7" IconVisible="False" LeftMargin="362.2852" RightMargin="1557.7148" TopMargin="1492.0013" BottomMargin="35.9987" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -137,6 +138,17 @@
             <PreSize X="0.0625" Y="0.0052" />
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="LabelTimer" ActionTag="-1160927531" Tag="7" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" RightMargin="2048.0000" BottomMargin="1536.0000" FontSize="20" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint ScaleY="1.0000" />
+            <Position Y="1536.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition Y="1.0000" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

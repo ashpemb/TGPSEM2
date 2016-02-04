@@ -7,6 +7,7 @@
 #include "Define.h"
 #include "Player.h"
 #include "SimpleAudioEngine.h"
+#include "GameManager.h"
 
 class Scene1 : public cocos2d::Layer
 {
@@ -18,6 +19,7 @@ public:
 	virtual bool init();
 
 	void update(float delta);
+	void ScheduleScore();
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
@@ -25,6 +27,8 @@ public:
 private:
 	Player* player;
 	
+	int score;
+
 	// Gravity
 	const float gravity = -9.81f;
 };

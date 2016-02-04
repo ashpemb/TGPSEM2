@@ -39,7 +39,10 @@ bool Scene1::init()
 
 	addChild(rootNode);
 
+	GameManager::sharedGameManager()->startLevelTimer();
+
 	this->scheduleUpdate();
+	this->schedule(schedule_selector(Scene1::ScheduleScore), 1.0f);
 
 	// PLAYER
 	player = Player::create(gravity);
@@ -49,7 +52,13 @@ bool Scene1::init()
 	return true;
 }
 
+void Scene1::ScheduleScore()
+{
+	GameManager::sharedGameManager()->updateLevelTimer();
+}
+
 void Scene1::update(float delta)
 {
-
+	score = GameManager::sharedGameManager()->getTimer();
+	
 }
