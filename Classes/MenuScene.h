@@ -6,7 +6,6 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "AudioEngine.h"
-#include "SimpleAudioEngine.h"
 
 #include "stdio.h"
 #include <iomanip>
@@ -46,7 +45,7 @@ private:
 	cocos2d::ui::Button*    _settingsButton;
 	cocos2d::ui::Button*    _exitButton;
 	cocos2d::ui::Button*    _muteButton;
-
+	AudioEngine*			auEngine;
 	bool muted;
 };
 

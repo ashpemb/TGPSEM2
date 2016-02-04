@@ -34,6 +34,7 @@ bool Scene1::init()
 
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
+
 	
 	auto rootNode = CSLoader::createNode("Scene1.csb");
 
@@ -46,10 +47,34 @@ bool Scene1::init()
 	player->setName("Player");
 
 	addChild(player);
+
+	auEngine = new AudioEngine();
+
+	auEngine->PlayBackgroundMusic("testing.mp3", true);
+
+	platform = (Sprite*)rootNode->getChildByName("GroundPlat_0");
+	platform->setPosition(Vec2(429, 1504));
+
+
+
 	return true;
+}
+
+void Scene1::CheckCollisions()
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+	
+
+	if (player->getSprite()->getPositionX() - (player->getSprite()->getContentSize().width / 2) < platform->getPositionX() + (platform->getContentSize().width / 2)
+		&& player->getSprite()->getPositionX() + (player->getSprite()->getContentSize().width / 2) > platform->getPositionX() - (platform->getContentSize().width / 2)
+		&& player->getSprite()->getPositionY() - (player->getSprite()->getContentSize().height / 2) < winSize.height - (platform->getPositionY() + (platform->getContentSize().height / 2))
+		&& player->getSprite()->getPositionY() + (player->getSprite()->getContentSize().height / 2) > winSize.height - (platform->getPositionY() - (platform->getContentSize().height / 2)))
+	{
+		player->land(platform);
+	}
 }
 
 void Scene1::update(float delta)
 {
-
+	CheckCollisions();
 }

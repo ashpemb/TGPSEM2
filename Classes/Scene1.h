@@ -6,7 +6,7 @@
 #include "ui/CocosGUI.h"
 #include "Define.h"
 #include "Player.h"
-#include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 
 class Scene1 : public cocos2d::Layer
 {
@@ -17,6 +17,8 @@ public:
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init();
 
+	void CheckCollisions();
+
 	void update(float delta);
 
 	// implement the "static create()" method manually
@@ -24,7 +26,9 @@ public:
 
 private:
 	Player* player;
-	
+	AudioEngine* auEngine;
+
+	cocos2d::Sprite* platform;
 	// Gravity
 	const float gravity = -9.81f;
 };
