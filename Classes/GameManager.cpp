@@ -6,6 +6,7 @@ GameManager::GameManager()
 {
 	isGameLive = false;
 	isGamePaused = false;
+	time = 0;
 }
 
 GameManager* GameManager::sharedGameManager()
@@ -36,6 +37,21 @@ void GameManager::setIsGamePaused(bool paused)
 bool GameManager::getIsGamePaused()
 {
 	return isGamePaused;
+}
+
+void GameManager::startLevelTimer()
+{
+	time = 0;
+}
+
+void GameManager::updateLevelTimer()
+{
+	time++;
+}
+
+int GameManager::getTimer()
+{
+	return time;
 }
 
 GameManager::~GameManager()
