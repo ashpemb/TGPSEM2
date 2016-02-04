@@ -8,6 +8,7 @@
         <Image Name="MutePressed.png" />
         <Image Name="MuteUnPressed.png" />
         <Project Name="Scene1.csd" Type="Scene" />
+        <Image Name="Platform.jpg" />
       </RootFolder>
     </Group>
   </SolutionFolder>
