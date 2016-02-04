@@ -3,11 +3,11 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="HelloWorld.png" />
         <Project Name="MenuScene.csd" Type="Scene" />
         <Image Name="MutePressed.png" />
         <Image Name="MuteUnPressed.png" />
+        <Project Name="Scene1.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

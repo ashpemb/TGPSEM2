@@ -36,8 +36,10 @@ bool MenuScene::init()
 	this->scheduleUpdate();
 	auto winSize = Director::getInstance()->getVisibleSize();
 
-	//TOUCHES
+	// Variables
+	muted = false;
 
+	//TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -56,6 +58,13 @@ bool MenuScene::init()
 	_startButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::StartButtonPressed, this));
 	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.43f));
 
+	//Mute Button
+	_muteButton = static_cast<ui::Button*>(rootNode->getChildByName("MuteButton"));
+	_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
+
+	// AUDIO
+	AudioTesting();
+
 	return true;
 }
 
@@ -70,12 +79,29 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	}
 }
 
-//void MenuScene::StartGame()
-//{
-//	auto gameScene = new Level1();
-//	CCDirector::getInstance()->replaceScene(gameScene->createScene());
-//	auto winSize = Director::getInstance()->getVisibleSize();
-//}
+void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		if (muted == false) {
+			muted = true;
+			_muteButton->setBright(false);
+			// TO DO - Add method calls to pause background music
+		}
+		else if (muted == true) {
+			muted = false;
+			_muteButton->setBright(true);
+			// TO DO - Add method calls to resume background music
+		}
+	}
+}
+
+void MenuScene::StartGame()
+{
+	auto gameScene = new Scene1();
+	CCDirector::getInstance()->replaceScene(gameScene->createScene());
+	auto winSize = Director::getInstance()->getVisibleSize();
+}
 
 //Touch Functions
 bool MenuScene::onTouchBegan(Touch* touch, Event* event)
@@ -97,4 +123,32 @@ void MenuScene::onTouchMoved(Touch* touch, Event* event)
 void MenuScene::onTouchCancelled(Touch* touch, Event* event)
 {
 	cocos2d::log("touch cancelled");
+}
+
+void MenuScene::AudioTesting()
+{
+	AudioEngine* auEngine = new AudioEngine();
+
+	//Background music fuctions do not need an ID as there can only be one BGM playing at one time
+
+	//auEngine->PlayBackgroundMusic("Conquer_Divide_-_Nightmares_Pro_.wav", true);
+	auEngine->PauseBackgroundMusic();
+	auEngine->ResumeBackgroundMusic();
+	auEngine->StopBackgroundMusic();
+
+	//Sound effects need an ID to be specifically stopped or paused, this ID is given when the function 'PlaySoundEffect' is called and can be used to track a specific sound effect
+
+	int soundID = auEngine->PlaySoundEffect("Conquer_Divide_-_Nightmares_Pro_.wav", true);
+	auEngine->PauseEffect(soundID);
+	auEngine->ResumeEffect(soundID);
+	//auEngine->StopSoundEffect(soundID);
+
+	//Calling the 'AllEffects' variants of these functions will allow it to control all sound effects rather then one
+	//auEngine->PauseAllEffects();
+
+	//To mute the audio call mute audio, this will stop sounds from playing in the future and will also stop current sounds from playing.
+	//Although they are not destroyed, the audio is paused until the user calls the 'stop' functions
+
+	//auEngine->MuteAllAudio(true);
+	//auEngine->StopBackgroundMusic();
 }

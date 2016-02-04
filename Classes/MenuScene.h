@@ -5,10 +5,13 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "AudioEngine.h"
+#include "SimpleAudioEngine.h"
 
 #include "stdio.h"
-
 #include <iomanip>
+
+#include "Scene1.h"
 
 USING_NS_CC;
 
@@ -23,6 +26,8 @@ public:
 	virtual bool init();
 	CREATE_FUNC(MenuScene);
 
+	void AudioTesting();
+
 	// Touch input
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
@@ -31,6 +36,7 @@ public:
 
 	//Button event
 	void StartButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 
 
 	void StartGame();
@@ -41,6 +47,7 @@ private:
 	cocos2d::ui::Button*    _exitButton;
 	cocos2d::ui::Button*    _muteButton;
 
+	bool muted;
 };
 
 

@@ -4,7 +4,7 @@
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="3" ctype="GameNodeObjectData">
-        <Size X="960.0000" Y="640.0000" />
+        <Size X="2048.0000" Y="1536.0000" />
         <Children>
           <AbstractNodeData Name="StartButton" ActionTag="240827560" Tag="4" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="384.0000" RightMargin="384.0000" TopMargin="305.3440" BottomMargin="270.6560" TouchEnable="True" FontSize="36" ButtonText="Start" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="192.0000" Y="64.0000" />
@@ -51,16 +51,16 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MuteButton" ActionTag="-1085926136" Tag="7" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="-45.4755" RightMargin="877.4755" TopMargin="-38.6997" BottomMargin="570.6997" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="98" Scale9Height="86" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="MuteButton" ActionTag="-1085926136" Tag="7" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="-45.4720" RightMargin="877.4720" TopMargin="-38.7040" BottomMargin="570.7040" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="98" Scale9Height="86" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="128.0000" Y="108.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="18.5245" Y="624.6997" />
+            <Position X="18.5280" Y="624.7040" />
             <Scale ScaleX="0.2500" ScaleY="0.2500" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0193" Y="0.9761" />
             <PreSize X="0.1333" Y="0.1688" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
+            <DisabledFileData Type="Normal" Path="MutePressed.png" Plist="" />
             <PressedFileData Type="Normal" Path="MutePressed.png" Plist="" />
             <NormalFileData Type="Normal" Path="MuteUnPressed.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />

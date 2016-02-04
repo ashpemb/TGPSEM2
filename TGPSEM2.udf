@@ -2,7 +2,7 @@
   <Properties>
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
-        <LastPublishType Value="Resource" />
+        <LastPublishType Value="VS" />
         <IsLastPublish Value="True" />
         <LastRunType Value="Windows" />
       </Value>
@@ -23,11 +23,6 @@
         <IsDebugKeystore Value="True" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
-      </Value>
-    </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <ActiveDocument />
       </Value>
     </Item>
   </Properties>
