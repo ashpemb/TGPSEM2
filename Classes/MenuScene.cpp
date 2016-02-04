@@ -36,8 +36,10 @@ bool MenuScene::init()
 	this->scheduleUpdate();
 	auto winSize = Director::getInstance()->getVisibleSize();
 
-	//TOUCHES
+	// Variables
+	muted = false;
 
+	//TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -56,6 +58,10 @@ bool MenuScene::init()
 	_startButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::StartButtonPressed, this));
 	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.43f));
 
+	//Mute Button
+	_muteButton = static_cast<ui::Button*>(rootNode->getChildByName("MuteButton"));
+	_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
+
 	// AUDIO
 	AudioTesting();
 
@@ -70,6 +76,23 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	{
 		CCLOG("touch ended.");
 		//this->StartGame();
+	}
+}
+
+void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		if (muted == false) {
+			muted = true;
+			_muteButton->setBright(false);
+			// TO DO - Add method calls to pause background music
+		}
+		else if (muted == true) {
+			muted = false;
+			_muteButton->setBright(true);
+			// TO DO - Add method calls to resume background music
+		}
 	}
 }
 
