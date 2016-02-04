@@ -6,7 +6,6 @@
       <ObjectData Name="Scene" Tag="3" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-<<<<<<< HEAD
           <AbstractNodeData Name="GroundPlat" ActionTag="484469341" Tag="7" IconVisible="False" LeftMargin="362.2852" RightMargin="1557.7148" TopMargin="1492.0013" BottomMargin="35.9987" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

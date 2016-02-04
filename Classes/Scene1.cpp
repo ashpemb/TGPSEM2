@@ -42,7 +42,7 @@ bool Scene1::init()
 	GameManager::sharedGameManager()->startLevelTimer();
 
 	this->scheduleUpdate();
-	this->schedule(schedule_selector(Scene1::ScheduleScore), 1.0f);
+	//this->schedule(schedule_selector(Scene1::ScheduleScore), 1.0f);
 
 	// PLAYER
 	player = Player::create(gravity);

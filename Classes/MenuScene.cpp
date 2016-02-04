@@ -57,11 +57,22 @@ bool MenuScene::init()
 	//Start button
 	_startButton = static_cast<ui::Button*>(rootNode->getChildByName("StartButton"));
 	_startButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::StartButtonPressed, this));
-	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.43f));
+	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.45f));
+
+	//Settings Button
+	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
+	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
+	_settingsButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.35f));
+
+	//Exit Button
+	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
+	_exitButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::ExitButtonPressed, this));
+	_exitButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.25f));
 
 	//Mute Button
 	_muteButton = static_cast<ui::Button*>(rootNode->getChildByName("MuteButton"));
 	_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
+	_muteButton->setPosition(Vec2(winSize.width*0.1f, winSize.height*0.9f));
 
 	// AUDIO
 	AudioTesting();
@@ -77,10 +88,6 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	{
 		CCLOG("touch ended.");
 		this->StartGame();
-
-		auto scene = LevelSelect::createScene();
-
-		Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 	}
 }
 
@@ -101,11 +108,27 @@ void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 	}
 }
 
+void MenuScene::SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		//TODO
+	}
+}
+
+void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		Director::sharedDirector()->end();
+	}
+}
+
 void MenuScene::StartGame()
 {
-	auto gameScene = new Scene1();
-	CCDirector::getInstance()->replaceScene(gameScene->createScene());
-	auto winSize = Director::getInstance()->getVisibleSize();
+	Scene* scene = LevelSelect::createScene();
+
+	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
 
 //Touch Functions
