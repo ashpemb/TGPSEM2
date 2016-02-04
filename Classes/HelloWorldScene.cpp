@@ -1,4 +1,8 @@
 #include "HelloWorldScene.h"
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
+#include "Define.h"
+
 USING_NS_CC;
 
 using namespace cocostudio::timeline;

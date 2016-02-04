@@ -3,6 +3,7 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
+        <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="HelloWorld.png" />
         <Project Name="MenuScene.csd" Type="Scene" />
         <Image Name="MutePressed.png" />
