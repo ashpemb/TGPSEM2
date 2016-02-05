@@ -62,7 +62,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MuteButton" ActionTag="328989673" Tag="7" IconVisible="False" LeftMargin="10.0686" RightMargin="1909.9314" TopMargin="1.0255" BottomMargin="1426.9745" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="MuteButton" ActionTag="328989673" Tag="7" IconVisible="False" LeftMargin="10.0628" RightMargin="1909.9373" TopMargin="1.0205" BottomMargin="1426.9795" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="128.0000" Y="108.0000" />
             <AnchorPoint ScaleX="0.5042" ScaleY="0.5000" />
             <Position X="74.6004" Y="1480.9795" />

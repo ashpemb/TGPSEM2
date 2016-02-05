@@ -105,18 +105,16 @@ void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		muted = !muted;
-		//_muteButton->setBright(!muted);
-		_muteButton->setEnabled(!muted);
-		//if (muted == false) {
-		//	muted = true;
-		//	_muteButton->setBright(false);
-		//	// TO DO - Add method calls to pause background music
-		//}
-		//else if (muted == true) {
-		//	muted = false;
-		//	_muteButton->setBright(true);
-		//	// TO DO - Add method calls to resume background music
-		//}
+		_muteButton->setSelected(!muted);
+
+		if (muted) {
+			auEngine->PauseBackgroundMusic();
+			auEngine->PauseAllEffects();
+		}
+		else {
+			auEngine->ResumeBackgroundMusic();
+			auEngine->ResumeAllEffects();
+		}
 	}
 }
 
