@@ -71,6 +71,8 @@ void Scene1::ScheduleScore()
 void Scene1::update(float delta)
 {
 	score = GameManager::sharedGameManager()->getTimer();
+
+	CheckCollisions();
 }
 
 void Scene1::CheckCollisions()
@@ -85,9 +87,4 @@ void Scene1::CheckCollisions()
 	{
 		player->land(platform);
 	}
-}
-
-void Scene1::update(float delta)
-{
-	CheckCollisions();
 }
