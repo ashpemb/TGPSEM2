@@ -36,8 +36,6 @@ public:
 
 	//Button event
 	void StartButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
-	void SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
-	void ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 
 
@@ -47,11 +45,8 @@ private:
 	cocos2d::ui::Button*    _startButton;
 	cocos2d::ui::Button*    _settingsButton;
 	cocos2d::ui::Button*    _exitButton;
-	cocos2d::ui::CheckBox*  _muteButton;
+	cocos2d::ui::Button*    _muteButton;
 
-	cocos2d::Sprite*		_background;
-
-	Scene1 * gameScene;
 	bool muted;
 };
 

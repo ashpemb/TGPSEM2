@@ -62,20 +62,19 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MuteButton" ActionTag="-1085926136" Tag="7" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="-96.9728" RightMargin="1871.9744" TopMargin="-92.9281" BottomMargin="1369.6512" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="98" Scale9Height="86" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="272.9984" Y="259.2768" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="39.5264" Y="1499.2897" />
-            <Scale ScaleX="0.2500" ScaleY="0.2500" />
+          <AbstractNodeData Name="MuteButton" ActionTag="328989673" Tag="7" IconVisible="False" LeftMargin="10.0686" RightMargin="1909.9314" TopMargin="1.0255" BottomMargin="1426.9745" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="128.0000" Y="108.0000" />
+            <AnchorPoint ScaleX="0.5042" ScaleY="0.5000" />
+            <Position X="74.6004" Y="1480.9795" />
+            <Scale ScaleX="0.6059" ScaleY="0.6059" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0193" Y="0.9761" />
-            <PreSize X="0.1333" Y="0.1688" />
-            <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="Normal" Path="MutePressed.png" Plist="" />
-            <PressedFileData Type="Normal" Path="MutePressed.png" Plist="" />
-            <NormalFileData Type="Normal" Path="MuteUnPressed.png" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <PrePosition X="0.0364" Y="0.9642" />
+            <PreSize X="0.0625" Y="0.0703" />
+            <NormalBackFileData Type="Normal" Path="MuteUnPressed.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="MutePressed.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="MutePressed.png" Plist="" />
+            <NodeNormalFileData Type="Normal" Path="MuteUnPressed.png" Plist="" />
+            <NodeDisableFileData Type="Normal" Path="MutePressed.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

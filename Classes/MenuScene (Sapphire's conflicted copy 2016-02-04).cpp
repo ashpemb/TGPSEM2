@@ -1,5 +1,4 @@
 #include "MenuScene.h"
-#include "LevelSelect.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -57,32 +56,11 @@ bool MenuScene::init()
 	//Start button
 	_startButton = static_cast<ui::Button*>(rootNode->getChildByName("StartButton"));
 	_startButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::StartButtonPressed, this));
-	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.45f));
-
-	//Settings Button
-	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
-	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
-	_settingsButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.35f));
-
-	//Exit Button
-	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
-	_exitButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::ExitButtonPressed, this));
-	_exitButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.25f));
+	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.43f));
 
 	//Mute Button
-	_muteButton = static_cast<ui::CheckBox*>(rootNode->getChildByName("MuteButton"));
+	_muteButton = static_cast<ui::Button*>(rootNode->getChildByName("MuteButton"));
 	_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
-	_muteButton->setPosition(Vec2(winSize.width*0.1f, winSize.height*0.9f));
-
-	//BACKGROUND
-	//_background = (Sprite*)rootNode->getChildByName("Background");
-	_background = Sprite::create("MainMenuBackground.png");
-	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
-	_background->setScaleX(winSize.width / _background->getContentSize().width);
-	_background->setScaleY(winSize.height / _background->getContentSize().height);
-	_background->setLocalZOrder(-1);
-
-	this->addChild(_background);
 
 	// AUDIO
 	AudioTesting();
@@ -97,7 +75,7 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		CCLOG("touch ended.");
-		this->StartGame();
+		//this->StartGame();
 	}
 }
 
@@ -105,43 +83,24 @@ void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		muted = !muted;
-		//_muteButton->setBright(!muted);
-		_muteButton->setEnabled(!muted);
-		//if (muted == false) {
-		//	muted = true;
-		//	_muteButton->setBright(false);
-		//	// TO DO - Add method calls to pause background music
-		//}
-		//else if (muted == true) {
-		//	muted = false;
-		//	_muteButton->setBright(true);
-		//	// TO DO - Add method calls to resume background music
-		//}
-	}
-}
-
-void MenuScene::SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
-	{
-		//TODO
-	}
-}
-
-void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
-	{
-		Director::sharedDirector()->end();
+		if (muted == false) {
+			muted = true;
+			_muteButton->setBright(false);
+			// TO DO - Add method calls to pause background music
+		}
+		else if (muted == true) {
+			muted = false;
+			_muteButton->setBright(true);
+			// TO DO - Add method calls to resume background music
+		}
 	}
 }
 
 void MenuScene::StartGame()
 {
-	Scene* scene = LevelSelect::createScene();
-
-	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
+	auto gameScene = new Scene1();
+	CCDirector::getInstance()->replaceScene(gameScene->createScene());
+	auto winSize = Director::getInstance()->getVisibleSize();
 }
 
 //Touch Functions
