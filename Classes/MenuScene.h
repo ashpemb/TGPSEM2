@@ -1,17 +1,17 @@
 #ifndef __MENU_SCENE_H__
 #define __MENU_SCENE_H__
 
-
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "AudioEngine.h"
 #include "SimpleAudioEngine.h"
 
 #include "stdio.h"
 #include <iomanip>
 
 #include "Scene1.h"
+#include "AudioEngine.h"
+#include "LevelSelect.h"
 
 USING_NS_CC;
 
@@ -52,6 +52,8 @@ private:
 	cocos2d::Sprite*		_background;
 
 	Scene1 * gameScene;
+
+	AudioEngine*			auEngine;
 	bool muted;
 };
 

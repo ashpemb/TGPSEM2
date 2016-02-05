@@ -1,6 +1,4 @@
 #include "MenuScene.h"
-#include "LevelSelect.h"
-#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -85,6 +83,7 @@ bool MenuScene::init()
 	this->addChild(_background);
 
 	// AUDIO
+	auEngine = new AudioEngine();
 	AudioTesting();
 
 	return true;
@@ -139,6 +138,7 @@ void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 
 void MenuScene::StartGame()
 {
+	auEngine->StopBackgroundMusic();
 	Scene* scene = LevelSelect::createScene();
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
@@ -168,20 +168,19 @@ void MenuScene::onTouchCancelled(Touch* touch, Event* event)
 
 void MenuScene::AudioTesting()
 {
-	AudioEngine* auEngine = new AudioEngine();
 
 	//Background music fuctions do not need an ID as there can only be one BGM playing at one time
 
-	//auEngine->PlayBackgroundMusic("Conquer_Divide_-_Nightmares_Pro_.wav", true);
+	auEngine->PlayBackgroundMusic("menu.mp3", true);
 	auEngine->PauseBackgroundMusic();
 	auEngine->ResumeBackgroundMusic();
-	auEngine->StopBackgroundMusic();
+	//auEngine->StopBackgroundMusic();
 
 	//Sound effects need an ID to be specifically stopped or paused, this ID is given when the function 'PlaySoundEffect' is called and can be used to track a specific sound effect
 
-	int soundID = auEngine->PlaySoundEffect("Conquer_Divide_-_Nightmares_Pro_.wav", true);
-	auEngine->PauseEffect(soundID);
-	auEngine->ResumeEffect(soundID);
+	//int soundID = auEngine->PlaySoundEffect("Conquer_Divide_-_Nightmares_Pro_.wav", true);
+	//auEngine->PauseEffect(soundID);
+	//auEngine->ResumeEffect(soundID);
 	//auEngine->StopSoundEffect(soundID);
 
 	//Calling the 'AllEffects' variants of these functions will allow it to control all sound effects rather then one

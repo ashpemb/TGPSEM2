@@ -36,7 +36,7 @@ bool Player::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
 	_husky2 = Sprite::create("Husky.png");
-	_husky2->setPosition(Vec2(500, winSize.height / 2 + origin.y));
+	_husky2->setPosition(Vec2(500, winSize.height / 2));
 
 	this->addChild(_husky2);
 
@@ -48,7 +48,7 @@ bool Player::init()
 void Player::update(float delta) 
 {
 	//Debug
-	_falling = true;
+	//_falling = true;
 
 	fall(delta);
 }
@@ -63,7 +63,7 @@ void Player::setVelocity(float y)
 	_verticalVelocity = y;
 }
 
-void Player::land()
+void Player::land(cocos2d::Sprite* plat)
 {
 	if (_falling) {
 		_falling = false;
@@ -82,9 +82,16 @@ void Player::fall(float delta)
 		_timeFalling += delta;
 
 		// Calculate and set new velocity
-		_verticalVelocity = _lastVelocity + ((_gravity / 2) * _timeFalling);
-		_husky2->setPosition(Vec2(_husky2->getPosition().x, _husky2->getPosition().y + _verticalVelocity));
-
+		if (_verticalVelocity > -9.0f)
+		{
+			_verticalVelocity = _lastVelocity + ((_gravity / 2) * _timeFalling);
+			_husky2->setPosition(Vec2(_husky2->getPosition().x, _husky2->getPosition().y + _verticalVelocity));
+		}
+		else
+		{
+			_verticalVelocity = -9.0f;
+			_husky2->setPosition(Vec2(_husky2->getPosition().x, _husky2->getPosition().y + _verticalVelocity));
+		}
 		// Update last velocity
 		_lastVelocity = _verticalVelocity;
 	}

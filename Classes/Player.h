@@ -31,7 +31,10 @@ public:
 	void setVelocity(float y);
 	float getVelocity() { return _verticalVelocity; };
 
-	void land();
+	//Sprite
+	Sprite* getSprite() { return _husky2; };
+
+	void land(cocos2d::Sprite* plat);
 	void fall(float delta);
 };
 

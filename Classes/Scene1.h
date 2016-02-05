@@ -6,8 +6,8 @@
 #include "ui/CocosGUI.h"
 #include "Define.h"
 #include "Player.h"
-#include "SimpleAudioEngine.h"
 #include "GameManager.h"
+#include "AudioEngine.h"
 
 class Scene1 : public cocos2d::Layer
 {
@@ -18,6 +18,8 @@ public:
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init();
 
+	void CheckCollisions();
+
 	void update(float delta);
 	void ScheduleScore();
 
@@ -25,9 +27,11 @@ public:
 	CREATE_FUNC(Scene1);
 
 private:
-	Player* player;
-	
 	int score;
+
+	Player* player;
+	AudioEngine* auEngine;
+	cocos2d::Sprite* platform;
 
 	// Gravity
 	const float gravity = -9.81f;
