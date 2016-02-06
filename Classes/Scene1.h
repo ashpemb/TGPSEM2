@@ -26,12 +26,17 @@ public:
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
 
+	// Touch input
+	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 private:
 	int score;
 
 	Player* player;
 	AudioEngine* auEngine;
-	cocos2d::Sprite* platform;
+	std::vector<cocos2d::Sprite*> platforms;
 
 	// Gravity
 	const float gravity = -9.81f;

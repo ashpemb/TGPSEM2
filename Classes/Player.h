@@ -16,6 +16,11 @@ private:
 	float _lastVelocity;
 	float _verticalVelocity;
 	float _timeFalling;
+
+	// Move to
+	float _targetX;
+
+	void moveToTarget();
 public:
 	Player();
 	static Player* create(float gravity);
@@ -25,16 +30,19 @@ public:
 	
 	void update(float delta);
 
-	// Gravity
+	// Physics
 	void setGravity(float gravity);
 
 	void setVelocity(float y);
 	float getVelocity() { return _verticalVelocity; };
 
+	void checkCollisions(cocos2d::Sprite* collider);
+
 	//Sprite
 	Sprite* getSprite() { return _husky2; };
 
-	void land(cocos2d::Sprite* plat);
+	void land(cocos2d::Sprite* collider);
 	void fall(float delta);
+	bool getFalling() { return _falling; };
 };
 

@@ -50,7 +50,9 @@ void Player::update(float delta)
 	//Debug
 	//_falling = true;
 
-	fall(delta);
+	if (_falling) {
+		fall(delta);
+	}
 }
 
 void Player::setGravity(float gravity)
@@ -63,7 +65,20 @@ void Player::setVelocity(float y)
 	_verticalVelocity = y;
 }
 
-void Player::land(cocos2d::Sprite* plat)
+void Player::checkCollisions(cocos2d::Sprite* collider)
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+
+	if (getSprite()->getPositionX() - (getSprite()->getContentSize().width / 2) < collider->getPositionX() + (collider->getContentSize().width / 2)
+		&& getSprite()->getPositionX() + (getSprite()->getContentSize().width / 2) > collider->getPositionX() - (collider->getContentSize().width / 2)
+		&& getSprite()->getPositionY() - (getSprite()->getContentSize().height / 2) < collider->getPositionY() + (collider->getContentSize().height / 2)
+		&& getSprite()->getPositionY() + (getSprite()->getContentSize().height / 2) > collider->getPositionY() - (collider->getContentSize().height / 2))
+	{
+		land(collider);
+	}
+}
+
+void Player::land(cocos2d::Sprite* collider)
 {
 	if (_falling) {
 		_falling = false;
@@ -72,6 +87,10 @@ void Player::land(cocos2d::Sprite* plat)
 		_verticalVelocity = 0.0f;
 		_lastVelocity = 0.0f;
 		_timeFalling = 0.0f;
+
+		// Make sure the position is set so not inside platform
+		float newY = (collider->getPositionY() + (collider->getContentSize().height / 2)) + (getSprite()->getContentSize().height / 2);
+		getSprite()->setPosition(Vec2(getSprite()->getPositionX(), newY));
 	}
 }
 
