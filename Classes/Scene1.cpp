@@ -61,7 +61,7 @@ bool Scene1::init()
 
 	cocos2d::Sprite* platform;
 	int i = 1;
-	platform = (Sprite*)rootNode->getChildByName("Platform_" + std::to_string(i));
+	platform = (Sprite*)rootNode->getChildByName("Platform_" + StringUtils::format("%d", i));
 
 	while (platform != nullptr) {
 		// Store platform in list
@@ -69,19 +69,19 @@ bool Scene1::init()
 		_flipped.push_back(false);
 
 		i++;
-		platform = (Sprite*)rootNode->getChildByName("Platform_" + std::to_string(i));
+		platform = (Sprite*)rootNode->getChildByName("Platform_" + StringUtils::format("%d", i));
 	}
 
 	cocos2d::ui::CheckBox* gravSwitch;
 	i = 1;
-	gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + std::to_string(i)));
+	gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
 
 	while (gravSwitch != nullptr) {
 		gravSwitch->addTouchEventListener(CC_CALLBACK_2(Scene1::SwitchPressed, this));
 		_gravSwitches.push_back(gravSwitch);
 
 		i++;
-		gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + std::to_string(i)));
+		gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
 	}
 
 	// GAMEMANAGER
@@ -100,6 +100,14 @@ bool Scene1::init()
 
 	//Add our touch listener to event listener list.
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+	_background = Sprite::create("BG1.png");
+	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background->setScaleX(winSize.width / _background->getContentSize().width);
+	_background->setScaleY(winSize.height / _background->getContentSize().height);
+	_background->setLocalZOrder(-1);
+
+	this->addChild(_background);
 
 	return true;
 }

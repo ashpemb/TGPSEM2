@@ -1,5 +1,4 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
 
 USING_NS_CC;
 
@@ -43,7 +42,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-    auto scene = MenuScene::createScene();
+	MenuScene menuScene;
+    auto scene = menuScene.createScene();
 
     // run
     director->runWithScene(scene);

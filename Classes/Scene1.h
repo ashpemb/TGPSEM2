@@ -38,6 +38,7 @@ private:
 	int _score;
 	Player* _player;
 	cocos2d::ui::Text*	_timeLabel;
+	Sprite*	_background;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;

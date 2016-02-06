@@ -130,7 +130,7 @@ void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		Director::sharedDirector()->end();
+		Director::getInstance()->end();
 	}
 }
 
