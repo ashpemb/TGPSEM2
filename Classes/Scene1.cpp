@@ -107,7 +107,15 @@ bool Scene1::init()
 	_background->setScaleY(winSize.height / _background->getContentSize().height);
 	_background->setLocalZOrder(-1);
 
+	_blackTransparency = Sprite::create("Black Screen.png");
+	_blackTransparency->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_blackTransparency->setScaleX(winSize.width / _blackTransparency->getContentSize().width);
+	_blackTransparency->setScaleY(winSize.height / _blackTransparency->getContentSize().height);
+	_blackTransparency->setOpacity(123);
+	_blackTransparency->setVisible(false);
+
 	this->addChild(_background);
+	this->addChild(_blackTransparency);
 
 	return true;
 }
@@ -119,24 +127,37 @@ void Scene1::ScheduleScore(float delta)
 
 void Scene1::update(float delta)
 {
-	if (_flipGravityCooldown > 0.0f) {
-		_flipGravityCooldown -= delta;
 
-		if (_flipGravityCooldown < 0.0f) {
-			_flipGravityCooldown = 0.0f;
+
+	if (GameManager::sharedGameManager()->getIsGameLive())
+	{
+		if (_flipGravityCooldown > 0.0f) {
+			_flipGravityCooldown -= delta;
+
+			if (_flipGravityCooldown < 0.0f) {
+				_flipGravityCooldown = 0.0f;
+			}
 		}
+
+		_score = GameManager::sharedGameManager()->getTimer();
+
+		int mil = GameManager::sharedGameManager()->getMil();
+		int sec = GameManager::sharedGameManager()->getSec();
+		int min = GameManager::sharedGameManager()->getMin();
+
+		_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
+
+		CheckCollisions();
+		CheckNear();
+		IsPlayerInBounds();
 	}
+	else
+	{
+		int wof = 22;
 
-	_score = GameManager::sharedGameManager()->getTimer();
-
-	int mil = GameManager::sharedGameManager()->getMil();
-	int sec = GameManager::sharedGameManager()->getSec();
-	int min = GameManager::sharedGameManager()->getMin();
-
-	_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
-
-	CheckCollisions();
-	CheckNear();
+		_blackTransparency->setVisible(true);
+		// Add gameover shit
+	}
 }
 
 void Scene1::CheckCollisions()
@@ -251,4 +272,18 @@ void Scene1::FlipGravity()
 	_player->SetGravity(_gravity);
 	_player->SetFalling(true);
 	_player->FlipPlayer();
+}
+
+void Scene1::IsPlayerInBounds()
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+	if (_player->GetSprite()->getPosition().y < (0.0f - _player->GetSprite()->getContentSize().height))
+	{
+		GameManager::sharedGameManager()->setIsGameLive(false);
+		
+	}
+	else if (_player->GetSprite()->getPosition().y > (winSize.height + _player->GetSprite()->getContentSize().height))
+	{
+		GameManager::sharedGameManager()->setIsGameLive(false);
+	}
 }

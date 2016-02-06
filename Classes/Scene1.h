@@ -23,6 +23,7 @@ public:
 	void update(float delta);
 	void ScheduleScore(float delta);
 	void CheckNear();
+	void IsPlayerInBounds();
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
@@ -39,6 +40,7 @@ private:
 	Player* _player;
 	cocos2d::ui::Text*	_timeLabel;
 	Sprite*	_background;
+	Sprite* _blackTransparency;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
