@@ -7,7 +7,7 @@
         <Project Name="MenuScene.csd" Type="Scene" />
         <Image Name="MutePressed.png" />
         <Image Name="MuteUnPressed.png" />
-        <Project Name="Scene1.csd" Type="Scene" />
+        <Project Name="TimerScene.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

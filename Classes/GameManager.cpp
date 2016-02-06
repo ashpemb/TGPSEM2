@@ -58,7 +58,7 @@ void GameManager::updateLevelTimer()
 		mil = 0;
 	}
 
-	if (sec > 60)
+	if (sec >= 60)
 	{
 		min++;
 		sec = sec - 60;
