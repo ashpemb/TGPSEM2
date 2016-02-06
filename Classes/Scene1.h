@@ -40,6 +40,10 @@ private:
 
 	// Gravity
 	const float gravity = -9.81f;
+
+	// Touches
+	bool inTouch;
+	cocos2d::Vec2 initialTouchPos;
 };
 
 #endif // __SCENE1_SCENE_H__

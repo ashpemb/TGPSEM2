@@ -67,8 +67,23 @@ bool Scene1::init()
 		platform = (Sprite*)rootNode->getChildByName("Platform_" + std::to_string(i));
 	}
 
-	//platform->setPosition(Vec2(429, 1504));
-	int woof = 229;
+	// GAMEMANAGER
+	GameManager::sharedGameManager()->setIsGameLive(true);
+	GameManager::sharedGameManager()->setIsGamePaused(false);
+
+	// TOUCH ME
+	//Set up a touch listener.
+	auto touchListener = EventListenerTouchOneByOne::create();
+
+	//Set callbacks for our touch functions.
+	touchListener->onTouchBegan = CC_CALLBACK_2(Scene1::onTouchBegan, this);
+	touchListener->onTouchEnded = CC_CALLBACK_2(Scene1::onTouchEnded, this);
+	touchListener->onTouchMoved = CC_CALLBACK_2(Scene1::onTouchMoved, this);
+	touchListener->onTouchCancelled = CC_CALLBACK_2(Scene1::onTouchCancelled, this);
+
+	//Add our touch listener to event listener list.
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
 	return true;
 }
 
@@ -87,7 +102,7 @@ void Scene1::update(float delta)
 void Scene1::CheckCollisions()
 {
 	for (int i = 0; i < platforms.size(); i++) {
-		player->checkCollisions(platforms[i]);
+		player->CheckCollisions(platforms[i]);
 	}
 }
 
@@ -96,8 +111,19 @@ bool Scene1::onTouchBegan(Touch* touch, Event* event)
 {
 	cocos2d::log("touch began");
 
-	// record position
+	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
+		//Store the coordinates of where this touch began.
+		Point touchPos = touch->getLocationInView();
+		touchPos = Director::getInstance()->convertToGL(touchPos);
+		touchPos = convertToNodeSpace(touchPos);
 
+		initialTouchPos = touchPos;
+		inTouch = true;
+		return true;
+	}
+	else {
+		return false;
+	}
 
 	return true;
 }
@@ -105,6 +131,19 @@ bool Scene1::onTouchBegan(Touch* touch, Event* event)
 void Scene1::onTouchEnded(Touch* touch, Event* event)
 {
 	cocos2d::log("touch ended");
+
+	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
+		if (!GameManager::sharedGameManager()->getIsGamePaused()) {
+			inTouch = false;
+
+			// TODO
+			// Add checks to ensure no object is clicked
+			// If an object is clicked, DO NOT let the player move to it, instead:
+			// call the appropiate methods specific to that object
+
+			player->SetTarget(initialTouchPos.x);
+		}
+	}
 }
 
 void Scene1::onTouchMoved(Touch* touch, Event* event)
