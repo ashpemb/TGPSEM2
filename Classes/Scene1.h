@@ -21,7 +21,7 @@ public:
 	void CheckCollisions();
 
 	void update(float delta);
-	void ScheduleScore();
+	void ScheduleScore(float delta);
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
@@ -33,6 +33,8 @@ public:
 	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 private:
 	int score;
+	Player* player;
+	cocos2d::ui::Text*	 TimeLabel;
 
 	Player* player;
 	AudioEngine* auEngine;

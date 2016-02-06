@@ -42,8 +42,11 @@ bool Scene1::init()
 
 	GameManager::sharedGameManager()->startLevelTimer();
 
+
 	this->scheduleUpdate();
-	//this->schedule(schedule_selector(Scene1::ScheduleScore), 1.0f);
+
+	this->schedule(schedule_selector(Scene1::ScheduleScore), 0.001f);
+	TimeLabel = (ui::Text*)rootNode->getChildByName("Time");
 
 	// PLAYER
 	player = Player::create(gravity);
@@ -87,7 +90,7 @@ bool Scene1::init()
 	return true;
 }
 
-void Scene1::ScheduleScore()
+void Scene1::ScheduleScore(float delta)
 {
 	GameManager::sharedGameManager()->updateLevelTimer();
 }
@@ -95,6 +98,13 @@ void Scene1::ScheduleScore()
 void Scene1::update(float delta)
 {
 	score = GameManager::sharedGameManager()->getTimer();
+
+
+	int mil = GameManager::sharedGameManager()->getMil();
+	int sec = GameManager::sharedGameManager()->getSec();
+	int min = GameManager::sharedGameManager()->getMin();
+
+	TimeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 
 	CheckCollisions();
 }
