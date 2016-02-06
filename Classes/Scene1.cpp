@@ -46,13 +46,14 @@ bool Scene1::init()
 	this->scheduleUpdate();
 
 	this->schedule(schedule_selector(Scene1::ScheduleScore), 0.001f);
-	TimeLabel = (ui::Text*)rootNode->getChildByName("Time");
+	_timeLabel = (ui::Text*)rootNode->getChildByName("Time");
+	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.95));
 
 	// PLAYER
-	player = Player::create(gravity);
-	player->setName("Player");
+	_player = Player::create(_gravity);
+	_player->setName("Player");
 
-	addChild(player);
+	addChild(_player);
 
 	auEngine = new AudioEngine();
 
@@ -64,10 +65,23 @@ bool Scene1::init()
 
 	while (platform != nullptr) {
 		// Store platform in list
-		platforms.push_back(platform);
+		_platforms.push_back(platform);
+		_flipped.push_back(false);
 
 		i++;
 		platform = (Sprite*)rootNode->getChildByName("Platform_" + std::to_string(i));
+	}
+
+	cocos2d::ui::CheckBox* gravSwitch;
+	i = 1;
+	gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + std::to_string(i)));
+
+	while (gravSwitch != nullptr) {
+		gravSwitch->addTouchEventListener(CC_CALLBACK_2(Scene1::SwitchPressed, this));
+		_gravSwitches.push_back(gravSwitch);
+
+		i++;
+		gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + std::to_string(i)));
 	}
 
 	// GAMEMANAGER
@@ -97,22 +111,30 @@ void Scene1::ScheduleScore(float delta)
 
 void Scene1::update(float delta)
 {
-	score = GameManager::sharedGameManager()->getTimer();
+	if (_flipGravityCooldown > 0.0f) {
+		_flipGravityCooldown -= delta;
 
+		if (_flipGravityCooldown < 0.0f) {
+			_flipGravityCooldown = 0.0f;
+		}
+	}
+
+	_score = GameManager::sharedGameManager()->getTimer();
 
 	int mil = GameManager::sharedGameManager()->getMil();
 	int sec = GameManager::sharedGameManager()->getSec();
 	int min = GameManager::sharedGameManager()->getMin();
 
-	TimeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
+	_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 
 	CheckCollisions();
+	CheckNear();
 }
 
 void Scene1::CheckCollisions()
 {
-	for (int i = 0; i < platforms.size(); i++) {
-		player->CheckCollisions(platforms[i]);
+	for (int i = 0; i < _platforms.size(); i++) {
+		_player->CheckCollisions(_platforms[i]);
 	}
 }
 
@@ -127,8 +149,8 @@ bool Scene1::onTouchBegan(Touch* touch, Event* event)
 		touchPos = Director::getInstance()->convertToGL(touchPos);
 		touchPos = convertToNodeSpace(touchPos);
 
-		initialTouchPos = touchPos;
-		inTouch = true;
+		_initialTouchPos = touchPos;
+		_inTouch = true;
 		return true;
 	}
 	else {
@@ -144,14 +166,14 @@ void Scene1::onTouchEnded(Touch* touch, Event* event)
 
 	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
 		if (!GameManager::sharedGameManager()->getIsGamePaused()) {
-			inTouch = false;
+			_inTouch = false;
 
 			// TODO
 			// Add checks to ensure no object is clicked
 			// If an object is clicked, DO NOT let the player move to it, instead:
 			// call the appropiate methods specific to that object
 
-			player->SetTarget(initialTouchPos.x);
+			_player->SetTarget(_initialTouchPos.x);
 		}
 	}
 }
@@ -164,4 +186,61 @@ void Scene1::onTouchMoved(Touch* touch, Event* event)
 void Scene1::onTouchCancelled(Touch* touch, Event* event)
 {
 	cocos2d::log("touch cancelled");
+}
+
+void Scene1::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (int i = 0; i < _gravSwitches.size(); i++) {
+		if (findCheckBox->getName() == _gravSwitches[i]->getName()) {
+			_flipped[i] = !_flipped[i];
+			_gravSwitches[i]->setFlippedX(_flipped[i]);
+
+			// Flip Gravity
+			if (_flipGravityCooldown == 0.0f) {
+				FlipGravity();
+
+				_flipGravityCooldown = 1.0f;
+			}
+		}
+	}
+}
+
+void Scene1::CheckNear()
+{
+	for (int i = 0; i < _gravSwitches.size(); i++) {
+		// Player needs to be near the switch to press
+		float scaledWidth = _gravSwitches[i]->getContentSize().width * _gravSwitches[i]->getScaleX();
+		float scaledHeight = _gravSwitches[i]->getContentSize().height * _gravSwitches[i]->getScaleY();
+
+		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _gravSwitches[i]->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
+			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _gravSwitches[i]->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
+			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _gravSwitches[i]->getPositionY() + (scaledHeight / 2)
+			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _gravSwitches[i]->getPositionY() - (scaledHeight / 2))
+		{
+			//_gravSwitches[i]->setEnabled(true);
+			_gravSwitches[i]->setEnabled(true);
+		}
+		else {
+			_gravSwitches[i]->setEnabled(false);
+		}
+	}
+}
+
+void Scene1::FlipGravity()
+{
+	if (_gravity < 0.0f) {
+		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+	}
+	else {
+		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+	}
+
+	_gravity *= -1;
+
+	_player->SetGravity(_gravity);
+	_player->SetFalling(true);
+	_player->FlipPlayer();
 }

@@ -22,6 +22,7 @@ public:
 
 	void update(float delta);
 	void ScheduleScore(float delta);
+	void CheckNear();
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
@@ -31,21 +32,26 @@ public:
 	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
-private:
-	int score;
-	Player* player;
-	cocos2d::ui::Text*	 TimeLabel;
 
-	Player* player;
+	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+private:
+	int _score;
+	Player* _player;
+	cocos2d::ui::Text*	_timeLabel;
+
 	AudioEngine* auEngine;
-	std::vector<cocos2d::Sprite*> platforms;
+	std::vector<cocos2d::Sprite*> _platforms;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
+	std::vector<bool> _flipped;
 
 	// Gravity
-	const float gravity = -9.81f;
+	float _gravity = -9.81f;
+	float _flipGravityCooldown = 1.0f;	// One second cooldown
+	void FlipGravity();
 
 	// Touches
-	bool inTouch;
-	cocos2d::Vec2 initialTouchPos;
+	bool _inTouch;
+	cocos2d::Vec2 _initialTouchPos;
 };
 
 #endif // __SCENE1_SCENE_H__

@@ -44,7 +44,7 @@ bool Player::init()
 
 	// Init member level variables
 	_targetX = _playerSprite->getPositionX();
-	_speed = 50;
+	_speed = 100;
 
 	return true;
 }
@@ -103,7 +103,15 @@ void Player::Land(cocos2d::Sprite* collider)
 		_timeFalling = 0.0f;
 
 		// Make sure the position is set so not inside platform
-		float newY = (collider->getPositionY() + (collider->getContentSize().height / 2)) + (GetSprite()->getContentSize().height / 2);
+		float newY;
+
+		if (_gravity < 0.0f) {
+			newY = (collider->getPositionY() + (collider->getContentSize().height / 2)) + (GetSprite()->getContentSize().height / 2);
+		}
+		else {
+			newY = (collider->getPositionY() - (collider->getContentSize().height / 2)) - (GetSprite()->getContentSize().height / 2);
+		}
+
 		GetSprite()->setPosition(Vec2(GetSprite()->getPositionX(), newY));
 	}
 }
@@ -115,16 +123,19 @@ void Player::Fall(float delta)
 		_timeFalling += delta;
 
 		// Calculate and set new velocity
-		if (_verticalVelocity > -9.0f)
-		{
+		if (_verticalVelocity > -12.0f) {
 			_verticalVelocity = _lastVelocity + ((_gravity / 2) * _timeFalling);
 			_playerSprite->setPosition(Vec2(_playerSprite->getPosition().x, _playerSprite->getPosition().y + _verticalVelocity));
 		}
-		else
-		{
+		else if (_verticalVelocity < 12.0f) {
+			_verticalVelocity = _lastVelocity + ((_gravity / 2) * _timeFalling);
+			_playerSprite->setPosition(Vec2(_playerSprite->getPosition().x, _playerSprite->getPosition().y + _verticalVelocity));
+		}
+		else {
 			_verticalVelocity = -9.0f;
 			_playerSprite->setPosition(Vec2(_playerSprite->getPosition().x, _playerSprite->getPosition().y + _verticalVelocity));
 		}
+
 		// Update last velocity
 		_lastVelocity = _verticalVelocity;
 	}
@@ -159,5 +170,24 @@ void Player::MoveToTarget(float deltaTime)
 	}
 	else {
 		// Player is already in target position, idiot
+	}
+}
+
+void Player::SetFalling(bool falling)
+{
+	_falling = falling;
+}
+
+void Player::FlipPlayer()
+{
+	if (_gravity < 0)
+	{
+		auto rotateTo = RotateTo::create(0.5f, 0.0f);
+		_playerSprite->runAction(rotateTo);
+	}
+	else if (_gravity > 0)
+	{
+		auto rotateTo = RotateTo::create(0.5f, 180.0f);
+		_playerSprite->runAction(rotateTo);
 	}
 }

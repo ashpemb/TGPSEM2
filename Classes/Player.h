@@ -8,6 +8,7 @@ class Player : public Node
 private:
 	// Sprite
 	Sprite* _playerSprite;
+	
 
 	// Gravity variables
 	float _gravity;
@@ -33,6 +34,8 @@ public:
 
 	// Physics
 	void SetGravity(float gravity);
+	void SetFalling(bool falling);
+	void FlipPlayer();
 
 	void SetVelocity(float y);
 	float GetVelocity() { return _verticalVelocity; };
