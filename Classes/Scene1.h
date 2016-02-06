@@ -19,18 +19,19 @@ public:
 	virtual bool init();
 
 	void update(float delta);
-	void ScheduleScore();
+	void ScheduleScore(float delta);
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
 
 private:
 	Player* player;
-	
-	int score;
 
 	// Gravity
 	const float gravity = -9.81f;
+
+	cocos2d::ui::Text*	 TimeLabel;
+
 };
 
 #endif // __SCENE1_SCENE_H__

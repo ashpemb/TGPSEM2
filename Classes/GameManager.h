@@ -12,6 +12,13 @@ private:
 	bool isGameLive;
 	bool isGamePaused;
 	int time;
+	int mil;
+	int sec;
+	int min;
+
+	
+
+	
 public:
 
 	~GameManager();
@@ -24,4 +31,7 @@ public:
 	void startLevelTimer();
 	void updateLevelTimer();
 	int getTimer();
+	int getMil();
+	int getSec();
+	int getMin();
 };
