@@ -21,20 +21,40 @@ public:
 	void CheckCollisions();
 
 	void update(float delta);
-	void ScheduleScore();
+	void ScheduleScore(float delta);
+	void CheckNear();
+	void IsPlayerInBounds();
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Scene1);
 
-private:
-	int score;
+	// Touch input
+	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 
-	Player* player;
+	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+private:
+	int _score;
+	Player* _player;
+	cocos2d::ui::Text*	_timeLabel;
+	Sprite*	_background;
+	Sprite* _blackTransparency;
+
 	AudioEngine* auEngine;
-	cocos2d::Sprite* platform;
+	std::vector<cocos2d::Sprite*> _platforms;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
+	std::vector<bool> _flipped;
 
 	// Gravity
-	const float gravity = -9.81f;
+	float _gravity = -9.81f;
+	float _flipGravityCooldown = 1.0f;	// One second cooldown
+	void FlipGravity();
+
+	// Touches
+	bool _inTouch;
+	cocos2d::Vec2 _initialTouchPos;
 };
 
 #endif // __SCENE1_SCENE_H__

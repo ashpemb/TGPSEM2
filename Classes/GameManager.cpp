@@ -6,7 +6,9 @@ GameManager::GameManager()
 {
 	isGameLive = false;
 	isGamePaused = false;
-	time = 0;
+	mil = 0;
+	sec = 0;
+	min = 0;
 }
 
 GameManager* GameManager::sharedGameManager()
@@ -41,18 +43,52 @@ bool GameManager::getIsGamePaused()
 
 void GameManager::startLevelTimer()
 {
-	time = 0;
+	mil = 0;
+	sec = 0;
+	min = 0;
 }
 
 void GameManager::updateLevelTimer()
 {
-	time++;
+	mil++;
+
+	if (mil > 1000)
+	{
+		sec++;
+		mil = 0;
+	}
+
+	if (sec >= 60)
+	{
+		min++;
+		sec = sec - 60;
+	}
+
+
 }
 
 int GameManager::getTimer()
 {
-	return time;
+	return 0;
 }
+
+
+int GameManager::getMil()
+{
+	return mil;
+}
+
+int GameManager::getSec()
+{
+	return sec;
+}
+
+
+int GameManager::getMin()
+{
+	return min;
+}
+
 
 GameManager::~GameManager()
 {

@@ -7,7 +7,8 @@ class Player : public Node
 {
 private:
 	// Sprite
-	Sprite* _husky2;
+	Sprite* _playerSprite;
+	
 
 	// Gravity variables
 	float _gravity;
@@ -16,6 +17,12 @@ private:
 	float _lastVelocity;
 	float _verticalVelocity;
 	float _timeFalling;
+
+	// Move to
+	float _targetX;
+	float _speed;
+
+	void MoveToTarget(float deltaTime);
 public:
 	Player();
 	static Player* create(float gravity);
@@ -25,16 +32,24 @@ public:
 	
 	void update(float delta);
 
-	// Gravity
-	void setGravity(float gravity);
+	// Physics
+	void SetGravity(float gravity);
+	void SetFalling(bool falling);
+	void FlipPlayer();
 
-	void setVelocity(float y);
-	float getVelocity() { return _verticalVelocity; };
+	void SetVelocity(float y);
+	float GetVelocity() { return _verticalVelocity; };
+
+	void CheckCollisions(cocos2d::Sprite* collider);
 
 	//Sprite
-	Sprite* getSprite() { return _husky2; };
+	Sprite* GetSprite() { return _playerSprite; };
 
-	void land(cocos2d::Sprite* plat);
-	void fall(float delta);
+	void Land(cocos2d::Sprite* collider);
+	void Fall(float delta);
+	bool GetFalling() { return _falling; };
+
+	// Movement
+	void SetTarget(float target);
 };
 

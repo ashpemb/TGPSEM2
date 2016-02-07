@@ -42,49 +42,248 @@ bool Scene1::init()
 
 	GameManager::sharedGameManager()->startLevelTimer();
 
+
 	this->scheduleUpdate();
-	//this->schedule(schedule_selector(Scene1::ScheduleScore), 1.0f);
+
+	this->schedule(schedule_selector(Scene1::ScheduleScore), 0.001f);
+	_timeLabel = (ui::Text*)rootNode->getChildByName("Time");
+	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.95));
 
 	// PLAYER
-	player = Player::create(gravity);
-	player->setName("Player");
+	_player = Player::create(_gravity);
+	_player->setName("Player");
 
-	addChild(player);
+	addChild(_player);
 
 	auEngine = new AudioEngine();
 
 	auEngine->PlayBackgroundMusic("testing.mp3", true);
 
-	platform = (Sprite*)rootNode->getChildByName("GroundPlat_0");
-	platform->setPosition(Vec2(429, 1504));
+	cocos2d::Sprite* platform;
+	int i = 1;
+	platform = (Sprite*)rootNode->getChildByName("Platform_" + StringUtils::format("%d", i));
 
+	while (platform != nullptr) {
+		// Store platform in list
+		_platforms.push_back(platform);
+		_flipped.push_back(false);
 
+		i++;
+		platform = (Sprite*)rootNode->getChildByName("Platform_" + StringUtils::format("%d", i));
+	}
+
+	cocos2d::ui::CheckBox* gravSwitch;
+	i = 1;
+	gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
+
+	while (gravSwitch != nullptr) {
+		gravSwitch->addTouchEventListener(CC_CALLBACK_2(Scene1::SwitchPressed, this));
+		_gravSwitches.push_back(gravSwitch);
+
+		i++;
+		gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
+	}
+
+	// GAMEMANAGER
+	GameManager::sharedGameManager()->setIsGameLive(true);
+	GameManager::sharedGameManager()->setIsGamePaused(false);
+
+	// TOUCH ME
+	//Set up a touch listener.
+	auto touchListener = EventListenerTouchOneByOne::create();
+
+	//Set callbacks for our touch functions.
+	touchListener->onTouchBegan = CC_CALLBACK_2(Scene1::onTouchBegan, this);
+	touchListener->onTouchEnded = CC_CALLBACK_2(Scene1::onTouchEnded, this);
+	touchListener->onTouchMoved = CC_CALLBACK_2(Scene1::onTouchMoved, this);
+	touchListener->onTouchCancelled = CC_CALLBACK_2(Scene1::onTouchCancelled, this);
+
+	//Add our touch listener to event listener list.
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+	_background = Sprite::create("BG1.png");
+	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background->setScaleX(winSize.width / _background->getContentSize().width);
+	_background->setScaleY(winSize.height / _background->getContentSize().height);
+	_background->setLocalZOrder(-1);
+
+	_blackTransparency = Sprite::create("Black Screen.png");
+	_blackTransparency->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_blackTransparency->setScaleX(winSize.width / _blackTransparency->getContentSize().width);
+	_blackTransparency->setScaleY(winSize.height / _blackTransparency->getContentSize().height);
+	_blackTransparency->setOpacity(123);
+	_blackTransparency->setVisible(false);
+
+	this->addChild(_background);
+	this->addChild(_blackTransparency);
 
 	return true;
 }
 
-void Scene1::ScheduleScore()
+void Scene1::ScheduleScore(float delta)
 {
 	GameManager::sharedGameManager()->updateLevelTimer();
 }
 
 void Scene1::update(float delta)
 {
-	score = GameManager::sharedGameManager()->getTimer();
 
-	CheckCollisions();
+
+	if (GameManager::sharedGameManager()->getIsGameLive())
+	{
+		if (_flipGravityCooldown > 0.0f) {
+			_flipGravityCooldown -= delta;
+
+			if (_flipGravityCooldown < 0.0f) {
+				_flipGravityCooldown = 0.0f;
+			}
+		}
+
+		_score = GameManager::sharedGameManager()->getTimer();
+
+		int mil = GameManager::sharedGameManager()->getMil();
+		int sec = GameManager::sharedGameManager()->getSec();
+		int min = GameManager::sharedGameManager()->getMin();
+
+		_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
+
+		CheckCollisions();
+		CheckNear();
+		IsPlayerInBounds();
+	}
+	else
+	{
+		int wof = 22;
+
+		_blackTransparency->setVisible(true);
+		// Add gameover shit
+	}
 }
 
 void Scene1::CheckCollisions()
 {
-	auto winSize = Director::getInstance()->getVisibleSize();
-	
+	for (int i = 0; i < _platforms.size(); i++) {
+		_player->CheckCollisions(_platforms[i]);
+	}
+}
 
-	if (player->getSprite()->getPositionX() - (player->getSprite()->getContentSize().width / 2) < platform->getPositionX() + (platform->getContentSize().width / 2)
-		&& player->getSprite()->getPositionX() + (player->getSprite()->getContentSize().width / 2) > platform->getPositionX() - (platform->getContentSize().width / 2)
-		&& player->getSprite()->getPositionY() - (player->getSprite()->getContentSize().height / 2) < winSize.height - (platform->getPositionY() + (platform->getContentSize().height / 2))
-		&& player->getSprite()->getPositionY() + (player->getSprite()->getContentSize().height / 2) > winSize.height - (platform->getPositionY() - (platform->getContentSize().height / 2)))
+//Touch Functions
+bool Scene1::onTouchBegan(Touch* touch, Event* event)
+{
+	cocos2d::log("touch began");
+
+	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
+		//Store the coordinates of where this touch began.
+		Point touchPos = touch->getLocationInView();
+		touchPos = Director::getInstance()->convertToGL(touchPos);
+		touchPos = convertToNodeSpace(touchPos);
+
+		_initialTouchPos = touchPos;
+		_inTouch = true;
+		return true;
+	}
+	else {
+		return false;
+	}
+
+	return true;
+}
+
+void Scene1::onTouchEnded(Touch* touch, Event* event)
+{
+	cocos2d::log("touch ended");
+
+	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
+		if (!GameManager::sharedGameManager()->getIsGamePaused()) {
+			_inTouch = false;
+
+			// TODO
+			// Add checks to ensure no object is clicked
+			// If an object is clicked, DO NOT let the player move to it, instead:
+			// call the appropiate methods specific to that object
+
+			_player->SetTarget(_initialTouchPos.x);
+		}
+	}
+}
+
+void Scene1::onTouchMoved(Touch* touch, Event* event)
+{
+	cocos2d::log("touch moved");
+}
+
+void Scene1::onTouchCancelled(Touch* touch, Event* event)
+{
+	cocos2d::log("touch cancelled");
+}
+
+void Scene1::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (int i = 0; i < _gravSwitches.size(); i++) {
+		if (findCheckBox->getName() == _gravSwitches[i]->getName()) {
+			_flipped[i] = !_flipped[i];
+			_gravSwitches[i]->setFlippedX(_flipped[i]);
+
+			// Flip Gravity
+			if (_flipGravityCooldown == 0.0f) {
+				FlipGravity();
+
+				_flipGravityCooldown = 1.0f;
+			}
+		}
+	}
+}
+
+void Scene1::CheckNear()
+{
+	for (int i = 0; i < _gravSwitches.size(); i++) {
+		// Player needs to be near the switch to press
+		float scaledWidth = _gravSwitches[i]->getContentSize().width * _gravSwitches[i]->getScaleX();
+		float scaledHeight = _gravSwitches[i]->getContentSize().height * _gravSwitches[i]->getScaleY();
+
+		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _gravSwitches[i]->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
+			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _gravSwitches[i]->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
+			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _gravSwitches[i]->getPositionY() + (scaledHeight / 2)
+			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _gravSwitches[i]->getPositionY() - (scaledHeight / 2))
+		{
+			//_gravSwitches[i]->setEnabled(true);
+			_gravSwitches[i]->setEnabled(true);
+		}
+		else {
+			_gravSwitches[i]->setEnabled(false);
+		}
+	}
+}
+
+void Scene1::FlipGravity()
+{
+	if (_gravity < 0.0f) {
+		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+	}
+	else {
+		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+	}
+
+	_gravity *= -1;
+
+	_player->SetGravity(_gravity);
+	_player->SetFalling(true);
+	_player->FlipPlayer();
+}
+
+void Scene1::IsPlayerInBounds()
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+	if (_player->GetSprite()->getPosition().y < (0.0f - _player->GetSprite()->getContentSize().height))
 	{
-		player->land(platform);
+		GameManager::sharedGameManager()->setIsGameLive(false);
+		
+	}
+	else if (_player->GetSprite()->getPosition().y > (winSize.height + _player->GetSprite()->getContentSize().height))
+	{
+		GameManager::sharedGameManager()->setIsGameLive(false);
 	}
 }

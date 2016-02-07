@@ -6,17 +6,6 @@
       <ObjectData Name="Scene" Tag="3" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="Background" ActionTag="2102085746" Tag="15" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="24.0000" RightMargin="24.0000" TopMargin="101.5000" BottomMargin="101.5000" ctype="SpriteObjectData">
-            <Size X="2000.0000" Y="1333.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1024.0000" Y="768.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize X="0.9766" Y="0.8678" />
-            <FileData Type="Normal" Path="MainMenuBackground.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
           <AbstractNodeData Name="StartButton" ActionTag="240827560" Tag="4" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="819.2000" RightMargin="819.2000" TopMargin="732.8256" BottomMargin="649.5744" TouchEnable="True" FontSize="36" ButtonText="Start" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="409.6000" Y="153.6000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -62,7 +51,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MuteButton" ActionTag="328989673" Tag="7" IconVisible="False" LeftMargin="10.0686" RightMargin="1909.9314" TopMargin="1.0255" BottomMargin="1426.9745" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="MuteButton" ActionTag="328989673" Tag="7" IconVisible="False" LeftMargin="10.0628" RightMargin="1909.9373" TopMargin="1.0205" BottomMargin="1426.9795" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="128.0000" Y="108.0000" />
             <AnchorPoint ScaleX="0.5042" ScaleY="0.5000" />
             <Position X="74.6004" Y="1480.9795" />
