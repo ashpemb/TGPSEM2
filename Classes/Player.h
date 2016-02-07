@@ -40,7 +40,8 @@ public:
 	void SetVelocity(float y);
 	float GetVelocity() { return _verticalVelocity; };
 
-	void CheckCollisions(cocos2d::Sprite* collider);
+	void CheckPlatformCollisions(cocos2d::Sprite* collider);
+	void CheckWallCollisions(cocos2d::Sprite* collider);
 
 	//Sprite
 	Sprite* GetSprite() { return _playerSprite; };

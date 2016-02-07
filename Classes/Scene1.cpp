@@ -47,7 +47,7 @@ bool Scene1::init()
 
 	this->schedule(schedule_selector(Scene1::ScheduleScore), 0.001f);
 	_timeLabel = (ui::Text*)rootNode->getChildByName("Time");
-	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.95));
+	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
 
 	// PLAYER
 	_player = Player::create(_gravity);
@@ -59,6 +59,7 @@ bool Scene1::init()
 
 	auEngine->PlayBackgroundMusic("testing.mp3", true);
 
+	// PLATFORMS
 	cocos2d::Sprite* platform;
 	int i = 1;
 	platform = (Sprite*)rootNode->getChildByName("Platform_" + StringUtils::format("%d", i));
@@ -72,6 +73,7 @@ bool Scene1::init()
 		platform = (Sprite*)rootNode->getChildByName("Platform_" + StringUtils::format("%d", i));
 	}
 
+	// SWITCHES
 	cocos2d::ui::CheckBox* gravSwitch;
 	i = 1;
 	gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
@@ -82,6 +84,18 @@ bool Scene1::init()
 
 		i++;
 		gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
+	}
+
+	// WALLS
+	cocos2d::Sprite* wall;
+	i = 1;
+	wall = (Sprite*)(rootNode->getChildByName("Wall_" + StringUtils::format("%d", i)));
+
+	while (wall != nullptr) {
+		_walls.push_back(wall);
+
+		i++;
+		wall = (Sprite*)(rootNode->getChildByName("Wall_" + StringUtils::format("%d", i)));
 	}
 
 	// GAMEMANAGER
@@ -153,8 +167,6 @@ void Scene1::update(float delta)
 	}
 	else
 	{
-		int wof = 22;
-
 		_blackTransparency->setVisible(true);
 		// Add gameover shit
 	}
@@ -163,7 +175,11 @@ void Scene1::update(float delta)
 void Scene1::CheckCollisions()
 {
 	for (int i = 0; i < _platforms.size(); i++) {
-		_player->CheckCollisions(_platforms[i]);
+		_player->CheckPlatformCollisions(_platforms[i]);
+	}
+
+	for (int i = 0; i < _walls.size(); i++) {
+		_player->CheckWallCollisions(_walls[i]);
 	}
 }
 

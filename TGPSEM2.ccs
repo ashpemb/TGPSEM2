@@ -17,6 +17,7 @@
         <Image Name="Switch Static.png" />
         <Image Name="transparent.png" />
         <Image Name="BG1.png" />
+        <Image Name="Wall.jpg" />
       </RootFolder>
     </Group>
   </SolutionFolder>

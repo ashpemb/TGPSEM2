@@ -44,11 +44,12 @@ private:
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
+	std::vector<cocos2d::Sprite*> _walls;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
 	std::vector<bool> _flipped;
 
 	// Gravity
-	float _gravity = -9.81f;
+	float _gravity = -3.81f;
 	float _flipGravityCooldown = 1.0f;	// One second cooldown
 	void FlipGravity();
 

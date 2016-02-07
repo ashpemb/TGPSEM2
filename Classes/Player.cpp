@@ -73,7 +73,7 @@ void Player::SetVelocity(float y)
 	_verticalVelocity = y;
 }
 
-void Player::CheckCollisions(cocos2d::Sprite* collider)
+void Player::CheckPlatformCollisions(cocos2d::Sprite* collider)
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
 
@@ -92,6 +92,31 @@ void Player::CheckCollisions(cocos2d::Sprite* collider)
 	}
 }
 
+void Player::CheckWallCollisions(cocos2d::Sprite* collider)
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+
+	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
+	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
+	float scaledPlayerWidth = _playerSprite->getContentSize().width * _playerSprite->getScaleX();
+
+	if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
+		&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
+		&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
+		&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+	{
+		if (_playerSprite->getPositionX() < collider->getPositionX()) {
+			_playerSprite->setPositionX(collider->getPositionX() - (scaledWidth / 2) - (scaledPlayerWidth / 2));
+		}
+		else {
+			_playerSprite->setPositionX(collider->getPositionX() + (scaledWidth / 2) + (scaledPlayerWidth / 2));
+		}
+	}
+	else {
+		_falling = true;
+	}
+}
+
 void Player::Land(cocos2d::Sprite* collider)
 {
 	if (_falling) {
@@ -104,12 +129,14 @@ void Player::Land(cocos2d::Sprite* collider)
 
 		// Make sure the position is set so not inside platform
 		float newY;
+		float scaledColliderHeight = collider->getContentSize().height * collider->getScaleY();
+		float scaledPlayerHeight = _playerSprite->getContentSize().height * _playerSprite->getScaleY();
 
 		if (_gravity < 0.0f) {
-			newY = (collider->getPositionY() + (collider->getContentSize().height / 2)) + (GetSprite()->getContentSize().height / 2);
+			newY = (collider->getPositionY() + (scaledColliderHeight / 2)) + (scaledPlayerHeight / 2);
 		}
 		else {
-			newY = (collider->getPositionY() - (collider->getContentSize().height / 2)) - (GetSprite()->getContentSize().height / 2);
+			newY = (collider->getPositionY() - (scaledColliderHeight / 2)) - (scaledPlayerHeight / 2);
 		}
 
 		GetSprite()->setPosition(Vec2(GetSprite()->getPositionX(), newY));
