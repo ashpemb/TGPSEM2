@@ -78,7 +78,7 @@ void ScoreManager::storeHighscoreToFile(int level, int star, std::string time)
 			std::string levelTagString = "<level_" + StringUtils::format("%d", level) + ">";
 
 			// Add entire document string up to the end of the level tag
-			for (int i = 0; i < (indexTagStart + levelTagString.length); i++) {
+			for (int i = 0; i < (indexTagStart + levelTagString.length()); i++) {
 				firstHalf += fileContents[i];
 			}
 
@@ -116,7 +116,7 @@ void ScoreManager::storeHighscoreToFile(int level, int star, std::string time)
 		value += StringUtils::format("\n<data>");
 		value += StringUtils::format("\n\t<level_%d>", level);
 		value += StringUtils::format("\n\t\t<star>%d</star>", star);
-		value += StringUtils::format("\n\t\t<time>%s</time>", time);
+		value += StringUtils::format("\n\t\t<time>") + time + StringUtils::format("</time>");
 		value += StringUtils::format("\n\t</level_%d>", level);
 		value += StringUtils::format("\n</data>");
 
@@ -222,7 +222,7 @@ std::string ScoreManager::getFilePath()
 	// testing
 	std::string writableDir = CCFileUtils::getInstance()->getWritablePath();
 
-	path = writableDir + "\highscoredata.xml";
+	path = writableDir + "\\highscoredata.xml";
 
 	return path;
 }
