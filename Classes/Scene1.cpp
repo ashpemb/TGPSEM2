@@ -158,6 +158,14 @@ bool Scene1::init()
 	this->addChild(_background4);
 	this->addChild(_blackTransparency);
 
+	_box = Box::create(_gravity, 2);
+	_box2 = Box::create(_gravity, 1);
+	_box->setName("MetalBox");
+	_box2->setName("WoodenBox");
+
+	addChild(_box);
+	addChild(_box2);
+
 	return true;
 }
 
@@ -203,10 +211,14 @@ void Scene1::CheckCollisions()
 {
 	for (int i = 0; i < _platforms.size(); i++) {
 		_player->CheckPlatformCollisions(_platforms[i]);
+		_box->CheckCollisions(_platforms[i]);
+		_box2->CheckCollisions(_platforms[i]);
 	}
 
 	for (int i = 0; i < _walls.size(); i++) {
 		_player->CheckWallCollisions(_walls[i]);
+		_box->CheckCollisions(_walls[i]);
+		_box2->CheckCollisions(_walls[i]);
 	}
 }
 
@@ -305,16 +317,25 @@ void Scene1::FlipGravity()
 {
 	if (_gravity < 0.0f) {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+		_box->GetBoxSprite()->setPositionY(_box->GetBoxSprite()->getPositionY() + 0.5f);
+		_box2->GetBoxSprite()->setPositionY(_box2->GetBoxSprite()->getPositionY() + 0.5f);
 	}
 	else {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+		_box->GetBoxSprite()->setPositionY(_box->GetBoxSprite()->getPositionY() - 0.5f);
+		_box2->GetBoxSprite()->setPositionY(_box2->GetBoxSprite()->getPositionY() - 0.5f);
 	}
 
 	_gravity *= -1;
 
 	_player->SetGravity(_gravity);
+	_box->SetGravity(_gravity);
+	_box2->SetGravity(_gravity);
 	_player->SetFalling(true);
+	_box->SetFalling(true);
+	_box2->SetFalling(true);
 	_player->FlipPlayer();
+	//_box2->FlipPlayer();
 }
 
 void Scene1::IsPlayerInBounds()
