@@ -50,11 +50,16 @@ bool Scene1::init()
 	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
 
 	// PLAYER
+	_startPos = (Sprite*)rootNode->getChildByName("Player_Start");
 	_player = Player::create(_gravity);
 	_player->setName("Player");
+	_player->GetSprite()->setPosition(Vec2(_startPos->getPositionX(), _startPos->getPositionY()));
 
 	addChild(_player);
 
+	_startPos->setVisible(false);
+
+	// AUDIO
 	auEngine = new AudioEngine();
 
 	auEngine->PlayBackgroundMusic("testing.mp3", true);

@@ -28,7 +28,7 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Platform_3" ActionTag="601650367" Tag="9" IconVisible="False" LeftMargin="366.0004" RightMargin="1553.9996" TopMargin="1495.6362" BottomMargin="32.3637" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Platform_3" ActionTag="601650367" Tag="9" IconVisible="False" LeftMargin="366.0004" RightMargin="1553.9996" TopMargin="1495.6364" BottomMargin="32.3637" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="430.0004" Y="36.3637" />
@@ -83,7 +83,7 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_1" ActionTag="362540183" Tag="19" IconVisible="False" LeftMargin="630.2957" RightMargin="1321.7043" TopMargin="1395.6238" BottomMargin="44.3763" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_1" ActionTag="362540183" Tag="19" IconVisible="False" LeftMargin="630.2957" RightMargin="1321.7043" TopMargin="1395.6237" BottomMargin="44.3763" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="96.0000" Y="96.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="678.2957" Y="92.3763" />
@@ -139,10 +139,10 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Time" ActionTag="1073860001" Tag="3" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="979.5000" RightMargin="979.5000" TopMargin="21.2941" BottomMargin="1491.7059" FontSize="20" LabelText="00:00:000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Time" ActionTag="1073860001" Tag="3" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="979.5000" RightMargin="979.5000" TopMargin="21.3704" BottomMargin="1491.6296" FontSize="20" LabelText="00:00:000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="89.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1024.0000" Y="1503.2059" />
+            <Position X="1024.0000" Y="1503.1296" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.9786" />
@@ -214,6 +214,17 @@
             <PrePosition X="0.0041" Y="0.4997" />
             <PreSize X="0.0039" Y="0.0833" />
             <FileData Type="Normal" Path="Wall.jpg" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Player_Start" ActionTag="1392397179" Tag="20" IconVisible="False" LeftMargin="200.2839" RightMargin="1797.7161" TopMargin="370.0793" BottomMargin="1115.9207" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="225.2839" Y="1140.9207" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1100" Y="0.7428" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="Start.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>

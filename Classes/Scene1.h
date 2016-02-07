@@ -41,6 +41,7 @@ private:
 	cocos2d::ui::Text*	_timeLabel;
 	Sprite*	_background;
 	Sprite* _blackTransparency;
+	Sprite* _startPos;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;

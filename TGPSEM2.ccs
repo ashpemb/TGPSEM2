@@ -18,6 +18,7 @@
         <Image Name="transparent.png" />
         <Image Name="BG1.png" />
         <Image Name="Wall.jpg" />
+        <Image Name="Start.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
