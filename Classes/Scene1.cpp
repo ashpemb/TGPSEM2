@@ -120,11 +120,30 @@ bool Scene1::init()
 	//Add our touch listener to event listener list.
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	_background = Sprite::create("BG1.png");
-	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
-	_background->setScaleX(winSize.width / _background->getContentSize().width);
-	_background->setScaleY(winSize.height / _background->getContentSize().height);
-	_background->setLocalZOrder(-1);
+	// BACKGROUND
+	_background1 = Sprite::create("BG1.png");
+	_background1->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background1->setScaleX(winSize.width / _background1->getContentSize().width);
+	_background1->setScaleY(winSize.height / _background1->getContentSize().height);
+	_background1->setLocalZOrder(-3);
+
+	_background2 = Sprite::create("BG2.png");
+	_background2->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background2->setScaleX(winSize.width / _background2->getContentSize().width);
+	_background2->setScaleY(winSize.height / _background2->getContentSize().height);
+	_background2->setLocalZOrder(-1);
+
+	_background3 = Sprite::create("BG3.png");
+	_background3->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background3->setScaleX(winSize.width / _background3->getContentSize().width);
+	_background3->setScaleY(winSize.height / _background3->getContentSize().height);
+	_background3->setLocalZOrder(-2);
+
+	_background4 = Sprite::create("BG4.png");
+	_background4->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background4->setScaleX(winSize.width / _background4->getContentSize().width);
+	_background4->setScaleY(winSize.height / _background4->getContentSize().height);
+	_background4->setLocalZOrder(-2);
 
 	_blackTransparency = Sprite::create("Black Screen.png");
 	_blackTransparency->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
@@ -133,7 +152,10 @@ bool Scene1::init()
 	_blackTransparency->setOpacity(123);
 	_blackTransparency->setVisible(false);
 
-	this->addChild(_background);
+	this->addChild(_background1);
+	this->addChild(_background2);
+	this->addChild(_background3);
+	this->addChild(_background4);
 	this->addChild(_blackTransparency);
 
 	return true;
@@ -307,4 +329,36 @@ void Scene1::IsPlayerInBounds()
 	{
 		GameManager::sharedGameManager()->setIsGameLive(false);
 	}
+}
+
+Scene1::~Scene1()
+{
+	// I have no idea if this is ever called
+	delete _player;
+	delete _timeLabel;
+	delete _background1;
+	delete _background2;
+	delete _background3;
+	delete _background4;
+	delete _blackTransparency;
+	delete _startPos;
+	delete auEngine;
+
+	for (int i = 0; i < _platforms.size(); i++) {
+		delete _platforms[i];
+	}
+
+	_platforms.clear();
+
+	for (int i = 0; i < _walls.size(); i++) {
+		delete _walls[i];
+	}
+
+	_walls.clear();
+
+	for (int i = 0; i < _gravSwitches.size(); i++) {
+		delete _gravSwitches[i];
+	}
+
+	_gravSwitches.clear();
 }

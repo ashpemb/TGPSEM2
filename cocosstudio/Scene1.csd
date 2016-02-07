@@ -50,13 +50,13 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Platform_5" ActionTag="406333184" Tag="24" IconVisible="False" LeftMargin="1494.5857" RightMargin="425.4143" TopMargin="1074.6322" BottomMargin="453.3678" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Platform_5" ActionTag="406333184" Tag="24" IconVisible="False" LeftMargin="1325.0945" RightMargin="594.9055" TopMargin="1074.6322" BottomMargin="453.3678" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
-            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-            <Position X="1622.5857" Y="457.3678" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1389.0945" Y="457.3678" />
             <Scale ScaleX="3.6483" ScaleY="2.0100" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7923" Y="0.2978" />
+            <PrePosition X="0.6783" Y="0.2978" />
             <PreSize X="0.0625" Y="0.0052" />
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />

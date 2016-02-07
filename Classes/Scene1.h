@@ -17,6 +17,7 @@ public:
 
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init();
+	~Scene1();
 
 	void CheckCollisions();
 
@@ -39,7 +40,10 @@ private:
 	int _score;
 	Player* _player;
 	cocos2d::ui::Text*	_timeLabel;
-	Sprite*	_background;
+	Sprite*	_background1;
+	Sprite*	_background2;
+	Sprite*	_background3;
+	Sprite*	_background4;
 	Sprite* _blackTransparency;
 	Sprite* _startPos;
 
