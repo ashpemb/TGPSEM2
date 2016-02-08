@@ -38,7 +38,7 @@ public:
 	void StartButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
-	void MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void MuteButtonPressed();
 
 
 	void StartGame();

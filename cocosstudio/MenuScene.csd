@@ -51,7 +51,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_1" ActionTag="-269671579" Tag="26" IconVisible="False" LeftMargin="40.9357" RightMargin="1879.0643" TopMargin="35.7017" BottomMargin="1392.2983" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MuteButton" ActionTag="-269671579" Tag="26" IconVisible="False" LeftMargin="40.9357" RightMargin="1879.0643" TopMargin="35.7017" BottomMargin="1392.2983" ctype="SpriteObjectData">
             <Size X="128.0000" Y="108.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="104.9357" Y="1446.2983" />
