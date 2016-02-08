@@ -26,34 +26,11 @@ Box::~Box()
 
 bool Box::init()
 {
-	if (!Node::init())
+	if (!Node::init()) {
 		return false;
-
-	auto winSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-	if (_boxType == 1)
-	{
-		_box = Sprite::create("Crate.png");
-		_box->setPosition(Vec2(180, (winSize.height / 2) + 200));
-
-		this->addChild(_box);
-
-		this->scheduleUpdate();
-
-		//Implement box movement
 	}
-	else if (_boxType == 2)
-	{
-		_box = Sprite::create("Crate.png");
-		_box->setPosition(Vec2(1600, (winSize.height / 2) + 300));
 
-		this->addChild(_box);
-
-		this->scheduleUpdate();
-
-		//Implement box movement
-	}
+	this->scheduleUpdate();
 
 	return true;
 }

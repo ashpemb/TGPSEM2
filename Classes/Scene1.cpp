@@ -50,14 +50,11 @@ bool Scene1::init()
 	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
 
 	// PLAYER
-	_startPos = (Sprite*)rootNode->getChildByName("Player_Start");
 	_player = Player::create(_gravity);
+	_player->SetSprite((Sprite*)rootNode->getChildByName("Player"));
 	_player->setName("Player");
-	_player->GetSprite()->setPosition(Vec2(_startPos->getPositionX(), _startPos->getPositionY()));
 
 	addChild(_player);
-
-	_startPos->setVisible(false);
 
 	// AUDIO
 	auEngine = new AudioEngine();
@@ -159,45 +156,39 @@ bool Scene1::init()
 	this->addChild(_blackTransparency);
 
 	// WOODEN CRATES
-	cocos2d::Sprite* woodenSpawner;
+	cocos2d::Sprite* crateWooden;
 	i = 1;
-	woodenSpawner = (Sprite*)(rootNode->getChildByName("WoodenCrateSpawn_" + StringUtils::format("%d", i)));
+	crateWooden = (Sprite*)(rootNode->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i)));
 
-	while (woodenSpawner != nullptr) {
+	while (crateWooden != nullptr) {
 		Box* box = Box::create(_gravity, 1);
-		box->setName("WoodenBox_" + StringUtils::format("%d", i));
-		box->GetBoxSprite()->setPosition(Vec2(woodenSpawner->getPositionX(), woodenSpawner->getPositionY()));
+		box->setName("Crate_Wooden_" + StringUtils::format("%d", i));
+		box->SetSprite(crateWooden);
 
-		woodenSpawner->setVisible(false);
-
-		_woodBoxSpawns.push_back(woodenSpawner);
 		_woodBoxes.push_back(box);
 
 		addChild(_woodBoxes[i - 1]);
 
 		i++;
-		woodenSpawner = (Sprite*)(rootNode->getChildByName("WoodenCrateSpawn_" + StringUtils::format("%d", i)));
+		crateWooden = (Sprite*)(rootNode->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i)));
 	}
 
 	// METAL CRATES
-	cocos2d::Sprite* metalSpawner;
+	cocos2d::Sprite* crateMetal;
 	i = 1;
-	metalSpawner = (Sprite*)(rootNode->getChildByName("MetalCrateSpawn_" + StringUtils::format("%d", i)));
+	crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
 
-	while (metalSpawner != nullptr) {
+	while (crateMetal != nullptr) {
 		Box* box = Box::create(_gravity, 2);
-		box->setName("MetalBox_" + StringUtils::format("%d", i));
-		box->GetBoxSprite()->setPosition(Vec2(metalSpawner->getPositionX(), metalSpawner->getPositionY()));
+		box->setName("Crate_Metal_" + StringUtils::format("%d", i));
+		box->SetSprite(crateMetal);
 
-		metalSpawner->setVisible(false);
-
-		_metalBoxSpawns.push_back(metalSpawner);
 		_metalBoxes.push_back(box);
 
 		addChild(_metalBoxes[i - 1]);
 
 		i++;
-		metalSpawner = (Sprite*)(rootNode->getChildByName("MetalCrateSpawn_" + StringUtils::format("%d", i)));
+		crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
 	}
 
 	return true;
@@ -210,8 +201,6 @@ void Scene1::ScheduleScore(float delta)
 
 void Scene1::update(float delta)
 {
-
-
 	if (GameManager::sharedGameManager()->getIsGameLive())
 	{
 		if (_flipGravityCooldown > 0.0f) {
@@ -427,7 +416,6 @@ Scene1::~Scene1()
 	delete _background3;
 	delete _background4;
 	delete _blackTransparency;
-	delete _startPos;
 	delete auEngine;
 
 	for (int i = 0; i < _platforms.size(); i++) {

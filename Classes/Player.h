@@ -45,6 +45,7 @@ public:
 
 	//Sprite
 	Sprite* GetSprite() { return _playerSprite; };
+	void SetSprite(Sprite* newSprite) {	_playerSprite = newSprite; this->addChild(_playerSprite); };
 
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);

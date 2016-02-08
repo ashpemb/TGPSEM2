@@ -38,6 +38,7 @@ public:
 
 	// Sprite
 	Sprite* GetBoxSprite() { return _box; };
+	void SetSprite(Sprite* newSprite) { _box = newSprite; this->addChild(_box); };
 
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);

@@ -46,7 +46,6 @@ private:
 	Sprite*	_background3;
 	Sprite*	_background4;
 	Sprite* _blackTransparency;
-	Sprite* _startPos;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
@@ -54,9 +53,7 @@ private:
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
 	std::vector<bool> _flipped;
 
-	std::vector<Sprite*> _woodBoxSpawns;
 	std::vector<Box*> _woodBoxes;
-	std::vector<Sprite*> _metalBoxSpawns;
 	std::vector<Box*> _metalBoxes;
 
 	// Gravity

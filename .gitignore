@@ -58,3 +58,6 @@ OGLdpf.log
 
 # Windows
 *humbs.db
+
+#APK
+package/*

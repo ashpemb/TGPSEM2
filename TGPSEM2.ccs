@@ -21,6 +21,9 @@
         <Image Name="Start.png" />
         <Image Name="WBoxSpawn.png" />
         <Image Name="MBoxSpawn.png" />
+        <Image Name="Husky.png" />
+        <Image Name="Crate.png" />
+        <Image Name="MetalCrate.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
