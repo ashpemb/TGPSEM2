@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -152,12 +152,9 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\LevelSelect.cpp" />
     <ClCompile Include="..\Classes\MenuScene.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="..\Classes\ScalingObject.cpp" />
-=======
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\Scene1.cpp" />
->>>>>>> origin/Alex
     <ClCompile Include="..\Classes\ScoreManager.cpp" />
     <ClCompile Include="..\Classes\TouchManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -169,12 +166,9 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\LevelSelect.h" />
     <ClInclude Include="..\Classes\MenuScene.h" />
-<<<<<<< HEAD
     <ClInclude Include="..\Classes\ScalingObject.h" />
-=======
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\Scene1.h" />
->>>>>>> origin/Alex
     <ClInclude Include="..\Classes\ScoreManager.h" />
     <ClInclude Include="..\Classes\TouchManager.h" />
     <ClInclude Include="Define.h" />
