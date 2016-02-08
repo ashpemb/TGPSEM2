@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "GameManager.h"
 #include "AudioEngine.h"
+#include "Box.h"
 
 class Scene1 : public cocos2d::Layer
 {
@@ -46,6 +47,8 @@ private:
 	Sprite*	_background4;
 	Sprite* _blackTransparency;
 	Sprite* _startPos;
+	Box*	_box;
+	Box*	_box2;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
