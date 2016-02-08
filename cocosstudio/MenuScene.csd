@@ -51,19 +51,16 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MuteButton" ActionTag="328989673" Tag="7" IconVisible="False" LeftMargin="10.0628" RightMargin="1909.9373" TopMargin="1.0205" BottomMargin="1426.9795" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Sprite_1" ActionTag="-269671579" Tag="26" IconVisible="False" LeftMargin="40.9357" RightMargin="1879.0643" TopMargin="35.7017" BottomMargin="1392.2983" ctype="SpriteObjectData">
             <Size X="128.0000" Y="108.0000" />
-            <AnchorPoint ScaleX="0.5042" ScaleY="0.5000" />
-            <Position X="74.6004" Y="1480.9795" />
-            <Scale ScaleX="0.6059" ScaleY="0.6059" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="104.9357" Y="1446.2983" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0364" Y="0.9642" />
+            <PrePosition X="0.0512" Y="0.9416" />
             <PreSize X="0.0625" Y="0.0703" />
-            <NormalBackFileData Type="Normal" Path="MuteUnPressed.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="MutePressed.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="MutePressed.png" Plist="" />
-            <NodeNormalFileData Type="Normal" Path="MuteUnPressed.png" Plist="" />
-            <NodeDisableFileData Type="Normal" Path="MutePressed.png" Plist="" />
+            <FileData Type="Normal" Path="MuteUnPressed.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

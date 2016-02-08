@@ -47,7 +47,7 @@ private:
 	cocos2d::ui::Button*    _startButton;
 	cocos2d::ui::Button*    _settingsButton;
 	cocos2d::ui::Button*    _exitButton;
-	cocos2d::ui::CheckBox*  _muteButton;
+	cocos2d::Sprite*		_muteButton;
 
 	cocos2d::Sprite*		_background;
 

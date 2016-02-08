@@ -68,9 +68,9 @@ bool MenuScene::init()
 	_exitButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.25f));
 
 	//Mute Button
-	_muteButton = static_cast<ui::CheckBox*>(rootNode->getChildByName("MuteButton"));
-	_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
-	_muteButton->setPosition(Vec2(winSize.width*0.1f, winSize.height*0.9f));
+	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
+	//_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
+	_muteButton->setPosition(Vec2(winSize.width*0.05f, winSize.height*0.95f));
 
 	//BACKGROUND
 	//_background = (Sprite*)rootNode->getChildByName("Background");
@@ -84,7 +84,7 @@ bool MenuScene::init()
 
 	// AUDIO
 	auEngine = new AudioEngine();
-	AudioTesting();
+	auEngine->PlayBackgroundMusic("menu.mp3", true);
 
 	return true;
 }
@@ -105,13 +105,16 @@ void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		muted = !muted;
-		_muteButton->setSelected(!muted);
 
 		if (muted) {
+			_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+
 			auEngine->PauseBackgroundMusic();
 			auEngine->PauseAllEffects();
 		}
 		else {
+			_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
+
 			auEngine->ResumeBackgroundMusic();
 			auEngine->ResumeAllEffects();
 		}
@@ -162,31 +165,4 @@ void MenuScene::onTouchMoved(Touch* touch, Event* event)
 void MenuScene::onTouchCancelled(Touch* touch, Event* event)
 {
 	cocos2d::log("touch cancelled");
-}
-
-void MenuScene::AudioTesting()
-{
-
-	//Background music fuctions do not need an ID as there can only be one BGM playing at one time
-
-	auEngine->PlayBackgroundMusic("menu.mp3", true);
-	auEngine->PauseBackgroundMusic();
-	auEngine->ResumeBackgroundMusic();
-	//auEngine->StopBackgroundMusic();
-
-	//Sound effects need an ID to be specifically stopped or paused, this ID is given when the function 'PlaySoundEffect' is called and can be used to track a specific sound effect
-
-	//int soundID = auEngine->PlaySoundEffect("Conquer_Divide_-_Nightmares_Pro_.wav", true);
-	//auEngine->PauseEffect(soundID);
-	//auEngine->ResumeEffect(soundID);
-	//auEngine->StopSoundEffect(soundID);
-
-	//Calling the 'AllEffects' variants of these functions will allow it to control all sound effects rather then one
-	//auEngine->PauseAllEffects();
-
-	//To mute the audio call mute audio, this will stop sounds from playing in the future and will also stop current sounds from playing.
-	//Although they are not destroyed, the audio is paused until the user calls the 'stop' functions
-
-	//auEngine->MuteAllAudio(true);
-	//auEngine->StopBackgroundMusic();
 }
