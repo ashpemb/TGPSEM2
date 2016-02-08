@@ -1,5 +1,6 @@
 #pragma once
 #include "cocos2d.h"
+#include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 
 class GameManager
@@ -10,6 +11,14 @@ private:
 
 	bool isGameLive;
 	bool isGamePaused;
+	int time;
+	int mil;
+	int sec;
+	int min;
+
+	
+
+	
 public:
 
 	~GameManager();
@@ -19,4 +28,10 @@ public:
 	bool getIsGameLive();
 	void setIsGamePaused(bool);
 	bool getIsGamePaused();
+	void startLevelTimer();
+	void updateLevelTimer();
+	int getTimer();
+	int getMil();
+	int getSec();
+	int getMin();
 };

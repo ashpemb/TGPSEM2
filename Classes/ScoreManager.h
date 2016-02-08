@@ -15,24 +15,17 @@ private:
 	ScoreManager();
 	static ScoreManager* instance;
 
-	// score
-	float score;
-	int highScore;
-
 	// Methods
-	void setHighscore(int highScore);
-	void storeHighscoreToFile(int highScore);
-	int getHighscoreFromFile();
+	std::string getFilePath();
 public:
 	~ScoreManager();
 	static ScoreManager* sharedScoreManager();
 
-	void addToScore(float point);
-	void subtractFromScore(float point);
-	float getScore();
 	void resetScore();
 
 	void compareScoreToHighscore();
-	int getHighscore();
-	std::string getFilePath();
+
+	void storeHighscoreToFile(int level, int star, std::string time);
+	int getStarFromFile(int level);
+	std::string getTimeFromFile(int level);
 };

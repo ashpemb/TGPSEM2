@@ -1,8 +1,20 @@
 #ifndef __LEVELSELECT_SCENE_H__
 #define __LEVELSELECT_SCENE_H__
 
+#include "HelloWorldScene.h"
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include "SimpleAudioEngine.h"  
 #include "cocos2d.h"
+<<<<<<< HEAD
 #include "TouchManager.h"
+=======
+#include "Scene1.h"
+
+>>>>>>> origin/Alex
 class LevelSelect : public cocos2d::Layer
 {
 public:

@@ -30,6 +30,12 @@
     <ClCompile Include="..\Classes\ScoreManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Player.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scene1.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\AudioEngine.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -63,6 +69,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Define.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scene1.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AudioEngine.h">

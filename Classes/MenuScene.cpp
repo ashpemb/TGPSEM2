@@ -1,7 +1,11 @@
 #include "MenuScene.h"
+<<<<<<< HEAD
 #include "LevelSelect.h"
 #include "SimpleAudioEngine.h"
 #include "ScalingObject.h"
+=======
+
+>>>>>>> origin/Alex
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -36,8 +40,15 @@ bool MenuScene::init()
 
 	this->scheduleUpdate();
 	auto winSize = Director::getInstance()->getVisibleSize();
+<<<<<<< HEAD
 	//TOUCHES
+=======
 
+	// Variables
+	muted = false;
+>>>>>>> origin/Alex
+
+	//TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -54,7 +65,36 @@ bool MenuScene::init()
 	//Start button
 	_startButton = static_cast<ui::Button*>(rootNode->getChildByName("StartButton"));
 	_startButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::StartButtonPressed, this));
-	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.43f));
+	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.45f));
+
+	//Settings Button
+	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
+	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
+	_settingsButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.35f));
+
+	//Exit Button
+	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
+	_exitButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::ExitButtonPressed, this));
+	_exitButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.25f));
+
+	//Mute Button
+	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
+	//_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
+	_muteButton->setPosition(Vec2(winSize.width*0.05f, winSize.height*0.95f));
+
+	//BACKGROUND
+	//_background = (Sprite*)rootNode->getChildByName("Background");
+	_background = Sprite::create("MainMenuBackground.png");
+	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+	_background->setScaleX(winSize.width / _background->getContentSize().width);
+	_background->setScaleY(winSize.height / _background->getContentSize().height);
+	_background->setLocalZOrder(-1);
+
+	this->addChild(_background);
+
+	// AUDIO
+	auEngine = new AudioEngine();
+	auEngine->PlayBackgroundMusic("menu.mp3", true);
 
 	return true;
 }
@@ -65,18 +105,55 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		auto scene = LevelSelect::createScene();
-
-		Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
+		CCLOG("touch ended.");
+		this->StartGame();
 	}
 }
 
-//void MenuScene::StartGame()
-//{
-//	auto gameScene = new Level1();
-//	CCDirector::getInstance()->replaceScene(gameScene->createScene());
-//	auto winSize = Director::getInstance()->getVisibleSize();
-//}
+void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		muted = !muted;
+
+		if (muted) {
+			_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+
+			auEngine->PauseBackgroundMusic();
+			auEngine->PauseAllEffects();
+		}
+		else {
+			_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
+
+			auEngine->ResumeBackgroundMusic();
+			auEngine->ResumeAllEffects();
+		}
+	}
+}
+
+void MenuScene::SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		//TODO
+	}
+}
+
+void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		Director::getInstance()->end();
+	}
+}
+
+void MenuScene::StartGame()
+{
+	auEngine->StopBackgroundMusic();
+	Scene* scene = LevelSelect::createScene();
+
+	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
+}
 
 //Touch Functions
 bool MenuScene::onTouchBegan(Touch* touch, Event* event)

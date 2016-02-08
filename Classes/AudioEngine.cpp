@@ -19,7 +19,7 @@ AudioEngine::~AudioEngine()
 
 void AudioEngine::Update()
 {
-	bgmPlaying = audioManager->sharedEngine()->isBackgroundMusicPlaying();
+	bgmPlaying = audioManager->getInstance()->isBackgroundMusicPlaying();
 	if (bgmPlaying == false && isPlaylistSet == true)
 	{
 		BGMPlaylistNext();
@@ -51,7 +51,7 @@ void AudioEngine::PlayBackgroundMusic(std::string fileLocation, bool loop)
 	{
 		const char * c = fileLocation.c_str();
 
-		audioManager->sharedEngine()->playBackgroundMusic(
+		audioManager->getInstance()->playBackgroundMusic(
 			c, true);
 	}
 }
@@ -59,12 +59,12 @@ void AudioEngine::PlayBackgroundMusic(std::string fileLocation, bool loop)
 void AudioEngine::SetBackgroundVolume(float volume)
 {
 	bgmVolume = volume;
-	audioManager->sharedEngine()->setBackgroundMusicVolume(volume);
+	audioManager->getInstance()->setBackgroundMusicVolume(volume);
 }
 
 void AudioEngine::StopBackgroundMusic()
 {
-	audioManager->sharedEngine()->stopBackgroundMusic();
+	audioManager->getInstance()->stopBackgroundMusic();
 }
 
 int AudioEngine::PlaySoundEffect(std::string fileLocation, bool loop)
@@ -73,7 +73,7 @@ int AudioEngine::PlaySoundEffect(std::string fileLocation, bool loop)
 	{
 		const char * c = fileLocation.c_str();
 
-		int id = audioManager->sharedEngine()->playEffect(c, loop, 1, 0, 1);
+		int id = audioManager->getInstance()->playEffect(c, loop, 1, 0, 1);
 		return id;
 	}
 }
@@ -81,17 +81,17 @@ int AudioEngine::PlaySoundEffect(std::string fileLocation, bool loop)
 void AudioEngine::SetSoundEffectsVolume(float volume)
 {
 	effectVolume = volume;
-	audioManager->sharedEngine()->setEffectsVolume(effectVolume);
+	audioManager->getInstance()->setEffectsVolume(effectVolume);
 }
 
 void AudioEngine::StopAllEffects()
 {
-	audioManager->sharedEngine()->stopAllEffects();	
+	audioManager->getInstance()->stopAllEffects();	
 }
 
 void AudioEngine::StopSoundEffect(int soundID)
 {
-	audioManager->sharedEngine()->stopEffect(soundID);
+	audioManager->getInstance()->stopEffect(soundID);
 }
 
 float AudioEngine::GetBackgroundVolume()
@@ -106,32 +106,32 @@ float AudioEngine::GetEffectVolume()
 
 void AudioEngine::PauseBackgroundMusic()
 {
-	audioManager->sharedEngine()->pauseBackgroundMusic();
+	audioManager->getInstance()->pauseBackgroundMusic();
 }
 
 void AudioEngine::PauseAllEffects()
 {
-	audioManager->sharedEngine()->pauseAllEffects();
+	audioManager->getInstance()->pauseAllEffects();
 }
 
 void AudioEngine::PauseEffect(int soundID)
 {
-	audioManager->sharedEngine()->pauseEffect(soundID);
+	audioManager->getInstance()->pauseEffect(soundID);
 }
 
 void AudioEngine::ResumeEffect(int soundID)
 {
-	audioManager->sharedEngine()->resumeEffect(soundID);
+	audioManager->getInstance()->resumeEffect(soundID);
 }
 
 void AudioEngine::ResumeAllEffects()
 {
-	audioManager->sharedEngine()->resumeAllEffects();
+	audioManager->getInstance()->resumeAllEffects();
 }
 
 void AudioEngine::ResumeBackgroundMusic()
 {
-	audioManager->sharedEngine()->resumeBackgroundMusic();
+	audioManager->getInstance()->resumeBackgroundMusic();
 }
 
 

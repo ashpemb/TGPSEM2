@@ -4,7 +4,6 @@ ScoreManager* ScoreManager::instance = NULL;
 
 ScoreManager::ScoreManager()
 {
-	setHighscore(getHighscoreFromFile());
 	resetScore();
 }
 
@@ -18,48 +17,21 @@ ScoreManager* ScoreManager::sharedScoreManager()
 	return instance;
 }
 
-void ScoreManager::addToScore(float point)
-{
-	score += point;
-}
-
-void ScoreManager::subtractFromScore(float point)
-{
-	score -= point;
-}
-
-float ScoreManager::getScore()
-{
-	return score;
-}
-
 void ScoreManager::resetScore()
 {
-	score = 0;
+	// TODO
 }
 
 void ScoreManager::compareScoreToHighscore()
 {
-	if (score > highScore)
-	{
-		setHighscore(score);
-	}
+	// TODO
 }
 
-void ScoreManager::setHighscore(int newScore)
+void ScoreManager::storeHighscoreToFile(int level, int star, std::string time)
 {
-	highScore = newScore;
-	storeHighscoreToFile(highScore);
-}
-
-int ScoreManager::getHighscore()
-{
-	return highScore;
-}
-
-void ScoreManager::storeHighscoreToFile(int highScore)
-{
-	bool tagFound = false;
+	bool levelTagFound = false;
+	bool starTagFound = false;
+	bool timeTagFound = false;
 
 	// Insert code to save highscore to file
 	std::string path = getFilePath();
@@ -69,16 +41,20 @@ void ScoreManager::storeHighscoreToFile(int highScore)
 	std::string currLine;
 
 	if (infile.good()) {
+		// Keep looping through the file to find the level tag
 		while (std::getline(infile, currLine)) {
-			if (currLine.find("<highscore>") == true) {
-				tagFound = true;
+			if (currLine.find("<level_" + StringUtils::format("%d", level) + ">") == true) {
+				levelTagFound = true;
 			}
 			fileContents += currLine + "\n";
 		}
 
-		if (!tagFound) {
+		if (!levelTagFound) {
 			int indexTagEnd = fileContents.find("</data>");
-			std::string insertString = "\t<highscore>" + StringUtils::format("%d", highScore) + "</highscore>\n";
+			std::string insertString = "\t<level_" + StringUtils::format("%d", level) + ">\n";
+			insertString += "\t\t<star>" + StringUtils::format("%d", star) + "</star>\n";
+			insertString += "\t\t<time>" + time + "</time>\n";
+			insertString += "\t</level_" + StringUtils::format("%d", level) + ">\n";
 
 			std::string firstHalf = "";
 			std::string secondHalf = "";
@@ -93,20 +69,31 @@ void ScoreManager::storeHighscoreToFile(int highScore)
 			fileContents = firstHalf + insertString + secondHalf;
 		}
 		else {
-			int indexTagStart = fileContents.find("<highscore>");
-			int indexTagEnd = fileContents.find("</highscore>");
-
+			int indexTagStart = fileContents.find("<level_" + StringUtils::format("%d", level) + ">");
+			int indexTagEnd = fileContents.find("</level_" + StringUtils::format("%d", level) + ">");
+						
 			std::string firstHalf = "";
 			std::string secondHalf = "";
 
-			for (int i = 0; i < (indexTagStart + 11); i++) {
+			std::string levelTagString = "<level_" + StringUtils::format("%d", level) + ">";
+
+			// Add entire document string up to the end of the level tag
+			for (int i = 0; i < (indexTagStart + levelTagString.length()); i++) {
 				firstHalf += fileContents[i];
 			}
+
+			fileContents = firstHalf;
+
+			// Now add the other tags
+			fileContents += "\n\t\t<star>" + StringUtils::format("%d", star) + "</star>";
+			fileContents += "\n\t\t<time>" + time + "</time>";
+			fileContents += "\n\t";
+
 			for (int i2 = indexTagEnd; i2 < fileContents.size(); i2++) {
 				secondHalf += fileContents[i2];
 			}
 
-			fileContents = firstHalf + StringUtils::format("%d", highScore) + secondHalf;
+			fileContents += secondHalf;
 		}
 
 		std::fstream output;
@@ -127,7 +114,10 @@ void ScoreManager::storeHighscoreToFile(int highScore)
 		std::string value = StringUtils::format("<?xml version=\"1.0\" encoding=\"UTF - 8\"?>");
 		value += StringUtils::format("\n<!DOCTYPE SB76-PBS-ABHS PUBLIC>");
 		value += StringUtils::format("\n<data>");
-		value += StringUtils::format("\n\t<highscore>%d</highscore>", highScore);
+		value += StringUtils::format("\n\t<level_%d>", level);
+		value += StringUtils::format("\n\t\t<star>%d</star>", star);
+		value += StringUtils::format("\n\t\t<time>") + time + StringUtils::format("</time>");
+		value += StringUtils::format("\n\t</level_%d>", level);
 		value += StringUtils::format("\n</data>");
 
 		fputs(value.c_str(), fp);
@@ -135,12 +125,13 @@ void ScoreManager::storeHighscoreToFile(int highScore)
 	}
 }
 
-int ScoreManager::getHighscoreFromFile()
+int ScoreManager::getStarFromFile(int level)
 {
-	bool tagFound = false;
+	bool levelTagFound = false;
+	bool starTagFound = false;
 
-	int highscore = 0;
-	std::string tempHighScore = "";
+	int starRating = 0;
+	//std::string tempHighScore = "";
 
 	// Insert code to get highscore from file
 	std::string path = getFilePath();
@@ -149,31 +140,79 @@ int ScoreManager::getHighscoreFromFile()
 	std::string currLine;
 
 	while (std::getline(infile, currLine)) {
-		if (!tagFound) {
-			int found = currLine.find("<highscore>");
-			if (found != -1) {
-				tagFound = true;
+		if (!starTagFound) {
+			if (!levelTagFound) {
+				int found = currLine.find("<level_" + StringUtils::format("%d", level) + ">");
+				if (found != -1) {
+					// Level tag has been found
+					levelTagFound = true;
+				}
+			}
+			// Check if level tag has been found, otherwise these checks are not worth doing
+			else {
+				int found = currLine.find("<star>");
 
-				if (tagFound) {
+				if (found != -1) {
+					// Star tag has been found
+					starTagFound = true;
+
 					int indexScoreStart = currLine.find(">");
 					int indexScoreEnd = currLine.find("<", indexScoreStart + 1);
 
-					for (int i = indexScoreStart + 1; i < indexScoreEnd; i++) {
-						tempHighScore += currLine.at(i);
-					}
-
-					highScore = strtod(tempHighScore.c_str(), nullptr);
+					starRating = currLine.at(indexScoreStart + 1);
 				}
 			}
 		}
 	}
 
-	// No tag found, set highscore to 0
-	if (!tagFound) {
-		highScore = 0;
+	return starRating;
+}
+
+std::string ScoreManager::getTimeFromFile(int level)
+{
+	bool levelTagFound = false;
+	bool timeTagFound = false;
+
+	//int starRating = 0;
+	std::string time = "No Recorded Time";
+
+	// Insert code to get highscore from file
+	std::string path = getFilePath();
+
+	std::ifstream infile(path);
+	std::string currLine;
+
+	while (std::getline(infile, currLine)) {
+		if (!timeTagFound) {
+			if (!levelTagFound) {
+				int found = currLine.find("<level_" + StringUtils::format("%d", level) + ">");
+				if (found != -1) {
+					// Level tag has been found
+					levelTagFound = true;
+				}
+			}
+			// Check if level tag has been found, otherwise these checks are not worth doing
+			else {
+				int found = currLine.find("<time>");
+
+				if (found != -1) {
+					// Time tag has been found
+					timeTagFound = true;
+
+					int indexScoreStart = currLine.find(">");
+					int indexScoreEnd = currLine.find("<", indexScoreStart + 1);
+
+					time = "";
+
+					for (int i = indexScoreStart + 1; i < indexScoreEnd; i++) {
+						time += currLine.at(i);
+					}
+				}
+			}
+		}
 	}
 
-	return highScore;
+	return time;
 }
 
 std::string ScoreManager::getFilePath()
@@ -183,7 +222,7 @@ std::string ScoreManager::getFilePath()
 	// testing
 	std::string writableDir = CCFileUtils::getInstance()->getWritablePath();
 
-	path = writableDir + "\highscoredata.xml";
+	path = writableDir + "\\highscoredata.xml";
 
 	return path;
 }
