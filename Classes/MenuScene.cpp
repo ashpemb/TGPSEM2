@@ -153,7 +153,7 @@ void MenuScene::onTouchEnded(Touch* touch, Event* event)
 {
 	cocos2d::log("touch ended");
 
-	Vec2 touchPosition = touch->getLocationInView();
+	Vec2 touchPosition = touch->getLocation();
 
 	int realMuteWidth = _muteButton->getContentSize().width * _muteButton->getScaleX();
 	int realMuteHeight = _muteButton->getContentSize().height * _muteButton->getScaleY();
