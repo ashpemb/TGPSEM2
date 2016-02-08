@@ -158,23 +158,47 @@ bool Scene1::init()
 	this->addChild(_background4);
 	this->addChild(_blackTransparency);
 
-	// Crates
-	_woodBoxSpawn = (Sprite*)rootNode->getChildByName("WoodenCrateSpawn");
-	_metalBoxSpawn = (Sprite*)rootNode->getChildByName("MetalCrateSpawn");
+	// WOODEN CRATES
+	cocos2d::Sprite* woodenSpawner;
+	i = 1;
+	woodenSpawner = (Sprite*)(rootNode->getChildByName("WoodenCrateSpawn_" + StringUtils::format("%d", i)));
 
-	_box = Box::create(_gravity, 1);
-	_box2 = Box::create(_gravity, 2);
-	_box->setName("WoodenBox");
-	_box2->setName("MetalBox");
+	while (woodenSpawner != nullptr) {
+		Box* box = Box::create(_gravity, 1);
+		box->setName("WoodenBox_" + StringUtils::format("%d", i));
+		box->GetBoxSprite()->setPosition(Vec2(woodenSpawner->getPositionX(), woodenSpawner->getPositionY()));
 
-	_box->GetBoxSprite()->setPosition(Vec2(_woodBoxSpawn->getPositionX(), _woodBoxSpawn->getPositionY()));
-	_box2->GetBoxSprite()->setPosition(Vec2(_metalBoxSpawn->getPositionX(), _metalBoxSpawn->getPositionY()));
+		woodenSpawner->setVisible(false);
 
-	addChild(_box);
-	addChild(_box2);
+		_woodBoxSpawns.push_back(woodenSpawner);
+		_woodBoxes.push_back(box);
 
-	_woodBoxSpawn->setVisible(false);
-	_metalBoxSpawn->setVisible(false);
+		addChild(_woodBoxes[i - 1]);
+
+		i++;
+		woodenSpawner = (Sprite*)(rootNode->getChildByName("WoodenCrateSpawn_" + StringUtils::format("%d", i)));
+	}
+
+	// METAL CRATES
+	cocos2d::Sprite* metalSpawner;
+	i = 1;
+	metalSpawner = (Sprite*)(rootNode->getChildByName("MetalCrateSpawn_" + StringUtils::format("%d", i)));
+
+	while (metalSpawner != nullptr) {
+		Box* box = Box::create(_gravity, 2);
+		box->setName("MetalBox_" + StringUtils::format("%d", i));
+		box->GetBoxSprite()->setPosition(Vec2(metalSpawner->getPositionX(), metalSpawner->getPositionY()));
+
+		metalSpawner->setVisible(false);
+
+		_metalBoxSpawns.push_back(metalSpawner);
+		_metalBoxes.push_back(box);
+
+		addChild(_metalBoxes[i - 1]);
+
+		i++;
+		metalSpawner = (Sprite*)(rootNode->getChildByName("MetalCrateSpawn_" + StringUtils::format("%d", i)));
+	}
 
 	return true;
 }
@@ -221,14 +245,26 @@ void Scene1::CheckCollisions()
 {
 	for (int i = 0; i < _platforms.size(); i++) {
 		_player->CheckPlatformCollisions(_platforms[i]);
-		_box->CheckCollisions(_platforms[i]);
-		_box2->CheckCollisions(_platforms[i]);
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckCollisions(_platforms[i]);
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckCollisions(_platforms[i]);
+		}
 	}
 
 	for (int i = 0; i < _walls.size(); i++) {
 		_player->CheckWallCollisions(_walls[i]);
-		_box->CheckCollisions(_walls[i]);
-		_box2->CheckCollisions(_walls[i]);
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckCollisions(_walls[i]);
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckCollisions(_walls[i]);
+		}
 	}
 }
 
@@ -327,25 +363,44 @@ void Scene1::FlipGravity()
 {
 	if (_gravity < 0.0f) {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
-		_box->GetBoxSprite()->setPositionY(_box->GetBoxSprite()->getPositionY() + 0.5f);
-		_box2->GetBoxSprite()->setPositionY(_box2->GetBoxSprite()->getPositionY() + 0.5f);
+
+		for (int i = 0; i < _woodBoxes.size(); i++) {
+			_woodBoxes[i]->GetBoxSprite()->setPositionY(_woodBoxes[i]->GetBoxSprite()->getPositionY() + 0.5f);
+		}
+
+
+		for (int i = 0; i < _metalBoxes.size(); i++) {
+			_metalBoxes[i]->GetBoxSprite()->setPositionY(_metalBoxes[i]->GetBoxSprite()->getPositionY() + 0.5f);
+		}
 	}
 	else {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
-		_box->GetBoxSprite()->setPositionY(_box->GetBoxSprite()->getPositionY() - 0.5f);
-		_box2->GetBoxSprite()->setPositionY(_box2->GetBoxSprite()->getPositionY() - 0.5f);
+
+		for (int i = 0; i < _woodBoxes.size(); i++) {
+			_woodBoxes[i]->GetBoxSprite()->setPositionY(_woodBoxes[i]->GetBoxSprite()->getPositionY() - 0.5f);
+		}
+
+		for (int i = 0; i < _metalBoxes.size(); i++) {
+			_metalBoxes[i]->GetBoxSprite()->setPositionY(_metalBoxes[i]->GetBoxSprite()->getPositionY() - 0.5f);
+		}
 	}
 
 	_gravity *= -1;
 
 	_player->SetGravity(_gravity);
-	_box->SetGravity(_gravity);
-	_box2->SetGravity(_gravity);
+
+	for (int i = 0; i < _woodBoxes.size(); i++) {
+		_woodBoxes[i]->SetGravity(_gravity);
+		_woodBoxes[i]->SetFalling(true);
+	}
+
+	for (int i = 0; i < _metalBoxes.size(); i++) {
+		_metalBoxes[i]->SetGravity(_gravity);
+		_metalBoxes[i]->SetFalling(true);
+	}
+
 	_player->SetFalling(true);
-	_box->SetFalling(true);
-	_box2->SetFalling(true);
 	_player->FlipPlayer();
-	//_box2->FlipPlayer();
 }
 
 void Scene1::IsPlayerInBounds()
