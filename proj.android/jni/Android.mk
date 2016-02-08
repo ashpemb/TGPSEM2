@@ -18,7 +18,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/LevelSelect.cpp \
                    ../../Classes/MenuScene.cpp \
                    ../../Classes/Player.cpp \
-                   ../../Classes/Scene1.cpp \
+                   ../../Classes/SceneManager.cpp \
                    ../../Classes/ScoreManager.cpp \
                    ../../Classes/Box.cpp \
 
