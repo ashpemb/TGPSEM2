@@ -19,6 +19,8 @@
         <Image Name="BG1.png" />
         <Image Name="Wall.jpg" />
         <Image Name="Start.png" />
+        <Image Name="WBoxSpawn.png" />
+        <Image Name="MBoxSpawn.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

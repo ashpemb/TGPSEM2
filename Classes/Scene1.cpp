@@ -158,13 +158,23 @@ bool Scene1::init()
 	this->addChild(_background4);
 	this->addChild(_blackTransparency);
 
-	_box = Box::create(_gravity, 2);
-	_box2 = Box::create(_gravity, 1);
-	_box->setName("MetalBox");
-	_box2->setName("WoodenBox");
+	// Crates
+	_woodBoxSpawn = (Sprite*)rootNode->getChildByName("WoodenCrateSpawn");
+	_metalBoxSpawn = (Sprite*)rootNode->getChildByName("MetalCrateSpawn");
+
+	_box = Box::create(_gravity, 1);
+	_box2 = Box::create(_gravity, 2);
+	_box->setName("WoodenBox");
+	_box2->setName("MetalBox");
+
+	_box->GetBoxSprite()->setPosition(Vec2(_woodBoxSpawn->getPositionX(), _woodBoxSpawn->getPositionY()));
+	_box2->GetBoxSprite()->setPosition(Vec2(_metalBoxSpawn->getPositionX(), _metalBoxSpawn->getPositionY()));
 
 	addChild(_box);
 	addChild(_box2);
+
+	_woodBoxSpawn->setVisible(false);
+	_metalBoxSpawn->setVisible(false);
 
 	return true;
 }

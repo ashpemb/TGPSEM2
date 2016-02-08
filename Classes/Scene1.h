@@ -47,6 +47,8 @@ private:
 	Sprite*	_background4;
 	Sprite* _blackTransparency;
 	Sprite* _startPos;
+	Sprite* _woodBoxSpawn;
+	Sprite* _metalBoxSpawn;
 	Box*	_box;
 	Box*	_box2;
 
