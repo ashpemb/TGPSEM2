@@ -1,19 +1,24 @@
-#include "Scene1.h"
+#include "SceneManager.h"
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-Scene* Scene1::createScene()
+SceneManager::SceneManager(int level)
+{
+	_level = level;
+}
+
+SceneManager* SceneManager::createScene(int level)
 {
 	// 'scene' is an autorelease object
-	Scene* scene = new Scene();
+	SceneManager* scene = new SceneManager(level);
 
 	if (!scene->init()) {
 		return nullptr;
 	}
 
 	// 'layer' is an autorelease object
-	auto layer = Scene1::create();
+	auto layer = SceneManager::create();
 
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -23,11 +28,11 @@ Scene* Scene1::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool Scene1::init()
+bool SceneManager::init()
 {
 	//////////////////////////////
 	// 1. super init first
-	if (!Layer::init())
+	if (!Scene::init())
 	{
 		return false;
 	}
@@ -35,8 +40,7 @@ bool Scene1::init()
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
-	
-	auto rootNode = CSLoader::createNode("Scene1.csb");
+	auto rootNode = CSLoader::createNode("Scene" + StringUtils::format("%d", _level) + ".csb");
 
 	addChild(rootNode);
 
@@ -45,7 +49,7 @@ bool Scene1::init()
 
 	this->scheduleUpdate();
 
-	this->schedule(schedule_selector(Scene1::ScheduleScore), 0.001f);
+	this->schedule(schedule_selector(SceneManager::ScheduleScore), 0.001f);
 	_timeLabel = (ui::Text*)rootNode->getChildByName("Time");
 	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
 
@@ -81,7 +85,7 @@ bool Scene1::init()
 	gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
 
 	while (gravSwitch != nullptr) {
-		gravSwitch->addTouchEventListener(CC_CALLBACK_2(Scene1::SwitchPressed, this));
+		gravSwitch->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
 		_gravSwitches.push_back(gravSwitch);
 
 		i++;
@@ -109,10 +113,10 @@ bool Scene1::init()
 	auto touchListener = EventListenerTouchOneByOne::create();
 
 	//Set callbacks for our touch functions.
-	touchListener->onTouchBegan = CC_CALLBACK_2(Scene1::onTouchBegan, this);
-	touchListener->onTouchEnded = CC_CALLBACK_2(Scene1::onTouchEnded, this);
-	touchListener->onTouchMoved = CC_CALLBACK_2(Scene1::onTouchMoved, this);
-	touchListener->onTouchCancelled = CC_CALLBACK_2(Scene1::onTouchCancelled, this);
+	touchListener->onTouchBegan = CC_CALLBACK_2(SceneManager::onTouchBegan, this);
+	touchListener->onTouchEnded = CC_CALLBACK_2(SceneManager::onTouchEnded, this);
+	touchListener->onTouchMoved = CC_CALLBACK_2(SceneManager::onTouchMoved, this);
+	touchListener->onTouchCancelled = CC_CALLBACK_2(SceneManager::onTouchCancelled, this);
 
 	//Add our touch listener to event listener list.
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
@@ -194,12 +198,12 @@ bool Scene1::init()
 	return true;
 }
 
-void Scene1::ScheduleScore(float delta)
+void SceneManager::ScheduleScore(float delta)
 {
 	GameManager::sharedGameManager()->updateLevelTimer();
 }
 
-void Scene1::update(float delta)
+void SceneManager::update(float delta)
 {
 	if (GameManager::sharedGameManager()->getIsGameLive())
 	{
@@ -230,7 +234,7 @@ void Scene1::update(float delta)
 	}
 }
 
-void Scene1::CheckCollisions()
+void SceneManager::CheckCollisions()
 {
 	for (int i = 0; i < _platforms.size(); i++) {
 		_player->CheckPlatformCollisions(_platforms[i]);
@@ -258,7 +262,7 @@ void Scene1::CheckCollisions()
 }
 
 //Touch Functions
-bool Scene1::onTouchBegan(Touch* touch, Event* event)
+bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 {
 	cocos2d::log("touch began");
 
@@ -279,7 +283,7 @@ bool Scene1::onTouchBegan(Touch* touch, Event* event)
 	return true;
 }
 
-void Scene1::onTouchEnded(Touch* touch, Event* event)
+void SceneManager::onTouchEnded(Touch* touch, Event* event)
 {
 	cocos2d::log("touch ended");
 
@@ -297,17 +301,17 @@ void Scene1::onTouchEnded(Touch* touch, Event* event)
 	}
 }
 
-void Scene1::onTouchMoved(Touch* touch, Event* event)
+void SceneManager::onTouchMoved(Touch* touch, Event* event)
 {
 	cocos2d::log("touch moved");
 }
 
-void Scene1::onTouchCancelled(Touch* touch, Event* event)
+void SceneManager::onTouchCancelled(Touch* touch, Event* event)
 {
 	cocos2d::log("touch cancelled");
 }
 
-void Scene1::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	// Find what switch has been clicked
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
@@ -327,7 +331,7 @@ void Scene1::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type
 	}
 }
 
-void Scene1::CheckNear()
+void SceneManager::CheckNear()
 {
 	for (int i = 0; i < _gravSwitches.size(); i++) {
 		// Player needs to be near the switch to press
@@ -348,7 +352,7 @@ void Scene1::CheckNear()
 	}
 }
 
-void Scene1::FlipGravity()
+void SceneManager::FlipGravity()
 {
 	if (_gravity < 0.0f) {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
@@ -392,7 +396,7 @@ void Scene1::FlipGravity()
 	_player->FlipPlayer();
 }
 
-void Scene1::IsPlayerInBounds()
+void SceneManager::IsPlayerInBounds()
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
 	if (_player->GetSprite()->getPosition().y < (0.0f - _player->GetSprite()->getContentSize().height))
@@ -406,7 +410,7 @@ void Scene1::IsPlayerInBounds()
 	}
 }
 
-Scene1::~Scene1()
+SceneManager::~SceneManager()
 {
 	// I have no idea if this is ever called
 	delete _player;

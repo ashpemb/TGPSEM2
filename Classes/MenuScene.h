@@ -9,7 +9,7 @@
 #include "stdio.h"
 #include <iomanip>
 
-#include "Scene1.h"
+#include "SceneManager.h"
 #include "AudioEngine.h"
 #include "LevelSelect.h"
 
@@ -51,7 +51,7 @@ private:
 
 	cocos2d::Sprite*		_background;
 
-	Scene1 * gameScene;
+	SceneManager * gameScene;
 
 	AudioEngine*			auEngine;
 	bool muted;

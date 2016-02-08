@@ -216,7 +216,7 @@
             <FileData Type="Normal" Path="Wall.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="-301670038" Tag="30" IconVisible="False" LeftMargin="173.1197" RightMargin="1786.8802" TopMargin="368.0957" BottomMargin="1039.9043" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="-301670038" Tag="30" IconVisible="False" LeftMargin="173.1197" RightMargin="1786.8804" TopMargin="368.0957" BottomMargin="1039.9043" ctype="SpriteObjectData">
             <Size X="88.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="217.1197" Y="1103.9043" />
@@ -227,7 +227,7 @@
             <FileData Type="Normal" Path="Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Crate_Wooden_1" ActionTag="-1496754270" Tag="24" IconVisible="False" LeftMargin="190.5175" RightMargin="1825.4824" TopMargin="796.6210" BottomMargin="707.3790" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Crate_Wooden_1" ActionTag="-1496754270" Tag="24" IconVisible="False" LeftMargin="190.5175" RightMargin="1825.4825" TopMargin="796.6210" BottomMargin="707.3790" ctype="SpriteObjectData">
             <Size X="32.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="206.5175" Y="723.3790" />

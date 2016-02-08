@@ -9,7 +9,7 @@
 #include <string>
 #include "SimpleAudioEngine.h"  
 #include "cocos2d.h"
-#include "Scene1.h"
+#include "SceneManager.h"
 
 class LevelSelect : public cocos2d::Layer
 {
