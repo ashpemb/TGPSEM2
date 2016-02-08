@@ -227,6 +227,28 @@
             <FileData Type="Normal" Path="Start.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="WoodenCrateSpawn" ActionTag="-913902894" Tag="21" IconVisible="False" LeftMargin="181.8149" RightMargin="1816.1851" TopMargin="787.2395" BottomMargin="698.7605" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="206.8149" Y="723.7605" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1010" Y="0.4712" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="WBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="MetalCrateSpawn" ActionTag="1875455735" Tag="22" IconVisible="False" LeftMargin="1891.3821" RightMargin="110.6179" TopMargin="870.8560" BottomMargin="619.1440" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1914.3821" Y="642.1440" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9348" Y="0.4181" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="MBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
