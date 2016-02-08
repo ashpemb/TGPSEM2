@@ -4,6 +4,9 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
+float OScale;
+float NScale;
+
 bool Platforms::init()
 {
 
@@ -14,6 +17,13 @@ bool Platforms::init()
 
 	cocos2d::Size frameSize = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize();
 
+	CreateTouch();
+	
+	return true;
+}
+
+void Platforms::CreateTouch()
+{
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -25,33 +35,57 @@ bool Platforms::init()
 
 	//Add our touch listener to event listener list.
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-
-	return true;
 }
 
 void Platforms::CreateSprite(std::string tex, int x, int y)
 {
 	sprite = Sprite::create(tex);
 	sprite->setPosition(Vec2(x, y));
+	OScale = sprite->getScale();
+}
+
+void Platforms::Selected()
+{
+	NScale = (OScale*1.2);
+	sprite->setScale(NScale);
+}
+
+void Platforms::UnSelected()
+{
+	sprite->setScale(OScale);
+}
+
+void Platforms::MovePlatform(Vec2 T)
+{
+	sprite->setPositionX(T.x);
 }
 
 //Touch Functions
 void Platforms::onTouchBegan(Touch* touch, Event* event)
 {
+	Vec2 T = touch->getLocation();
+	Rect platform = sprite->getBoundingBox();
 
+	if (platform.containsPoint(T))
+	{
+		Selected();
+	}
 }
 
 void Platforms::onTouchEnded(Touch* touch, Event* event)
 {
-	
+	UnSelected();
 }
 
 void Platforms::onTouchMoved(Touch* touch, Event* event)
 {
-	
+
+	Vec2 T = touch->getLocation();
+	Rect platform = sprite->getBoundingBox();
+
+	if (platform.containsPoint(T))
+	{
+		MovePlatform(T);
+	}
 }
 
-void Platforms::onTouchCancelled(Touch* touch, Event* event)
-{
-	
-}

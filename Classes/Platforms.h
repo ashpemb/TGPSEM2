@@ -6,14 +6,20 @@
 #include "ui/CocosGUI.h"
 #include "Define.h"
 
-class Platforms
+class Platforms : public cocos2d::Node
 {
 public:
 
 	virtual bool init();
+
+	void CreateTouch();
+
 	void CreateSprite(std::string tex, int x, int y);
 
+	void Selected();
+	void UnSelected();
 
+	void MovePlatform(Vec2 T);
 
 	cocos2d::Sprite* sprite;
 
