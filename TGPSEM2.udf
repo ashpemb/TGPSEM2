@@ -32,7 +32,6 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="Scene1.csd" />
-          <FilePathData Path="MenuScene.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="Scene1.csd" />
       </Value>

@@ -15,8 +15,6 @@ Player* Player::create(float gravity)
 	player->SetGravity(gravity);
 	player->autorelease();
 
-	//player->setPosition(100, 100);
-
 	return player;
 }
 
@@ -31,19 +29,9 @@ bool Player::init()
 		return false;
 	}
 
-	// Get window size and origin
-	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
-	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
-
-	_playerSprite = Sprite::create("Husky.png");
-	_playerSprite->setPosition(Vec2(500, (winSize.height / 2) + 400));
-
-	this->addChild(_playerSprite);
-
 	this->scheduleUpdate();
 
 	// Init member level variables
-	_targetX = _playerSprite->getPositionX();
 	_speed = 100;
 
 	return true;

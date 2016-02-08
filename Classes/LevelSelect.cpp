@@ -715,7 +715,7 @@ void LevelSelect::update(float delta)
 
 void LevelSelect::GoToGameScene(cocos2d::Ref *sender)
 {
-	auto scene = Scene1::createScene();
+	auto scene = SceneManager::createScene(SceneSelected);
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
