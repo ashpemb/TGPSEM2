@@ -23,6 +23,7 @@ private:
 	Sprite*	_background3;
 	Sprite*	_background4;
 	Sprite* _blackTransparency;
+	cocos2d::ui::Button* _startGame;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
@@ -67,6 +68,7 @@ public:
 	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 };
 
 #endif // __SCENE1_SCENE_H__

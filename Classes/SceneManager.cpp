@@ -106,7 +106,7 @@ bool SceneManager::init()
 
 	// GAMEMANAGER
 	GameManager::sharedGameManager()->setIsGameLive(true);
-	GameManager::sharedGameManager()->setIsGamePaused(false);
+	//GameManager::sharedGameManager()->setIsGamePaused(false);
 
 	// TOUCH ME
 	//Set up a touch listener.
@@ -195,42 +195,52 @@ bool SceneManager::init()
 		crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
 	}
 
+	_startGame = static_cast<ui::Button*>(rootNode->getChildByName("StartGame"));
+	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
+	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
+
 	return true;
 }
 
 void SceneManager::ScheduleScore(float delta)
 {
-	GameManager::sharedGameManager()->updateLevelTimer();
+	if (!GameManager::sharedGameManager()->getIsGamePaused())
+	{
+		GameManager::sharedGameManager()->updateLevelTimer();
+	}
 }
 
 void SceneManager::update(float delta)
 {
-	if (GameManager::sharedGameManager()->getIsGameLive())
+	if (!GameManager::sharedGameManager()->getIsGamePaused())
 	{
-		if (_flipGravityCooldown > 0.0f) {
-			_flipGravityCooldown -= delta;
+		if (GameManager::sharedGameManager()->getIsGameLive())
+		{
+			if (_flipGravityCooldown > 0.0f) {
+				_flipGravityCooldown -= delta;
 
-			if (_flipGravityCooldown < 0.0f) {
-				_flipGravityCooldown = 0.0f;
+				if (_flipGravityCooldown < 0.0f) {
+					_flipGravityCooldown = 0.0f;
+				}
 			}
+
+			_score = GameManager::sharedGameManager()->getTimer();
+
+			int mil = GameManager::sharedGameManager()->getMil();
+			int sec = GameManager::sharedGameManager()->getSec();
+			int min = GameManager::sharedGameManager()->getMin();
+
+			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
+
+			CheckCollisions();
+			CheckNear();
+			IsPlayerInBounds();
 		}
-
-		_score = GameManager::sharedGameManager()->getTimer();
-
-		int mil = GameManager::sharedGameManager()->getMil();
-		int sec = GameManager::sharedGameManager()->getSec();
-		int min = GameManager::sharedGameManager()->getMin();
-
-		_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
-
-		CheckCollisions();
-		CheckNear();
-		IsPlayerInBounds();
-	}
-	else
-	{
-		_blackTransparency->setVisible(true);
-		// Add gameover shit
+		else
+		{
+			_blackTransparency->setVisible(true);
+			// Add gameover shit
+		}
 	}
 }
 
@@ -328,6 +338,18 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 				_flipGravityCooldown = 1.0f;
 			}
 		}
+	}
+}
+
+void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CCLOG("In Touch! %d", type);
+
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		CCLOG("touch ended");
+		GameManager::sharedGameManager()->setIsGamePaused(false);
+		_startGame->setVisible(false);
 	}
 }
 

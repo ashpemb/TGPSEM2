@@ -37,11 +37,13 @@ bool Box::init()
 
 void Box::update(float delta)
 {
-	if (_falling)
+	if (!GameManager::sharedGameManager()->getIsGamePaused())
 	{
-		Fall(delta);
+		if (_falling)
+		{
+			Fall(delta);
+		}
 	}
-
 	// Add box movement when pushed by player
 }
 

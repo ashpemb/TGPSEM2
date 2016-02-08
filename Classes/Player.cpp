@@ -41,13 +41,15 @@ void Player::update(float delta)
 {
 	//Debug
 	//_falling = true;
+	if (!GameManager::sharedGameManager()->getIsGamePaused())
+	{
+		if (_falling) {
+			Fall(delta);
+		}
 
-	if (_falling) {
-		Fall(delta);
-	}
-
-	if (_targetX != _playerSprite->getPositionX()) {
-		MoveToTarget(delta);
+		if (_targetX != _playerSprite->getPositionX()) {
+			MoveToTarget(delta);
+		}
 	}
 }
 

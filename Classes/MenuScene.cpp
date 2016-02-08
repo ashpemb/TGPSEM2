@@ -136,6 +136,7 @@ void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 
 void MenuScene::StartGame()
 {
+	GameManager::sharedGameManager()->setIsGamePaused(true);
 	auEngine->StopBackgroundMusic();
 	Scene* scene = LevelSelect::createScene();
 
