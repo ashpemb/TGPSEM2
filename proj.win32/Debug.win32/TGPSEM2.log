@@ -1,33 +1,37 @@
-﻿Build started 03/02/2016 07:52:31 PM.
-     1>Project "F:\TGPSEM2-master\proj.win32\TGPSEM2.vcxproj" on node 2 (Build target(s)).
+﻿Build started 05/02/2016 06:24:00 PM.
+     1>Project "F:\TGPSEM2\proj.win32\TGPSEM2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.9\external" /I"C:\Cocos\frameworks\cocos2d-x-3.9\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.9\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\freetype2\include\win32\freetype2" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external\freetype2\include\win32\\" /I"C:\Cocos\frameworks\cocos2d-x-3.9\cocos\2d\..\..\external" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\LevelSelect.cpp
          LevelSelect.cpp
+     1>f:\tgpsem2\classes\levelselect.cpp(109): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>f:\tgpsem2\classes\levelselect.cpp(110): warning C4305: 'argument' : truncation from 'double' to 'float'
        PreLinkEvent:
-         if not exist "F:\TGPSEM2-master\proj.win32\Debug.win32\" mkdir "F:\TGPSEM2-master\proj.win32\Debug.win32\"
-         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.9\prebuilt\win32\*.*" "F:\TGPSEM2-master\proj.win32\Debug.win32\"
+         if not exist "F:\TGPSEM2\proj.win32\Debug.win32\" mkdir "F:\TGPSEM2\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.9\prebuilt\win32\*.*" "F:\TGPSEM2\proj.win32\Debug.win32\"
          
          :VCEnd
          60 File(s) copied
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\TGPSEM2-master\proj.win32\Debug.win32\TGPSEM2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"F:\TGPSEM2-master\proj.win32\Debug.win32\\" /LIBPATH:"F:\TGPSEM2-master\proj.win32\Debug.win32\\" opengl32.lib glew32.lib libzlib.lib libwebp.lib libiconv.lib freetype.lib winmm.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\TGPSEM2-master\proj.win32\Debug.win32\TGPSEM2.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\TGPSEM2-master\proj.win32\Debug.win32\TGPSEM2.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\TGPSEM2\proj.win32\Debug.win32\TGPSEM2.exe" /INCREMENTAL /NOLOGO /LIBPATH:F:\TGPSEM2\proj.win32\Debug.win32\ /LIBPATH:F:\TGPSEM2\proj.win32\Debug.win32\ opengl32.lib glew32.lib libzlib.lib libwebp.lib libiconv.lib freetype.lib winmm.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\TGPSEM2\proj.win32\Debug.win32\TGPSEM2.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\TGPSEM2\proj.win32\Debug.win32\TGPSEM2.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
          Debug.win32\AppDelegate.obj
          Debug.win32\AudioEngine.obj
          Debug.win32\GameManager.obj
          Debug.win32\HelloWorldScene.obj
          Debug.win32\LevelSelect.obj
          Debug.win32\MenuScene.obj
+         Debug.win32\ScalingObject.obj
          Debug.win32\ScoreManager.obj
+         Debug.win32\TouchManager.obj
          Debug.win32\main.obj
-         TGPSEM2.vcxproj -> F:\TGPSEM2-master\proj.win32\Debug.win32\TGPSEM2.exe
+         TGPSEM2.vcxproj -> F:\TGPSEM2\proj.win32\Debug.win32\TGPSEM2.exe
        CustomBuildStep:
-         if not exist "F:\TGPSEM2-master\proj.win32\Debug.win32\" mkdir "F:\TGPSEM2-master\proj.win32\Debug.win32\"
-         xcopy "F:\TGPSEM2-master\proj.win32\..\Resources" "F:\TGPSEM2-master\proj.win32\Debug.win32\" /D /E /I /F /Y
+         if not exist "F:\TGPSEM2\proj.win32\Debug.win32\" mkdir "F:\TGPSEM2\proj.win32\Debug.win32\"
+         xcopy "F:\TGPSEM2\proj.win32\..\Resources" "F:\TGPSEM2\proj.win32\Debug.win32\" /D /E /I /F /Y
                
          :VCEnd
          0 File(s) copied
-     1>Done Building Project "F:\TGPSEM2-master\proj.win32\TGPSEM2.vcxproj" (Build target(s)).
+     1>Done Building Project "F:\TGPSEM2\proj.win32\TGPSEM2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.18
+Time Elapsed 00:00:08.00

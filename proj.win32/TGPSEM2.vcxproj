@@ -152,7 +152,9 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\LevelSelect.cpp" />
     <ClCompile Include="..\Classes\MenuScene.cpp" />
+    <ClCompile Include="..\Classes\ScalingObject.cpp" />
     <ClCompile Include="..\Classes\ScoreManager.cpp" />
+    <ClCompile Include="..\Classes\TouchManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,7 +164,9 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\LevelSelect.h" />
     <ClInclude Include="..\Classes\MenuScene.h" />
+    <ClInclude Include="..\Classes\ScalingObject.h" />
     <ClInclude Include="..\Classes\ScoreManager.h" />
+    <ClInclude Include="..\Classes\TouchManager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

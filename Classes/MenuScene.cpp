@@ -1,7 +1,7 @@
 #include "MenuScene.h"
 #include "LevelSelect.h"
 #include "SimpleAudioEngine.h"
-
+#include "ScalingObject.h"
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -36,7 +36,6 @@ bool MenuScene::init()
 
 	this->scheduleUpdate();
 	auto winSize = Director::getInstance()->getVisibleSize();
-
 	//TOUCHES
 
 	//Set up a touch listener.

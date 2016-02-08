@@ -2,7 +2,7 @@
 #define __LEVELSELECT_SCENE_H__
 
 #include "cocos2d.h"
-
+#include "TouchManager.h"
 class LevelSelect : public cocos2d::Layer
 {
 public:
@@ -24,6 +24,8 @@ public:
 	void LevelMovement(); 
 	void LevelRotation();
 	void LevelScaling();
+	TouchManager* touchMGR;
+	float accelRotation;
 	// implement the "static create()" method manually
 	CREATE_FUNC(LevelSelect);
 private:
