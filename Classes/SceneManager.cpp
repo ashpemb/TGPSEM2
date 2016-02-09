@@ -40,25 +40,17 @@ bool SceneManager::init()
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
-	auto rootNode = CSLoader::createNode("Scene" + StringUtils::format("%d", _level) + ".csb");
+	rootNode = CSLoader::createNode("Scene" + StringUtils::format("%d", _level) + ".csb");
 
 	addChild(rootNode);
 
 	GameManager::sharedGameManager()->startLevelTimer();
-
 
 	this->scheduleUpdate();
 
 	this->schedule(schedule_selector(SceneManager::ScheduleScore), 0.001f);
 	_timeLabel = (ui::Text*)rootNode->getChildByName("Time");
 	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
-
-	// PLAYER
-	_player = Player::create(_gravity);
-	_player->SetSprite((Sprite*)rootNode->getChildByName("Player"));
-	_player->setName("Player");
-
-	addChild(_player);
 
 	// AUDIO
 	auEngine = new AudioEngine();
@@ -158,42 +150,6 @@ bool SceneManager::init()
 	this->addChild(_background3);
 	this->addChild(_background4);
 	this->addChild(_blackTransparency);
-
-	// WOODEN CRATES
-	cocos2d::Sprite* crateWooden;
-	i = 1;
-	crateWooden = (Sprite*)(rootNode->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i)));
-
-	while (crateWooden != nullptr) {
-		Box* box = Box::create(_gravity, 1);
-		box->setName("Crate_Wooden_" + StringUtils::format("%d", i));
-		box->SetSprite(crateWooden);
-
-		_woodBoxes.push_back(box);
-
-		addChild(_woodBoxes[i - 1]);
-
-		i++;
-		crateWooden = (Sprite*)(rootNode->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i)));
-	}
-
-	// METAL CRATES
-	cocos2d::Sprite* crateMetal;
-	i = 1;
-	crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
-
-	while (crateMetal != nullptr) {
-		Box* box = Box::create(_gravity, 2);
-		box->setName("Crate_Metal_" + StringUtils::format("%d", i));
-		box->SetSprite(crateMetal);
-
-		_metalBoxes.push_back(box);
-
-		addChild(_metalBoxes[i - 1]);
-
-		i++;
-		crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
-	}
 
 	_startGame = static_cast<ui::Button*>(rootNode->getChildByName("StartGame"));
 	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
@@ -350,6 +306,49 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 		CCLOG("touch ended");
 		GameManager::sharedGameManager()->setIsGamePaused(false);
 		_startGame->setVisible(false);
+
+		// PLAYER
+		_player = Player::create(_gravity);
+		_player->SetSprite((Sprite*)rootNode->getChildByName("Player"));
+		_player->setName("Player");
+
+		addChild(_player);
+
+		// WOODEN CRATES
+		cocos2d::Sprite* crateWooden;
+		int i = 1;
+		crateWooden = (Sprite*)(rootNode->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i)));
+
+		while (crateWooden != nullptr) {
+			Box* box = Box::create(_gravity, 1);
+			box->setName("Crate_Wooden_" + StringUtils::format("%d", i));
+			box->SetSprite(crateWooden);
+
+			_woodBoxes.push_back(box);
+
+			addChild(_woodBoxes[i - 1]);
+
+			i++;
+			crateWooden = (Sprite*)(rootNode->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i)));
+		}
+
+		// METAL CRATES
+		cocos2d::Sprite* crateMetal;
+		i = 1;
+		crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
+
+		while (crateMetal != nullptr) {
+			Box* box = Box::create(_gravity, 2);
+			box->setName("Crate_Metal_" + StringUtils::format("%d", i));
+			box->SetSprite(crateMetal);
+
+			_metalBoxes.push_back(box);
+
+			addChild(_metalBoxes[i - 1]);
+
+			i++;
+			crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
+		}
 	}
 }
 
