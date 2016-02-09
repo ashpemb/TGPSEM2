@@ -1,4 +1,16 @@
 #include "LevelSelect.h"
+<<<<<<< HEAD
+#include "HelloWorldScene.h"
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include "SimpleAudioEngine.h"  
+#include "ScalingObject.h"
+#include "TouchManager.h"
+=======
+>>>>>>> origin/Alex
 
 USING_NS_CC;
 
@@ -7,6 +19,7 @@ Label* labelTouchInfo;
 Sprite3D* sprite;
 Sprite3D* sprite2;
 Sprite3D* sprite3;
+ScalingObject* stars[25];
 int screenSizeY;
 int screenSizeX;
 int LevelSelected;
@@ -21,7 +34,12 @@ float scale2;
 float scale3;
 float levelSelectRotation;
 int SceneSelected;
+<<<<<<< HEAD
+int fallingSpeed;
+int timer;
+=======
 
+>>>>>>> origin/Alex
 Scene* LevelSelect::createScene()
 {
 	// 'scene' is an autorelease object
@@ -54,7 +72,7 @@ bool LevelSelect::init()
 	addChild(rootNode);
 
 	this->scheduleUpdate();
-	cocos2d::Size frameSize = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize();
+	cocos2d::Size frameSize = Director::getInstance()->getVisibleSize();
 	screenSizeY = frameSize.height;
 	screenSizeX = frameSize.width;
 	Device::setAccelerometerEnabled(true);
@@ -83,12 +101,39 @@ bool LevelSelect::init()
 	SecondLevelPos = Vec3(screenSizeX - 60, screenSizeY / 2, -200);
 	ThirdLevelPos = Vec3(100, screenSizeY / 2, -200);
 
+	for (int i = 0; i < 25; i++)
+	{
+		stars[i] = new ScalingObject;
+		stars[i]->init();
+		stars[i]->sprite = new Sprite;
+		//stars[i]->CreateSO("cube.obj", "World1.png");
+		stars[i]->CreateSprite("World1.png", 2);
+		
+		stars[i]->sprite->setPosition3D(Vec3(rand() % screenSizeX, rand() % screenSizeY, rand() % 300));
+		stars[i]->sprite->setScale(0.1);
+		stars[i]->SetStartingScale(0.1);
+		addChild(stars[i]->sprite);
+	}
+	touchMGR = new TouchManager;
+	auto touchesListener = EventListenerTouchAllAtOnce::create();
+
+	touchesListener->onTouchesBegan = CC_CALLBACK_2(TouchManager::onTouchesBegan, touchMGR);
+	touchesListener->onTouchesEnded = CC_CALLBACK_2(TouchManager::onTouchesEnded, touchMGR);
+	touchesListener->onTouchesMoved = CC_CALLBACK_2(TouchManager::onTouchesMoved, touchMGR);
+	touchesListener->onTouchesCancelled = CC_CALLBACK_2(TouchManager::onTouchesCancelled, touchMGR);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchesListener, this);
+	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchesListener, this);
+
+
 	sprite = Sprite3D::create("cube.obj", "World1.png");
 	sprite->setPosition3D(SelectedLevelPos);
 	sprite->setScale(100.0f);
 	sprite->setColor(Color3B(255, 255, 255));
 	labelTouchInfo = Label::create();
 	labelTouchInfo->setPosition(Vec2(screenSizeX/2, screenSizeY -100));
+	labelTouchInfo->setSystemFontName("Times New Roman");
+	labelTouchInfo->setSystemFontSize(64);
 	//auto _textureCube = TextureCube::create("bluecloud_lf.jpg", "bluecloud_rt.jpg",
 	//	"bluecloud_dn.png", "bluecloud_up.jpg", "bluecloud_ft.jpg", "bluecloud_bk.jpg");
 
@@ -103,11 +148,10 @@ bool LevelSelect::init()
 	//auto _state = GLProgramState::create(shader);
 
 	//_state->setUniformTexture("u_cubeTex", _textureCube);
-
+	//
 	//sprite->setTexture(_textureCube);
 	addChild(sprite);
 	addChild(labelTouchInfo);
-
 
 
     sprite2 = Sprite3D::create("cube.obj", "World2.png");
@@ -141,7 +185,7 @@ bool LevelSelect::init()
 	scale3 = 80;
 	levelSelectRotation = 0;
 	SceneSelected = 1;
-
+	timer = 0;
 
 	return true;
 }
@@ -196,7 +240,7 @@ void LevelSelect::LevelLeft(cocos2d::Ref *sender)
 	{
 		SceneSelected -= 1;
 		std::stringstream ss;
-		ss << SceneSelected +1;
+		ss << SceneSelected + 1;
 		std::string str = ss.str();
 		labelTouchInfo->setString("Scene " + str);
 	}
@@ -341,7 +385,7 @@ void LevelSelect::LevelRotation()
 				rotation1 += 1.5f;
 			}
 		}
-		sprite->setRotation3D(Vec3(rotation1, rotation1, 0));
+		sprite->setRotation3D(Vec3(rotation1, rotation1, accelRotation));
 		sprite2->setRotation3D(Vec3(rotation2, rotation2, 0));
 		sprite3->setRotation3D(Vec3(rotation3, rotation3, 0));
 	}
@@ -361,7 +405,7 @@ void LevelSelect::LevelRotation()
 			}
 		}
 		sprite->setRotation3D(Vec3(rotation1, rotation1, 0));
-		sprite2->setRotation3D(Vec3(rotation2, rotation2, 0));
+		sprite2->setRotation3D(Vec3(rotation2, rotation2, accelRotation));
 		sprite3->setRotation3D(Vec3(rotation3, rotation3, 0));
 	}
 	if (LevelSelected == 3)
@@ -381,7 +425,7 @@ void LevelSelect::LevelRotation()
 		}
 		sprite->setRotation3D(Vec3(rotation1, rotation1, 0));
 		sprite2->setRotation3D(Vec3(rotation2, rotation2, 0));
-		sprite3->setRotation3D(Vec3(rotation3, rotation3, 0));
+		sprite3->setRotation3D(Vec3(rotation3, rotation3, accelRotation));
 	}
 }
 
@@ -708,6 +752,19 @@ void LevelSelect::update(float delta)
 	}
 
 
+	for (int i = 0; i < 25; i++)
+	{
+		stars[i]->update(delta, touchMGR->totalDiff);
+		float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		stars[i]->sprite->setPositionX(stars[i]->sprite->getPositionX() - r);
+		//stars[i]->sprite->setRotation3D(Vec3(rotation1, rotation2, rotation3));
+		if (stars[i]->sprite->getPositionX() < 0 - 100)
+		{
+			stars[i]->sprite->setPositionX(screenSizeX + 200);
+			stars[i]->sprite->setPositionY(rand() % screenSizeY);
+			stars[i]->sprite->setPositionZ(rand() % 300);
+		}
+	}
 	LevelScaling();
 	LevelRotation();
 	LevelMovement();
@@ -727,7 +784,6 @@ bool LevelSelect::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 
 	if (rect.containsPoint(p))
 	{
-		labelTouchInfo->setString("Touched");
 		sprite->setTexture("World1-Highlighted.png");
 		LevelSelected = 1;
 		sprite->setTexture("World1-Highlighted.png");
@@ -766,13 +822,18 @@ bool LevelSelect::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 	{
 		sprite3->setTexture("World3.png");
 	}
+
+	for (int i = 0; i < 25; i++)
+	{
+		stars[i]->Collision(touch);
+	}
 	return true;
 
 }
 
 void LevelSelect::onAcceleration(cocos2d::Acceleration* accel, cocos2d::Event* event)
 {
-
+	accelRotation = accel->z;
 }
 
 void LevelSelect::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)

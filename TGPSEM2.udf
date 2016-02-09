@@ -17,15 +17,17 @@
         <AndroidVersion Value="android-20" />
         <iOS_Target Value="TGPSEM2-mobile" />
         <iOS_BundleID Value="" />
-        <Platform Value="Android" />
+        <Platform Value="None" />
         <RunPlatform Value="None" />
         <FrameworkVersion Value="cocos2d-x-3.9" />
         <IsDebugKeystore Value="True" />
-        <KeystorePassword Value="" />
-        <KeystoreAliasName Value="" />
-        <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <ActiveDocument />
       </Value>
     </Item>
   </Properties>
