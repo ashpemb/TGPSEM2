@@ -7,34 +7,44 @@ using namespace cocostudio::timeline;
 float OScale;
 float NScale;
 
-bool Platforms::init()
+Platforms::Platforms()
 {
 
-	srand(time(NULL));
+}
 
+Platforms* Platforms::create()
+{
+	Platforms* platform = new Platforms();
 
-	auto rootNode = CSLoader::createNode("MainScene.csb");
+	if (!platform->init()) {
+		return nullptr;
+	}
 
-	cocos2d::Size frameSize = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize();
+	platform->autorelease();
 
-	CreateTouch();
-	
+	return platform;
+}
+
+bool Platforms::init()
+{
+	if (!Node::init())
+	{
+		return false;
+	}
+
+	this->scheduleUpdate();
+
 	return true;
 }
 
-void Platforms::CreateTouch()
+Platforms::~Platforms()
 {
-	//Set up a touch listener.
-	auto touchListener = EventListenerTouchOneByOne::create();
 
-	//Set callbacks for our touch functions.
-	touchListener->onTouchBegan = CC_CALLBACK_2(Platforms::onTouchBegan, this);
-	touchListener->onTouchEnded = CC_CALLBACK_2(Platforms::onTouchEnded, this);
-	touchListener->onTouchMoved = CC_CALLBACK_2(Platforms::onTouchMoved, this);
-	touchListener->onTouchCancelled = CC_CALLBACK_2(Platforms::onTouchCancelled, this);
+}
 
-	//Add our touch listener to event listener list.
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+void Platforms::update(float delta)
+{
+	// TO DO
 }
 
 void Platforms::CreateSprite(std::string tex, int x, int y)
@@ -55,7 +65,7 @@ void Platforms::UnSelected()
 	sprite->setScale(OScale);
 }
 
-void Platforms::MovePlatform(Vec2 T)
+void Platforms::MovePlatform(cocos2d::Vec2 T)
 {
 	sprite->setPositionX(T.x);
 }
@@ -89,3 +99,7 @@ void Platforms::onTouchMoved(Touch* touch, Event* event)
 	}
 }
 
+void Platforms::onTouchCancelled(Touch* touch, Event* event)
+{
+	cocos2d::log("touch cancelled");
+}

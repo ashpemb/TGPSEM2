@@ -9,7 +9,6 @@ class Player : public Node
 private:
 	// Sprite
 	Sprite* _playerSprite;
-	
 
 	// Gravity variables
 	float _gravity;

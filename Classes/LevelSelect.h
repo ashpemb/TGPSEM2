@@ -11,8 +11,8 @@
 #include "cocos2d.h"
 #include "SceneManager.h"
 #include "TouchManager.h"
+#include "ScalingObject.h"
 
->>>>>>> origin/Alex
 class LevelSelect : public cocos2d::Layer
 {
 public:

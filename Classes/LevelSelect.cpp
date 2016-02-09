@@ -1,16 +1,4 @@
 #include "LevelSelect.h"
-<<<<<<< HEAD
-#include "HelloWorldScene.h"
-#include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
-#include <cstdlib>
-#include <ctime>
-#include <string>
-#include "SimpleAudioEngine.h"  
-#include "ScalingObject.h"
-#include "TouchManager.h"
-=======
->>>>>>> origin/Alex
 
 USING_NS_CC;
 
@@ -34,12 +22,9 @@ float scale2;
 float scale3;
 float levelSelectRotation;
 int SceneSelected;
-<<<<<<< HEAD
 int fallingSpeed;
 int timer;
-=======
 
->>>>>>> origin/Alex
 Scene* LevelSelect::createScene()
 {
 	// 'scene' is an autorelease object

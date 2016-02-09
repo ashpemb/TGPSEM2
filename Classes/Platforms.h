@@ -5,21 +5,27 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "Define.h"
+USING_NS_CC;
 
 class Platforms : public cocos2d::Node
 {
 public:
+	Platforms();
+	static Platforms* create();
+	~Platforms();
 
-	virtual bool init();
+	virtual bool init() override;
 
-	void CreateTouch();
+	void update(float delta);
 
+	// CONFIRMED FINE
 	void CreateSprite(std::string tex, int x, int y);
 
 	void Selected();
 	void UnSelected();
 
-	void MovePlatform(Vec2 T);
+	void MovePlatform(cocos2d::Vec2 T);
+	// END CONFIRM
 
 	cocos2d::Sprite* sprite;
 
@@ -28,9 +34,6 @@ public:
 	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
-
-
-
 private:
 	
 };

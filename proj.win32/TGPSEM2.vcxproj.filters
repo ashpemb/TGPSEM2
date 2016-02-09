@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="win32">
@@ -51,10 +51,10 @@
     <ClCompile Include="..\Classes\TouchManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Platforms.cpp">
+    <ClCompile Include="..\Classes\Switch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Switch.cpp">
+    <ClCompile Include="..\Classes\Platforms.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,10 +101,10 @@
     <ClInclude Include="..\Classes\TouchManager.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Platforms.h">
+    <ClInclude Include="..\Classes\Switch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Switch.h">
+    <ClInclude Include="..\Classes\Platforms.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
