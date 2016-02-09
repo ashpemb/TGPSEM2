@@ -208,3 +208,11 @@ void Player::FlipPlayer()
 		_playerSprite->runAction(rotateTo);
 	}
 }
+
+void Player::SetSprite(Sprite* newSprite) 
+{ 
+	_playerSprite = newSprite;
+	SetTarget(newSprite->getPositionX());
+	
+	this->addChild(_playerSprite); 
+}
