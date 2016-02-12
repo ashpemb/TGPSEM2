@@ -17,7 +17,7 @@
         <AndroidVersion Value="android-20" />
         <iOS_Target Value="TGPSEM2-mobile" />
         <iOS_BundleID Value="" />
-        <Platform Value="None" />
+        <Platform Value="Android" />
         <RunPlatform Value="None" />
         <FrameworkVersion Value="cocos2d-x-3.9" />
         <IsDebugKeystore Value="True" />
@@ -27,7 +27,10 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="Scene1.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="Scene1.csd" />
       </Value>
     </Item>
   </Properties>

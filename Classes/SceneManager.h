@@ -15,6 +15,11 @@ class SceneManager : public Scene
 private:
 	int _level;
 
+	// Sprites that need to be passed to classes
+	Sprite* _playerSprite;
+	std::vector<cocos2d::Sprite*> _woodenSprites;
+	std::vector<cocos2d::Sprite*> _metalSprites;
+
 	int _score;
 	Player* _player;
 	cocos2d::ui::Text*	_timeLabel;
@@ -50,6 +55,7 @@ public:
 	SceneManager(int level);
 	virtual bool init();
 	~SceneManager();
+	void SetupCocosElements();
 
 	void CheckCollisions();
 
