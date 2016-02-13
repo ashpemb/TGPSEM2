@@ -15,6 +15,11 @@ class SceneManager : public Scene
 private:
 	int _level;
 
+	// Sprites that need to be passed to classes
+	Sprite* _playerSprite;
+	std::vector<cocos2d::Sprite*> _woodenSprites;
+	std::vector<cocos2d::Sprite*> _metalSprites;
+
 	int _score;
 	Player* _player;
 	cocos2d::ui::Text*	_timeLabel;
@@ -23,6 +28,7 @@ private:
 	Sprite*	_background3;
 	Sprite*	_background4;
 	Sprite* _blackTransparency;
+	cocos2d::ui::Button* _startGame;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
@@ -49,6 +55,7 @@ public:
 	SceneManager(int level);
 	virtual bool init();
 	~SceneManager();
+	void SetupCocosElements();
 
 	void CheckCollisions();
 
@@ -67,6 +74,7 @@ public:
 	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 };
 
 #endif // __SCENE1_SCENE_H__

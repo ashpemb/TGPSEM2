@@ -1,5 +1,7 @@
 #include "MenuScene.h"
-
+#include "LevelSelect.h"
+#include "SimpleAudioEngine.h"
+#include "ScalingObject.h"
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -136,6 +138,7 @@ void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 
 void MenuScene::StartGame()
 {
+	GameManager::sharedGameManager()->setIsGamePaused(true);
 	auEngine->StopBackgroundMusic();
 	Scene* scene = LevelSelect::createScene();
 

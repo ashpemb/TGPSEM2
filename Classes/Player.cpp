@@ -41,13 +41,15 @@ void Player::update(float delta)
 {
 	//Debug
 	//_falling = true;
+	if (!GameManager::sharedGameManager()->getIsGamePaused())
+	{
+		if (_falling) {
+			Fall(delta);
+		}
 
-	if (_falling) {
-		Fall(delta);
-	}
-
-	if (_targetX != _playerSprite->getPositionX()) {
-		MoveToTarget(delta);
+		if (_targetX != _playerSprite->getPositionX()) {
+			MoveToTarget(delta);
+		}
 	}
 }
 
@@ -205,4 +207,12 @@ void Player::FlipPlayer()
 		auto rotateTo = RotateTo::create(0.5f, 180.0f);
 		_playerSprite->runAction(rotateTo);
 	}
+}
+
+void Player::SetSprite(Sprite* newSprite) 
+{ 
+	_playerSprite = newSprite;
+	SetTarget(newSprite->getPositionX());
+	
+	this->addChild(_playerSprite); 
 }

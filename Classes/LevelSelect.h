@@ -10,6 +10,8 @@
 #include "SimpleAudioEngine.h"  
 #include "cocos2d.h"
 #include "SceneManager.h"
+#include "TouchManager.h"
+#include "ScalingObject.h"
 
 class LevelSelect : public cocos2d::Layer
 {
@@ -32,6 +34,8 @@ public:
 	void LevelMovement(); 
 	void LevelRotation();
 	void LevelScaling();
+	TouchManager* touchMGR;
+	float accelRotation;
 	// implement the "static create()" method manually
 	CREATE_FUNC(LevelSelect);
 private:
