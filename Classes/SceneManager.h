@@ -10,6 +10,8 @@
 #include "AudioEngine.h"
 #include "Box.h"
 
+USING_NS_CC;
+
 class SceneManager : public Scene
 {
 private:
@@ -55,6 +57,7 @@ public:
 	SceneManager(int level);
 	virtual bool init();
 	~SceneManager();
+
 	void SetupCocosElements();
 
 	void CheckCollisions();

@@ -92,7 +92,9 @@ bool SceneManager::init()
 
 	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)))) != nullptr)
 	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
 		_gravSwitches.push_back(tempCheck);
+		_flipped.push_back(false);
 		i++;
 	}
 
@@ -160,11 +162,6 @@ bool SceneManager::init()
 	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
 	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
 
-	return true;
-}
-
-void SceneManager::SetupCocosElements()
-{
 	// PLAYER
 	_player = Player::create(_gravity);
 	_player->SetSprite(_playerSprite);
@@ -197,6 +194,13 @@ void SceneManager::SetupCocosElements()
 
 		addChild(_metalBoxes[i]);
 	}
+
+	return true;
+}
+
+void SceneManager::SetupCocosElements()
+{
+
 
 	//_metalSprites.clear();
 }
