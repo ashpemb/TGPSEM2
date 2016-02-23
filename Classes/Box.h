@@ -2,10 +2,12 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "GameManager.h"
+#include "ScalingObject.h"
+#include "TouchManager.h"
 USING_NS_CC;
 
 
-class Box : public Node
+class Box : public Node, public ScalingObject
 {
 private:
 	// Sprite
