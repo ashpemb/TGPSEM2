@@ -6,8 +6,8 @@
 #include "cocostudio/CocoStudio.h"
 #include "SimpleAudioEngine.h"
 
-#include "stdio.h"
-#include <iomanip>
+#include "ui/CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
 
 #include "SceneManager.h"
 #include "AudioEngine.h"

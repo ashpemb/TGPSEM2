@@ -45,6 +45,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	MenuScene menuScene;
     auto scene = menuScene.createScene();
 
+
     // run
     director->runWithScene(scene);
 

@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "GameManager.h"
 #include "AudioEngine.h"
+#include "GameOverScene.h"
 #include "Box.h"
 
 class SceneManager : public Scene
@@ -24,6 +25,7 @@ private:
 	Sprite*	_background4;
 	Sprite* _blackTransparency;
 	cocos2d::ui::Button* _startGame;
+
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
@@ -69,6 +71,7 @@ public:
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+
 };
 
 #endif // __SCENE1_SCENE_H__

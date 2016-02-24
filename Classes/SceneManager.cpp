@@ -40,6 +40,8 @@ bool SceneManager::init()
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
+
+
 	auto rootNode = CSLoader::createNode("Scene" + StringUtils::format("%d", _level) + ".csb");
 
 	addChild(rootNode);
@@ -195,11 +197,14 @@ bool SceneManager::init()
 		crateMetal = (Sprite*)(rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i)));
 	}
 
+	GameManager::sharedGameManager()->setIsGamePaused(true); // ensures game is paused when player presses retry on gameover screen.
+
 	_startGame = static_cast<ui::Button*>(rootNode->getChildByName("StartGame"));
 	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
 	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
 
 	return true;
+		
 }
 
 void SceneManager::ScheduleScore(float delta)
@@ -238,8 +243,13 @@ void SceneManager::update(float delta)
 		}
 		else
 		{
-			_blackTransparency->setVisible(true);
-			// Add gameover shit
+
+			//"Gameover shit added". Ya taffer.
+			//GameManager::sharedGameManager()->setIsGamePaused(false);
+			GameManager::sharedGameManager()->setIsGameLive(false);
+			GameManager::sharedGameManager()->setCurrentLevel(_level);
+			auto scene = GameOverScene::createScene();
+			Director::getInstance()->replaceScene(TransitionFade::create(0.0f, scene));
 		}
 	}
 }
@@ -432,6 +442,7 @@ void SceneManager::IsPlayerInBounds()
 	}
 }
 
+
 SceneManager::~SceneManager()
 {
 	// I have no idea if this is ever called
@@ -462,3 +473,4 @@ SceneManager::~SceneManager()
 
 	_gravSwitches.clear();
 }
+
