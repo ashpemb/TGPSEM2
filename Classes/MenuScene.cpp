@@ -37,10 +37,6 @@ bool MenuScene::init()
 	this->scheduleUpdate();
 	auto winSize = Director::getInstance()->getVisibleSize();
 
-	// Variables
-	
-	muted = GameManager::sharedGameManager()->getIsGameMuted();
-
 	//TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
@@ -105,9 +101,8 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 
 void MenuScene::MuteButtonPressed()
 {
-	muted = !muted;
 
-	if (muted) {
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
 		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
 
 		auEngine->PauseBackgroundMusic();

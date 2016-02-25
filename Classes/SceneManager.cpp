@@ -66,6 +66,7 @@ bool SceneManager::init()
 	auEngine = new AudioEngine();
 
 	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
+
 	{
 		auEngine->PlayBackgroundMusic("testing.mp3", true);
 	}

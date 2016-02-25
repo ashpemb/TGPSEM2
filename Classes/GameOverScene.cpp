@@ -40,9 +40,6 @@ bool GameOverScene::init()
 	auto winSize = Director::getInstance()->getVisibleSize();
 	auto origin = Director::getInstance()->getVisibleOrigin();
 
-	// Variables
-	muted = GameManager::sharedGameManager()->getIsGameMuted();
-
 	//TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
@@ -106,9 +103,7 @@ void GameOverScene::MainMenuButtonPressed(Ref *sender, cocos2d::ui::Widget::Touc
 
 void GameOverScene::MuteButtonPressed()
 {
-	muted = !muted;
-
-	if (muted) {
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
 		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
 
 		auEngine->PauseBackgroundMusic();
