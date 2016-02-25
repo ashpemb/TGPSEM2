@@ -35,6 +35,7 @@
         <Image Name="Exit 5.png" />
         <Image Name="Exit 6.png" />
         <Project Name="SplashScreen.csd" Type="Scene" />
+        <Image Name="MuteUnPressedGO.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
