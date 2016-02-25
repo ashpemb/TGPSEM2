@@ -3,7 +3,7 @@
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="VS" />
-        <IsLastPublish Value="False" />
+        <IsLastPublish Value="True" />
         <LastRunType Value="Windows" />
       </Value>
     </Item>
@@ -27,7 +27,12 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="Scene2.csd" />
+          <FilePathData Path="Scene1.csd" />
+          <FilePathData Path="Scene3.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="Scene3.csd" />
       </Value>
     </Item>
   </Properties>

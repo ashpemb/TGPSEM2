@@ -24,6 +24,8 @@
         <Image Name="Husky.png" />
         <Image Name="Crate.png" />
         <Image Name="MetalCrate.png" />
+        <Project Name="Scene2.csd" Type="Scene" />
+        <Project Name="Scene3.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
