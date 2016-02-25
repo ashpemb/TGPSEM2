@@ -7,7 +7,7 @@
 USING_NS_CC;
 
 
-class Box : public Node, public ScalingObject
+class Box : public ScalingObject
 {
 private:
 	// Sprite

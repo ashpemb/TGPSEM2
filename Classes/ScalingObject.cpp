@@ -20,6 +20,11 @@ int unselect;
 // on "init" you need to initialize your instance
 bool ScalingObject::init()
 {
+
+	if (!Node::init()) {
+		return false;
+	}
+
 	scaler1 = 100;
 	scaler2 = 50;
 	scaler3 = 20;
