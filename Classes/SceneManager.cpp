@@ -65,7 +65,10 @@ bool SceneManager::init()
 	// AUDIO
 	auEngine = new AudioEngine();
 
-	auEngine->PlayBackgroundMusic("testing.mp3", true);
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
+	{
+		auEngine->PlayBackgroundMusic("testing.mp3", true);
+	}
 
 	// PLATFORMS
 	cocos2d::Sprite* platform;
