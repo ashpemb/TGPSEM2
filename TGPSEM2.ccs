@@ -11,6 +11,8 @@
         <Image Name="Platform.jpg" />
         <Image Name="MainMenuBackground.png" />
         <Project Name="Scene1.csd" Type="Scene" />
+        <Project Name="Scene2.csd" Type="Scene" />
+        <Project Name="Scene3.csd" Type="Scene" />
         <Image Name="SwitchSheet.png" />
         <Image Name="Switch Left.png" />
         <Image Name="Switch Right.png" />
