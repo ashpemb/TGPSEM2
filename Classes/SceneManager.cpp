@@ -44,94 +44,39 @@ bool SceneManager::init()
 
 	addChild(rootNode);
 
-	GameManager::sharedGameManager()->startLevelTimer();
-
 	this->scheduleUpdate();
-
-	this->schedule(schedule_selector(SceneManager::ScheduleScore), 0.001f);
-	int mil = GameManager::sharedGameManager()->getMil();
-	int sec = GameManager::sharedGameManager()->getSec();
-	int min = GameManager::sharedGameManager()->getMin();
-
-	_timeLabel = (ui::Text*)rootNode->getChildByName("Time");
-	_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
-	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
-
-	// AUDIO
-	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
-		auEngine->PlayBackgroundMusic("testing.mp3", true);
-	}
-
-	// SPRITE SETUP
-	_playerSprite = (Sprite*)rootNode->getChildByName("Player");
-	int i = 1;
-	Sprite* tempSprite;
-
-	while ((tempSprite = (Sprite*)rootNode->getChildByName("Platform_" + StringUtils::format("%d", i))) != nullptr)
-	{
-		_platforms.push_back(tempSprite);
-		i++;
-	}
-
-	i = 1;
-
-	while ((tempSprite = (Sprite*)rootNode->getChildByName("Wall_" + StringUtils::format("%d", i))) != nullptr)
-	{
-		_walls.push_back(tempSprite);
-		i++;
-	}
-
-	i = 1;
-
-	while ((tempSprite = (Sprite*)rootNode->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i))) != nullptr)
-	{
-		_woodenSprites.push_back(tempSprite);
-		i++;
-	}
-
-	i = 1;
-
-	while ((tempSprite = (Sprite*)rootNode->getChildByName("Crate_Metal_" + StringUtils::format("%d", i))) != nullptr)
-	{
-		_metalSprites.push_back(tempSprite);
-		i++;
-	}
-
-	// Exits
-	cocos2d::ui::CheckBox* exit;
-	i = 1;
-	exit = static_cast<ui::CheckBox*>(rootNode->getChildByName("Exit_" + StringUtils::format("%d", i)));
-
-	while (exit != nullptr) {
-
-		exit->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
-		_exit.push_back(exit);
-
-		i++;
-		exit = static_cast<ui::CheckBox*>(rootNode->getChildByName("Exit_" + StringUtils::format("%d", i)));
-	}
-
-	cocos2d::ui::CheckBox* tempCheck;
-	i = 1;
-
-	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)))) != nullptr)
-	{
-		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
-		_gravSwitches.push_back(tempCheck);
-		_flipped.push_back(false);
-		i++;
-	}
-
-	// AUDIO
-	auEngine = new AudioEngine();
-
-	auEngine->PlayBackgroundMusic("testing.mp3", true);
 
 	// GAMEMANAGER
 	GameManager::sharedGameManager()->setIsGameLive(true);
 	GameManager::sharedGameManager()->setIsGamePaused(true);
 
-	// TOUCH ME
+	// TOUCH SETUP
+	SetupTouches();
+
+	// TIMER SETUP
+	SetupTimer(rootNode);
+
+	// AUDIO SETUP
+	SetupAudio(rootNode);
+
+	// SPRITE SETUP
+	SetupSprites(rootNode);
+
+	// BACKGROUND SETUP
+	SetupBackground(rootNode);
+
+	// BUTTON SETUP
+	SetupButtons(rootNode);
+
+	// CLASS SETUP
+	SetupClasses();
+
+	return true;
+		
+}
+
+void SceneManager::SetupTouches()
+{
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -143,8 +88,113 @@ bool SceneManager::init()
 
 	//Add our touch listener to event listener list.
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+}
 
-	// BACKGROUND
+void SceneManager::SetupTimer(Node* root)
+{
+	// Get screen size
+	auto winSize = Director::getInstance()->getVisibleSize();
+	GameManager::sharedGameManager()->startLevelTimer();
+
+	this->schedule(schedule_selector(SceneManager::ScheduleScore), 0.001f);
+	int mil = GameManager::sharedGameManager()->getMil();
+	int sec = GameManager::sharedGameManager()->getSec();
+	int min = GameManager::sharedGameManager()->getMin();
+
+	_timeLabel = (ui::Text*)root->getChildByName("Time");
+	_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
+	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
+}
+
+void SceneManager::SetupAudio(Node* root)
+{
+	// Check if the game is muted before playing background music
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
+		auEngine->PlayBackgroundMusic("testing.mp3", true);
+	}
+}
+
+void SceneManager::SetupButtons(Node* root)
+{
+	// Get screen size
+	auto winSize = Director::getInstance()->getVisibleSize();
+	GameManager::sharedGameManager()->startLevelTimer();
+
+	// START BUTTON
+	// Note: This is a debug button that may need removing for the final version
+	_startGame = static_cast<ui::Button*>(root->getChildByName("StartGame"));
+	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
+	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
+}
+
+void SceneManager::SetupSprites(Node* root)
+{
+	// PLAYER
+	_playerSprite = (Sprite*)root->getChildByName("Player");
+	int i = 1;
+	Sprite* tempSprite;
+
+	// PLATFORMS
+	while ((tempSprite = (Sprite*)root->getChildByName("Platform_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_platforms.push_back(tempSprite);
+		i++;
+	}
+
+	// WALLS
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Wall_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_walls.push_back(tempSprite);
+		i++;
+	}
+
+	// WOODEN CRATES
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_woodenSprites.push_back(tempSprite);
+		i++;
+	}
+
+	// METAL CRATES
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Crate_Metal_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_metalSprites.push_back(tempSprite);
+		i++;
+	}
+
+	// SWITCHES
+	cocos2d::ui::CheckBox* tempCheck;
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("Switch_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_gravSwitches.push_back(tempCheck);
+		_flipped.push_back(false);
+		i++;
+	}
+
+	// EXIT DOOR
+	cocos2d::ui::CheckBox* exit;
+	i = 1;
+	while ((exit = static_cast<ui::CheckBox*>(root->getChildByName("Exit_" + StringUtils::format("%d", i)))) != nullptr) {
+
+		exit->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_exit.push_back(exit);
+
+		i++;
+		exit = static_cast<ui::CheckBox*>(root->getChildByName("Exit_" + StringUtils::format("%d", i)));
+	}
+}
+
+void SceneManager::SetupBackground(Node* root)
+{
+	// Get screen size
+	auto winSize = Director::getInstance()->getVisibleSize();
+	GameManager::sharedGameManager()->startLevelTimer();
+
 	_background1 = Sprite::create("BG1.png");
 	_background1->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
 	_background1->setScaleX(winSize.width / _background1->getContentSize().width);
@@ -181,18 +231,14 @@ bool SceneManager::init()
 	this->addChild(_background3);
 	this->addChild(_background4);
 	this->addChild(_blackTransparency);
+}
 
-	_startGame = static_cast<ui::Button*>(rootNode->getChildByName("StartGame"));
-	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
-	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
-
+void SceneManager::SetupClasses()
+{
 	// PLAYER
 	_player = Player::create(_gravity);
 	_player->SetSprite(_playerSprite);
 	_player->setName("Player");
-
-	//delete _playerSprite;
-
 	addChild(_player);
 
 	// WOODEN CRATES
@@ -206,8 +252,6 @@ bool SceneManager::init()
 		addChild(box);
 	}
 
-	//_woodenSprites.clear();
-
 	// METAL CRATES
 	for (int i = 0; i < _metalSprites.size(); i++) {
 		Box* box = Box::create(_gravity, 2);
@@ -218,22 +262,6 @@ bool SceneManager::init()
 
 		addChild(box);
 	}
-
-	GameManager::sharedGameManager()->setIsGamePaused(true); // ensures game is paused when player presses retry on gameover screen.
-
-	_startGame = static_cast<ui::Button*>(rootNode->getChildByName("StartGame"));
-	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
-	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
-
-	return true;
-		
-}
-
-void SceneManager::SetupCocosElements()
-{
-
-
-	//_metalSprites.clear();
 }
 
 void SceneManager::ScheduleScore(float delta)
@@ -389,7 +417,6 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 		CCLOG("touch ended");
 
 		GameManager::sharedGameManager()->setIsGamePaused(false);
-		SetupCocosElements();
 		_startGame->setVisible(false);
 	}
 }

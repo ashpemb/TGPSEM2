@@ -33,7 +33,6 @@ private:
 	Sprite* _blackTransparency;
 	cocos2d::ui::Button* _startGame;
 
-
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
 	std::vector<cocos2d::Sprite*> _walls;
@@ -61,7 +60,12 @@ public:
 	virtual bool init();
 	~SceneManager();
 
-	void SetupCocosElements();
+	void SetupTimer(Node* root);
+	void SetupAudio(Node* root);
+	void SetupButtons(Node* root);
+	void SetupSprites(Node* root);
+	void SetupBackground(Node* root);
+	void SetupClasses();
 
 	void CheckCollisions();
 
@@ -75,6 +79,7 @@ public:
 	//CREATE_FUNC(Scene1);
 
 	// Touch input
+	void SetupTouches();
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
