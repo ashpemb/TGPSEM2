@@ -49,7 +49,12 @@ bool SceneManager::init()
 	this->scheduleUpdate();
 
 	this->schedule(schedule_selector(SceneManager::ScheduleScore), 0.001f);
+	int mil = GameManager::sharedGameManager()->getMil();
+	int sec = GameManager::sharedGameManager()->getSec();
+	int min = GameManager::sharedGameManager()->getMin();
+
 	_timeLabel = (ui::Text*)rootNode->getChildByName("Time");
+	_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
 
 	// AUDIO
