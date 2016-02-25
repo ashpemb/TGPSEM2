@@ -53,9 +53,7 @@ bool SceneManager::init()
 	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.98));
 
 	// AUDIO
-	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
-
-	{
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
 		auEngine->PlayBackgroundMusic("testing.mp3", true);
 	}
 
