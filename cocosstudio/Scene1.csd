@@ -249,7 +249,7 @@
             <FileData Type="Normal" Path="MetalCrate.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="StartGame" ActionTag="-1359180872" Tag="23" IconVisible="False" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="870.4565" RightMargin="906.1836" TopMargin="651.2195" BottomMargin="756.6780" TouchEnable="True" FontSize="48" ButtonText="Start Game" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="StartGame" ActionTag="-1359180872" Tag="23" IconVisible="False" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="870.4565" RightMargin="906.1836" TopMargin="651.2196" BottomMargin="756.6780" TouchEnable="True" FontSize="48" ButtonText="Start Game" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="271.3600" Y="128.1024" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1006.1365" Y="820.7292" />
@@ -263,6 +263,20 @@
             <NormalFileData Type="Default" Path="Default/Button_Normal.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Exit_1" ActionTag="-410753888" Tag="27" IconVisible="False" LeftMargin="1264.9358" RightMargin="603.0642" TopMargin="1336.1654" BottomMargin="43.8346" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="180.0000" Y="156.0000" />
+            <AnchorPoint ScaleX="0.3551" ScaleY="0.4674" />
+            <Position X="1328.8474" Y="116.7441" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6489" Y="0.0760" />
+            <PreSize X="0.0879" Y="0.1016" />
+            <NormalBackFileData Type="MarkedSubImage" Path="Exit.png" Plist="Exits.plist" />
+            <PressedBackFileData Type="MarkedSubImage" Path="Exit 7.png" Plist="Exits.plist" />
+            <DisableBackFileData Type="MarkedSubImage" Path="Exit Dis.png" Plist="Exits.plist" />
+            <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
+            <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

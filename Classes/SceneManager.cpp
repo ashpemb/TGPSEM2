@@ -94,6 +94,22 @@ bool SceneManager::init()
 		gravSwitch = static_cast<ui::CheckBox*>(rootNode->getChildByName("Switch_" + StringUtils::format("%d", i)));
 	}
 
+	
+
+	// Exits
+	cocos2d::ui::CheckBox* exit;
+	i = 1;
+	exit = static_cast<ui::CheckBox*>(rootNode->getChildByName("Exit_" + StringUtils::format("%d", i)));
+
+	while (exit != nullptr) {
+
+		exit->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_exit.push_back(exit);
+
+		i++;
+		exit = static_cast<ui::CheckBox*>(rootNode->getChildByName("Exit_" + StringUtils::format("%d", i)));
+	}
+
 	// WALLS
 	cocos2d::Sprite* wall;
 	i = 1;
@@ -380,6 +396,26 @@ void SceneManager::CheckNear()
 		}
 		else {
 			_gravSwitches[i]->setEnabled(false);
+		}
+	}
+}
+
+void SceneManager::CheckNearDoor()
+{
+	for (int i = 0; i < _exit.size(); i++) {
+		float scaledWidth = _exit[i]->getContentSize().width * _exit[i]->getScaleX();
+		float scaledHeight = _exit[i]->getContentSize().height * _exit[i]->getScaleY();
+
+		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _exit[i]->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
+			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _exit[i]->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
+			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _exit[i]->getPositionY() + (scaledHeight / 2)
+			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _exit[i]->getPositionY() - (scaledHeight / 2))
+		{
+			//_gravSwitches[i]->setEnabled(true);
+			_exit[i]->setEnabled(true);
+		}
+		else {
+			_exit[i]->setEnabled(false);
 		}
 	}
 }

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Exit.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Exit 2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{180,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Exit 3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{360,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Exit 4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{540,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Exit 5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{720,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Exit 6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{900,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Exit 7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1080,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Exit Dis.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1260,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>Exits.png</string>
+			<key>realTextureFileName</key>
+			<string>Exits.png</string>
+			<key>size</key>
+			<string>{2048,256}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>2048</integer>
+			<key>height</key>
+			<integer>256</integer>
+		</dict>
+	</dict>
+</plist>
