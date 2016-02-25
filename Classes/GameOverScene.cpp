@@ -95,8 +95,17 @@ void GameOverScene::RetryButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchE
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		auto scene = SceneManager::createScene(GameManager::sharedGameManager()->getCurrentLevel()); //Gets the current level from SceneManager, through the GameManager.
-		Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
+		if (GameManager::sharedGameManager()->getCurrentLevel() <= 0)
+		{
+			auto scene = MenuScene::createScene();
+			Director::getInstance()->replaceScene(TransitionFade::create(0.0f, scene));
+		}
+
+		else
+		{
+			auto scene = SceneManager::createScene(GameManager::sharedGameManager()->getCurrentLevel()); //Gets the current level from SceneManager, through the GameManager.
+			Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
+		}
 	}
 }
 
