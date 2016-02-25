@@ -57,7 +57,7 @@ void Box::SetVelocity(float y)
 	_verticalVelocity = y;
 }
 
-void Box::CheckCollisions(cocos2d::Sprite* collider)
+void Box::CheckPlatformCollisions(cocos2d::Sprite* collider)
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
 
@@ -73,6 +73,28 @@ void Box::CheckCollisions(cocos2d::Sprite* collider)
 	}
 	else {
 		_falling = true;
+	}
+}
+
+void Box::CheckWallCollisions(cocos2d::Sprite* collider)
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+
+	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
+	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
+	float scaledPlayerWidth = _box->getContentSize().width * _box->getScaleX();
+
+	if (GetBoxSprite()->getPositionX() - (GetBoxSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
+		&& GetBoxSprite()->getPositionX() + (GetBoxSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
+		&& GetBoxSprite()->getPositionY() - (GetBoxSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
+		&& GetBoxSprite()->getPositionY() + (GetBoxSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+	{
+		if (_box->getPositionX() < collider->getPositionX()) {
+			_box->setPositionX(collider->getPositionX() - (scaledWidth / 2) - (scaledPlayerWidth / 2));
+		}
+		else {
+			_box->setPositionX(collider->getPositionX() + (scaledWidth / 2) + (scaledPlayerWidth / 2));
+		}
 	}
 }
 

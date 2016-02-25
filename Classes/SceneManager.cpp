@@ -179,7 +179,7 @@ bool SceneManager::init()
 
 		_woodBoxes.push_back(box);
 
-		addChild(_woodBoxes[i]);
+		addChild(box);
 	}
 
 	//_woodenSprites.clear();
@@ -192,7 +192,7 @@ bool SceneManager::init()
 
 		_metalBoxes.push_back(box);
 
-		addChild(_metalBoxes[i]);
+		addChild(box);
 	}
 
 	return true;
@@ -253,11 +253,11 @@ void SceneManager::CheckCollisions()
 		_player->CheckPlatformCollisions(_platforms[i]);
 
 		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
-			_woodBoxes[i2]->CheckCollisions(_platforms[i]);
+			_woodBoxes[i2]->CheckPlatformCollisions(_platforms[i]);
 		}
 
 		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
-			_metalBoxes[i2]->CheckCollisions(_platforms[i]);
+			_metalBoxes[i2]->CheckPlatformCollisions(_platforms[i]);
 		}
 	}
 
@@ -265,11 +265,11 @@ void SceneManager::CheckCollisions()
 		_player->CheckWallCollisions(_walls[i]);
 
 		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
-			_woodBoxes[i2]->CheckCollisions(_walls[i]);
+			_woodBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
 
 		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
-			_metalBoxes[i2]->CheckCollisions(_walls[i]);
+			_metalBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
 	}
 }

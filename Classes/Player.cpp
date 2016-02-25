@@ -102,9 +102,6 @@ void Player::CheckWallCollisions(cocos2d::Sprite* collider)
 			_playerSprite->setPositionX(collider->getPositionX() + (scaledWidth / 2) + (scaledPlayerWidth / 2));
 		}
 	}
-	else {
-		_falling = true;
-	}
 }
 
 void Player::Land(cocos2d::Sprite* collider)

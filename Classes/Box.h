@@ -34,7 +34,8 @@ public:
 	void SetFalling(bool falling);
 	void SetVelocity(float y);
 	float GetVelocity() { return _verticalVelocity; };
-	void CheckCollisions(cocos2d::Sprite* collider);
+	void CheckPlatformCollisions(cocos2d::Sprite* collider);
+	void CheckWallCollisions(cocos2d::Sprite* collider);
 	void FlipPlayer();
 
 	// Sprite
