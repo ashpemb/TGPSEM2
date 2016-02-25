@@ -34,6 +34,7 @@
         <Image Name="Exit 4.png" />
         <Image Name="Exit 5.png" />
         <Image Name="Exit 6.png" />
+        <Project Name="SplashScreen.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

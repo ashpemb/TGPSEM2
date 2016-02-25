@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "MenuScene.h"
+#include "SplashScreenScene.h"
 #include "HelloWorldScene.h"
 
 /**
