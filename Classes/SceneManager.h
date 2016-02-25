@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "GameManager.h"
 #include "AudioEngine.h"
+#include "GameOverScene.h"
 #include "Box.h"
 
 USING_NS_CC;
@@ -32,10 +33,12 @@ private:
 	Sprite* _blackTransparency;
 	cocos2d::ui::Button* _startGame;
 
+
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
 	std::vector<cocos2d::Sprite*> _walls;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
+	std::vector<cocos2d::ui::CheckBox*> _exit;
 	std::vector<bool> _flipped;
 
 	std::vector<Box*> _woodBoxes;
@@ -65,6 +68,7 @@ public:
 	void update(float delta);
 	void ScheduleScore(float delta);
 	void CheckNear();
+	void CheckNearDoor();
 	void IsPlayerInBounds();
 
 	// implement the "static create()" method manually
@@ -78,6 +82,7 @@ public:
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+
 };
 
 #endif // __SCENE1_SCENE_H__

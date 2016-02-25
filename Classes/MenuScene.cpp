@@ -37,9 +37,6 @@ bool MenuScene::init()
 	this->scheduleUpdate();
 	auto winSize = Director::getInstance()->getVisibleSize();
 
-	// Variables
-	muted = false;
-
 	//TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
@@ -72,6 +69,16 @@ bool MenuScene::init()
 	//Mute Button
 	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
 	//_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
+	
+	if (GameManager::sharedGameManager()->getIsGameMuted() == true)
+	{
+		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+	}
+	else
+	{
+		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
+	}
+
 	_muteButton->setPosition(Vec2(winSize.width*0.05f, winSize.height*0.95f));
 
 	//BACKGROUND
@@ -86,7 +93,12 @@ bool MenuScene::init()
 
 	// AUDIO
 	auEngine = new AudioEngine();
-	auEngine->PlayBackgroundMusic("menu.mp3", true);
+
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
+
+	{
+		auEngine->PlayBackgroundMusic("menu.mp3", true);
+	}
 
 	return true;
 }
@@ -104,19 +116,20 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 
 void MenuScene::MuteButtonPressed()
 {
-	muted = !muted;
 
-	if (muted) {
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
 		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
 
 		auEngine->PauseBackgroundMusic();
 		auEngine->PauseAllEffects();
+		GameManager::sharedGameManager()->setIsGameMuted(true);
 	}
 	else {
 		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
 
 		auEngine->ResumeBackgroundMusic();
 		auEngine->ResumeAllEffects();
+		GameManager::sharedGameManager()->setIsGameMuted(false);
 	}
 }
 

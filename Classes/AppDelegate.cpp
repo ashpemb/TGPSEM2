@@ -42,11 +42,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-	SceneManager* menuScene = SceneManager::createScene(1);
-    //auto scene = menuScene.createScene(1);
+	//SceneManager* menuScene = SceneManager::createScene(1);
+	auto scene = SplashScreenScene::createScene();
 
     // run
-    director->runWithScene(menuScene);
+	director->runWithScene(scene);
 
     return true;
 }

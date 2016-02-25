@@ -24,6 +24,18 @@
         <Image Name="Husky.png" />
         <Image Name="Crate.png" />
         <Image Name="MetalCrate.png" />
+        <Project Name="GameOver.csd" Type="Scene" />
+        <Image Name="Exit.png" />
+        <Image Name="Exit Dis.png" />
+        <Image Name="Exit 7.png" />
+        <PlistInfo Name="Exits.csi" Type="Plist" />
+        <Image Name="Exit 2.png" />
+        <Image Name="Exit 3.png" />
+        <Image Name="Exit 4.png" />
+        <Image Name="Exit 5.png" />
+        <Image Name="Exit 6.png" />
+        <Project Name="SplashScreen.csd" Type="Scene" />
+        <Image Name="MuteUnPressedGO.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
