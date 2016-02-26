@@ -139,6 +139,20 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Switch_5" ActionTag="-826872388" Tag="25" RotationSkewX="90.0000" RotationSkewY="90.0070" IconVisible="False" LeftMargin="16.5668" RightMargin="1935.4332" TopMargin="759.3005" BottomMargin="680.6995" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="96.0000" Y="96.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="64.5668" Y="728.6995" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0315" Y="0.4744" />
+            <PreSize X="0.0469" Y="0.0625" />
+            <NormalBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Switch Right.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
+            <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
+            <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
+          </AbstractNodeData>
           <AbstractNodeData Name="Time" ActionTag="1073860001" Tag="3" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="979.5000" RightMargin="979.5000" TopMargin="21.3704" BottomMargin="1491.6296" FontSize="20" LabelText="00:00:000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="89.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -264,7 +278,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Exit_1" ActionTag="-410753888" Tag="27" IconVisible="False" LeftMargin="1264.9358" RightMargin="603.0642" TopMargin="1336.1654" BottomMargin="43.8346" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Exit_1" ActionTag="-410753888" Tag="27" IconVisible="False" LeftMargin="1264.9294" RightMargin="603.0706" TopMargin="1336.1703" BottomMargin="43.8297" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="180.0000" Y="156.0000" />
             <AnchorPoint ScaleX="0.3551" ScaleY="0.4674" />
             <Position X="1328.8474" Y="116.7441" />
