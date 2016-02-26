@@ -66,6 +66,9 @@ bool SceneManager::init()
 	// BACKGROUND SETUP
 	SetupBackground(rootNode);
 
+	// HIGHLIGHT SETUP
+	SetupHighlights(rootNode);
+
 	// BUTTON SETUP
 	SetupButtons(rootNode);
 
@@ -194,7 +197,6 @@ void SceneManager::SetupBackground(Node* root)
 {
 	// Get screen size
 	auto winSize = Director::getInstance()->getVisibleSize();
-	GameManager::sharedGameManager()->startLevelTimer();
 
 	_background1 = Sprite::create("BG1.png");
 	_background1->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
@@ -234,6 +236,44 @@ void SceneManager::SetupBackground(Node* root)
 	this->addChild(_blackTransparency);
 }
 
+void SceneManager::SetupHighlights(Node* root)
+{
+	// Get screen size
+	auto winSize = Director::getInstance()->getVisibleSize();
+
+	_topHighlight = Sprite::create("highlight.png");
+	_topHighlight->setPosition(Vec2(winSize.width*0.5f, winSize.height - (_topHighlight->getContentSize().height / 2)));
+	_topHighlight->setScaleX(winSize.width);
+	_topHighlight->setOpacity(0);
+	_topHighlight->setLocalZOrder(3);
+
+	_rightHighlight = Sprite::create("highlight.png");
+	_rightHighlight->setPosition(Vec2(0.0f - (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
+	_rightHighlight->setRotation(90.0f);
+	_rightHighlight->setScaleX(winSize.height);
+	_rightHighlight->setOpacity(0);
+	_rightHighlight->setLocalZOrder(3);
+
+	_bottomHighlight = Sprite::create("highlight.png");
+	_bottomHighlight->setPosition(Vec2(winSize.width*0.5f, 0.0f + (_topHighlight->getContentSize().height / 2)));
+	_bottomHighlight->setRotation(180.0f);
+	_bottomHighlight->setScaleX(winSize.width);
+	_bottomHighlight->setOpacity(0);
+	_bottomHighlight->setLocalZOrder(3);
+
+	_leftHighlight = Sprite::create("highlight.png");
+	_leftHighlight->setPosition(Vec2(winSize.width + (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
+	_leftHighlight->setRotation(270.0f);
+	_leftHighlight->setScaleX(winSize.height);
+	_leftHighlight->setOpacity(0);
+	_leftHighlight->setLocalZOrder(3);
+
+	this->addChild(_topHighlight);
+	this->addChild(_leftHighlight);
+	this->addChild(_bottomHighlight);
+	this->addChild(_rightHighlight);
+}
+
 void SceneManager::SetupClasses()
 {
 	// PLAYER
@@ -262,6 +302,18 @@ void SceneManager::SetupClasses()
 		_metalBoxes.push_back(box);
 
 		addChild(box);
+	}
+
+	// SWITCHES
+	for (int i = 0; i < _gravSwitches.size(); i++) {
+		Switch* gravSwitch = Switch::create();
+		gravSwitch->setName("Switch_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_gravSwitches[i]);
+		gravSwitch->SetOrientation((i + 1) % 4);
+
+		_switches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
 	}
 }
 
@@ -394,21 +446,14 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	// Find what switch has been clicked
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
-	for (int i = 0; i < _gravSwitches.size(); i++) {
-		if (findCheckBox->getName() == _gravSwitches[i]->getName()) {
+	for (int i = 0; i < _switches.size(); i++) {
+		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
 			_flipped[i] = !_flipped[i];
-			_gravSwitches[i]->setFlippedX(_flipped[i]);
+			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
 
 			// Flip Gravity
-			//DEBUG - Until direction switches done
 			if (_flipGravityCooldown == 0.0f) {
-				if (_gravityOrientation == 3) {
-					FlipGravity(0);
-				}
-				else {
-					FlipGravity(_gravityOrientation + 1);
-				}
-
+				FlipGravity(_switches.at(i)->GetOrientation());
 				_flipGravityCooldown = 1.0f;
 			}
 		}
@@ -430,21 +475,71 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 
 void SceneManager::CheckNear()
 {
-	for (int i = 0; i < _gravSwitches.size(); i++) {
-		// Player needs to be near the switch to press
-		float scaledWidth = _gravSwitches[i]->getContentSize().width * _gravSwitches[i]->getScaleX();
-		float scaledHeight = _gravSwitches[i]->getContentSize().height * _gravSwitches[i]->getScaleY();
+	bool highLightActive = false;
 
-		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _gravSwitches[i]->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
-			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _gravSwitches[i]->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
-			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _gravSwitches[i]->getPositionY() + (scaledHeight / 2)
-			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _gravSwitches[i]->getPositionY() - (scaledHeight / 2))
+	for (int i = 0; i < _switches.size(); i++) {
+		// Player needs to be near the switch to press
+		float scaledWidth = _switches.at(i)->GetSprite()->getContentSize().width * _switches.at(i)->GetSprite()->getScaleX();
+		float scaledHeight = _switches.at(i)->GetSprite()->getContentSize().height * _switches.at(i)->GetSprite()->getScaleY();
+
+		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _switches.at(i)->GetSprite()->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
+			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _switches.at(i)->GetSprite()->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
+			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _switches.at(i)->GetSprite()->getPositionY() + (scaledHeight / 2)
+			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _switches.at(i)->GetSprite()->getPositionY() - (scaledHeight / 2))
 		{
-			//_gravSwitches[i]->setEnabled(true);
-			_gravSwitches[i]->setEnabled(true);
+			//_switches.at(i)->GetSprite()->setEnabled(true);
+			_switches.at(i)->GetSprite()->setEnabled(true);
+
+			if (!highLightActive) {
+
+				highLightActive = true;
+
+				if (_switches.at(i)->GetOrientation() == 0) {
+					if (_topHighlight->getOpacity() <= 0) {
+						_topHighlight->runAction(FadeIn::create(1.0f));
+					}
+				}
+				else if (_switches.at(i)->GetOrientation() == 1) {
+					if (!_leftHighlight->getOpacity() <= 0) {
+						_leftHighlight->runAction(FadeIn::create(1.0f));
+					}
+				}
+				else if (_switches.at(i)->GetOrientation() == 2) {
+					if (!_bottomHighlight->getOpacity() <= 0) {
+						_bottomHighlight->runAction(FadeIn::create(1.0f));
+					}
+				}
+				else if (_switches.at(i)->GetOrientation() == 3) {
+					if (!_rightHighlight->getOpacity() <= 0) {
+						_rightHighlight->runAction(FadeIn::create(1.0f));
+					}
+				}
+			}
 		}
 		else {
-			_gravSwitches[i]->setEnabled(false);
+			_switches.at(i)->GetSprite()->setEnabled(false);
+		}
+	}
+
+	if (!highLightActive) {
+		// Top
+		if (_topHighlight->getOpacity() == 255) {
+			_topHighlight->runAction(FadeOut::create(1.0f));
+		}
+
+		// Right
+		if (_rightHighlight->getOpacity() == 255) {
+			_rightHighlight->runAction(FadeOut::create(1.0f));
+		}
+
+		// Bottom
+		if (_bottomHighlight->getOpacity() == 255) {
+			_bottomHighlight->runAction(FadeOut::create(1.0f));
+		}
+
+		// Left
+		if (_leftHighlight->getOpacity() == 255) {
+			_leftHighlight->runAction(FadeOut::create(1.0f));
 		}
 	}
 }
@@ -460,7 +555,7 @@ void SceneManager::CheckNearDoor()
 			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _exit[i]->getPositionY() + (scaledHeight / 2)
 			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _exit[i]->getPositionY() - (scaledHeight / 2))
 		{
-			//_gravSwitches[i]->setEnabled(true);
+			//_switches.at(i)->GetSprite()->setEnabled(true);
 			_exit[i]->setEnabled(true);
 		}
 		else {
@@ -602,7 +697,7 @@ SceneManager::~SceneManager()
 	_walls.clear();
 
 	for (int i = 0; i < _gravSwitches.size(); i++) {
-		delete _gravSwitches[i];
+		delete _switches.at(i)->GetSprite();
 	}
 
 	_gravSwitches.clear();

@@ -97,13 +97,13 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_2" ActionTag="817869901" Tag="16" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="955.8306" RightMargin="996.1694" TopMargin="80.8461" BottomMargin="1359.1539" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_2" ActionTag="-826872388" Tag="25" RotationSkewX="90.0000" RotationSkewY="90.0070" IconVisible="False" LeftMargin="16.5668" RightMargin="1935.4332" TopMargin="759.3005" BottomMargin="680.6995" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="96.0000" Y="96.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1003.8306" Y="1407.1539" />
+            <Position X="64.5668" Y="728.6995" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4902" Y="0.9161" />
+            <PrePosition X="0.0315" Y="0.4744" />
             <PreSize X="0.0469" Y="0.0625" />
             <NormalBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
             <PressedBackFileData Type="Normal" Path="Switch Right.png" Plist="" />
@@ -111,13 +111,13 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_3" ActionTag="-113575573" Tag="29" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="1563.1307" RightMargin="388.8693" TopMargin="79.7482" BottomMargin="1360.2518" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_3" ActionTag="817869901" Tag="16" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="955.8306" RightMargin="996.1694" TopMargin="80.8461" BottomMargin="1359.1539" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="96.0000" Y="96.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1611.1307" Y="1408.2518" />
+            <Position X="1003.8306" Y="1407.1539" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7867" Y="0.9168" />
+            <PrePosition X="0.4902" Y="0.9161" />
             <PreSize X="0.0469" Y="0.0625" />
             <NormalBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
             <PressedBackFileData Type="Normal" Path="Switch Right.png" Plist="" />
@@ -139,13 +139,13 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_5" ActionTag="-826872388" Tag="25" RotationSkewX="90.0000" RotationSkewY="90.0070" IconVisible="False" LeftMargin="16.5668" RightMargin="1935.4332" TopMargin="759.3005" BottomMargin="680.6995" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_5" ActionTag="-113575573" Tag="29" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="1563.1307" RightMargin="388.8693" TopMargin="79.7482" BottomMargin="1360.2518" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="96.0000" Y="96.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="64.5668" Y="728.6995" />
+            <Position X="1611.1307" Y="1408.2518" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0315" Y="0.4744" />
+            <PrePosition X="0.7867" Y="0.9168" />
             <PreSize X="0.0469" Y="0.0625" />
             <NormalBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
             <PressedBackFileData Type="Normal" Path="Switch Right.png" Plist="" />
