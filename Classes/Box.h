@@ -37,13 +37,24 @@ public:
 
 	// Physics
 	void SetGravity(float gravity);
+
+	void SetOrientationVertical(bool orientation);
+	void SetOrientationHorizontal(bool orientation);
+
+	bool GetOrientationVertical() { return _fallingVertical; };
+	bool GetOrientationHorizontal() { return _fallingHorizontal; };
+
 	void SetFallingVertical(bool falling);
 	void SetFallingHorizontal(bool falling);
+
+	bool GetFallingVertical() { return _fallingVertical; };
+	bool GetFallingHorizontal() { return _fallingHorizontal; };
+
 	void SetVelocity(float y);
 	float GetVelocity() { return _verticalVelocity; };
 	void CheckPlatformCollisions(cocos2d::Sprite* collider);
 	void CheckWallCollisions(cocos2d::Sprite* collider);
-	void FlipPlayer();
+	void Flip();
 
 	// Sprite
 	Sprite* GetSprite() { return _box; };
@@ -51,7 +62,5 @@ public:
 
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);
-	bool GetFallingVertical() { return _fallingVertical; };
-	bool GetFallingHorizontal() { return _fallingHorizontal; };
 };
 
