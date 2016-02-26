@@ -34,7 +34,7 @@ bool Player::init()
 	this->scheduleUpdate();
 
 	// Init member level variables
-	_speed = 100;
+	_speed = 200;
 
 	return true;
 }

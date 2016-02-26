@@ -13,20 +13,20 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/AudioEngine.cpp \
-		   ../../Classes/GameManager.cpp \
-		   ../../Classes/LevelSelect.cpp \
-		   ../../Classes/MenuScene.cpp \
-		   ../../Classes/HelloWorldScene.cpp \
-		   ../../Classes/ScalingObject.cpp \
-		   ../../Classes/ScoreManager.cpp \
-		   ../../Classes/TouchManager.cpp \
-                   ../../Classes/Player.cpp \
+		        ../../Classes/GameManager.cpp \
+		        ../../Classes/LevelSelect.cpp \
+		        ../../Classes/MenuScene.cpp \
+		        ../../Classes/HelloWorldScene.cpp \
+		        ../../Classes/ScalingObject.cpp \
+		        ../../Classes/ScoreManager.cpp \
+		        ../../Classes/TouchManager.cpp \
+		        ../../Classes/Player.cpp \
                    ../../Classes/SceneManager.cpp \
                    ../../Classes/Box.cpp \
-                   ../../Classes/GameOverScene.cpp \
-                   ../../Classes/SplashScreenScene.cpp \
-                   ../../Classes/Switch.cpp \
-                   ../../Classes/Exit.cpp \
+			   ../../Classes/GameOverScene.cpp \
+			   ../../Classes/SplashScreenScene.cpp \
+			   ../../Classes/Exit.cpp \
+
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
