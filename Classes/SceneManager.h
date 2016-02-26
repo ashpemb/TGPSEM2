@@ -43,10 +43,11 @@ private:
 	std::vector<Box*> _woodBoxes;
 	std::vector<Box*> _metalBoxes;
 
-	// Gravity
-	float _gravity = -3.81f;
+	// GRAVITY
+	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
+	int _gravityOrientation;
 	float _flipGravityCooldown = 1.0f;	// One second cooldown
-	void FlipGravity();
+	void FlipGravity(int direction);
 
 	// Touches
 	bool _inTouch;

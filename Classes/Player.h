@@ -11,21 +11,27 @@ private:
 	Sprite* _playerSprite;
 
 	// Gravity variables
-	float _gravity;
+	float	_timeFalling;
+	float	_gravity;
 
-	bool _falling;
-	float _lastVelocity;
-	float _verticalVelocity;
-	float _timeFalling;
+	bool	_orientationHorizontal;
+	bool	_fallingHorizontal;
+	float	_horizontalVelocityLast;
+	float	_horizontalVelocity;
+
+	bool	_orientationVertical;
+	bool	_fallingVertical;
+	float	_verticalVelocityLast;
+	float	_verticalVelocity;
 
 	// Move to
-	float _targetX;
-	float _speed;
+	Vec2	_targetPos;
+	float	_speed;
 
 	void MoveToTarget(float deltaTime);
 public:
 	Player();
-	static Player* create(float gravity);
+	static Player* create();
 	~Player();
 
 	virtual bool init() override;
@@ -34,7 +40,19 @@ public:
 
 	// Physics
 	void SetGravity(float gravity);
-	void SetFalling(bool falling);
+
+	void SetOrientationVertical(bool orientation);
+	void SetOrientationHorizontal(bool orientation);
+
+	bool GetOrientationVertical() { return _fallingVertical; };
+	bool GetOrientationHorizontal() { return _fallingHorizontal; };
+
+	void SetFallingVertical(bool falling);
+	void SetFallingHorizontal(bool falling);
+
+	bool GetFallingVertical() { return _fallingVertical; };
+	bool GetFallingHorizontal() { return _fallingHorizontal; };
+
 	void FlipPlayer();
 
 	void SetVelocity(float y);
@@ -49,9 +67,8 @@ public:
 
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);
-	bool GetFalling() { return _falling; };
 
 	// Movement
-	void SetTarget(float target);
+	void SetTarget(Vec2 target);
 };
 
