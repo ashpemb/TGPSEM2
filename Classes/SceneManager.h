@@ -10,6 +10,7 @@
 #include "AudioEngine.h"
 #include "GameOverScene.h"
 #include "Box.h"
+#include "Switch.h"
 
 USING_NS_CC;
 
@@ -22,26 +23,33 @@ private:
 	Sprite* _playerSprite;
 	std::vector<cocos2d::Sprite*> _woodenSprites;
 	std::vector<cocos2d::Sprite*> _metalSprites;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
 
 	int _score;
 	Player* _player;
 	cocos2d::ui::Text*	_timeLabel;
+
 	Sprite*	_background1;
 	Sprite*	_background2;
 	Sprite*	_background3;
 	Sprite*	_background4;
 	Sprite* _blackTransparency;
+	Sprite* _topHighlight;
+	Sprite* _rightHighlight;
+	Sprite* _bottomHighlight;
+	Sprite* _leftHighlight;
+
 	cocos2d::ui::Button* _startGame;
 
 	AudioEngine* auEngine;
 	std::vector<cocos2d::Sprite*> _platforms;
 	std::vector<cocos2d::Sprite*> _walls;
-	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
 	std::vector<cocos2d::ui::CheckBox*> _exit;
 	std::vector<bool> _flipped;
 
 	std::vector<Box*> _woodBoxes;
 	std::vector<Box*> _metalBoxes;
+	std::vector<Switch*> _switches;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
@@ -66,6 +74,7 @@ public:
 	void SetupButtons(Node* root);
 	void SetupSprites(Node* root);
 	void SetupBackground(Node* root);
+	void SetupHighlights(Node* root);
 	void SetupClasses();
 
 	void CheckCollisions();

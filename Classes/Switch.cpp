@@ -1,16 +1,13 @@
 #include "Switch.h"
 
 
-Switch::Switch(cocos2d::ui::CheckBox* checkBox)
+Switch::Switch()
 {
-	_gravSwitch = checkBox;
-
-	int woof = 229;
 }
 
-Switch* Switch::create(cocos2d::ui::CheckBox* checkBox)
+Switch* Switch::create()
 {
-	Switch* gravSwitch = new Switch(checkBox);
+	Switch* gravSwitch = new Switch();
 	if (!gravSwitch->init()) {
 		return nullptr;
 	}
@@ -60,4 +57,11 @@ void Switch::CheckNear(cocos2d::Sprite* player)
 	else {
 		_gravSwitch->setEnabled(false);
 	}
+}
+
+void Switch::SetSprite(cocos2d::ui::CheckBox* newSprite)
+{
+	_gravSwitch = newSprite;
+
+	this->addChild(_gravSwitch);
 }
