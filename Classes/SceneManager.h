@@ -11,6 +11,7 @@
 #include "GameOverScene.h"
 #include "Box.h"
 #include "Switch.h"
+#include "Platforms.h"
 
 USING_NS_CC;
 
@@ -24,6 +25,7 @@ private:
 	std::vector<cocos2d::Sprite*> _woodenSprites;
 	std::vector<cocos2d::Sprite*> _metalSprites;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
+	std::vector<cocos2d::Sprite*> _movingPlatformSprites;
 
 	int _score;
 	Player* _player;
@@ -50,6 +52,7 @@ private:
 	std::vector<Box*> _woodBoxes;
 	std::vector<Box*> _metalBoxes;
 	std::vector<Switch*> _switches;
+	std::vector<Platforms*> _movingPlatforms;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
@@ -60,6 +63,8 @@ private:
 	// Touches
 	bool _inTouch;
 	cocos2d::Vec2 _initialTouchPos;
+	bool isObjectTouched;
+
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
 	static SceneManager* createScene(int level);

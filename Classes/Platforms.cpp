@@ -4,9 +4,6 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-float OScale;
-float NScale;
-
 Platforms::Platforms()
 {
 
@@ -47,34 +44,28 @@ void Platforms::update(float delta)
 	// TO DO
 }
 
-void Platforms::CreateSprite(std::string tex, int x, int y)
-{
-	sprite = Sprite::create(tex);
-	sprite->setPosition(Vec2(x, y));
-	OScale = sprite->getScale();
-}
-
 void Platforms::Selected()
 {
 	NScale = (OScale*1.2);
-	sprite->setScale(NScale);
+	_movingPlat->setScale(NScale);
 }
 
 void Platforms::UnSelected()
 {
-	sprite->setScale(OScale);
+	_movingPlat->setScale(OScale);
 }
 
 void Platforms::MovePlatform(cocos2d::Vec2 T)
 {
-	sprite->setPositionX(T.x);
+	_movingPlat->setPositionY(T.y);
 }
 
 //Touch Functions
 void Platforms::onTouchBegan(Touch* touch, Event* event)
 {
+	GameManager::sharedGameManager()->setIsObjectTouched(true);
 	Vec2 T = touch->getLocation();
-	Rect platform = sprite->getBoundingBox();
+	Rect platform = _movingPlat->getBoundingBox();
 
 	if (platform.containsPoint(T))
 	{
@@ -84,6 +75,7 @@ void Platforms::onTouchBegan(Touch* touch, Event* event)
 
 void Platforms::onTouchEnded(Touch* touch, Event* event)
 {
+	GameManager::sharedGameManager()->setIsObjectTouched(false);
 	UnSelected();
 }
 
@@ -91,7 +83,7 @@ void Platforms::onTouchMoved(Touch* touch, Event* event)
 {
 
 	Vec2 T = touch->getLocation();
-	Rect platform = sprite->getBoundingBox();
+	Rect platform = _movingPlat->getBoundingBox();
 
 	if (platform.containsPoint(T))
 	{

@@ -145,6 +145,13 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("MovingPlatform_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_movingPlatformSprites.push_back(tempSprite);
+		i++;
+	}
+
 	// WALLS
 	i = 1;
 	while ((tempSprite = (Sprite*)root->getChildByName("Wall_" + StringUtils::format("%d", i))) != nullptr)
@@ -315,6 +322,17 @@ void SceneManager::SetupClasses()
 
 		addChild(gravSwitch);
 	}
+
+	for (int i = 0; i < _movingPlatformSprites.size(); i++)
+	{
+		Platforms* movingPlats = Platforms::create();
+		movingPlats->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
+		movingPlats->setSprite(_movingPlatformSprites[i]);
+
+		_movingPlatforms.push_back(movingPlats);
+
+		addChild(movingPlats);
+	}
 }
 
 void SceneManager::ScheduleScore(float delta)
@@ -389,21 +407,51 @@ void SceneManager::CheckCollisions()
 			_metalBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
 	}
+
+	for (int i = 0; i < _movingPlatforms.size(); i++) {
+		_player->CheckPlatformCollisions(_movingPlatforms[i]->getSprite());
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckPlatformCollisions(_movingPlatforms[i]->getSprite());
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckPlatformCollisions(_movingPlatforms[i]->getSprite());
+		}
+	}
 }
 
 //Touch Functions
 bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 {
 	cocos2d::log("touch began");
-
 	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
 		//Store the coordinates of where this touch began.
 		Point touchPos = touch->getLocationInView();
 		touchPos = Director::getInstance()->convertToGL(touchPos);
 		touchPos = convertToNodeSpace(touchPos);
-
+		Rect currPlatform;
 		_initialTouchPos = touchPos;
 		_inTouch = true;
+
+		for (int i = 0; i < _movingPlatforms.size(); i++)
+		{
+			currPlatform = _movingPlatforms[i]->getSprite()->getBoundingBox();
+			if (currPlatform.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+				for (int i = 0; i < _movingPlatforms.size(); i++)
+				{
+					_movingPlatforms[i]->onTouchBegan(touch, event);
+				}
+			}
+		}
+
+		if (!GameManager::sharedGameManager()->getIsObjectTouched())
+		{
+			_player->SetTarget(_initialTouchPos);
+		}
+
 		return true;
 	}
 	else {
@@ -426,7 +474,10 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 			// If an object is clicked, DO NOT let the player move to it, instead:
 			// call the appropiate methods specific to that object
 
-			_player->SetTarget(_initialTouchPos);
+			for (int i = 0; i < _movingPlatforms.size(); i++)
+			{
+				_movingPlatforms[i]->onTouchEnded(touch, event);
+			}
 		}
 	}
 }
@@ -434,6 +485,12 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 void SceneManager::onTouchMoved(Touch* touch, Event* event)
 {
 	cocos2d::log("touch moved");
+
+
+	for (int i = 0; i < _movingPlatforms.size(); i++)
+	{
+		_movingPlatforms[i]->onTouchMoved(touch, event);
+	}
 }
 
 void SceneManager::onTouchCancelled(Touch* touch, Event* event)
