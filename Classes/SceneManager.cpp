@@ -298,7 +298,7 @@ void SceneManager::SetupClasses()
 	addChild(_player);
 
 	// WOODEN CRATES
-	for (int i = 0; i < _woodenSprites.size(); i++) {
+	for (unsigned int i = 0; i < _woodenSprites.size(); i++) {
 		Box* box = Box::create(1);
 		box->setName("Crate_Wooden_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_woodenSprites[i]);
@@ -309,7 +309,7 @@ void SceneManager::SetupClasses()
 	}
 
 	// METAL CRATES
-	for (int i = 0; i < _metalSprites.size(); i++) {
+	for (unsigned int i = 0; i < _metalSprites.size(); i++) {
 		Box* box = Box::create(2);
 		box->setName("Crate_Metal_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_metalSprites[i]);
@@ -320,7 +320,7 @@ void SceneManager::SetupClasses()
 	}
 
 	// SWITCHES
-	for (int i = 0; i < _gravSwitches.size(); i++) {
+	for (unsigned int i = 0; i < _gravSwitches.size(); i++) {
 		Switch* gravSwitch = Switch::create();
 		gravSwitch->setName("Switch_" + StringUtils::format("%d", i + 1));
 		gravSwitch->SetSprite(_gravSwitches[i]);
@@ -386,26 +386,26 @@ void SceneManager::update(float delta)
 
 void SceneManager::CheckCollisions()
 {
-	for (int i = 0; i < _platforms.size(); i++) {
+	for (unsigned int i = 0; i < _platforms.size(); i++) {
 		_player->CheckPlatformCollisions(_platforms[i]);
 
-		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
 			_woodBoxes[i2]->CheckPlatformCollisions(_platforms[i]);
 		}
 
-		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckPlatformCollisions(_platforms[i]);
 		}
 	}
 
-	for (int i = 0; i < _walls.size(); i++) {
+	for (unsigned int i = 0; i < _walls.size(); i++) {
 		_player->CheckWallCollisions(_walls[i]);
 
-		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
 			_woodBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
 
-		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
 	}
@@ -461,7 +461,7 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	// Find what switch has been clicked
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
-	for (int i = 0; i < _switches.size(); i++) {
+	for (unsigned int i = 0; i < _switches.size(); i++) {
 		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
 			_flipped[i] = !_flipped[i];
 			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
@@ -492,7 +492,7 @@ void SceneManager::CheckNear(float delta)
 {
 	bool inProximty = false;
 
-	for (int i = 0; i < _switches.size(); i++) {
+	for (unsigned int i = 0; i < _switches.size(); i++) {
 		// Player needs to be near the switch to press
 		float scaledWidth = _switches.at(i)->GetSprite()->getContentSize().width * _switches.at(i)->GetSprite()->getScaleX();
 		float scaledHeight = _switches.at(i)->GetSprite()->getContentSize().height * _switches.at(i)->GetSprite()->getScaleY();
@@ -581,7 +581,7 @@ void SceneManager::CheckNear(float delta)
 
 void SceneManager::CheckNearDoor()
 {
-	for (int i = 0; i < _exit.size(); i++) {
+	for (unsigned int i = 0; i < _exit.size(); i++) {
 		float scaledWidth = _exit[i]->getContentSize().width * _exit[i]->getScaleX();
 		float scaledHeight = _exit[i]->getContentSize().height * _exit[i]->getScaleY();
 
@@ -607,11 +607,11 @@ void SceneManager::FlipGravity(int direction)
 	if (direction == 0) {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
 		}
 
@@ -619,7 +619,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(true);
 		_player->SetFallingHorizontal(false);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(-3.81f);
 			_player->SetFallingVertical(true);
 			_player->SetFallingHorizontal(false);
@@ -629,11 +629,11 @@ void SceneManager::FlipGravity(int direction)
 	else if (direction == 1) {
 		_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 0.5f);
 		}
 
@@ -641,7 +641,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(false);
 		_player->SetFallingHorizontal(true);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(-3.81f);
 			_player->SetFallingVertical(false);
 			_player->SetFallingHorizontal(true);
@@ -651,11 +651,11 @@ void SceneManager::FlipGravity(int direction)
 	else if (direction == 2) {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
 		}
 
@@ -663,7 +663,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(true);
 		_player->SetFallingHorizontal(false);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(3.81f);
 			_player->SetFallingVertical(true);
 			_player->SetFallingHorizontal(false);
@@ -673,11 +673,11 @@ void SceneManager::FlipGravity(int direction)
 	else if (direction == 3) {
 		_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
 		}
 
@@ -685,7 +685,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(false);
 		_player->SetFallingHorizontal(true);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(3.81f);
 			_player->SetFallingVertical(false);
 			_player->SetFallingHorizontal(true);
@@ -719,19 +719,19 @@ SceneManager::~SceneManager()
 	delete _blackTransparency;
 	delete auEngine;
 
-	for (int i = 0; i < _platforms.size(); i++) {
+	for (unsigned int i = 0; i < _platforms.size(); i++) {
 		delete _platforms[i];
 	}
 
 	_platforms.clear();
 
-	for (int i = 0; i < _walls.size(); i++) {
+	for (unsigned int i = 0; i < _walls.size(); i++) {
 		delete _walls[i];
 	}
 
 	_walls.clear();
 
-	for (int i = 0; i < _gravSwitches.size(); i++) {
+	for (unsigned int i = 0; i < _gravSwitches.size(); i++) {
 		delete _switches.at(i)->GetSprite();
 	}
 

@@ -74,6 +74,9 @@ int AudioEngine::PlaySoundEffect(std::string fileLocation, bool loop)
 		int id = audioManager->getInstance()->playEffect(c, loop, 1, 0, 1);
 		return id;
 	}
+
+	// Not muted
+	return -1;
 }
 
 void AudioEngine::SetSoundEffectsVolume(float volume)
