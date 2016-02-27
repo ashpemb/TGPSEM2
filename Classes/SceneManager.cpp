@@ -75,6 +75,7 @@ bool SceneManager::init()
 	// CLASS SETUP
 	SetupClasses();
 
+
 	return true;
 		
 }
@@ -241,6 +242,7 @@ void SceneManager::SetupHighlights(Node* root)
 	// Get screen size
 	auto winSize = Director::getInstance()->getVisibleSize();
 
+	// SETUP SPRITES
 	_topHighlight = Sprite::create("highlight.png");
 	_topHighlight->setPosition(Vec2(winSize.width*0.5f, winSize.height - (_topHighlight->getContentSize().height / 2)));
 	_topHighlight->setScaleX(winSize.width);
@@ -248,7 +250,7 @@ void SceneManager::SetupHighlights(Node* root)
 	_topHighlight->setLocalZOrder(3);
 
 	_rightHighlight = Sprite::create("highlight.png");
-	_rightHighlight->setPosition(Vec2(0.0f - (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
+	_rightHighlight->setPosition(Vec2(winSize.width - (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
 	_rightHighlight->setRotation(90.0f);
 	_rightHighlight->setScaleX(winSize.height);
 	_rightHighlight->setOpacity(0);
@@ -262,12 +264,25 @@ void SceneManager::SetupHighlights(Node* root)
 	_bottomHighlight->setLocalZOrder(3);
 
 	_leftHighlight = Sprite::create("highlight.png");
-	_leftHighlight->setPosition(Vec2(winSize.width + (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
+	_leftHighlight->setPosition(Vec2(0.0f + (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
 	_leftHighlight->setRotation(270.0f);
 	_leftHighlight->setScaleX(winSize.height);
 	_leftHighlight->setOpacity(0);
 	_leftHighlight->setLocalZOrder(3);
 
+	// SETUP TIMERS
+	_topHighlightTime = 1.0f;
+	_rightHighlightTime = 1.0f;
+	_bottomHighlightTime = 1.0f;
+	_leftHighlightTime = 1.0f;
+
+	// SETUP ENABLES
+	_topHighlightEnabled = false;
+	_rightHighlightEnabled = false;
+	_bottomHighlightEnabled = false;
+	_leftHighlightEnabled = false;
+
+	// ADD TO THIS
 	this->addChild(_topHighlight);
 	this->addChild(_leftHighlight);
 	this->addChild(_bottomHighlight);
@@ -348,8 +363,13 @@ void SceneManager::update(float delta)
 			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 
 			CheckCollisions();
-			CheckNear();
+			CheckNear(delta);
 			IsPlayerInBounds();
+
+			// Update highlights
+			if (_topHighlightEnabled) {
+
+			}
 		}
 		else
 		{
@@ -421,11 +441,6 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 		if (!GameManager::sharedGameManager()->getIsGamePaused()) {
 			_inTouch = false;
 
-			// TODO
-			// Add checks to ensure no object is clicked
-			// If an object is clicked, DO NOT let the player move to it, instead:
-			// call the appropiate methods specific to that object
-
 			_player->SetTarget(_initialTouchPos);
 		}
 	}
@@ -473,9 +488,9 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 	}
 }
 
-void SceneManager::CheckNear()
+void SceneManager::CheckNear(float delta)
 {
-	bool highLightActive = false;
+	bool inProximty = false;
 
 	for (int i = 0; i < _switches.size(); i++) {
 		// Player needs to be near the switch to press
@@ -484,35 +499,40 @@ void SceneManager::CheckNear()
 
 		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _switches.at(i)->GetSprite()->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
 			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _switches.at(i)->GetSprite()->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
-			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _switches.at(i)->GetSprite()->getPositionY() + (scaledHeight / 2)
-			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _switches.at(i)->GetSprite()->getPositionY() - (scaledHeight / 2))
+			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _switches.at(i)->GetSprite()->getPositionY() + (scaledHeight / 2) + (_player->GetSprite()->getContentSize().height / 2) + 20
+			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _switches.at(i)->GetSprite()->getPositionY() - (scaledHeight / 2) - (_player->GetSprite()->getContentSize().height / 2) - 20)
 		{
 			//_switches.at(i)->GetSprite()->setEnabled(true);
 			_switches.at(i)->GetSprite()->setEnabled(true);
 
-			if (!highLightActive) {
+			inProximty = true;
 
-				highLightActive = true;
-
-				if (_switches.at(i)->GetOrientation() == 0) {
-					if (_topHighlight->getOpacity() <= 0) {
-						_topHighlight->runAction(FadeIn::create(1.0f));
-					}
+			if (_switches.at(i)->GetOrientation() == 0) {	// Down
+				if (!_bottomHighlightEnabled) {
+					_bottomHighlightTime = 1.0f;
+					_bottomHighlight->runAction(FadeIn::create(_bottomHighlightTime));
+					_bottomHighlightEnabled = true;
 				}
-				else if (_switches.at(i)->GetOrientation() == 1) {
-					if (!_leftHighlight->getOpacity() <= 0) {
-						_leftHighlight->runAction(FadeIn::create(1.0f));
-					}
+			}
+			else if (_switches.at(i)->GetOrientation() == 1) {	// Left
+				if (!_leftHighlightEnabled) {
+					_leftHighlightTime = 1.0f;
+					_leftHighlight->runAction(FadeIn::create(_leftHighlightTime));
+					_leftHighlightEnabled = true;
 				}
-				else if (_switches.at(i)->GetOrientation() == 2) {
-					if (!_bottomHighlight->getOpacity() <= 0) {
-						_bottomHighlight->runAction(FadeIn::create(1.0f));
-					}
+			}
+			else if (_switches.at(i)->GetOrientation() == 2) {	// Up
+				if (!_topHighlightEnabled) {
+					_topHighlightTime = 1.0f;
+					_topHighlight->runAction(FadeIn::create(_topHighlightTime));
+					_topHighlightEnabled = true;
 				}
-				else if (_switches.at(i)->GetOrientation() == 3) {
-					if (!_rightHighlight->getOpacity() <= 0) {
-						_rightHighlight->runAction(FadeIn::create(1.0f));
-					}
+			}
+			else if (_switches.at(i)->GetOrientation() == 3) {	// Right
+				if (!_rightHighlightEnabled) {
+					_rightHighlightTime = 1.0f;
+					_rightHighlight->runAction(FadeIn::create(_rightHighlightTime));
+					_rightHighlightEnabled = true;
 				}
 			}
 		}
@@ -521,25 +541,40 @@ void SceneManager::CheckNear()
 		}
 	}
 
-	if (!highLightActive) {
-		// Top
-		if (_topHighlight->getOpacity() == 255) {
+	if (_topHighlightEnabled) {
+		if (_topHighlightTime > 0.0f) {
+			_topHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_topHighlight->runAction(FadeOut::create(1.0f));
+			_topHighlightEnabled = false;
 		}
-
-		// Right
-		if (_rightHighlight->getOpacity() == 255) {
+	}
+	else if (_rightHighlightEnabled) {
+		if (_rightHighlightTime > 0.0f) {
+			_rightHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_rightHighlight->runAction(FadeOut::create(1.0f));
+			_rightHighlightEnabled = false;
 		}
-
-		// Bottom
-		if (_bottomHighlight->getOpacity() == 255) {
+	}
+	else if (_bottomHighlightEnabled) {
+		if (_bottomHighlightTime > 0.0f) {
+			_bottomHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_bottomHighlight->runAction(FadeOut::create(1.0f));
+			_bottomHighlightEnabled = false;
 		}
-
-		// Left
-		if (_leftHighlight->getOpacity() == 255) {
+	}
+	else if (_leftHighlightEnabled) {
+		if (_leftHighlightTime > 0.0f) {
+			_leftHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_leftHighlight->runAction(FadeOut::create(1.0f));
+			_leftHighlightEnabled = false;
 		}
 	}
 }
