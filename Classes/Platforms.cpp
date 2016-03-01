@@ -71,7 +71,13 @@ void Platforms::UnSelected()
 	_touchZone->setScaleY(OTouchZoneYScale);
 }
 
-void Platforms::MovePlatform(cocos2d::Vec2 T)
+void Platforms::MovePlatformHorizontal(cocos2d::Vec2 T)
+{
+	_touchZone->setPositionX(T.x);
+	_movingPlat->setPositionX(T.x);
+}
+
+void Platforms::MovePlatformVertical(cocos2d::Vec2 T)
 {
 	_touchZone->setPositionY(T.y);
 	_movingPlat->setPositionY(T.y);
@@ -102,9 +108,13 @@ void Platforms::onTouchMoved(Touch* touch, Event* event)
 	Vec2 T = touch->getLocation();
 	Rect platform = _touchZone->getBoundingBox();
 
-	if (platform.containsPoint(T))
+	if (platform.containsPoint(T) && platformType == 1)
 	{
-		MovePlatform(T);
+		MovePlatformHorizontal(T);
+	}
+	else if (platform.containsPoint(T) && platformType == 2)
+	{
+		MovePlatformVertical(T);
 	}
 }
 

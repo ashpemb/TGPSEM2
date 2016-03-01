@@ -18,6 +18,8 @@ private:
 	float OTouchZoneYScale;
 	float NTouchZoneYScale;
 
+	int platformType = 0; // Gives platform types a number: 1 = Horizontal, 2 = vertical, 0 = no platform
+
 public:
 	Platforms();
 	static Platforms* create();
@@ -33,10 +35,13 @@ public:
 	Sprite* getSprite() { return _movingPlat; };
 	Sprite* getTouchZone() { return _touchZone; }
 
+	void PlatformType(int type) { platformType = type; }
+
 	void Selected();
 	void UnSelected();
 
-	void MovePlatform(cocos2d::Vec2 T);
+	void MovePlatformHorizontal(cocos2d::Vec2 T);
+	void MovePlatformVertical(cocos2d::Vec2 T);
 	// END CONFIRM
 
 	cocos2d::Sprite* sprite;

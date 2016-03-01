@@ -25,7 +25,9 @@ private:
 	std::vector<cocos2d::Sprite*> _woodenSprites;
 	std::vector<cocos2d::Sprite*> _metalSprites;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
-	std::vector<cocos2d::Sprite*> _movingPlatformSprites;
+
+	std::vector<cocos2d::Sprite*> _movingPlatformVertSprites;
+	std::vector<cocos2d::Sprite*> _movingPlatformHorizSprites;
 
 	int _score;
 	Player* _player;
@@ -52,7 +54,8 @@ private:
 	std::vector<Box*> _woodBoxes;
 	std::vector<Box*> _metalBoxes;
 	std::vector<Switch*> _switches;
-	std::vector<Platforms*> _movingPlatforms;
+	std::vector<Platforms*> _movingPlatformsVert;
+	std::vector<Platforms*> _movingPlatformsHoriz;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;

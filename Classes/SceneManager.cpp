@@ -146,11 +146,19 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
-	//Moving Platforms
+	//Horizontal Moving Platforms
 	i = 1;
-	while ((tempSprite = (Sprite*)root->getChildByName("MovingPlatform_" + StringUtils::format("%d", i))) != nullptr)
+	while ((tempSprite = (Sprite*)root->getChildByName("MovingPlatformY_" + StringUtils::format("%d", i))) != nullptr)
 	{
-		_movingPlatformSprites.push_back(tempSprite);
+		_movingPlatformVertSprites.push_back(tempSprite);
+		i++;
+	}
+
+	//Vertical Moving Platforms
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("MovingPlatformX_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_movingPlatformHorizSprites.push_back(tempSprite);
 		i++;
 	}
 
@@ -325,14 +333,26 @@ void SceneManager::SetupClasses()
 		addChild(gravSwitch);
 	}
 
-	for (int i = 0; i < _movingPlatformSprites.size(); i++)
+	for (int i = 0; i < _movingPlatformHorizSprites.size(); i++)
 	{
 		Platforms* movingPlats = Platforms::create();
 		movingPlats->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
-		movingPlats->setSprite(_movingPlatformSprites[i]);
+		movingPlats->setSprite(_movingPlatformHorizSprites[i]);
 		movingPlats->setZoneSprite();
 
-		_movingPlatforms.push_back(movingPlats);
+		_movingPlatformsHoriz.push_back(movingPlats);
+
+		addChild(movingPlats);
+	}
+
+	for (int i = 0; i < _movingPlatformVertSprites.size(); i++)
+	{
+		Platforms* movingPlats = Platforms::create();
+		movingPlats->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
+		movingPlats->setSprite(_movingPlatformVertSprites[i]);
+		movingPlats->setZoneSprite();
+
+		_movingPlatformsVert.push_back(movingPlats);
 
 		addChild(movingPlats);
 	}
@@ -411,15 +431,27 @@ void SceneManager::CheckCollisions()
 		}
 	}
 
-	for (int i = 0; i < _movingPlatforms.size(); i++) {
-		_player->CheckPlatformCollisions(_movingPlatforms[i]->getSprite());
+	for (int i = 0; i < _movingPlatformsHoriz.size(); i++) {
+		_player->CheckPlatformCollisions(_movingPlatformsHoriz[i]->getSprite());
 
 		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
-			_woodBoxes[i2]->CheckPlatformCollisions(_movingPlatforms[i]->getSprite());
+			_woodBoxes[i2]->CheckPlatformCollisions(_movingPlatformsHoriz[i]->getSprite());
 		}
 
 		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
-			_metalBoxes[i2]->CheckPlatformCollisions(_movingPlatforms[i]->getSprite());
+			_metalBoxes[i2]->CheckPlatformCollisions(_movingPlatformsHoriz[i]->getSprite());
+		}
+	}
+
+	for (int i = 0; i < _movingPlatformsVert.size(); i++) {
+		_player->CheckPlatformCollisions(_movingPlatformsVert[i]->getSprite());
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckPlatformCollisions(_movingPlatformsVert[i]->getSprite());
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckPlatformCollisions(_movingPlatformsVert[i]->getSprite());
 		}
 	}
 }
@@ -438,18 +470,37 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 		_initialTouchPos = touchPos;
 		_inTouch = true;
 
-		for (int i = 0; i < _movingPlatforms.size(); i++)
+		// Touch detection for horizontal moving platforms
+		for (int i = 0; i < _movingPlatformsHoriz.size(); i++)
 		{
-			currPlatform = _movingPlatforms[i]->getSprite()->getBoundingBox();
-			currTouchZone = _movingPlatforms[i]->getTouchZone()->getBoundingBox();
+			currPlatform = _movingPlatformsHoriz[i]->getSprite()->getBoundingBox();
+			currTouchZone = _movingPlatformsHoriz[i]->getTouchZone()->getBoundingBox();
 			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
 			{
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
-				for (int i = 0; i < _movingPlatforms.size(); i++)
+				for (int i = 0; i < _movingPlatformsHoriz.size(); i++)
 				{
-					_movingPlatforms[i]->onTouchBegan(touch, event);
+					_movingPlatformsHoriz[i]->PlatformType(1);
+					_movingPlatformsHoriz[i]->onTouchBegan(touch, event);
 				}
 			}
+		}
+
+		// Touch detection for vertical moving platforms
+		for (int i = 0; i < _movingPlatformsVert.size(); i++)
+		{
+			currPlatform = _movingPlatformsVert[i]->getSprite()->getBoundingBox();
+			currTouchZone = _movingPlatformsVert[i]->getTouchZone()->getBoundingBox();
+			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+				for (int i = 0; i < _movingPlatformsVert.size(); i++)
+				{
+					_movingPlatformsVert[i]->PlatformType(2);
+					_movingPlatformsVert[i]->onTouchBegan(touch, event);
+				}
+			}
+			
 		}
 
 		if (!GameManager::sharedGameManager()->getIsObjectTouched())
@@ -479,9 +530,14 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 			// If an object is clicked, DO NOT let the player move to it, instead:
 			// call the appropiate methods specific to that object
 
-			for (int i = 0; i < _movingPlatforms.size(); i++)
+			for (int i = 0; i < _movingPlatformsHoriz.size(); i++)
 			{
-				_movingPlatforms[i]->onTouchEnded(touch, event);
+				_movingPlatformsHoriz[i]->onTouchEnded(touch, event);
+			}
+
+			for (int i = 0; i < _movingPlatformsVert.size(); i++)
+			{
+				_movingPlatformsVert[i]->onTouchEnded(touch, event);
 			}
 		}
 	}
@@ -492,9 +548,14 @@ void SceneManager::onTouchMoved(Touch* touch, Event* event)
 	cocos2d::log("touch moved");
 
 
-	for (int i = 0; i < _movingPlatforms.size(); i++)
+	for (int i = 0; i < _movingPlatformsHoriz.size(); i++)
 	{
-		_movingPlatforms[i]->onTouchMoved(touch, event);
+		_movingPlatformsHoriz[i]->onTouchMoved(touch, event);
+	}
+
+	for (int i = 0; i < _movingPlatformsVert.size(); i++)
+	{
+		_movingPlatformsVert[i]->onTouchMoved(touch, event);
 	}
 }
 
