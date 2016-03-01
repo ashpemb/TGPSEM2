@@ -50,6 +50,7 @@ bool SceneManager::init()
 	// GAMEMANAGER
 	GameManager::sharedGameManager()->setIsGameLive(true);
 	GameManager::sharedGameManager()->setIsGamePaused(true);
+	GameManager::sharedGameManager()->setIsObjectTouched(false);
 
 	// TOUCH SETUP
 	SetupTouches();

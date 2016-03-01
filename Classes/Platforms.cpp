@@ -57,7 +57,7 @@ void Platforms::UnSelected()
 
 void Platforms::MovePlatform(cocos2d::Vec2 T)
 {
-	_movingPlat->setPositionX(T.x);
+	_movingPlat->setPositionY(T.y);
 }
 
 //Touch Functions
