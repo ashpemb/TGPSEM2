@@ -12,8 +12,11 @@ class Platforms : public cocos2d::Node
 {
 private:
 	Sprite* _movingPlat;
+	Sprite* _touchZone;
 	float OScale;
 	float NScale;
+	float OTouchZoneYScale;
+	float NTouchZoneYScale;
 
 public:
 	Platforms();
@@ -26,7 +29,9 @@ public:
 
 	// CONFIRMED FINE
 	void setSprite(Sprite* newSprite) { _movingPlat = newSprite; this->addChild(_movingPlat); OScale = _movingPlat->getScale(); };
+	void setZoneSprite();
 	Sprite* getSprite() { return _movingPlat; };
+	Sprite* getTouchZone() { return _touchZone; }
 
 	void Selected();
 	void UnSelected();

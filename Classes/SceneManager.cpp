@@ -146,6 +146,7 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	//Moving Platforms
 	i = 1;
 	while ((tempSprite = (Sprite*)root->getChildByName("MovingPlatform_" + StringUtils::format("%d", i))) != nullptr)
 	{
@@ -329,6 +330,7 @@ void SceneManager::SetupClasses()
 		Platforms* movingPlats = Platforms::create();
 		movingPlats->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
 		movingPlats->setSprite(_movingPlatformSprites[i]);
+		movingPlats->setZoneSprite();
 
 		_movingPlatforms.push_back(movingPlats);
 
@@ -432,13 +434,15 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 		touchPos = Director::getInstance()->convertToGL(touchPos);
 		touchPos = convertToNodeSpace(touchPos);
 		Rect currPlatform;
+		Rect currTouchZone;
 		_initialTouchPos = touchPos;
 		_inTouch = true;
 
 		for (int i = 0; i < _movingPlatforms.size(); i++)
 		{
 			currPlatform = _movingPlatforms[i]->getSprite()->getBoundingBox();
-			if (currPlatform.containsPoint(_initialTouchPos))
+			currTouchZone = _movingPlatforms[i]->getTouchZone()->getBoundingBox();
+			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
 			{
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
 				for (int i = 0; i < _movingPlatforms.size(); i++)
