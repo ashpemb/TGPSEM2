@@ -63,6 +63,9 @@
     <ClCompile Include="..\Classes\SplashScreenScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameWinScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -117,6 +120,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SplashScreenScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameWinScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

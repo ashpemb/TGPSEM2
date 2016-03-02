@@ -46,6 +46,7 @@
         <Image Name="Josh.png" />
         <Image Name="Matt.png" />
         <Image Name="VikingLogo.png" />
+        <Project Name="GameWin.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
