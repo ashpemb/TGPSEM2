@@ -1,7 +1,4 @@
 #include "ScalingObject.h"
-
-
-#include "ScalingObject.h"
 #include "HelloWorldScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"

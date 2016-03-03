@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "GameManager.h"
 USING_NS_CC;
 
 class Player : public Node
@@ -8,7 +9,6 @@ class Player : public Node
 private:
 	// Sprite
 	Sprite* _playerSprite;
-	
 
 	// Gravity variables
 	float _gravity;
@@ -45,6 +45,7 @@ public:
 
 	//Sprite
 	Sprite* GetSprite() { return _playerSprite; };
+	void SetSprite(Sprite* newSprite);
 
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);

@@ -220,7 +220,7 @@ std::string ScoreManager::getFilePath()
 	std::string path = "";
 
 	// testing
-	std::string writableDir = CCFileUtils::getInstance()->getWritablePath();
+	std::string writableDir = FileUtils::getInstance()->getWritablePath();
 
 	path = writableDir + "\\highscoredata.xml";
 

@@ -1,11 +1,7 @@
 #include "MenuScene.h"
-<<<<<<< HEAD
 #include "LevelSelect.h"
 #include "SimpleAudioEngine.h"
 #include "ScalingObject.h"
-=======
-
->>>>>>> origin/Alex
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -40,13 +36,6 @@ bool MenuScene::init()
 
 	this->scheduleUpdate();
 	auto winSize = Director::getInstance()->getVisibleSize();
-<<<<<<< HEAD
-	//TOUCHES
-=======
-
-	// Variables
-	muted = false;
->>>>>>> origin/Alex
 
 	//TOUCHES
 	//Set up a touch listener.
@@ -70,16 +59,26 @@ bool MenuScene::init()
 	//Settings Button
 	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
 	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
-	_settingsButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.35f));
+	_settingsButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.30f));
 
 	//Exit Button
 	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
 	_exitButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::ExitButtonPressed, this));
-	_exitButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.25f));
+	_exitButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.15f));
 
 	//Mute Button
 	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
 	//_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
+	
+	if (GameManager::sharedGameManager()->getIsGameMuted() == true)
+	{
+		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+	}
+	else
+	{
+		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
+	}
+
 	_muteButton->setPosition(Vec2(winSize.width*0.05f, winSize.height*0.95f));
 
 	//BACKGROUND
@@ -94,7 +93,12 @@ bool MenuScene::init()
 
 	// AUDIO
 	auEngine = new AudioEngine();
-	auEngine->PlayBackgroundMusic("menu.mp3", true);
+
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
+
+	{
+		auEngine->PlayBackgroundMusic("menu.mp3", true);
+	}
 
 	return true;
 }
@@ -110,24 +114,22 @@ void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	}
 }
 
-void MenuScene::MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+void MenuScene::MuteButtonPressed()
 {
-	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
-	{
-		muted = !muted;
 
-		if (muted) {
-			_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
+		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
 
-			auEngine->PauseBackgroundMusic();
-			auEngine->PauseAllEffects();
-		}
-		else {
-			_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
+		auEngine->PauseBackgroundMusic();
+		auEngine->PauseAllEffects();
+		GameManager::sharedGameManager()->setIsGameMuted(true);
+	}
+	else {
+		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
 
-			auEngine->ResumeBackgroundMusic();
-			auEngine->ResumeAllEffects();
-		}
+		auEngine->ResumeBackgroundMusic();
+		auEngine->ResumeAllEffects();
+		GameManager::sharedGameManager()->setIsGameMuted(false);
 	}
 }
 
@@ -149,6 +151,7 @@ void MenuScene::ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTy
 
 void MenuScene::StartGame()
 {
+	GameManager::sharedGameManager()->setIsGamePaused(true);
 	auEngine->StopBackgroundMusic();
 	Scene* scene = LevelSelect::createScene();
 
@@ -165,6 +168,19 @@ bool MenuScene::onTouchBegan(Touch* touch, Event* event)
 void MenuScene::onTouchEnded(Touch* touch, Event* event)
 {
 	cocos2d::log("touch ended");
+
+	Vec2 touchPosition = touch->getLocation();
+
+	int realMuteWidth = _muteButton->getContentSize().width * _muteButton->getScaleX();
+	int realMuteHeight = _muteButton->getContentSize().height * _muteButton->getScaleY();
+
+	if (touchPosition.x < _muteButton->getPositionX() + (realMuteWidth / 2)
+		&& touchPosition.x > _muteButton->getPositionX() - (realMuteWidth / 2)
+		&& touchPosition.y < _muteButton->getPositionY() + (realMuteHeight / 2)
+		&& touchPosition.y > _muteButton->getPositionY() - (realMuteHeight / 2))
+	{
+		MuteButtonPressed();
+	}
 }
 
 void MenuScene::onTouchMoved(Touch* touch, Event* event)

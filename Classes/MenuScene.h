@@ -6,10 +6,10 @@
 #include "cocostudio/CocoStudio.h"
 #include "SimpleAudioEngine.h"
 
-#include "stdio.h"
-#include <iomanip>
+#include "ui/CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
 
-#include "Scene1.h"
+#include "SceneManager.h"
 #include "AudioEngine.h"
 #include "LevelSelect.h"
 
@@ -38,7 +38,7 @@ public:
 	void StartButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
-	void MuteButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void MuteButtonPressed();
 
 
 	void StartGame();
@@ -51,7 +51,7 @@ private:
 
 	cocos2d::Sprite*		_background;
 
-	Scene1 * gameScene;
+	SceneManager * gameScene;
 
 	AudioEngine*			auEngine;
 	bool muted;

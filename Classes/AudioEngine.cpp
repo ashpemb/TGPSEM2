@@ -47,13 +47,11 @@ void AudioEngine::BGMPlaylistNext()
 
 void AudioEngine::PlayBackgroundMusic(std::string fileLocation, bool loop)
 {
-	if (isMuted == false)
-	{
+	//if (!isMuted) {
 		const char * c = fileLocation.c_str();
 
-		audioManager->getInstance()->playBackgroundMusic(
-			c, true);
-	}
+		audioManager->getInstance()->playBackgroundMusic(c, true);
+	//}
 }
 
 void AudioEngine::SetBackgroundVolume(float volume)

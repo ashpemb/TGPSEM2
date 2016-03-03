@@ -11,6 +11,8 @@ private:
 
 	bool isGameLive;
 	bool isGamePaused;
+	bool isGameMuted;
+	int level;
 	int time;
 	int mil;
 	int sec;
@@ -28,6 +30,10 @@ public:
 	bool getIsGameLive();
 	void setIsGamePaused(bool);
 	bool getIsGamePaused();
+	void setIsGameMuted(bool);
+	bool getIsGameMuted();
+	void setCurrentLevel(int level);
+	int getCurrentLevel();
 	void startLevelTimer();
 	void updateLevelTimer();
 	int getTimer();

@@ -9,12 +9,10 @@
 #include <string>
 #include "SimpleAudioEngine.h"  
 #include "cocos2d.h"
-<<<<<<< HEAD
+#include "SceneManager.h"
 #include "TouchManager.h"
-=======
-#include "Scene1.h"
+#include "ScalingObject.h"
 
->>>>>>> origin/Alex
 class LevelSelect : public cocos2d::Layer
 {
 public:
