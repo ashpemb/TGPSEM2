@@ -11,6 +11,7 @@
 #include "GameOverScene.h"
 #include "Box.h"
 #include "Switch.h"
+#include "TouchManager.h"
 
 USING_NS_CC;
 
@@ -77,6 +78,7 @@ private:
 	void FlipGravity(int direction);
 
 	// TOUCHES
+	TouchManager* touchMGR;
 	bool _inTouch;
 	cocos2d::Vec2 _initialTouchPos;
 public:
@@ -109,6 +111,7 @@ public:
 
 	// Touch input
 	void SetupTouches();
+
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
 	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);

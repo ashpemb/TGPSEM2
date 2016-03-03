@@ -40,7 +40,6 @@ public:
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(SplashScreenScene);
-
 };
 
 #endif // __SPLASHSCREEN_SCENE_H__

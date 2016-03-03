@@ -40,8 +40,12 @@ void TouchManager::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::E
 {
 	if (touches.size() > 1)
 	{
-		Vec2 touch1Location = touches[0]->getLocation();
-		Vec2 touch2Location = touches[1]->getLocation();
+
+		Point touch1Location = touches[0]->getLocationInView();
+		touch1Location = Director::getInstance()->convertToGL(touch1Location);
+		Point touch2Location = touches[1]->getLocationInView();
+		touch2Location = Director::getInstance()->convertToGL(touch2Location);
+
 		float diffX = touch1Location.x - touch2Location.x;
 		float diffY = touch1Location.y - touch2Location.y;
 		if (diffX < 0)

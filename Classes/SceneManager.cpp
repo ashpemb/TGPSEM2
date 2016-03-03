@@ -82,6 +82,7 @@ bool SceneManager::init()
 
 void SceneManager::SetupTouches()
 {
+	// SINGLE TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -93,6 +94,18 @@ void SceneManager::SetupTouches()
 
 	//Add our touch listener to event listener list.
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+	//Setting up Multi Touch Listener
+	touchMGR = new TouchManager;
+	auto touchesListener = EventListenerTouchAllAtOnce::create();
+
+	touchesListener->onTouchesBegan = CC_CALLBACK_2(TouchManager::onTouchesBegan, touchMGR);
+	touchesListener->onTouchesEnded = CC_CALLBACK_2(TouchManager::onTouchesEnded, touchMGR);
+	touchesListener->onTouchesMoved = CC_CALLBACK_2(TouchManager::onTouchesMoved, touchMGR);
+	touchesListener->onTouchesCancelled = CC_CALLBACK_2(TouchManager::onTouchesCancelled, touchMGR);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchesListener, this);
+	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchesListener, this);
 }
 
 void SceneManager::SetupTimer(Node* root)
@@ -299,7 +312,7 @@ void SceneManager::SetupClasses()
 
 	// WOODEN CRATES
 	for (unsigned int i = 0; i < _woodenSprites.size(); i++) {
-		Box* box = Box::create(1);
+		Box* box = Box::create(1, 2);
 		box->setName("Crate_Wooden_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_woodenSprites[i]);
 
@@ -310,7 +323,7 @@ void SceneManager::SetupClasses()
 
 	// METAL CRATES
 	for (unsigned int i = 0; i < _metalSprites.size(); i++) {
-		Box* box = Box::create(2);
+		Box* box = Box::create(2, 2);
 		box->setName("Crate_Metal_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_metalSprites[i]);
 
@@ -373,7 +386,6 @@ void SceneManager::update(float delta)
 		}
 		else
 		{
-
 			//"Gameover shit added". Ya taffer.
 			//GameManager::sharedGameManager()->setIsGamePaused(false);
 			GameManager::sharedGameManager()->setIsGameLive(false);
@@ -424,6 +436,24 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 
 		_initialTouchPos = touchPos;
 		_inTouch = true;
+
+		if (_woodBoxes.size() > 0)
+		{
+			for (int i = 0; i < _woodBoxes.size(); i++)
+			{
+				_woodBoxes[i]->Collision(touch);
+				_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+			}
+		}
+		if (_metalBoxes.size() > 0)
+		{
+			for (int i = 0; i < _metalBoxes.size(); i++)
+			{
+				_metalBoxes[i]->Collision(touch);
+				_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+			}
+		}
+
 		return true;
 	}
 	else {
@@ -590,7 +620,6 @@ void SceneManager::CheckNearDoor()
 			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _exit[i]->getPositionY() + (scaledHeight / 2)
 			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _exit[i]->getPositionY() - (scaledHeight / 2))
 		{
-			//_switches.at(i)->GetSprite()->setEnabled(true);
 			_exit[i]->setEnabled(true);
 		}
 		else {
