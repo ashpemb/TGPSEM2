@@ -11,27 +11,20 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-Sprite3D* sprite1;
-int screenSize1Y;
-int screenSize1X;
 float scaler1;
 float scaler2;
 float scaler3;
 float totalDiff;
 int unselect;
+
 // on "init" you need to initialize your instance
 bool ScalingObject::init()
 {
 
-	srand(time(NULL));
+	if (!Node::init()) {
+		return false;
+	}
 
-
-	auto rootNode = CSLoader::createNode("MainScene.csb");
-
-	cocos2d::Size frameSize = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize();
-	screenSize1Y = frameSize.height;
-	screenSize1X = frameSize.width;
-	
 	scaler1 = 100;
 	scaler2 = 50;
 	scaler3 = 20;
