@@ -45,7 +45,9 @@ LightBulb::~LightBulb()
 
 void LightBulb::MakeLight(Vec3 lightPos)
 {
-	auto light = PointLight::create(lightPos, Color3B::WHITE, 100.0f);
+	Vec3 lightPos1(50.0f, 50.0f, 10.0f);
+	auto light = PointLight::create(lightPos1, Color3B::RED, 1000.0f);
+	addChild(light);
 }
 
 void LightBulb::update(float delta)

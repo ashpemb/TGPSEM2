@@ -397,7 +397,7 @@ void SceneManager::SetupClasses()
 	//Lighting
 	for (int i = 0; i < _lightBulbSprites.size(); i++)
 	{
-		Vec3 lightPos = (_lightBulbSprites[i]->getPosition3D);
+		Vec3 lightPos = (_lightBulbSprites[i]->getPosition3D());
 		LightBulb* light = LightBulb::create(lightPos);
 		light->setName("Light_" + StringUtils::format("%d", i + 1));
 		light->setSprite(_lightBulbSprites[i]);
