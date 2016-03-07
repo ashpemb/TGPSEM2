@@ -6,18 +6,20 @@ Box::Box(int boxType)
 	_boxType = boxType;
 }
 
-Box* Box::create(float gravity, int boxType)
+Box* Box::create(int boxType)
 {
-	Box* woodBox = new Box(boxType);
-	if (!woodBox->init())
+	Box* box = new Box(boxType);
+	if (!box->init())
 	{
 		return nullptr;
 	}
 
-	woodBox->SetGravity(gravity);
-	woodBox->autorelease();
+	box->SetGravity(-3.81f);
+	box->SetOrientationVertical(true);
+	box->SetOrientationHorizontal(false);
+	box->autorelease();
 
-	return woodBox;
+	return box;
 }
 
 Box::~Box()
@@ -39,8 +41,7 @@ void Box::update(float delta)
 {
 	if (!GameManager::sharedGameManager()->getIsGamePaused())
 	{
-		if (_falling)
-		{
+		if (_fallingHorizontal || _fallingVertical) {
 			Fall(delta);
 		}
 	}
@@ -63,16 +64,33 @@ void Box::CheckPlatformCollisions(cocos2d::Sprite* collider)
 
 	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
+	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
 
-	if (GetBoxSprite()->getPositionX() - (GetBoxSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
-		&& GetBoxSprite()->getPositionX() + (GetBoxSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
-		&& GetBoxSprite()->getPositionY() - (GetBoxSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
-		&& GetBoxSprite()->getPositionY() + (GetBoxSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
-	{
-		Land(collider);
+	if (_orientationVertical) {
+		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+		{
+			Land(collider);
+		}
+		else {
+			_fallingVertical = true;
+		}
 	}
-	else {
-		_falling = true;
+	else if (_orientationHorizontal) {
+		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().height / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().height / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().width / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().width / 2) > collider->getPositionY() - (scaledHeight / 2))
+		{
+			if (GetSprite()->getPositionY() < collider->getPositionY()) {
+				GetSprite()->setPositionY(collider->getPositionY() - (scaledHeight / 2) - (scaledPlayerWidth / 2));
+			}
+			else {
+				GetSprite()->setPositionY(collider->getPositionY() + (scaledHeight / 2) + (scaledPlayerWidth / 2));
+			}
+		}
 	}
 }
 
@@ -82,95 +100,202 @@ void Box::CheckWallCollisions(cocos2d::Sprite* collider)
 
 	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
-	float scaledPlayerWidth = _box->getContentSize().width * _box->getScaleX();
+	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
 
-	if (GetBoxSprite()->getPositionX() - (GetBoxSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
-		&& GetBoxSprite()->getPositionX() + (GetBoxSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
-		&& GetBoxSprite()->getPositionY() - (GetBoxSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
-		&& GetBoxSprite()->getPositionY() + (GetBoxSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
-	{
-		if (_box->getPositionX() < collider->getPositionX()) {
-			_box->setPositionX(collider->getPositionX() - (scaledWidth / 2) - (scaledPlayerWidth / 2));
+	if (_orientationVertical) {
+		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+		{
+			if (GetSprite()->getPositionX() < collider->getPositionX()) {
+				GetSprite()->setPositionX(collider->getPositionX() - (scaledWidth / 2) - (scaledPlayerWidth / 2));
+			}
+			else {
+				GetSprite()->setPositionX(collider->getPositionX() + (scaledWidth / 2) + (scaledPlayerWidth / 2));
+			}
+		}
+	}
+	else if (_orientationHorizontal) {
+		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().height / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().height / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().width / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().width / 2) > collider->getPositionY() - (scaledHeight / 2))
+		{
+			Land(collider);
 		}
 		else {
-			_box->setPositionX(collider->getPositionX() + (scaledWidth / 2) + (scaledPlayerWidth / 2));
+			_fallingHorizontal = true;
 		}
 	}
 }
 
 void Box::Land(cocos2d::Sprite* collider)
 {
-	if (_falling) {
-		_falling = false;
+	if (_fallingVertical) {
+		_fallingVertical = false;
 
 		// Cancel velocity
 		_verticalVelocity = 0.0f;
-		_lastVelocity = 0.0f;
+		_verticalVelocityLast = 0.0f;
 		_timeFalling = 0.0f;
 
 		// Make sure the position is set so not inside platform
 		float newY;
 		float scaledColliderHeight = collider->getContentSize().height * collider->getScaleY();
-		float scaledBoxHeight = _box->getContentSize().height * _box->getScaleY();
+		float scaledPlayerHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
 
 		if (_gravity < 0.0f) {
-			newY = (collider->getPositionY() + (scaledColliderHeight / 2)) + (scaledBoxHeight / 2);
+			newY = (collider->getPositionY() + (scaledColliderHeight / 2)) + (scaledPlayerHeight / 2);
 		}
 		else {
-			newY = (collider->getPositionY() - (scaledColliderHeight / 2)) - (scaledBoxHeight / 2);
+			newY = (collider->getPositionY() - (scaledColliderHeight / 2)) - (scaledPlayerHeight / 2);
 		}
 
-		GetBoxSprite()->setPosition(Vec2(GetBoxSprite()->getPositionX(), newY));
+		GetSprite()->setPosition(Vec2(GetSprite()->getPositionX(), newY));
+	}
+	else if (_fallingHorizontal) {
+		_fallingHorizontal = false;
+
+		// Cancel velocity
+		_horizontalVelocity = 0.0f;
+		_horizontalVelocityLast = 0.0f;
+		_timeFalling = 0.0f;
+
+		// Make sure the position is set so not inside platform
+		float newX;
+		float scaledColliderWidth = collider->getContentSize().width * collider->getScaleX();
+		float scaledPlayerHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
+
+		if (_gravity > 0.0f) {
+			newX = (collider->getPositionX() - (scaledColliderWidth / 2)) - (scaledPlayerHeight / 2);
+		}
+		else {
+			newX = (collider->getPositionX() + (scaledColliderWidth / 2)) + (scaledPlayerHeight / 2);
+		}
+
+		GetSprite()->setPosition(Vec2(newX, GetSprite()->getPositionY()));
 	}
 }
 
 void Box::Fall(float delta)
 {
-	if (_falling) {
-		// Update falling time
-		_timeFalling += delta;
+	if (_orientationVertical) {
+		if (_fallingVertical) {
+			// Update falling time
+			_timeFalling += delta;
 
-		// Calculate and set new velocity
-		if (_verticalVelocity > -12.0f) {
-			_verticalVelocity = _lastVelocity + ((_gravity / 2) * _timeFalling);
-			_box->setPosition(Vec2(_box->getPosition().x, _box->getPosition().y + _verticalVelocity));
-		}
-		else if (_verticalVelocity < 12.0f) {
-			_verticalVelocity = _lastVelocity + ((_gravity / 2) * _timeFalling);
-			_box->setPosition(Vec2(_box->getPosition().x, _box->getPosition().y + _verticalVelocity));
+			// Calculate and set new velocity
+			if (_verticalVelocity > -12.0f) {
+				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling);
+				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x, GetSprite()->getPosition().y + _verticalVelocity));
+			}
+			else if (_verticalVelocity < 12.0f) {
+				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling);
+				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x, GetSprite()->getPosition().y + _verticalVelocity));
+			}
+			else {
+				_verticalVelocity = -9.0f;
+				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x, GetSprite()->getPosition().y + _verticalVelocity));
+			}
+
+			// Update last velocity
+			_verticalVelocityLast = _verticalVelocity;
 		}
 		else {
-			_verticalVelocity = -9.0f;
-			_box->setPosition(Vec2(_box->getPosition().x, _box->getPosition().y + _verticalVelocity));
+			_fallingVertical = true;
+			_verticalVelocityLast = 0.0f;
+			_verticalVelocity = 0.0f;
+			_timeFalling = 0.0f;
 		}
-
-		// Update last velocity
-		_lastVelocity = _verticalVelocity;
 	}
-	else {
-		_falling = true;
-		_lastVelocity = 0.0f;
-		_verticalVelocity = 0.0f;
-		_timeFalling = 0.0f;
+	else if (_orientationHorizontal) {
+		if (_fallingHorizontal) {
+			// Update falling time
+			_timeFalling += delta;
+
+			// Calculate and set new velocity
+			if (_horizontalVelocity > -12.0f) {
+				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling);
+				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x + _horizontalVelocity, GetSprite()->getPosition().y));
+			}
+			else if (_horizontalVelocity < 12.0f) {
+				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling);
+				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x + _horizontalVelocity, GetSprite()->getPosition().y));
+			}
+			else {
+				_horizontalVelocity = -9.0f;
+				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x + _horizontalVelocity, GetSprite()->getPosition().y));
+			}
+
+			// Update last velocity
+			_horizontalVelocityLast = _horizontalVelocity;
+		}
+		else {
+			_fallingHorizontal = true;
+			_verticalVelocityLast = 0.0f;
+			_verticalVelocity = 0.0f;
+			_timeFalling = 0.0f;
+		}
 	}
 }
 
-void Box::SetFalling(bool falling)
+void Box::SetOrientationVertical(bool orientation)
 {
-	_falling = falling;
+	_orientationVertical = orientation;
 }
 
-
-void Box::FlipPlayer()
+void Box::SetOrientationHorizontal(bool orientation)
 {
-	if (_gravity < 0)
-	{
-		auto rotateTo = RotateTo::create(0.5f, 0.0f);
-		_box->runAction(rotateTo);
+	_orientationHorizontal = orientation;
+}
+
+void Box::SetFallingVertical(bool falling)
+{
+	_fallingVertical = falling;
+	_orientationVertical = falling;
+
+	_fallingHorizontal = !falling;
+	_orientationHorizontal = !falling;
+
+	Flip();
+}
+
+void Box::SetFallingHorizontal(bool falling)
+{
+	_fallingHorizontal = falling;
+	_orientationHorizontal = falling;
+
+	_fallingVertical = !falling;
+	_orientationVertical = !falling;
+
+	Flip();
+}
+
+void Box::Flip()
+{
+	if (_fallingVertical) {
+		if (_gravity < 0)
+		{
+			auto rotateTo = RotateTo::create(0.5f, 0.0f);
+			GetSprite()->runAction(rotateTo);
+		}
+		else if (_gravity > 0)
+		{
+			auto rotateTo = RotateTo::create(0.5f, 180.0f);
+			GetSprite()->runAction(rotateTo);
+		}
 	}
-	else if (_gravity > 0)
-	{
-		auto rotateTo = RotateTo::create(0.5f, 180.0f);
-		_box->runAction(rotateTo);
+	else if (_fallingHorizontal) {
+		if (_gravity < 0)
+		{
+			auto rotateTo = RotateTo::create(0.5f, 90.0f);
+			GetSprite()->runAction(rotateTo);
+		}
+		else if (_gravity > 0)
+		{
+			auto rotateTo = RotateTo::create(0.5f, 270.0f);
+			GetSprite()->runAction(rotateTo);
+		}
 	}
 }
