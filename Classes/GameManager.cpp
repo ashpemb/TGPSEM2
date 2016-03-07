@@ -6,6 +6,7 @@ GameManager::GameManager()
 {
 	isGameLive = false;
 	isGamePaused = false;
+	isGameMuted = false;
 	mil = 0;
 	sec = 0;
 	min = 0;
@@ -41,11 +42,41 @@ bool GameManager::getIsGamePaused()
 	return isGamePaused;
 }
 
+void GameManager::setIsGameMuted(bool muted)
+{
+	isGameMuted = muted;
+}
+
+bool GameManager::getIsGameMuted()
+{
+	return isGameMuted;
+}
+
+void GameManager::setIsObjectTouched(bool touched)
+{
+	isObjectBeingTouched = touched;
+}
+
+bool GameManager::getIsObjectTouched()
+{
+	return isObjectBeingTouched;
+}
+
 void GameManager::startLevelTimer()
 {
 	mil = 0;
 	sec = 0;
 	min = 0;
+}
+
+void GameManager::setCurrentLevel(int level)
+{
+	this->level = level;
+}
+
+int GameManager::getCurrentLevel()
+{
+	return level;
 }
 
 void GameManager::updateLevelTimer()

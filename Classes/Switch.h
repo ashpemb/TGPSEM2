@@ -8,13 +8,23 @@ class Switch : public Node
 {
 private:
 	cocos2d::ui::CheckBox* _gravSwitch;
+
+	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
+	int _orientation;
 public:
-	Switch(cocos2d::ui::CheckBox* checkBox);
+	Switch();
 	~Switch();
-	static Switch* create(cocos2d::ui::CheckBox* checkBox);
+	static Switch* create();
 
 	virtual bool init() override;
 
+	void SetOrientation(int orientation) { _orientation = orientation; };
+	int GetOrientation() { return _orientation; };
+
 	void CheckNear(cocos2d::Sprite* player);
+
+	//Sprite
+	cocos2d::ui::CheckBox* GetSprite() { return _gravSwitch; };
+	void SetSprite(cocos2d::ui::CheckBox* newSprite);
 };
 

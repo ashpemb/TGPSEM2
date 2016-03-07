@@ -26,7 +26,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("TGPSEM2", Rect(0, 0, 2048, 1536));
+        glview = GLViewImpl::createWithRect("TGPSEM2", Rect(0, 0, 1280, 960));
         director->setOpenGLView(glview);
     }
 
@@ -42,11 +42,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-	MenuScene menuScene;
-    auto scene = menuScene.createScene();
+	//SceneManager* menuScene = SceneManager::createScene(1);
+	auto scene = SplashScreenScene::createScene();
 
     // run
-    director->runWithScene(scene);
+	director->runWithScene(scene);
 
     return true;
 }

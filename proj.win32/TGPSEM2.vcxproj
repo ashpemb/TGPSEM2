@@ -149,7 +149,9 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\AudioEngine.cpp" />
     <ClCompile Include="..\Classes\Box.cpp" />
+    <ClCompile Include="..\Classes\Exit.cpp" />
     <ClCompile Include="..\Classes\GameManager.cpp" />
+    <ClCompile Include="..\Classes\GameOverScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\LevelSelect.cpp" />
     <ClCompile Include="..\Classes\MenuScene.cpp" />
@@ -158,6 +160,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\SceneManager.cpp" />
     <ClCompile Include="..\Classes\ScoreManager.cpp" />
+    <ClCompile Include="..\Classes\SplashScreenScene.cpp" />
     <ClCompile Include="..\Classes\Switch.cpp" />
     <ClCompile Include="..\Classes\TouchManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,7 +169,9 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\AudioEngine.h" />
     <ClInclude Include="..\Classes\Box.h" />
+    <ClInclude Include="..\Classes\Exit.h" />
     <ClInclude Include="..\Classes\GameManager.h" />
+    <ClInclude Include="..\Classes\GameOverScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\LevelSelect.h" />
     <ClInclude Include="..\Classes\MenuScene.h" />
@@ -175,6 +180,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\SceneManager.h" />
     <ClInclude Include="..\Classes\ScoreManager.h" />
+    <ClInclude Include="..\Classes\SplashScreenScene.h" />
     <ClInclude Include="..\Classes\Switch.h" />
     <ClInclude Include="..\Classes\TouchManager.h" />
     <ClInclude Include="Define.h" />

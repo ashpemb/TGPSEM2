@@ -13,19 +13,25 @@ private:
 	// Sprite
 	Sprite* _box;
 
+	// Gravity variables
+	float	_timeFalling;
+	float	_gravity;
 
-	// Gravity Variables
-	float _gravity;
-	bool _falling;
-	float _lastVelocity;
-	float _verticalVelocity;
-	float _timeFalling;
+	bool	_orientationHorizontal;
+	bool	_fallingHorizontal;
+	float	_horizontalVelocityLast;
+	float	_horizontalVelocity;
+
+	bool	_orientationVertical;
+	bool	_fallingVertical;
+	float	_verticalVelocityLast;
+	float	_verticalVelocity;
 
 	// Box Variables
 	int _boxType;
 public:
 	Box(int);
-	static Box* create(float gravity, int boxType);
+	static Box* create(int boxType);
 	~Box();
 
 	virtual bool init() override;
@@ -33,18 +39,30 @@ public:
 
 	// Physics
 	void SetGravity(float gravity);
-	void SetFalling(bool falling);
+
+	void SetOrientationVertical(bool orientation);
+	void SetOrientationHorizontal(bool orientation);
+
+	bool GetOrientationVertical() { return _fallingVertical; };
+	bool GetOrientationHorizontal() { return _fallingHorizontal; };
+
+	void SetFallingVertical(bool falling);
+	void SetFallingHorizontal(bool falling);
+
+	bool GetFallingVertical() { return _fallingVertical; };
+	bool GetFallingHorizontal() { return _fallingHorizontal; };
+
 	void SetVelocity(float y);
 	float GetVelocity() { return _verticalVelocity; };
-	void CheckCollisions(cocos2d::Sprite* collider);
-	void FlipPlayer();
+	void CheckPlatformCollisions(cocos2d::Sprite* collider);
+	void CheckWallCollisions(cocos2d::Sprite* collider);
+	void Flip();
 
 	// Sprite
-	Sprite* GetBoxSprite() { return _box; };
+	Sprite* GetSprite() { return _box; };
 	void SetSprite(Sprite* newSprite) { _box = newSprite; this->addChild(_box); };
 
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);
-	bool GetFalling() { return _falling; };
 };
 
