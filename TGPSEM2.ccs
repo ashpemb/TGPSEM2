@@ -39,6 +39,8 @@
         <Project Name="SplashScreen.csd" Type="Scene" />
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
+        <Image Name="light.png" />
+        <Image Name="orangelight.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

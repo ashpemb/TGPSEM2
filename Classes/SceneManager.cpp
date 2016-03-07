@@ -200,6 +200,14 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	// Lighting
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Light_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_lightBulbSprites.push_back(tempSprite);
+		i++;
+	}
+
 	// SWITCHES
 	cocos2d::ui::CheckBox* tempCheck;
 	i = 1;
@@ -361,6 +369,7 @@ void SceneManager::SetupClasses()
 		addChild(gravSwitch);
 	}
 
+	//Platforms
 	for (int i = 0; i < _movingPlatformHorizSprites.size(); i++)
 	{
 		Platforms* movingPlats = Platforms::create();
@@ -383,6 +392,19 @@ void SceneManager::SetupClasses()
 		_movingPlatformsVert.push_back(movingPlats);
 
 		addChild(movingPlats);
+	}
+
+	//Lighting
+	for (int i = 0; i < _lightBulbSprites.size(); i++)
+	{
+		Vec3 lightPos = (_lightBulbSprites[i]->getPosition3D);
+		LightBulb* light = LightBulb::create(lightPos);
+		light->setName("Light_" + StringUtils::format("%d", i + 1));
+		light->setSprite(_lightBulbSprites[i]);
+
+		_lightBulb.push_back(light);
+
+		addChild(light);
 	}
 }
 

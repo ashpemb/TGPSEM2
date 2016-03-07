@@ -336,6 +336,17 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Light_1" ActionTag="-1754400334" Tag="36" IconVisible="False" LeftMargin="151.2443" RightMargin="1496.7557" TopMargin="674.9583" BottomMargin="461.0417" ctype="SpriteObjectData">
+            <Size X="400.0000" Y="400.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="351.2443" Y="661.0417" />
+            <Scale ScaleX="0.1806" ScaleY="0.1980" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1715" Y="0.4304" />
+            <PreSize X="0.1953" Y="0.2604" />
+            <FileData Type="Normal" Path="orangelight.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

@@ -13,6 +13,7 @@
 #include "Switch.h"
 #include "TouchManager.h"
 #include "Platforms.h"
+#include "Lightbulb.h"
 
 
 USING_NS_CC;
@@ -37,6 +38,7 @@ private:
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
 	std::vector<cocos2d::Sprite*> _movingPlatformVertSprites;
 	std::vector<cocos2d::Sprite*> _movingPlatformHorizSprites;
+	std::vector<cocos2d::Sprite*> _lightBulbSprites;
 
 
 	// BACKGROUND
@@ -77,6 +79,7 @@ private:
 	std::vector<Switch*> _switches;
 	std::vector<Platforms*> _movingPlatformsVert;
 	std::vector<Platforms*> _movingPlatformsHoriz;
+	std::vector<LightBulb*> _lightBulb;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
