@@ -4,10 +4,11 @@
 #include "GameManager.h"
 #include "ScalingObject.h"
 #include "TouchManager.h"
+
 USING_NS_CC;
 
 
-class Box : public ScalingObject
+class Box : public Node
 {
 private:
 	// Sprite
@@ -29,9 +30,18 @@ private:
 
 	// Box Variables
 	int _boxType;
+
+	// Scaler
+	float scaler1;
+	float scaler2;
+	float scaler3;
+	float scaler;
+	float totalDiff;
+	int unselect;
+	bool isSelected;
 public:
 	Box(int);
-	static Box* create(int boxType);
+	static Box* create(int boxType, float startingScale);
 	~Box();
 
 	virtual bool init() override;
@@ -56,13 +66,22 @@ public:
 	float GetVelocity() { return _verticalVelocity; };
 	void CheckPlatformCollisions(cocos2d::Sprite* collider);
 	void CheckWallCollisions(cocos2d::Sprite* collider);
+
 	void Flip();
+
+	void Land(cocos2d::Sprite* collider);
+	void Fall(float delta);
 
 	// Sprite
 	Sprite* GetSprite() { return _box; };
 	void SetSprite(Sprite* newSprite) { _box = newSprite; this->addChild(_box); };
 
-	void Land(cocos2d::Sprite* collider);
-	void Fall(float delta);
+	// Scaling
+	void SetTotalDiff(float totalDiffNew);
+	void Selected();
+	void Deselected();
+	void SetStartingScale(float startingScale);
+	void Collision(cocos2d::Touch* touch);
+	void Scaling();
 };
 

@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 
-class ScalingObject : public Node
+class ScalingObject
 {
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer

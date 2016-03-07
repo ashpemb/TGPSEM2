@@ -14,13 +14,16 @@
         <LuaEncryptSign Value="" />
         <Android_PackageName Value="org.cocos.TGPSEM2" />
         <AndroidkeyStore Value="" />
-        <AndroidVersion Value="android-20" />
+        <AndroidVersion Value="android-22" />
         <iOS_Target Value="TGPSEM2-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="Android" />
         <RunPlatform Value="None" />
         <FrameworkVersion Value="cocos2d-x-3.9" />
         <IsDebugKeystore Value="True" />
+        <KeystorePassword Value="" />
+        <KeystoreAliasName Value="" />
+        <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
       </Value>

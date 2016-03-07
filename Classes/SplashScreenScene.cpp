@@ -51,15 +51,6 @@ bool SplashScreenScene::init()
 	addChild(rootNode);
 
 	this->scheduleUpdate();
-	//this->scheduleOnce(schedule_selector(SplashScreenScene::TimeMainMenu), 2.5f);
-
-	////BACKGROUND (Taken from Menu.cpp)
-	////_background = (Sprite*)rootNode->getChildByName("Background");
-	//_background = Sprite::create("Test.png");
-	//_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
-	//_background->setScaleX(winSize.width / _background->getContentSize().width);
-	//_background->setScaleY(winSize.height / _background->getContentSize().height);
-	//_background->setLocalZOrder(-1);
 
 	// SPRITE SETUP
 	_vikingLogo = Sprite::create("SplashScreen/VikingLogo.png");
@@ -67,7 +58,6 @@ bool SplashScreenScene::init()
 	_vikingLogo->setScaleX((winSize.width / _vikingLogo->getContentSize().width) * 0.9);
 	_vikingLogo->setScaleY(_vikingLogo->getScaleX());
 	_vikingLogo->setOpacity(0);
-	//_vikingLogo->setCascadeOpacityEnabled(true);
 
 	// DAVE SETUP
 	_david = Sprite::create("SplashScreen/David.png");

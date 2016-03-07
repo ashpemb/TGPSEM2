@@ -4,9 +4,15 @@
 Box::Box(int boxType)
 {
 	_boxType = boxType;
+	scaler1 = 1;
+	scaler2 = 2;
+	scaler3 = 3;
+	scaler = 1;
+	unselect = 0;
+	isSelected = false;
 }
 
-Box* Box::create(int boxType)
+Box* Box::create(int boxType, float startingScale)
 {
 	Box* box = new Box(boxType);
 	if (!box->init())
@@ -17,6 +23,7 @@ Box* Box::create(int boxType)
 	box->SetGravity(-3.81f);
 	box->SetOrientationVertical(true);
 	box->SetOrientationHorizontal(false);
+	box->SetStartingScale(startingScale);
 	box->autorelease();
 
 	return box;
@@ -44,13 +51,85 @@ void Box::update(float delta)
 		if (_fallingHorizontal || _fallingVertical) {
 			Fall(delta);
 		}
+
+		Scaling();
 	}
 
-	float TotalDiff = TouchManager().totalDiff;
+	//float TotalDiff = TouchManager().totalDiff;
 
-	ScalingObject().update(delta, TotalDiff);
+	//ScalingObject().update(delta, TotalDiff);
 
 	// Add box movement when pushed by player
+}
+
+void Box::SetStartingScale(float startingScale)
+{
+	scaler2 = startingScale;
+	scaler3 = startingScale*1.5f;
+	scaler1 = startingScale*0.5f;
+}
+
+void Box::Scaling()
+{
+	if (isSelected == true)
+	{
+		if (totalDiff > 10 && totalDiff < 200)
+		{
+			_box->setScale(scaler1);
+			scaler = scaler1;
+		}
+		else if (totalDiff > 200 && totalDiff < 500)
+		{
+			_box->setScale(scaler2);
+			scaler = scaler2;
+		}
+		else if (totalDiff > 500)
+		{
+			_box->setScale(scaler3);
+			scaler = scaler3;
+		}
+		Selected();
+	}
+	else
+	{
+		Deselected();
+	}
+}
+
+void Box::SetTotalDiff(float totalDiffNew)
+{
+	totalDiff = totalDiffNew;
+}
+
+void Box::Selected()
+{
+	_box->setOpacity(75);
+}
+
+void Box::Deselected()
+{
+	_box->setOpacity(255);
+}
+
+void Box::Collision(cocos2d::Touch* touch)
+{
+	cocos2d::Vec2 p = touch->getLocation();
+	cocos2d::Rect rect = _box->getBoundingBox();
+
+	if (rect.containsPoint(p))
+	{
+		unselect = 0;
+		isSelected = true;
+	}
+	else if (isSelected == true)
+	{
+		unselect = unselect + 1;
+		if (unselect > 2)
+		{
+			isSelected = false;
+			unselect = 0;
+		}
+	}
 }
 
 void Box::SetGravity(float gravity)
