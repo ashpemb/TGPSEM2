@@ -12,6 +12,7 @@ private:
 	bool isGameLive;
 	bool isGamePaused;
 	bool isGameMuted;
+	bool isObjectBeingTouched;
 	int level;
 	int time;
 	int mil;
@@ -32,6 +33,8 @@ public:
 	bool getIsGamePaused();
 	void setIsGameMuted(bool);
 	bool getIsGameMuted();
+	void setIsObjectTouched(bool);
+	bool getIsObjectTouched();
 	void setCurrentLevel(int level);
 	int getCurrentLevel();
 	void startLevelTimer();
