@@ -12,6 +12,7 @@
 #include "Box.h"
 #include "Switch.h"
 #include "TouchManager.h"
+#include "Platforms.h"
 
 USING_NS_CC;
 
@@ -33,6 +34,8 @@ private:
 	std::vector<cocos2d::Sprite*> _woodenSprites;
 	std::vector<cocos2d::Sprite*> _metalSprites;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
+	std::vector<cocos2d::Sprite*> _movingPlatformVertSprites;
+	std::vector<cocos2d::Sprite*> _movingPlatformHorizSprites;
 
 	// BACKGROUND
 	Sprite*	_background1;
@@ -69,6 +72,8 @@ private:
 	std::vector<Box*> _woodBoxes;
 	std::vector<Box*> _metalBoxes;
 	std::vector<Switch*> _switches;
+	std::vector<Platforms*> _movingPlatformsVert;
+	std::vector<Platforms*> _movingPlatformsHoriz;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
@@ -81,6 +86,8 @@ private:
 	TouchManager* touchMGR;
 	bool _inTouch;
 	cocos2d::Vec2 _initialTouchPos;
+	bool isObjectTouched;
+
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
 	static SceneManager* createScene(int level);

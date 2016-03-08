@@ -52,6 +52,16 @@ bool GameManager::getIsGameMuted()
 	return isGameMuted;
 }
 
+void GameManager::setIsObjectTouched(bool touched)
+{
+	isObjectBeingTouched = touched;
+}
+
+bool GameManager::getIsObjectTouched()
+{
+	return isObjectBeingTouched;
+}
+
 void GameManager::startLevelTimer()
 {
 	mil = 0;

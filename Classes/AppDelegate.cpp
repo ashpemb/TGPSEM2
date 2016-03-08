@@ -26,7 +26,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("TGPSEM2", Rect(0, 0, 2048, 1536));
+        glview = GLViewImpl::createWithRect("TGPSEM2", Rect(0, 0, 1280, 960));
         director->setOpenGLView(glview);
     }
 
