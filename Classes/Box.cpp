@@ -68,7 +68,6 @@ void Box::Scaling()
 {
 	if (isSelected == true)
 	{
-		totalDiff = rand() % 800;
 		if (totalDiff > 10 && totalDiff < 200)
 		{
 			_box->setScale(scaler1);
