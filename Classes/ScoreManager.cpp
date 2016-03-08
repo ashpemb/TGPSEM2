@@ -62,7 +62,7 @@ void ScoreManager::storeHighscoreToFile(int level, int star, std::string time)
 			for (int i = 0; i < indexTagEnd; i++) {
 				firstHalf += fileContents[i];
 			}
-			for (int i2 = indexTagEnd; i2 < fileContents.size(); i2++) {
+			for (unsigned int i2 = indexTagEnd; i2 < fileContents.size(); i2++) {
 				secondHalf += fileContents[i2];
 			}
 
@@ -78,7 +78,7 @@ void ScoreManager::storeHighscoreToFile(int level, int star, std::string time)
 			std::string levelTagString = "<level_" + StringUtils::format("%d", level) + ">";
 
 			// Add entire document string up to the end of the level tag
-			for (int i = 0; i < (indexTagStart + levelTagString.length()); i++) {
+			for (unsigned int i = 0; i < (indexTagStart + levelTagString.length()); i++) {
 				firstHalf += fileContents[i];
 			}
 
@@ -89,7 +89,7 @@ void ScoreManager::storeHighscoreToFile(int level, int star, std::string time)
 			fileContents += "\n\t\t<time>" + time + "</time>";
 			fileContents += "\n\t";
 
-			for (int i2 = indexTagEnd; i2 < fileContents.size(); i2++) {
+			for (unsigned int i2 = indexTagEnd; i2 < fileContents.size(); i2++) {
 				secondHalf += fileContents[i2];
 			}
 

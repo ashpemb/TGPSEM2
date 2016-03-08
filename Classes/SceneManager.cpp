@@ -76,12 +76,14 @@ bool SceneManager::init()
 	// CLASS SETUP
 	SetupClasses();
 
+
 	return true;
 		
 }
 
 void SceneManager::SetupTouches()
 {
+	// SINGLE TOUCHES
 	//Set up a touch listener.
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -93,6 +95,18 @@ void SceneManager::SetupTouches()
 
 	//Add our touch listener to event listener list.
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+	//Setting up Multi Touch Listener
+	touchMGR = new TouchManager;
+	auto touchesListener = EventListenerTouchAllAtOnce::create();
+
+	touchesListener->onTouchesBegan = CC_CALLBACK_2(TouchManager::onTouchesBegan, touchMGR);
+	touchesListener->onTouchesEnded = CC_CALLBACK_2(TouchManager::onTouchesEnded, touchMGR);
+	touchesListener->onTouchesMoved = CC_CALLBACK_2(TouchManager::onTouchesMoved, touchMGR);
+	touchesListener->onTouchesCancelled = CC_CALLBACK_2(TouchManager::onTouchesCancelled, touchMGR);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchesListener, this);
+	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchesListener, this);
 }
 
 void SceneManager::SetupTimer(Node* root)
@@ -258,6 +272,7 @@ void SceneManager::SetupHighlights(Node* root)
 	// Get screen size
 	auto winSize = Director::getInstance()->getVisibleSize();
 
+	// SETUP SPRITES
 	_topHighlight = Sprite::create("highlight.png");
 	_topHighlight->setPosition(Vec2(winSize.width*0.5f, winSize.height - (_topHighlight->getContentSize().height / 2)));
 	_topHighlight->setScaleX(winSize.width);
@@ -265,7 +280,7 @@ void SceneManager::SetupHighlights(Node* root)
 	_topHighlight->setLocalZOrder(3);
 
 	_rightHighlight = Sprite::create("highlight.png");
-	_rightHighlight->setPosition(Vec2(0.0f - (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
+	_rightHighlight->setPosition(Vec2(winSize.width - (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
 	_rightHighlight->setRotation(90.0f);
 	_rightHighlight->setScaleX(winSize.height);
 	_rightHighlight->setOpacity(0);
@@ -279,12 +294,25 @@ void SceneManager::SetupHighlights(Node* root)
 	_bottomHighlight->setLocalZOrder(3);
 
 	_leftHighlight = Sprite::create("highlight.png");
-	_leftHighlight->setPosition(Vec2(winSize.width + (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
+	_leftHighlight->setPosition(Vec2(0.0f + (_rightHighlight->getContentSize().height / 2), winSize.height * 0.5f));
 	_leftHighlight->setRotation(270.0f);
 	_leftHighlight->setScaleX(winSize.height);
 	_leftHighlight->setOpacity(0);
 	_leftHighlight->setLocalZOrder(3);
 
+	// SETUP TIMERS
+	_topHighlightTime = 1.0f;
+	_rightHighlightTime = 1.0f;
+	_bottomHighlightTime = 1.0f;
+	_leftHighlightTime = 1.0f;
+
+	// SETUP ENABLES
+	_topHighlightEnabled = false;
+	_rightHighlightEnabled = false;
+	_bottomHighlightEnabled = false;
+	_leftHighlightEnabled = false;
+
+	// ADD TO THIS
 	this->addChild(_topHighlight);
 	this->addChild(_leftHighlight);
 	this->addChild(_bottomHighlight);
@@ -300,8 +328,8 @@ void SceneManager::SetupClasses()
 	addChild(_player);
 
 	// WOODEN CRATES
-	for (int i = 0; i < _woodenSprites.size(); i++) {
-		Box* box = Box::create(1);
+	for (unsigned int i = 0; i < _woodenSprites.size(); i++) {
+		Box* box = Box::create(1, 2);
 		box->setName("Crate_Wooden_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_woodenSprites[i]);
 
@@ -311,8 +339,8 @@ void SceneManager::SetupClasses()
 	}
 
 	// METAL CRATES
-	for (int i = 0; i < _metalSprites.size(); i++) {
-		Box* box = Box::create(2);
+	for (unsigned int i = 0; i < _metalSprites.size(); i++) {
+		Box* box = Box::create(2, 2);
 		box->setName("Crate_Metal_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_metalSprites[i]);
 
@@ -322,7 +350,7 @@ void SceneManager::SetupClasses()
 	}
 
 	// SWITCHES
-	for (int i = 0; i < _gravSwitches.size(); i++) {
+	for (unsigned int i = 0; i < _gravSwitches.size(); i++) {
 		Switch* gravSwitch = Switch::create();
 		gravSwitch->setName("Switch_" + StringUtils::format("%d", i + 1));
 		gravSwitch->SetSprite(_gravSwitches[i]);
@@ -389,12 +417,16 @@ void SceneManager::update(float delta)
 			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 
 			CheckCollisions();
-			CheckNear();
+			CheckNear(delta);
 			IsPlayerInBounds();
+
+			// Update highlights
+			if (_topHighlightEnabled) {
+
+			}
 		}
 		else
 		{
-
 			//"Gameover shit added". Ya taffer.
 			//GameManager::sharedGameManager()->setIsGamePaused(false);
 			GameManager::sharedGameManager()->setIsGameLive(false);
@@ -407,26 +439,26 @@ void SceneManager::update(float delta)
 
 void SceneManager::CheckCollisions()
 {
-	for (int i = 0; i < _platforms.size(); i++) {
+	for (unsigned int i = 0; i < _platforms.size(); i++) {
 		_player->CheckPlatformCollisions(_platforms[i]);
 
-		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
 			_woodBoxes[i2]->CheckPlatformCollisions(_platforms[i]);
 		}
 
-		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckPlatformCollisions(_platforms[i]);
 		}
 	}
 
-	for (int i = 0; i < _walls.size(); i++) {
+	for (unsigned int i = 0; i < _walls.size(); i++) {
 		_player->CheckWallCollisions(_walls[i]);
 
-		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
 			_woodBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
 
-		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
 	}
@@ -460,6 +492,7 @@ void SceneManager::CheckCollisions()
 bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 {
 	cocos2d::log("touch began");
+
 	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
 		//Store the coordinates of where this touch began.
 		Point touchPos = touch->getLocationInView();
@@ -469,6 +502,23 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 		Rect currTouchZone;
 		_initialTouchPos = touchPos;
 		_inTouch = true;
+
+		if (_woodBoxes.size() > 0)
+		{
+			for (int i = 0; i < _woodBoxes.size(); i++)
+			{
+				_woodBoxes[i]->Collision(touch);
+				_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+			}
+		}
+		if (_metalBoxes.size() > 0)
+		{
+			for (int i = 0; i < _metalBoxes.size(); i++)
+			{
+				_metalBoxes[i]->Collision(touch);
+				_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+			}
+		}
 
 		// Touch detection for horizontal moving platforms
 		for (int i = 0; i < _movingPlatformsHoriz.size(); i++)
@@ -569,7 +619,7 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	// Find what switch has been clicked
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
-	for (int i = 0; i < _switches.size(); i++) {
+	for (unsigned int i = 0; i < _switches.size(); i++) {
 		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
 			_flipped[i] = !_flipped[i];
 			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
@@ -596,46 +646,51 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 	}
 }
 
-void SceneManager::CheckNear()
+void SceneManager::CheckNear(float delta)
 {
-	bool highLightActive = false;
+	bool inProximty = false;
 
-	for (int i = 0; i < _switches.size(); i++) {
+	for (unsigned int i = 0; i < _switches.size(); i++) {
 		// Player needs to be near the switch to press
 		float scaledWidth = _switches.at(i)->GetSprite()->getContentSize().width * _switches.at(i)->GetSprite()->getScaleX();
 		float scaledHeight = _switches.at(i)->GetSprite()->getContentSize().height * _switches.at(i)->GetSprite()->getScaleY();
 
 		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _switches.at(i)->GetSprite()->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
 			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _switches.at(i)->GetSprite()->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
-			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _switches.at(i)->GetSprite()->getPositionY() + (scaledHeight / 2)
-			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _switches.at(i)->GetSprite()->getPositionY() - (scaledHeight / 2))
+			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _switches.at(i)->GetSprite()->getPositionY() + (scaledHeight / 2) + (_player->GetSprite()->getContentSize().height / 2) + 20
+			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _switches.at(i)->GetSprite()->getPositionY() - (scaledHeight / 2) - (_player->GetSprite()->getContentSize().height / 2) - 20)
 		{
 			//_switches.at(i)->GetSprite()->setEnabled(true);
 			_switches.at(i)->GetSprite()->setEnabled(true);
 
-			if (!highLightActive) {
+			inProximty = true;
 
-				highLightActive = true;
-
-				if (_switches.at(i)->GetOrientation() == 0) {
-					if (_topHighlight->getOpacity() <= 0) {
-						_topHighlight->runAction(FadeIn::create(1.0f));
-					}
+			if (_switches.at(i)->GetOrientation() == 0) {	// Down
+				if (!_bottomHighlightEnabled) {
+					_bottomHighlightTime = 1.0f;
+					_bottomHighlight->runAction(FadeIn::create(_bottomHighlightTime));
+					_bottomHighlightEnabled = true;
 				}
-				else if (_switches.at(i)->GetOrientation() == 1) {
-					if (!_leftHighlight->getOpacity() <= 0) {
-						_leftHighlight->runAction(FadeIn::create(1.0f));
-					}
+			}
+			else if (_switches.at(i)->GetOrientation() == 1) {	// Left
+				if (!_leftHighlightEnabled) {
+					_leftHighlightTime = 1.0f;
+					_leftHighlight->runAction(FadeIn::create(_leftHighlightTime));
+					_leftHighlightEnabled = true;
 				}
-				else if (_switches.at(i)->GetOrientation() == 2) {
-					if (!_bottomHighlight->getOpacity() <= 0) {
-						_bottomHighlight->runAction(FadeIn::create(1.0f));
-					}
+			}
+			else if (_switches.at(i)->GetOrientation() == 2) {	// Up
+				if (!_topHighlightEnabled) {
+					_topHighlightTime = 1.0f;
+					_topHighlight->runAction(FadeIn::create(_topHighlightTime));
+					_topHighlightEnabled = true;
 				}
-				else if (_switches.at(i)->GetOrientation() == 3) {
-					if (!_rightHighlight->getOpacity() <= 0) {
-						_rightHighlight->runAction(FadeIn::create(1.0f));
-					}
+			}
+			else if (_switches.at(i)->GetOrientation() == 3) {	// Right
+				if (!_rightHighlightEnabled) {
+					_rightHighlightTime = 1.0f;
+					_rightHighlight->runAction(FadeIn::create(_rightHighlightTime));
+					_rightHighlightEnabled = true;
 				}
 			}
 		}
@@ -644,32 +699,47 @@ void SceneManager::CheckNear()
 		}
 	}
 
-	if (!highLightActive) {
-		// Top
-		if (_topHighlight->getOpacity() == 255) {
+	if (_topHighlightEnabled) {
+		if (_topHighlightTime > 0.0f) {
+			_topHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_topHighlight->runAction(FadeOut::create(1.0f));
+			_topHighlightEnabled = false;
 		}
-
-		// Right
-		if (_rightHighlight->getOpacity() == 255) {
+	}
+	else if (_rightHighlightEnabled) {
+		if (_rightHighlightTime > 0.0f) {
+			_rightHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_rightHighlight->runAction(FadeOut::create(1.0f));
+			_rightHighlightEnabled = false;
 		}
-
-		// Bottom
-		if (_bottomHighlight->getOpacity() == 255) {
+	}
+	else if (_bottomHighlightEnabled) {
+		if (_bottomHighlightTime > 0.0f) {
+			_bottomHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_bottomHighlight->runAction(FadeOut::create(1.0f));
+			_bottomHighlightEnabled = false;
 		}
-
-		// Left
-		if (_leftHighlight->getOpacity() == 255) {
+	}
+	else if (_leftHighlightEnabled) {
+		if (_leftHighlightTime > 0.0f) {
+			_leftHighlightTime -= delta;
+		}
+		else if (!inProximty) {
 			_leftHighlight->runAction(FadeOut::create(1.0f));
+			_leftHighlightEnabled = false;
 		}
 	}
 }
 
 void SceneManager::CheckNearDoor()
 {
-	for (int i = 0; i < _exit.size(); i++) {
+	for (unsigned int i = 0; i < _exit.size(); i++) {
 		float scaledWidth = _exit[i]->getContentSize().width * _exit[i]->getScaleX();
 		float scaledHeight = _exit[i]->getContentSize().height * _exit[i]->getScaleY();
 
@@ -678,7 +748,6 @@ void SceneManager::CheckNearDoor()
 			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _exit[i]->getPositionY() + (scaledHeight / 2)
 			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _exit[i]->getPositionY() - (scaledHeight / 2))
 		{
-			//_switches.at(i)->GetSprite()->setEnabled(true);
 			_exit[i]->setEnabled(true);
 		}
 		else {
@@ -695,11 +764,11 @@ void SceneManager::FlipGravity(int direction)
 	if (direction == 0) {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
 		}
 
@@ -707,7 +776,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(true);
 		_player->SetFallingHorizontal(false);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(-3.81f);
 			_player->SetFallingVertical(true);
 			_player->SetFallingHorizontal(false);
@@ -717,11 +786,11 @@ void SceneManager::FlipGravity(int direction)
 	else if (direction == 1) {
 		_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 0.5f);
 		}
 
@@ -729,7 +798,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(false);
 		_player->SetFallingHorizontal(true);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(-3.81f);
 			_player->SetFallingVertical(false);
 			_player->SetFallingHorizontal(true);
@@ -739,11 +808,11 @@ void SceneManager::FlipGravity(int direction)
 	else if (direction == 2) {
 		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
 		}
 
@@ -751,7 +820,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(true);
 		_player->SetFallingHorizontal(false);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(3.81f);
 			_player->SetFallingVertical(true);
 			_player->SetFallingHorizontal(false);
@@ -761,11 +830,11 @@ void SceneManager::FlipGravity(int direction)
 	else if (direction == 3) {
 		_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
 		}
 
-		for (int i = 0; i < _metalBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
 			_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
 		}
 
@@ -773,7 +842,7 @@ void SceneManager::FlipGravity(int direction)
 		_player->SetFallingVertical(false);
 		_player->SetFallingHorizontal(true);
 
-		for (int i = 0; i < _woodBoxes.size(); i++) {
+		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
 			_woodBoxes[i]->SetGravity(3.81f);
 			_player->SetFallingVertical(false);
 			_player->SetFallingHorizontal(true);
@@ -807,19 +876,19 @@ SceneManager::~SceneManager()
 	delete _blackTransparency;
 	delete auEngine;
 
-	for (int i = 0; i < _platforms.size(); i++) {
+	for (unsigned int i = 0; i < _platforms.size(); i++) {
 		delete _platforms[i];
 	}
 
 	_platforms.clear();
 
-	for (int i = 0; i < _walls.size(); i++) {
+	for (unsigned int i = 0; i < _walls.size(); i++) {
 		delete _walls[i];
 	}
 
 	_walls.clear();
 
-	for (int i = 0; i < _gravSwitches.size(); i++) {
+	for (unsigned int i = 0; i < _gravSwitches.size(); i++) {
 		delete _switches.at(i)->GetSprite();
 	}
 
