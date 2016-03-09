@@ -54,6 +54,7 @@ void Exit::CheckNear(cocos2d::Sprite* player)
 		&& player->getPositionY() + (player->getContentSize().height / 2) > _exit->getPositionY() - (scaledHeight / 2))
 	{
 		_exit->setEnabled(true);
+
 	}
 	else {
 		_exit->setEnabled(false);

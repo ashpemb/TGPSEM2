@@ -39,6 +39,15 @@
         <Project Name="SplashScreen.csd" Type="Scene" />
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
+        <Image Name="Alex.png" />
+        <Image Name="Ash.png" />
+        <Image Name="David.png" />
+        <Image Name="HVLone.png" />
+        <Image Name="James.png" />
+        <Image Name="Josh.png" />
+        <Image Name="Matt.png" />
+        <Image Name="VikingLogo.png" />
+        <Project Name="GameWin.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
