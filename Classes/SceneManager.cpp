@@ -51,6 +51,7 @@ bool SceneManager::init()
 	GameManager::sharedGameManager()->setIsGameLive(true);
 	GameManager::sharedGameManager()->setIsGamePaused(true);
 	GameManager::sharedGameManager()->setIsObjectTouched(false);
+	GameManager::sharedGameManager()->setCurrentLevel(_level);
 
 	// TOUCH SETUP
 	SetupTouches();
@@ -216,7 +217,7 @@ void SceneManager::SetupSprites(Node* root)
 	i = 1;
 	while ((exit = static_cast<ui::CheckBox*>(root->getChildByName("Exit_" + StringUtils::format("%d", i)))) != nullptr) {
 
-		exit->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		exit->addTouchEventListener(CC_CALLBACK_2(SceneManager::DoorPressed, this));
 		_exit.push_back(exit);
 
 		i++;
@@ -418,11 +419,13 @@ void SceneManager::update(float delta)
 
 			CheckCollisions();
 			CheckNear(delta);
+			CheckNearDoor(delta);
 			IsPlayerInBounds();
 
 			// Update highlights
 			if (_topHighlightEnabled) {
-
+				// Apparently nothing happens here
+				// First person to see this, replace these comments with your name and best joke
 			}
 		}
 		else
@@ -430,7 +433,6 @@ void SceneManager::update(float delta)
 			//"Gameover shit added". Ya taffer.
 			//GameManager::sharedGameManager()->setIsGamePaused(false);
 			GameManager::sharedGameManager()->setIsGameLive(false);
-			GameManager::sharedGameManager()->setCurrentLevel(_level);
 			auto scene = GameOverScene::createScene();
 			Director::getInstance()->replaceScene(TransitionFade::create(0.0f, scene));
 		}
@@ -633,6 +635,19 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	}
 }
 
+void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (unsigned int i = 0; i < _exit.size(); i++) {
+		if (findCheckBox->getName() == _exit.at(i)->getName()) {
+			auto scene = GameWinScene::createScene();
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+		}
+	}
+}
+
 void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CCLOG("In Touch! %d", type);
@@ -737,7 +752,7 @@ void SceneManager::CheckNear(float delta)
 	}
 }
 
-void SceneManager::CheckNearDoor()
+void SceneManager::CheckNearDoor(float delta)
 {
 	for (unsigned int i = 0; i < _exit.size(); i++) {
 		float scaledWidth = _exit[i]->getContentSize().width * _exit[i]->getScaleX();
@@ -748,10 +763,14 @@ void SceneManager::CheckNearDoor()
 			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _exit[i]->getPositionY() + (scaledHeight / 2)
 			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _exit[i]->getPositionY() - (scaledHeight / 2))
 		{
-			_exit[i]->setEnabled(true);
+			if (!_exit[i]->isEnabled()) {
+				_exit[i]->setEnabled(true);
+			}
 		}
 		else {
-			_exit[i]->setEnabled(false);
+			if (_exit[i]->isEnabled()) {
+				_exit[i]->setEnabled(false);
+			}
 		}
 	}
 }

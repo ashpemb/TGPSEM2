@@ -6,6 +6,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "SimpleAudioEngine.h"
 #include "AudioEngine.h"
+#include "ScoreManager.h"
 
 class GameWinScene : public cocos2d::Layer
 {
@@ -47,6 +48,8 @@ private:
 	cocos2d::ui::Button*    _nextLevelButton;
 	cocos2d::ui::Button*    _retryButton;
 	cocos2d::ui::Button*    _mainMenuButton;
+
+	cocos2d::ui::Text*	_timeLabel;
 
 	AudioEngine*			auEngine;
 	bool muted;

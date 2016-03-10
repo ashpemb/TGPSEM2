@@ -100,22 +100,62 @@ bool GameWinScene::init()
 	_time = Sprite::create("Time.png");
 	_time->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.45f));
 
+	int mil = GameManager::sharedGameManager()->getMil();
+	int sec = GameManager::sharedGameManager()->getSec();
+	int min = GameManager::sharedGameManager()->getMin();
+
+	_timeLabel = ui::Text::create();
+	_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
+	_timeLabel->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.3));
+	_timeLabel->setFontSize(100.0f);
+
 	// Star
-	_star1 = Sprite::create("Star.png");
-	_star1->setPosition(Vec2(winSize.width*0.15f, winSize.height*0.70f));
+	int awardedStars = ScoreManager::sharedScoreManager()->getDefaultStarRating(GameManager::sharedGameManager()->getCurrentLevel());
 
-	_star2 = Sprite::create("Star.png");
-	_star2->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.70f));
+	if (awardedStars == 3) {
+		_star1 = Sprite::create("Star.png");
+		_star1->setPosition(Vec2(winSize.width*0.15f, winSize.height*0.70f));
 
-	_star3 = Sprite::create("Star.png");
-	_star3->setPosition(Vec2(winSize.width*0.85f, winSize.height*0.70f));
+		_star2 = Sprite::create("Star.png");
+		_star2->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.70f));
 
-	// Star Dis
-	_starDis = Sprite::create("Star Dis Trans.png");
-	_starDis->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
+		_star3 = Sprite::create("Star.png");
+		_star3->setPosition(Vec2(winSize.width*0.85f, winSize.height*0.70f));
+	}
+	else if (awardedStars == 2) {
+		_star1 = Sprite::create("Star.png");
+		_star1->setPosition(Vec2(winSize.width*0.15f, winSize.height*0.70f));
+
+		_star2 = Sprite::create("Star.png");
+		_star2->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.70f));
+
+		_star3 = Sprite::create("Star Dis Trans.png");
+		_star3->setPosition(Vec2(winSize.width*0.85f, winSize.height*0.70f));
+	}
+	else if (awardedStars == 1) {
+		_star1 = Sprite::create("Star.png");
+		_star1->setPosition(Vec2(winSize.width*0.15f, winSize.height*0.70f));
+
+		_star2 = Sprite::create("Star Dis Trans.png");
+		_star2->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.70f));
+
+		_star3 = Sprite::create("Star Dis Trans.png");
+		_star3->setPosition(Vec2(winSize.width*0.85f, winSize.height*0.70f));
+	}
+	else if (awardedStars == 0) {
+		_star1 = Sprite::create("Star Dis Trans.png");
+		_star1->setPosition(Vec2(winSize.width*0.15f, winSize.height*0.70f));
+
+		_star2 = Sprite::create("Star Dis Trans.png");
+		_star2->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.70f));
+
+		_star3 = Sprite::create("Star Dis Trans.png");
+		_star3->setPosition(Vec2(winSize.width*0.85f, winSize.height*0.70f));
+	}
 
 	this->addChild(_rating);
 	this->addChild(_time);
+	this->addChild(_timeLabel);
 	this->addChild(_star1);
 	this->addChild(_star2);
 	this->addChild(_star3);

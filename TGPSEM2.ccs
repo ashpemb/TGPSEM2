@@ -48,6 +48,9 @@
         <Image Name="Matt.png" />
         <Image Name="VikingLogo.png" />
         <Project Name="GameWin.csd" Type="Scene" />
+        <Folder Name="LevelData">
+          <File Name="Level_1.xml" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

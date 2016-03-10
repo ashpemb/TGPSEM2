@@ -9,6 +9,7 @@
 #include "GameManager.h"
 #include "AudioEngine.h"
 #include "GameOverScene.h"
+#include "GameWinScene.h"
 #include "Box.h"
 #include "Switch.h"
 #include "TouchManager.h"
@@ -88,6 +89,7 @@ private:
 	cocos2d::Vec2 _initialTouchPos;
 	bool isObjectTouched;
 
+
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
 	static SceneManager* createScene(int level);
@@ -110,7 +112,7 @@ public:
 	void update(float delta);
 	void ScheduleScore(float delta);
 	void CheckNear(float delta);
-	void CheckNearDoor();
+	void CheckNearDoor(float delta);
 	void IsPlayerInBounds();
 
 	// implement the "static create()" method manually
@@ -125,6 +127,7 @@ public:
 	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 
 };

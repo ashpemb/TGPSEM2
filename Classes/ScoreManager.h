@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "GameManager.h"
 
 using namespace cocos2d;
 
@@ -25,7 +26,9 @@ public:
 
 	void compareScoreToHighscore();
 
-	void storeHighscoreToFile(int level, int star, std::string time);
+	void storeHighscoreToFile(int level, int star, int time);
 	int getStarFromFile(int level);
 	std::string getTimeFromFile(int level);
+
+	int getDefaultStarRating(int level);
 };
