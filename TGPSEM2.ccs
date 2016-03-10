@@ -39,6 +39,14 @@
         <Project Name="SplashScreen.csd" Type="Scene" />
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
+        <Image Name="buttondown.png" />
+        <Image Name="buttondownclose.png" />
+        <Image Name="buttonleft.png" />
+        <Image Name="buttonleftclose.png" />
+        <Image Name="buttonright.png" />
+        <Image Name="buttonrightclose.png" />
+        <Image Name="buttonup.png" />
+        <Image Name="buttonupclose.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
