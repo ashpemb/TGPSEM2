@@ -777,96 +777,370 @@ void SceneManager::CheckNearDoor(float delta)
 
 void SceneManager::FlipGravity(int direction)
 {
+	int previousDirection = _gravityOrientation;
 	_gravityOrientation = direction;
 
 	// Handle DOWN gravity
-	if (direction == 0) {
-		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+	if (previousDirection == 0) {
+		if (direction == 1) { // Left
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			_player->SetGravity(-3.81f);
+			_player->SetFallingVertical(false);
+			_player->SetFallingHorizontal(true);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(-3.81f);
+				_woodBoxes[i]->SetFallingVertical(false);
+				_woodBoxes[i]->SetFallingHorizontal(true);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(-3.81f);
+				_metalBoxes[i]->SetFallingVertical(false);
+				_metalBoxes[i]->SetFallingHorizontal(true);
+			}
 		}
+		else if (direction == 2) { // Up
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
 
-		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
-			_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
-		}
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+			}
 
-		_player->SetGravity(-3.81f);
-		_player->SetFallingVertical(true);
-		_player->SetFallingHorizontal(false);
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+			}
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->SetGravity(-3.81f);
+			_player->SetGravity(3.81f);
 			_player->SetFallingVertical(true);
 			_player->SetFallingHorizontal(false);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(3.81f);
+				_woodBoxes[i]->SetFallingVertical(true);
+				_woodBoxes[i]->SetFallingHorizontal(false);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(3.81f);
+				_metalBoxes[i]->SetFallingVertical(true);
+				_metalBoxes[i]->SetFallingHorizontal(false);
+			}
+		}
+		else if (direction == 3) { // Right
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
+
+			_player->SetGravity(3.81f);
+			_player->SetFallingVertical(false);
+			_player->SetFallingHorizontal(true);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(3.81f);
+				_woodBoxes[i]->SetFallingVertical(false);
+				_woodBoxes[i]->SetFallingHorizontal(true);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(3.81f);
+				_metalBoxes[i]->SetFallingVertical(false);
+				_metalBoxes[i]->SetFallingHorizontal(true);
+			}
 		}
 	}
 	// Handle LEFT gravity
-	else if (direction == 1) {
-		_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
+	else if (previousDirection == 1) {
+		if (direction == 0) { // Down
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
+
+			_player->SetGravity(-3.81f);
+			_player->SetFallingVertical(true);
+			_player->SetFallingHorizontal(false);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(-3.81f);
+				_woodBoxes[i]->SetFallingVertical(true);
+				_woodBoxes[i]->SetFallingHorizontal(false);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(-3.81f);
+				_metalBoxes[i]->SetFallingVertical(true);
+				_metalBoxes[i]->SetFallingHorizontal(false);
+			}
 		}
+		else if (direction == 2) { // Up
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
 
-		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
-			_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
+
+			_player->SetGravity(3.81f);
+			_player->SetFallingVertical(true);
+			_player->SetFallingHorizontal(false);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(3.81f);
+				_woodBoxes[i]->SetFallingVertical(true);
+				_woodBoxes[i]->SetFallingHorizontal(false);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(3.81f);
+				_metalBoxes[i]->SetFallingVertical(true);
+				_metalBoxes[i]->SetFallingHorizontal(false);
+			}
 		}
+		else if (direction == 3) { // Right
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
 
-		_player->SetGravity(-3.81f);
-		_player->SetFallingVertical(false);
-		_player->SetFallingHorizontal(true);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->SetGravity(-3.81f);
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 0.5f);
+			}
+
+			_player->SetGravity(3.81f);
 			_player->SetFallingVertical(false);
 			_player->SetFallingHorizontal(true);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(3.81f);
+				_woodBoxes[i]->SetFallingVertical(false);
+				_woodBoxes[i]->SetFallingHorizontal(true);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(3.81f);
+				_metalBoxes[i]->SetFallingVertical(false);
+				_metalBoxes[i]->SetFallingHorizontal(true);
+			}
 		}
 	}
 	// Handle UP gravity
-	else if (direction == 2) {
-		_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+	else if (previousDirection == 2) {
+		if (direction == 1) { // Left
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			_player->SetGravity(-3.81f);
+			_player->SetFallingVertical(false);
+			_player->SetFallingHorizontal(true);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(-3.81f);
+				_woodBoxes[i]->SetFallingVertical(false);
+				_woodBoxes[i]->SetFallingHorizontal(true);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(-3.81f);
+				_metalBoxes[i]->SetFallingVertical(false);
+				_metalBoxes[i]->SetFallingHorizontal(true);
+			}
 		}
+		else if (direction == 0) { // Down
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
 
-		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
-			_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
-		}
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+			}
 
-		_player->SetGravity(3.81f);
-		_player->SetFallingVertical(true);
-		_player->SetFallingHorizontal(false);
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+			}
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->SetGravity(3.81f);
+			_player->SetGravity(-3.81f);
 			_player->SetFallingVertical(true);
 			_player->SetFallingHorizontal(false);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(-3.81f);
+				_woodBoxes[i]->SetFallingVertical(true);
+				_woodBoxes[i]->SetFallingHorizontal(false);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(-3.81f);
+				_metalBoxes[i]->SetFallingVertical(true);
+				_metalBoxes[i]->SetFallingHorizontal(false);
+			}
+		}
+		else if (direction == 3) { // Right
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 1.0f);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() + 1.0f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() + 1.0f);
+			}
+
+			_player->SetGravity(3.81f);
+			_player->SetFallingVertical(false);
+			_player->SetFallingHorizontal(true);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(3.81f);
+				_woodBoxes[i]->SetFallingVertical(false);
+				_woodBoxes[i]->SetFallingHorizontal(true);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(3.81f);
+				_metalBoxes[i]->SetFallingVertical(false);
+				_metalBoxes[i]->SetFallingHorizontal(true);
+			}
 		}
 	}
 	// Handle RIGHT gravity
-	else if (direction == 3) {
-		_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
+	else if (previousDirection == 3) {
+		if (direction == 0) { // Down
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() - 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			_player->SetGravity(-3.81f);
+			_player->SetFallingVertical(true);
+			_player->SetFallingHorizontal(false);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(-3.81f);
+				_woodBoxes[i]->SetFallingVertical(true);
+				_woodBoxes[i]->SetFallingHorizontal(false);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(-3.81f);
+				_metalBoxes[i]->SetFallingVertical(true);
+				_metalBoxes[i]->SetFallingHorizontal(false);
+			}
 		}
+		else if (direction == 2) { // Up
+			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
-		for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
-			_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionY(_woodBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionY(_metalBoxes[i]->GetSprite()->getPositionY() + 0.5f);
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			_player->SetGravity(3.81f);
+			_player->SetFallingVertical(true);
+			_player->SetFallingHorizontal(false);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(3.81f);
+				_woodBoxes[i]->SetFallingVertical(true);
+				_woodBoxes[i]->SetFallingHorizontal(false);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(3.81f);
+				_metalBoxes[i]->SetFallingVertical(true);
+				_metalBoxes[i]->SetFallingHorizontal(false);
+			}
 		}
+		else if (direction == 3) { // Left
+			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
-		_player->SetGravity(3.81f);
-		_player->SetFallingVertical(false);
-		_player->SetFallingHorizontal(true);
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->GetSprite()->setPositionX(_woodBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
 
-		for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
-			_woodBoxes[i]->SetGravity(3.81f);
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->GetSprite()->setPositionX(_metalBoxes[i]->GetSprite()->getPositionX() - 0.5f);
+			}
+
+			_player->SetGravity(-3.81f);
 			_player->SetFallingVertical(false);
 			_player->SetFallingHorizontal(true);
+
+			for (unsigned int i = 0; i < _woodBoxes.size(); i++) {
+				_woodBoxes[i]->SetGravity(-3.81f);
+				_woodBoxes[i]->SetFallingVertical(false);
+				_woodBoxes[i]->SetFallingHorizontal(true);
+			}
+
+			for (unsigned int i = 0; i < _metalBoxes.size(); i++) {
+				_metalBoxes[i]->SetGravity(-3.81f);
+				_metalBoxes[i]->SetFallingVertical(false);
+				_metalBoxes[i]->SetFallingHorizontal(true);
+			}
 		}
 	}
+
 }
 
 void SceneManager::IsPlayerInBounds()
