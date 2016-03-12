@@ -39,8 +39,8 @@ private:
 	int unselect;
 	bool isSelected;
 public:
-	Box(int);
-	static Box* create(int boxType, float startingScale);
+	Box(int, float);
+	static Box* create(int boxType, float startingScale, float boxStartingWeight);
 	~Box();
 
 	virtual bool init() override;

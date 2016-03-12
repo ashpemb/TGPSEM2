@@ -364,7 +364,7 @@ void SceneManager::SetupClasses()
 
 	// WOODEN CRATES
 	for (unsigned int i = 0; i < _woodenSprites.size(); i++) {
-		Box* box = Box::create(1, 2);
+		Box* box = Box::create(1, 2, 1.0f);
 		box->setName("Crate_Wooden_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_woodenSprites[i]);
 
@@ -375,7 +375,7 @@ void SceneManager::SetupClasses()
 
 	// METAL CRATES
 	for (unsigned int i = 0; i < _metalSprites.size(); i++) {
-		Box* box = Box::create(2, 2);
+		Box* box = Box::create(2, 2, 1.0f);
 		box->setName("Crate_Metal_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_metalSprites[i]);
 

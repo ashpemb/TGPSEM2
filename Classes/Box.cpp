@@ -1,7 +1,7 @@
 #include "Box.h"
 
 
-Box::Box(int boxType)
+Box::Box(int boxType, float boxStartingWeight)
 {
 	_boxType = boxType;
 	scaler1 = 1;
@@ -10,12 +10,12 @@ Box::Box(int boxType)
 	scaler = 1;
 	unselect = 0;
 	isSelected = false;
-	_weight = 0.0f;
+	_weight = boxStartingWeight;
 }
 
-Box* Box::create(int boxType, float startingScale)
+Box* Box::create(int boxType, float startingScale, float boxStartingWeight)
 {
-	Box* box = new Box(boxType);
+	Box* box = new Box(boxType, boxStartingWeight);
 	if (!box->init())
 	{
 		return nullptr;
@@ -53,8 +53,8 @@ void Box::update(float delta)
 			Fall(delta);
 		}
 
-		_box->setScale(scaler2);
-		_weight = 2.0f;
+		//_box->setScale(scaler2);
+		//_weight = 2.0f;
 		Scaling();
 	}
 	// Add box movement when pushed by player
@@ -64,7 +64,7 @@ void Box::SetStartingScale(float startingScale)
 {
 	scaler2 = startingScale;
 	scaler3 = startingScale*1.5f;
-	scaler1 = startingScale;
+	scaler1 = startingScale*0.5f;
 }
 
 void Box::Scaling()
