@@ -173,7 +173,7 @@ void FloorButton::CheckBoxCollisions(Box* collider)
 				&& GetSprite()->getPositionY() - (scaledButtonHeight / 2) < collider->GetSprite()->getPositionY() + (scaledBoxHeight / 2)
 				&& GetSprite()->getPositionY() + (scaledButtonHeight / 2) > collider->GetSprite()->getPositionY() - (scaledBoxHeight / 2))
 			{
-				if (boxWeight >= 1.0f)
+				if (boxWeight >= 2.0f)
 				{
 					SetActive(true);
 				}
@@ -211,7 +211,7 @@ void FloorButton::CheckBoxCollisions(Box* collider)
 				&& GetSprite()->getPositionY() - (scaledButtonHeight / 2) < collider->GetSprite()->getPositionY() + (scaledBoxHeight / 2)
 				&& GetSprite()->getPositionY() + (scaledButtonHeight / 2) > collider->GetSprite()->getPositionY() - (scaledBoxHeight / 2))
 			{
-				if (boxWeight >= 1.0f)
+				if (boxWeight >= 2.0f)
 				{
 					SetActive(true);
 				}
