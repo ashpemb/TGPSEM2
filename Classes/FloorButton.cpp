@@ -162,6 +162,7 @@ void FloorButton::CheckBoxCollisions(Box* collider)
 	float scaledBoxHeight = collider->GetSprite()->getContentSize().height * collider->GetSprite()->getScaleY();
 	float scaledButtonWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
 	float scaledButtonHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
+	float boxWeight = collider->GetBoxWeight();
 
 	// Deal with down and up buttons - If player gravity is horizontal, ignore collisions
 	if (GetOrientation() == 0 || GetOrientation() == 2) {
@@ -172,8 +173,10 @@ void FloorButton::CheckBoxCollisions(Box* collider)
 				&& GetSprite()->getPositionY() - (scaledButtonHeight / 2) < collider->GetSprite()->getPositionY() + (scaledBoxHeight / 2)
 				&& GetSprite()->getPositionY() + (scaledButtonHeight / 2) > collider->GetSprite()->getPositionY() - (scaledBoxHeight / 2))
 			{
-				SetActive(true);
-
+				if (boxWeight >= 1.0f)
+				{
+					SetActive(true);
+				}
 				// Second collision box, this decides how the player will sit on top of the button
 				if (GetOrientation() == 0) {
 					float adjustedBottom = GetSprite()->getPositionY() - (scaledButtonHeight / 2);
@@ -195,6 +198,7 @@ void FloorButton::CheckBoxCollisions(Box* collider)
 						collider->GetSprite()->setPositionY(adjustedBottom - (scaledBoxHeight / 2));
 					}
 				}
+
 			}
 		}
 	}
@@ -207,8 +211,10 @@ void FloorButton::CheckBoxCollisions(Box* collider)
 				&& GetSprite()->getPositionY() - (scaledButtonHeight / 2) < collider->GetSprite()->getPositionY() + (scaledBoxHeight / 2)
 				&& GetSprite()->getPositionY() + (scaledButtonHeight / 2) > collider->GetSprite()->getPositionY() - (scaledBoxHeight / 2))
 			{
-				SetActive(true);
-
+				if (boxWeight >= 1.0f)
+				{
+					SetActive(true);
+				}
 				// Second collision box, this decides how the player will sit on top of the button
 				if (GetOrientation() == 1) {
 					float adjustedLeft = GetSprite()->getPositionX() - (scaledButtonWidth / 2);
@@ -230,6 +236,7 @@ void FloorButton::CheckBoxCollisions(Box* collider)
 						collider->GetSprite()->setPositionX(adjustedRight - (scaledBoxWidth / 2));
 					}
 				}
+
 			}
 		}
 	}

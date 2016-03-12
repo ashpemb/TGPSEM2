@@ -28,6 +28,7 @@ private:
 
 	// Box Variables
 	int _boxType;
+	float _weight;
 
 	// Scaler
 	float scaler1;
@@ -69,6 +70,8 @@ public:
 
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);
+
+	float GetBoxWeight() { return _weight; }
 
 	// Sprite
 	Sprite* GetSprite() { return _box; };
