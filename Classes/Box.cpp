@@ -1,7 +1,7 @@
 #include "Box.h"
 
 
-Box::Box(int boxType)
+Box::Box(int boxType, float boxStartingWeight)
 {
 	_boxType = boxType;
 	scaler1 = 1;
@@ -10,11 +10,12 @@ Box::Box(int boxType)
 	scaler = 1;
 	unselect = 0;
 	isSelected = false;
+	_weight = boxStartingWeight;
 }
 
-Box* Box::create(int boxType, float startingScale)
+Box* Box::create(int boxType, float startingScale, float boxStartingWeight)
 {
-	Box* box = new Box(boxType);
+	Box* box = new Box(boxType, boxStartingWeight);
 	if (!box->init())
 	{
 		return nullptr;
@@ -52,6 +53,8 @@ void Box::update(float delta)
 			Fall(delta);
 		}
 
+		//_box->setScale(scaler2);
+		//_weight = 2.0f;
 		Scaling();
 	}
 	// Add box movement when pushed by player
@@ -72,16 +75,19 @@ void Box::Scaling()
 		{
 			_box->setScale(scaler1);
 			scaler = scaler1;
+			_weight = 1.0f;
 		}
 		else if (totalDiff > 200 && totalDiff < 500)
 		{
 			_box->setScale(scaler2);
 			scaler = scaler2;
+			_weight = 2.0f;
 		}
 		else if (totalDiff > 500)
 		{
 			_box->setScale(scaler3);
 			scaler = scaler3;
+			_weight = 3.0f;
 		}
 		Selected();
 	}
@@ -145,11 +151,14 @@ void Box::CheckPlatformCollisions(cocos2d::Sprite* collider)
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
 	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
 
+	float boxScaledWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
+	float boxScaledHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
+
 	if (_orientationVertical) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (boxScaledWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (boxScaledWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (boxScaledHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (boxScaledHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			Land(collider);
 		}
@@ -158,10 +167,10 @@ void Box::CheckPlatformCollisions(cocos2d::Sprite* collider)
 		}
 	}
 	else if (_orientationHorizontal) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().height / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().height / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().width / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().width / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (boxScaledHeight / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (boxScaledHeight / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (boxScaledWidth / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (boxScaledWidth / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			if (GetSprite()->getPositionY() < collider->getPositionY()) {
 				GetSprite()->setPositionY(collider->getPositionY() - (scaledHeight / 2) - (scaledPlayerWidth / 2));
@@ -181,11 +190,15 @@ void Box::CheckWallCollisions(cocos2d::Sprite* collider)
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
 	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
 
+	float boxScaledWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
+	float boxScaledHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
+
+
 	if (_orientationVertical) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (boxScaledWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (boxScaledWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (boxScaledHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (boxScaledHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			if (GetSprite()->getPositionX() < collider->getPositionX()) {
 				GetSprite()->setPositionX(collider->getPositionX() - (scaledWidth / 2) - (scaledPlayerWidth / 2));
@@ -196,10 +209,10 @@ void Box::CheckWallCollisions(cocos2d::Sprite* collider)
 		}
 	}
 	else if (_orientationHorizontal) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().height / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().height / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().width / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().width / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (boxScaledHeight / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (boxScaledHeight / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (boxScaledWidth / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (boxScaledWidth / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			Land(collider);
 		}
