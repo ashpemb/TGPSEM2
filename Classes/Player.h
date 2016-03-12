@@ -66,6 +66,7 @@ public:
 	void SetSprite(Sprite* newSprite);
 
 	void Land(cocos2d::Sprite* collider);
+	void BreakFall() { _fallingHorizontal, _fallingVertical = false; };
 	void Fall(float delta);
 
 	// Movement

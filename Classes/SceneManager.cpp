@@ -149,6 +149,7 @@ void SceneManager::SetupButtons(Node* root)
 
 void SceneManager::SetupSprites(Node* root)
 {
+	// REMINDER: Josh needs to follow our in-house comment conventions. 
 	// PLAYER
 	_playerSprite = (Sprite*)root->getChildByName("Player");
 	int i = 1;
@@ -222,6 +223,39 @@ void SceneManager::SetupSprites(Node* root)
 
 		i++;
 		exit = static_cast<ui::CheckBox*>(root->getChildByName("Exit_" + StringUtils::format("%d", i)));
+	}
+
+	// DOWN BUTTONS
+	cocos2d::Sprite* tempButton;
+	i = 1;
+	while ((tempButton = (Sprite*)(root->getChildByName("Button_Down_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_downButtons.push_back(tempButton);
+		i++;
+	}
+
+	// LEFT BUTTONS
+	i = 1;
+	while ((tempButton = (Sprite*)(root->getChildByName("Button_Left_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_leftButtons.push_back(tempButton);
+		i++;
+	}
+
+	// UP BUTTONS
+	i = 1;
+	while ((tempButton = (Sprite*)(root->getChildByName("Button_Up_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_upButtons.push_back(tempButton);
+		i++;
+	}
+
+	// RIGHT BUTTONS
+	i = 1;
+	while ((tempButton = (Sprite*)(root->getChildByName("Button_Right_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_rightButtons.push_back(tempButton);
+		i++;
 	}
 }
 
@@ -362,6 +396,7 @@ void SceneManager::SetupClasses()
 		addChild(gravSwitch);
 	}
 
+	// MOVING PLATFORMS - HORIZONTAL
 	for (int i = 0; i < _movingPlatformHorizSprites.size(); i++)
 	{
 		Platforms* movingPlats = Platforms::create();
@@ -374,6 +409,7 @@ void SceneManager::SetupClasses()
 		addChild(movingPlats);
 	}
 
+	// MOVING PLATFORMS - VERTICAL
 	for (int i = 0; i < _movingPlatformVertSprites.size(); i++)
 	{
 		Platforms* movingPlats = Platforms::create();
@@ -384,6 +420,50 @@ void SceneManager::SetupClasses()
 		_movingPlatformsVert.push_back(movingPlats);
 
 		addChild(movingPlats);
+	}
+
+	// FLOOR BUTTONS - DOWN
+	for (int i = 0; i < _downButtons.size(); i++) {
+		FloorButton* button = FloorButton::create(0);
+		button->setName("Button_Down_" + StringUtils::format("%d", i + 1));
+		button->SetSprite(_downButtons[i]);
+
+		_buttons.push_back(button);
+
+		addChild(button);
+	}
+
+	// FLOOR BUTTONS - LEFT
+	for (int i = 0; i < _leftButtons.size(); i++) {
+		FloorButton* button = FloorButton::create(1);
+		button->setName("Button_Left_" + StringUtils::format("%d", i + 1));
+		button->SetSprite(_leftButtons[i]);
+
+		_buttons.push_back(button);
+
+		addChild(button);
+	}
+
+	// FLOOR BUTTONS - UP
+	for (int i = 0; i < _upButtons.size(); i++) {
+		FloorButton* button = FloorButton::create(2);
+		button->setName("Button_Up_" + StringUtils::format("%d", i + 1));
+		button->SetSprite(_upButtons[i]);
+
+		_buttons.push_back(button);
+
+		addChild(button);
+	}
+
+	// FLOOR BUTTONS - RIGHT
+	for (int i = 0; i < _rightButtons.size(); i++) {
+		FloorButton* button = FloorButton::create(3);
+		button->setName("Button_Right_" + StringUtils::format("%d", i + 1));
+		button->SetSprite(_rightButtons[i]);
+
+		_buttons.push_back(button);
+
+		addChild(button);
 	}
 }
 
@@ -421,16 +501,9 @@ void SceneManager::update(float delta)
 			CheckNear(delta);
 			CheckNearDoor(delta);
 			IsPlayerInBounds();
-
-			// Update highlights
-			if (_topHighlightEnabled) {
-				// Apparently nothing happens here
-				// First person to see this, replace these comments with your name and best joke
-			}
 		}
 		else
 		{
-			//"Gameover shit added". Ya taffer.
 			//GameManager::sharedGameManager()->setIsGamePaused(false);
 			GameManager::sharedGameManager()->setIsGameLive(false);
 			auto scene = GameOverScene::createScene();
@@ -441,6 +514,7 @@ void SceneManager::update(float delta)
 
 void SceneManager::CheckCollisions()
 {
+	// PLATFORM COLLISIONS
 	for (unsigned int i = 0; i < _platforms.size(); i++) {
 		_player->CheckPlatformCollisions(_platforms[i]);
 
@@ -453,6 +527,7 @@ void SceneManager::CheckCollisions()
 		}
 	}
 
+	// WALL COLLISIONS
 	for (unsigned int i = 0; i < _walls.size(); i++) {
 		_player->CheckWallCollisions(_walls[i]);
 
@@ -465,6 +540,7 @@ void SceneManager::CheckCollisions()
 		}
 	}
 
+	// MOVING PLATFORM COLLISIONS
 	for (int i = 0; i < _movingPlatformsHoriz.size(); i++) {
 		_player->CheckPlatformCollisions(_movingPlatformsHoriz[i]->getSprite());
 
@@ -486,6 +562,21 @@ void SceneManager::CheckCollisions()
 
 		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckPlatformCollisions(_movingPlatformsVert[i]->getSprite());
+		}
+	}
+
+	// BUTTON COLLISIONS
+	for (unsigned int i = 0; i < _buttons.size(); i++) {
+		_buttons.at(i)->SetActive(false);
+
+		_buttons.at(i)->CheckPlayerCollisions(_player);
+
+		for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_buttons.at(i)->CheckBoxCollisions(_woodBoxes.at(i2));
+		}
+
+		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_buttons.at(i)->CheckBoxCollisions(_metalBoxes.at(i2));
 		}
 	}
 }

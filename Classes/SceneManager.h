@@ -12,6 +12,7 @@
 #include "GameWinScene.h"
 #include "Box.h"
 #include "Switch.h"
+#include "FloorButton.h"
 #include "TouchManager.h"
 #include "Platforms.h"
 
@@ -24,19 +25,23 @@ private:
 	int _score;
 
 	// UI
-	cocos2d::ui::Text*	_timeLabel;
-	cocos2d::ui::Button* _startGame;
+	cocos2d::ui::Text*		_timeLabel;
+	cocos2d::ui::Button*	_startGame;
 
 	// AUDIO
 	AudioEngine* auEngine;
 
 	// Sprites that need to be passed to classes
-	Sprite* _playerSprite;
-	std::vector<cocos2d::Sprite*> _woodenSprites;
-	std::vector<cocos2d::Sprite*> _metalSprites;
+	Sprite*								_playerSprite;
+	std::vector<cocos2d::Sprite*>		_woodenSprites;
+	std::vector<cocos2d::Sprite*>		_metalSprites;
+	std::vector<cocos2d::Sprite*>		_downButtons;
+	std::vector<cocos2d::Sprite*>		_leftButtons;
+	std::vector<cocos2d::Sprite*>		_upButtons;
+	std::vector<cocos2d::Sprite*>		_rightButtons;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
-	std::vector<cocos2d::Sprite*> _movingPlatformVertSprites;
-	std::vector<cocos2d::Sprite*> _movingPlatformHorizSprites;
+	std::vector<cocos2d::Sprite*>		_movingPlatformVertSprites;
+	std::vector<cocos2d::Sprite*>		_movingPlatformHorizSprites;
 
 	// BACKGROUND
 	Sprite*	_background1;
@@ -63,31 +68,32 @@ private:
 	bool	_leftHighlightEnabled;
 
 	// SCENE ELEMENTS
-	std::vector<cocos2d::Sprite*> _platforms;
-	std::vector<cocos2d::Sprite*> _walls;
+	std::vector<cocos2d::Sprite*>		_platforms;
+	std::vector<cocos2d::Sprite*>		_walls;
 	std::vector<cocos2d::ui::CheckBox*> _exit;
-	std::vector<bool> _flipped;
+	std::vector<bool>					_flipped;
 
 	// SCENE CLASSES
 	Player* _player;
-	std::vector<Box*> _woodBoxes;
-	std::vector<Box*> _metalBoxes;
-	std::vector<Switch*> _switches;
-	std::vector<Platforms*> _movingPlatformsVert;
-	std::vector<Platforms*> _movingPlatformsHoriz;
+	std::vector<Box*>			_woodBoxes;
+	std::vector<Box*>			_metalBoxes;
+	std::vector<Switch*>		_switches;
+	std::vector<FloorButton*>	_buttons;
+	std::vector<Platforms*>		_movingPlatformsVert;
+	std::vector<Platforms*>		_movingPlatformsHoriz;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
-	int _gravityOrientation;
-	bool _gravityHighlight;
-	float _flipGravityCooldown = 1.0f;	// One second cooldown
+	int		_gravityOrientation;
+	bool	_gravityHighlight;
+	float	_flipGravityCooldown = 1.0f;	// One second cooldown
 	void FlipGravity(int direction);
 
 	// TOUCHES
-	TouchManager* touchMGR;
-	bool _inTouch;
-	cocos2d::Vec2 _initialTouchPos;
-	bool isObjectTouched;
+	TouchManager*	touchMGR;
+	bool			_inTouch;
+	cocos2d::Vec2	_initialTouchPos;
+	bool			isObjectTouched;
 
 
 public:
