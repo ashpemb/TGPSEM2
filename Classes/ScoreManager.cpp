@@ -252,7 +252,7 @@ int ScoreManager::getDefaultStarRating(int level)
 							tempString += currLine.at(i);
 						}
 
-						star3 = std::stoi(tempString);
+						star3 = strtod(tempString.c_str(), nullptr);
 					}
 				}
 				else {
@@ -266,7 +266,7 @@ int ScoreManager::getDefaultStarRating(int level)
 							tempString += currLine.at(i);
 						}
 
-						star2 = std::stoi(tempString);
+						star2 = strtod(tempString.c_str(), nullptr);
 					}
 				}
 			}
@@ -281,7 +281,7 @@ int ScoreManager::getDefaultStarRating(int level)
 						tempString += currLine.at(i);
 					}
 
-					star1 = std::stoi(tempString);
+					star1 = strtod(tempString.c_str(), nullptr);
 				}
 			}
 		}
