@@ -75,19 +75,19 @@ void Box::Scaling()
 		{
 			_box->setScale(scaler1);
 			scaler = scaler1;
-			_weight = 1.0f;
+			_weight = 1.0f * _boxType;
 		}
 		else if (totalDiff > 200 && totalDiff < 500)
 		{
 			_box->setScale(scaler2);
 			scaler = scaler2;
-			_weight = 2.0f;
+			_weight = 2.0f * _boxType;
 		}
 		else if (totalDiff > 500)
 		{
 			_box->setScale(scaler3);
 			scaler = scaler3;
-			_weight = 3.0f;
+			_weight = 3.0f * _boxType;
 		}
 		Selected();
 	}
