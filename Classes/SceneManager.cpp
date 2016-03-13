@@ -715,7 +715,7 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	for (unsigned int i = 0; i < _switches.size(); i++) {
 		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
 			_flipped[i] = !_flipped[i];
-			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
+
 
 			// Flip Gravity
 			if (_flipGravityCooldown == 0.0f) {

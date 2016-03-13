@@ -47,6 +47,14 @@
         <Image Name="Button_Right_Unpressed.png" />
         <Image Name="Button_Up_Pressed.png" />
         <Image Name="Button_Up_Unpressed.png" />
+        <Image Name="buttondown.png" />
+        <Image Name="buttondownclose.png" />
+        <Image Name="buttonleft.png" />
+        <Image Name="buttonleftclose.png" />
+        <Image Name="buttonright.png" />
+        <Image Name="buttonrightclose.png" />
+        <Image Name="buttonup.png" />
+        <Image Name="buttonupclose.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
