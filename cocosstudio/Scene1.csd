@@ -241,6 +241,28 @@
             <FileData Type="Normal" Path="Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="MetalBoxSpawn_1" ActionTag="-1937521030" Tag="39" IconVisible="False" LeftMargin="1891.3318" RightMargin="106.6682" TopMargin="871.7853" BottomMargin="614.2147" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1916.3318" Y="639.2147" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9357" Y="0.4162" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="WBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="WoodBoxSpawn_1" ActionTag="1566301637" Tag="38" IconVisible="False" LeftMargin="180.0768" RightMargin="1817.9232" TopMargin="783.8683" BottomMargin="702.1317" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="205.0768" Y="727.1317" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1001" Y="0.4734" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="WBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="Crate_Wooden_1" ActionTag="-1496754270" Tag="24" IconVisible="False" LeftMargin="190.5175" RightMargin="1825.4825" TopMargin="796.6210" BottomMargin="707.3790" ctype="SpriteObjectData">
             <Size X="32.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -423,6 +445,28 @@
             <PreSize X="0.0244" Y="0.0326" />
             <FileData Type="Normal" Path="Start.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="DEBUG_PlayerPos_X" ActionTag="-102764525" Tag="40" IconVisible="False" LeftMargin="74.0255" RightMargin="1920.9745" TopMargin="93.2191" BottomMargin="1401.7809" FontSize="36" LabelText="X:0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="53.0000" Y="41.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="100.5255" Y="1422.2809" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.0491" Y="0.9260" />
+            <PreSize X="0.0259" Y="0.0267" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="DEBUG_PlayerPos_Y" ActionTag="2136773464" Tag="41" IconVisible="False" LeftMargin="72.9766" RightMargin="1924.0234" TopMargin="131.9531" BottomMargin="1363.0469" FontSize="36" LabelText="Y:0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="51.0000" Y="41.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="98.4766" Y="1383.5469" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.0481" Y="0.9007" />
+            <PreSize X="0.0249" Y="0.0267" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

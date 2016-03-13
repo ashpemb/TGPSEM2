@@ -27,6 +27,8 @@ private:
 	// UI
 	cocos2d::ui::Text*		_timeLabel;
 	cocos2d::ui::Button*	_startGame;
+	cocos2d::ui::Text*		_playerPosX;
+	cocos2d::ui::Text*		_playerPosY;
 
 	// AUDIO
 	AudioEngine* auEngine;
@@ -74,6 +76,8 @@ private:
 	std::vector<bool>					_flipped;
 	std::vector<cocos2d::Sprite*>		_railStart;
 	std::vector<cocos2d::Sprite*>		_railEnd;
+	std::vector<cocos2d::Sprite*>		_woodCrateSpawn;
+	std::vector<cocos2d::Sprite*>		_metalCrateSpawn;
 
 
 	// SCENE CLASSES
@@ -123,6 +127,7 @@ public:
 	void CheckNear(float delta);
 	void CheckNearDoor(float delta);
 	void IsPlayerInBounds();
+	void IsCrateInBounds();
 
 	// implement the "static create()" method manually
 	//CREATE_FUNC(Scene1);
