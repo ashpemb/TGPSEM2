@@ -39,9 +39,13 @@ private:
 	std::vector<cocos2d::Sprite*>		_leftButtons;
 	std::vector<cocos2d::Sprite*>		_upButtons;
 	std::vector<cocos2d::Sprite*>		_rightButtons;
-	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
 	std::vector<cocos2d::Sprite*>		_movingPlatformVertSprites;
 	std::vector<cocos2d::Sprite*>		_movingPlatformHorizSprites;
+
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesDown;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesLeft;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesUp;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesRight;
 
 	// BACKGROUND
 	Sprite*	_background1;
@@ -71,7 +75,6 @@ private:
 	std::vector<cocos2d::Sprite*>		_platforms;
 	std::vector<cocos2d::Sprite*>		_walls;
 	std::vector<cocos2d::ui::CheckBox*> _exit;
-	std::vector<bool>					_flipped;
 
 	// SCENE CLASSES
 	Player* _player;

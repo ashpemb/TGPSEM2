@@ -203,13 +203,40 @@ void SceneManager::SetupSprites(Node* root)
 	}
 
 	// SWITCHES
+	// Down
 	cocos2d::ui::CheckBox* tempCheck;
 	i = 1;
-	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("Switch_" + StringUtils::format("%d", i)))) != nullptr)
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("Switch_Down_" + StringUtils::format("%d", i)))) != nullptr)
 	{
 		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
-		_gravSwitches.push_back(tempCheck);
-		_flipped.push_back(false);
+		_gravSwitchesDown.push_back(tempCheck);
+		i++;
+	}
+
+	// Left
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("Switch_Left_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_gravSwitchesLeft.push_back(tempCheck);
+		i++;
+	}
+
+	// Up
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("Switch_Up_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_gravSwitchesUp.push_back(tempCheck);
+		i++;
+	}
+
+	// Right
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("Switch_Right_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_gravSwitchesRight.push_back(tempCheck);
 		i++;
 	}
 
@@ -385,11 +412,48 @@ void SceneManager::SetupClasses()
 	}
 
 	// SWITCHES
-	for (unsigned int i = 0; i < _gravSwitches.size(); i++) {
+	// Down
+	for (unsigned int i = 0; i < _gravSwitchesDown.size(); i++) {
 		Switch* gravSwitch = Switch::create();
-		gravSwitch->setName("Switch_" + StringUtils::format("%d", i + 1));
-		gravSwitch->SetSprite(_gravSwitches[i]);
-		gravSwitch->SetOrientation((i + 1) % 4);
+		gravSwitch->setName("Switch_Down_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_gravSwitchesDown[i]);
+		gravSwitch->SetOrientation(0);
+
+		_switches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
+
+	// Left
+	for (unsigned int i = 0; i < _gravSwitchesLeft.size(); i++) {
+		Switch* gravSwitch = Switch::create();
+		gravSwitch->setName("Switch_Left_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_gravSwitchesLeft[i]);
+		gravSwitch->SetOrientation(1);
+
+		_switches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
+
+	// Up
+	for (unsigned int i = 0; i < _gravSwitchesUp.size(); i++) {
+		Switch* gravSwitch = Switch::create();
+		gravSwitch->setName("Switch_Up_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_gravSwitchesUp[i]);
+		gravSwitch->SetOrientation(2);
+
+		_switches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
+
+	// Right
+	for (unsigned int i = 0; i < _gravSwitchesRight.size(); i++) {
+		Switch* gravSwitch = Switch::create();
+		gravSwitch->setName("Switch_Right_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_gravSwitchesRight[i]);
+		gravSwitch->SetOrientation(3);
 
 		_switches.push_back(gravSwitch);
 
@@ -714,9 +778,6 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 
 	for (unsigned int i = 0; i < _switches.size(); i++) {
 		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
-			_flipped[i] = !_flipped[i];
-
-
 			// Flip Gravity
 			if (_flipGravityCooldown == 0.0f) {
 				FlipGravity(_switches.at(i)->GetOrientation());
@@ -1272,10 +1333,25 @@ SceneManager::~SceneManager()
 
 	_walls.clear();
 
-	for (unsigned int i = 0; i < _gravSwitches.size(); i++) {
+	for (unsigned int i = 0; i < _gravSwitchesDown.size(); i++) {
 		delete _switches.at(i)->GetSprite();
 	}
 
-	_gravSwitches.clear();
+	for (unsigned int i = 0; i < _gravSwitchesLeft.size(); i++) {
+		delete _switches.at(i)->GetSprite();
+	}
+
+	for (unsigned int i = 0; i < _gravSwitchesUp.size(); i++) {
+		delete _switches.at(i)->GetSprite();
+	}
+
+	for (unsigned int i = 0; i < _gravSwitchesRight.size(); i++) {
+		delete _switches.at(i)->GetSprite();
+	}
+
+	_gravSwitchesDown.clear();
+	_gravSwitchesLeft.clear();
+	_gravSwitchesUp.clear();
+	_gravSwitchesRight.clear();
 }
 

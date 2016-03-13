@@ -83,7 +83,7 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_1" ActionTag="362540183" Tag="19" IconVisible="False" LeftMargin="671.3380" RightMargin="1358.6620" TopMargin="1422.6320" BottomMargin="78.3680" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_Left_1" ActionTag="362540183" Tag="19" IconVisible="False" LeftMargin="671.3380" RightMargin="1358.6620" TopMargin="1422.6320" BottomMargin="78.3680" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="18.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="680.3380" Y="95.8680" />
@@ -97,7 +97,7 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_2" ActionTag="-826872388" Tag="25" RotationSkewX="90.0000" RotationSkewY="90.0070" IconVisible="False" LeftMargin="60.5670" RightMargin="1969.4330" TopMargin="789.8004" BottomMargin="711.1996" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_Up_1" ActionTag="-826872388" Tag="25" RotationSkewX="90.0000" RotationSkewY="90.0070" IconVisible="False" LeftMargin="60.5670" RightMargin="1969.4330" TopMargin="789.8004" BottomMargin="711.1996" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="18.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="69.5670" Y="728.6996" />
@@ -111,7 +111,7 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_3" ActionTag="817869901" Tag="16" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="994.8301" RightMargin="1035.1699" TopMargin="116.3467" BottomMargin="1384.6533" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_Right_1" ActionTag="817869901" Tag="16" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="994.8301" RightMargin="1035.1699" TopMargin="116.3467" BottomMargin="1384.6533" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="18.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1003.8301" Y="1402.1533" />
@@ -125,7 +125,7 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_4" ActionTag="-1495053384" Tag="30" IconVisible="False" LeftMargin="1412.8007" RightMargin="617.1993" TopMargin="1002.0258" BottomMargin="498.9742" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_Down_1" ActionTag="-1495053384" Tag="30" IconVisible="False" LeftMargin="1412.8007" RightMargin="617.1993" TopMargin="1002.0258" BottomMargin="498.9742" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="18.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1421.8007" Y="516.4742" />
@@ -136,20 +136,6 @@
             <NormalBackFileData Type="Normal" Path="buttondownclose.png" Plist="" />
             <PressedBackFileData Type="Normal" Path="buttondownclose.png" Plist="" />
             <DisableBackFileData Type="Normal" Path="buttondown.png" Plist="" />
-            <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
-            <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Switch_5" ActionTag="-113575573" Tag="29" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="1563.1306" RightMargin="388.8694" TopMargin="76.7476" BottomMargin="1363.2524" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
-            <Size X="96.0000" Y="96.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1611.1306" Y="1411.2524" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7867" Y="0.9188" />
-            <PreSize X="0.0469" Y="0.0625" />
-            <NormalBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Switch Right.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -336,7 +322,7 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Up_1" ActionTag="-1274599946" Tag="32" IconVisible="False" LeftMargin="-103.6159" RightMargin="1831.6158" TopMargin="624.1956" BottomMargin="801.8044" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Up_1" ActionTag="-1274599946" Tag="32" IconVisible="False" LeftMargin="-103.6159" RightMargin="1831.6160" TopMargin="624.1956" BottomMargin="801.8044" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="56.3841" Y="856.8044" />
