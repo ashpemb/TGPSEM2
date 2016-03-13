@@ -91,9 +91,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3322" Y="0.0624" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="buttonleftclose.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="buttonleftclose.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="buttonleft.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Switch_Left_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -105,9 +105,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0340" Y="0.4744" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="buttonleftclose.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="buttonrightclose.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="buttonleft.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Switch_Right_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Switch_Left_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -119,9 +119,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4902" Y="0.9129" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="buttonleftclose.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="buttonleftclose.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="buttonleft.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Switch_Left_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -133,9 +133,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6942" Y="0.3362" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="buttondownclose.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="buttondownclose.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="buttondown.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Switch_Down_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Switch_Down_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Switch_Down_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>

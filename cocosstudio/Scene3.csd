@@ -117,9 +117,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3029" Y="0.2769" />
             <PreSize X="0.0469" Y="0.0625" />
-            <NormalBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Switch Right.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Switch Left.png" Plist="" />
+            <NormalBackFileData Type="Default" Path="Default/CheckBox_Normal.png" Plist="" />
+            <PressedBackFileData Type="Default" Path="Default/CheckBox_Press.png" Plist="" />
+            <DisableBackFileData Type="Default" Path="Default/CheckBox_Disable.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>

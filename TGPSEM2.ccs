@@ -13,16 +13,10 @@
         <Project Name="Scene1.csd" Type="Scene" />
         <Project Name="Scene2.csd" Type="Scene" />
         <Project Name="Scene3.csd" Type="Scene" />
-        <Image Name="SwitchSheet.png" />
-        <Image Name="Switch Left.png" />
-        <Image Name="Switch Right.png" />
-        <Image Name="Switch Static.png" />
         <Image Name="transparent.png" />
         <Image Name="BG1.png" />
         <Image Name="Wall.jpg" />
         <Image Name="Start.png" />
-        <Image Name="WBoxSpawn.png" />
-        <Image Name="MBoxSpawn.png" />
         <Image Name="Husky.png" />
         <Image Name="Crate.png" />
         <Image Name="MetalCrate.png" />
@@ -47,14 +41,14 @@
         <Image Name="Button_Right_Unpressed.png" />
         <Image Name="Button_Up_Pressed.png" />
         <Image Name="Button_Up_Unpressed.png" />
-        <Image Name="buttondown.png" />
-        <Image Name="buttondownclose.png" />
-        <Image Name="buttonleft.png" />
-        <Image Name="buttonleftclose.png" />
-        <Image Name="buttonright.png" />
-        <Image Name="buttonrightclose.png" />
-        <Image Name="buttonup.png" />
-        <Image Name="buttonupclose.png" />
+        <Image Name="Switch_Down_Off.png" />
+        <Image Name="Switch_Down_On.png" />
+        <Image Name="Switch_Left_Off.png" />
+        <Image Name="Switch_Left_On.png" />
+        <Image Name="Switch_Right_Off.png" />
+        <Image Name="Switch_Right_On.png" />
+        <Image Name="Switch_Up_Off.png" />
+        <Image Name="Switch_Up_On.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
