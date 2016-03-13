@@ -150,6 +150,7 @@ void SceneManager::SetupButtons(Node* root)
 void SceneManager::SetupSprites(Node* root)
 {
 	// REMINDER: Josh needs to follow our in-house comment conventions. 
+	// how about no
 	// PLAYER
 	_playerSprite = (Sprite*)root->getChildByName("Player");
 	int i = 1;
@@ -255,6 +256,24 @@ void SceneManager::SetupSprites(Node* root)
 	while ((tempButton = (Sprite*)(root->getChildByName("Button_Right_" + StringUtils::format("%d", i)))) != nullptr)
 	{
 		_rightButtons.push_back(tempButton);
+		i++;
+	}
+
+	// Rail Start
+	cocos2d::Sprite* tempRailStart;
+	i = 1;
+	while ((tempRailStart = (Sprite*)(root->getChildByName("RailStart_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_railStart.push_back(tempRailStart);
+		i++;
+	}
+
+	//Rail end
+	cocos2d::Sprite* tempRailEnd;
+	i = 1;
+	while ((tempRailEnd = (Sprite*)(root->getChildByName("RailEnd_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_railEnd.push_back(tempRailEnd);
 		i++;
 	}
 }
@@ -538,6 +557,16 @@ void SceneManager::CheckCollisions()
 		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckWallCollisions(_walls[i]);
 		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsHoriz.size(); i2++)
+		{
+			_movingPlatformsHoriz[i2]->CheckWallCollisions(_walls[i]);
+		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsVert.size(); i2++)
+		{
+			_movingPlatformsVert[i2]->CheckWallCollisions(_walls[i]);
+		}
 	}
 
 	// MOVING PLATFORM COLLISIONS
@@ -577,6 +606,34 @@ void SceneManager::CheckCollisions()
 
 		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_buttons.at(i)->CheckBoxCollisions(_metalBoxes.at(i2));
+		}
+	}
+
+	// Rail Start
+	for (unsigned int i = 0; i < _railStart.size(); i++)
+	{
+		for (unsigned int i2 = 0; i2 < _movingPlatformsHoriz.size(); i2++)
+		{
+			_movingPlatformsHoriz[i2]->CheckPlatformCollisions(_railStart[i]);
+		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsVert.size(); i2++)
+		{
+			_movingPlatformsVert[i2]->CheckPlatformCollisions(_railStart[i]);
+		}
+	}
+
+	// Rail End
+	for (unsigned int i = 0; i < _railEnd.size(); i++)
+	{
+		for (unsigned int i2 = 0; i2 < _movingPlatformsHoriz.size(); i2++)
+		{
+			_movingPlatformsHoriz[i2]->CheckPlatformCollisions(_railEnd[i]);
+		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsVert.size(); i2++)
+		{
+			_movingPlatformsVert[i2]->CheckPlatformCollisions(_railEnd[i]);
 		}
 	}
 }

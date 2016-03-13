@@ -72,6 +72,9 @@ private:
 	std::vector<cocos2d::Sprite*>		_walls;
 	std::vector<cocos2d::ui::CheckBox*> _exit;
 	std::vector<bool>					_flipped;
+	std::vector<cocos2d::Sprite*>		_railStart;
+	std::vector<cocos2d::Sprite*>		_railEnd;
+
 
 	// SCENE CLASSES
 	Player* _player;
