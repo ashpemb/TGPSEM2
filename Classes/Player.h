@@ -44,8 +44,8 @@ public:
 	void SetOrientationVertical(bool orientation);
 	void SetOrientationHorizontal(bool orientation);
 
-	bool GetOrientationVertical() { return _fallingVertical; };
-	bool GetOrientationHorizontal() { return _fallingHorizontal; };
+	bool GetOrientationVertical() { return _orientationVertical; };
+	bool GetOrientationHorizontal() { return _orientationHorizontal; };
 
 	void SetFallingVertical(bool falling);
 	void SetFallingHorizontal(bool falling);
