@@ -21,6 +21,7 @@
     <ClCompile Include="..\Classes\TouchManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Classes\FloorButton.cpp" />
+    <ClCompile Include="..\Classes\Door.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="..\Classes\FloorButton.h" />
+    <ClInclude Include="..\Classes\Door.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />

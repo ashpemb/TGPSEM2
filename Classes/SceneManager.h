@@ -15,6 +15,7 @@
 #include "FloorButton.h"
 #include "TouchManager.h"
 #include "Platforms.h"
+#include "Door.h"
 
 USING_NS_CC;
 
@@ -35,12 +36,16 @@ private:
 	Sprite*								_playerSprite;
 	std::vector<cocos2d::Sprite*>		_woodenSprites;
 	std::vector<cocos2d::Sprite*>		_metalSprites;
+
 	std::vector<cocos2d::Sprite*>		_downButtons;
 	std::vector<cocos2d::Sprite*>		_leftButtons;
 	std::vector<cocos2d::Sprite*>		_upButtons;
 	std::vector<cocos2d::Sprite*>		_rightButtons;
+
 	std::vector<cocos2d::Sprite*>		_movingPlatformVertSprites;
 	std::vector<cocos2d::Sprite*>		_movingPlatformHorizSprites;
+
+	std::vector<cocos2d::Sprite*>		_doorSprites;
 
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesDown;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesLeft;
@@ -82,6 +87,7 @@ private:
 	std::vector<Box*>			_metalBoxes;
 	std::vector<Switch*>		_switches;
 	std::vector<FloorButton*>	_buttons;
+	std::vector<Door*>			_doors;
 	std::vector<Platforms*>		_movingPlatformsVert;
 	std::vector<Platforms*>		_movingPlatformsHoriz;
 
@@ -114,7 +120,7 @@ public:
 	void SetupSprites(Node* root);
 	void SetupBackground(Node* root);
 	void SetupHighlights(Node* root);
-	void SetupClasses();
+	void SetupClasses(Node* root);
 
 	void CheckCollisions();
 

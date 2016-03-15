@@ -149,6 +149,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\AudioEngine.cpp" />
     <ClCompile Include="..\Classes\Box.cpp" />
+    <ClCompile Include="..\Classes\Door.cpp" />
     <ClCompile Include="..\Classes\Exit.cpp" />
     <ClCompile Include="..\Classes\FloorButton.cpp" />
     <ClCompile Include="..\Classes\GameManager.cpp" />
@@ -171,6 +172,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\AudioEngine.h" />
     <ClInclude Include="..\Classes\Box.h" />
+    <ClInclude Include="..\Classes\Door.h" />
     <ClInclude Include="..\Classes\Exit.h" />
     <ClInclude Include="..\Classes\FloorButton.h" />
     <ClInclude Include="..\Classes\GameManager.h" />

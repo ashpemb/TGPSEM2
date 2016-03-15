@@ -75,7 +75,7 @@ bool SceneManager::init()
 	SetupButtons(rootNode);
 
 	// CLASS SETUP
-	SetupClasses();
+	SetupClasses(rootNode);
 
 
 	return true;
@@ -183,6 +183,14 @@ void SceneManager::SetupSprites(Node* root)
 	while ((tempSprite = (Sprite*)root->getChildByName("Wall_" + StringUtils::format("%d", i))) != nullptr)
 	{
 		_walls.push_back(tempSprite);
+		i++;
+	}
+
+	// DOORS
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Door_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_doorSprites.push_back(tempSprite);
 		i++;
 	}
 
@@ -381,7 +389,7 @@ void SceneManager::SetupHighlights(Node* root)
 	this->addChild(_rightHighlight);
 }
 
-void SceneManager::SetupClasses()
+void SceneManager::SetupClasses(Node* root)
 {
 	// PLAYER
 	_player = Player::create();
@@ -491,6 +499,7 @@ void SceneManager::SetupClasses()
 		FloorButton* button = FloorButton::create(0);
 		button->setName("Button_Down_" + StringUtils::format("%d", i + 1));
 		button->SetSprite(_downButtons[i]);
+		button->SetActive(false);
 
 		_buttons.push_back(button);
 
@@ -502,6 +511,7 @@ void SceneManager::SetupClasses()
 		FloorButton* button = FloorButton::create(1);
 		button->setName("Button_Left_" + StringUtils::format("%d", i + 1));
 		button->SetSprite(_leftButtons[i]);
+		button->SetActive(false);
 
 		_buttons.push_back(button);
 
@@ -513,6 +523,7 @@ void SceneManager::SetupClasses()
 		FloorButton* button = FloorButton::create(2);
 		button->setName("Button_Up_" + StringUtils::format("%d", i + 1));
 		button->SetSprite(_upButtons[i]);
+		button->SetActive(false);
 
 		_buttons.push_back(button);
 
@@ -524,10 +535,22 @@ void SceneManager::SetupClasses()
 		FloorButton* button = FloorButton::create(3);
 		button->setName("Button_Right_" + StringUtils::format("%d", i + 1));
 		button->SetSprite(_rightButtons[i]);
+		button->SetActive(false);
 
 		_buttons.push_back(button);
 
 		addChild(button);
+	}
+
+	// DOORS
+	for (unsigned int i = 0; i < _doorSprites.size(); i++) {
+		Door* door = Door::create();
+		door->setName("Door_" + StringUtils::format("%d", i + 1));
+		door->SetSprite(_buttons, _doorSprites[i]);
+
+		_doors.push_back(door);
+
+		addChild(door);
 	}
 }
 

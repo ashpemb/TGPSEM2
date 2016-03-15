@@ -344,6 +344,17 @@
             <FileData Type="Normal" Path="Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Door_1" ActionTag="-255199654" UserData="Button_Up_1" Tag="31" IconVisible="False" LeftMargin="848.6936" RightMargin="1191.3064" TopMargin="301.8281" BottomMargin="1106.1719" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="128.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.4978" />
+            <Position X="852.6936" Y="1169.8955" />
+            <Scale ScaleX="2.0100" ScaleY="4.4488" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4164" Y="0.7617" />
+            <PreSize X="0.0039" Y="0.0833" />
+            <FileData Type="Normal" Path="Wall.jpg" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
