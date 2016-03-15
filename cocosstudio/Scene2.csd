@@ -102,7 +102,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0758" Y="0.4978" />
             <PreSize X="0.0430" Y="0.0833" />
-            <FileData Type="Normal" Path="Husky.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Time" ActionTag="-1832965503" Tag="40" IconVisible="False" LeftMargin="815.5253" RightMargin="1142.4746" TopMargin="330.5197" BottomMargin="1182.4803" FontSize="20" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
