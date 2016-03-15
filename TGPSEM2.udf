@@ -32,10 +32,12 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="Scene4.csd" />
-          <FilePathData Path="Scene2.csd" />
           <FilePathData Path="Scene1.csd" />
+          <FilePathData Path="Scene3.csd" />
+          <FilePathData Path="Scene2.csd" />
+          <FilePathData Path="Scene8.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="Scene15.csd" />
+        <ActiveDocument Path="Scene4.csd" />
       </Value>
     </Item>
   </Properties>
