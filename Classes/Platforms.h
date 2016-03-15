@@ -19,6 +19,8 @@ private:
 	float NTouchZoneYScale;
 
 	int platformType = 0; // Gives platform types a number: 1 = Horizontal, 2 = vertical, 0 = no platform
+	bool CollidingWithWall;
+	bool CollidingWithPlatform;
 
 public:
 	Platforms();
@@ -42,6 +44,10 @@ public:
 
 	void MovePlatformHorizontal(cocos2d::Vec2 T);
 	void MovePlatformVertical(cocos2d::Vec2 T);
+
+	void CheckPlatformCollisions(cocos2d::Sprite* collider);
+	void CheckWallCollisions(cocos2d::Sprite* collider);
+
 	// END CONFIRM
 
 	cocos2d::Sprite* sprite;

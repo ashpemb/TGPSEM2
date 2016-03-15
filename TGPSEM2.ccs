@@ -49,6 +49,8 @@
         <Image Name="Switch_Right_On.png" />
         <Image Name="Switch_Up_Off.png" />
         <Image Name="Switch_Up_On.png" />
+        <Image Name="WBoxSpawn.png" />
+        <Image Name="MBoxSpawn.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
