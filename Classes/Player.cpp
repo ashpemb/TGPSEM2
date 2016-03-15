@@ -34,7 +34,7 @@ bool Player::init()
 	this->scheduleUpdate();
 
 	// Init member level variables
-	_speed = 200;
+	_speed = 250;
 
 	return true;
 }
@@ -78,12 +78,13 @@ void Player::CheckPlatformCollisions(cocos2d::Sprite* collider)
 	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
 	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
+	float scaledPlayerHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
 
 	if (_orientationVertical) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (scaledPlayerWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (scaledPlayerWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (scaledPlayerHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (scaledPlayerHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			Land(collider);
 		}
@@ -92,10 +93,10 @@ void Player::CheckPlatformCollisions(cocos2d::Sprite* collider)
 		}
 	}
 	else if (_orientationHorizontal) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().height / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().height / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().width / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().width / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (scaledPlayerHeight / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (scaledPlayerHeight / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (scaledPlayerWidth / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (scaledPlayerWidth / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			if (GetSprite()->getPositionY() < collider->getPositionY()) {
 				GetSprite()->setPositionY(collider->getPositionY() - (scaledHeight / 2) - (scaledPlayerWidth / 2));
@@ -114,12 +115,13 @@ void Player::CheckWallCollisions(cocos2d::Sprite* collider)
 	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
 	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
+	float scaledPlayerHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
 
 	if (_orientationVertical) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().width / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().width / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().height / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().height / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (scaledPlayerWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (scaledPlayerWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (scaledPlayerHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (scaledPlayerHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			if (GetSprite()->getPositionX() < collider->getPositionX()) {
 				GetSprite()->setPositionX(collider->getPositionX() - (scaledWidth / 2) - (scaledPlayerWidth / 2));
@@ -130,10 +132,10 @@ void Player::CheckWallCollisions(cocos2d::Sprite* collider)
 		}
 	}
 	else if (_orientationHorizontal) {
-		if (GetSprite()->getPositionX() - (GetSprite()->getContentSize().height / 2) < collider->getPositionX() + (scaledWidth / 2)
-			&& GetSprite()->getPositionX() + (GetSprite()->getContentSize().height / 2) > collider->getPositionX() - (scaledWidth / 2)
-			&& GetSprite()->getPositionY() - (GetSprite()->getContentSize().width / 2) < collider->getPositionY() + (scaledHeight / 2)
-			&& GetSprite()->getPositionY() + (GetSprite()->getContentSize().width / 2) > collider->getPositionY() - (scaledHeight / 2))
+		if (GetSprite()->getPositionX() - (scaledPlayerHeight / 2) < collider->getPositionX() + (scaledWidth / 2)
+			&& GetSprite()->getPositionX() + (scaledPlayerHeight / 2) > collider->getPositionX() - (scaledWidth / 2)
+			&& GetSprite()->getPositionY() - (scaledPlayerWidth / 2) < collider->getPositionY() + (scaledHeight / 2)
+			&& GetSprite()->getPositionY() + (scaledPlayerWidth / 2) > collider->getPositionY() - (scaledHeight / 2))
 		{
 			Land(collider);
 		}

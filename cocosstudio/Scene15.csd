@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="Scene1" Type="Scene" ID="8768a6c9-effa-409f-a8a5-3b2c407e860d" Version="2.3.3.0" />
+  <PropertyGroup Name="Scene15" Type="Scene" ID="8768a6c9-effa-409f-a8a5-3b2c407e860d" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -235,7 +235,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.1008" Y="0.4709" />
             <PreSize X="0.0156" Y="0.0208" />
-            <FileData Type="Normal" Path="Crate.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Crate.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Crate_Metal_1" ActionTag="-771439322" Tag="25" IconVisible="False" LeftMargin="1898.0093" RightMargin="117.9907" TopMargin="878.5394" BottomMargin="625.4606" ctype="SpriteObjectData">
@@ -246,7 +246,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.9346" Y="0.4176" />
             <PreSize X="0.0156" Y="0.0208" />
-            <FileData Type="Normal" Path="MetalCrate.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/MetalCrate.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="StartGame" ActionTag="-1359180872" Tag="23" IconVisible="False" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="870.4565" RightMargin="906.1836" TopMargin="651.2196" BottomMargin="756.6780" TouchEnable="True" FontSize="48" ButtonText="Start Game" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -272,9 +272,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6489" Y="0.0760" />
             <PreSize X="0.0879" Y="0.1016" />
-            <NormalBackFileData Type="MarkedSubImage" Path="Exit.png" Plist="Exits.plist" />
-            <PressedBackFileData Type="MarkedSubImage" Path="Exit 7.png" Plist="Exits.plist" />
-            <DisableBackFileData Type="MarkedSubImage" Path="Exit Dis.png" Plist="Exits.plist" />
+            <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
+            <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
+            <DisableBackFileData Type="MarkedSubImage" Path="Main Objects/Exit Dis.png" Plist="Exits.plist" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
