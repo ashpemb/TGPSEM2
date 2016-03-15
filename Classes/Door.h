@@ -31,6 +31,7 @@ public:
 	void SetSprite(std::vector<FloorButton*> buttons, Sprite* newSprite);
 
 	// Door
+	bool GetOpen() { return _open; };
 	bool Open(float delta);
 	bool Close(float delta);
 };

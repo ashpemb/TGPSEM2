@@ -54,7 +54,7 @@ void Door::update(float delta)
 
 bool Door::Open(float delta)
 {
-	_open == true;
+	_open = true;
 
 	GetSprite()->setTexture(TextureCache::getInstance()->addImage("transparent.png"));
 
@@ -63,7 +63,7 @@ bool Door::Open(float delta)
 
 bool Door::Close(float delta)
 {
-	_open == false;
+	_open = false;
 
 	GetSprite()->setTexture(TextureCache::getInstance()->addImage("Hardlight_Door.png"));
 

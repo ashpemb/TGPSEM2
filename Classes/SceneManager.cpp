@@ -627,6 +627,24 @@ void SceneManager::CheckCollisions()
 		}
 	}
 
+	// DOOR COLLISIONS
+	for (unsigned int i = 0; i < _doors.size(); i++) {
+		if (!_doors[i]->GetOpen()) {
+			_player->CheckWallCollisions(_doors[i]->GetSprite());
+
+			for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+				_woodBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+			}
+
+			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+				_metalBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+			}
+		}
+		else {
+			int debug = 229;
+		}
+	}
+
 	// MOVING PLATFORM COLLISIONS
 	for (int i = 0; i < _movingPlatformsHoriz.size(); i++) {
 		_player->CheckPlatformCollisions(_movingPlatformsHoriz[i]->getSprite());
