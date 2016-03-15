@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "cocostudio/CCComExtensionData.h"
 
 #include "Player.h"
 #include "Box.h"
@@ -15,6 +16,7 @@ private:
 	cocos2d::ui::CheckBox* _gravSwitch;
 
 	bool _activated;
+	float _timer;
 
 	// Button Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
 	int _orientation;
@@ -39,5 +41,8 @@ public:
 	//Sprite
 	Sprite* GetSprite() { return _buttonSprite; };
 	void SetSprite(Sprite* newSprite);
+
+	// Timer
+	float GetTimer() { return _timer; };
 };
 

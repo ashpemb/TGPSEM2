@@ -34,8 +34,9 @@
           <FilePathData Path="Scene4.csd" />
           <FilePathData Path="Scene2.csd" />
           <FilePathData Path="Scene15.csd" />
+          <FilePathData Path="Scene8.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="Scene4.csd" />
+        <ActiveDocument Path="Scene15.csd" />
       </Value>
     </Item>
   </Properties>

@@ -265,5 +265,10 @@ void FloorButton::SetSprite(Sprite* newSprite)
 {
 	_buttonSprite = newSprite;
 
+	cocostudio::ComExtensionData* data = dynamic_cast<cocostudio::ComExtensionData*>(_buttonSprite->getComponent("ComExtensionData"));
+	std::string userdata = data->getCustomProperty();
+
+	_timer = strtod(userdata.c_str(), nullptr);
+
 	this->addChild(_buttonSprite);
 }

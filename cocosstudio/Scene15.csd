@@ -322,7 +322,7 @@
             <FileData Type="Normal" Path="Platform.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Up_1" ActionTag="-1274599946" Tag="32" IconVisible="False" LeftMargin="-103.6159" RightMargin="1831.6160" TopMargin="624.1956" BottomMargin="801.8044" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Up_1" ActionTag="-1274599946" UserData="3" Tag="32" IconVisible="False" LeftMargin="-103.6159" RightMargin="1831.6160" TopMargin="624.1956" BottomMargin="801.8044" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="56.3841" Y="856.8044" />
@@ -333,7 +333,7 @@
             <FileData Type="Normal" Path="Button_Up_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Down_1" ActionTag="573179343" Tag="33" IconVisible="False" LeftMargin="1731.3727" RightMargin="-3.3726" TopMargin="1422.7366" BottomMargin="3.2634" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Down_1" ActionTag="573179343" UserData="3" Tag="33" IconVisible="False" LeftMargin="1731.3727" RightMargin="-3.3726" TopMargin="1422.7366" BottomMargin="3.2634" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1891.3727" Y="58.2634" />
@@ -344,7 +344,7 @@
             <FileData Type="Normal" Path="Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Door_1" ActionTag="-255199654" UserData="Button_Up_1" Tag="31" IconVisible="False" LeftMargin="848.6936" RightMargin="1191.3064" TopMargin="301.8281" BottomMargin="1106.1719" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Door_1" ActionTag="-255199654" UserData="Button_Up_1" Tag="31" IconVisible="False" LeftMargin="848.6936" RightMargin="1191.3064" TopMargin="301.8229" BottomMargin="1106.1771" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.4978" />
             <Position X="852.6936" Y="1169.8955" />

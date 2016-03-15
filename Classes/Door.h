@@ -14,6 +14,7 @@ class Door : public cocos2d::Node
 private:
 	cocos2d::Sprite* _sprite;
 	FloorButton* _linkedButton;
+	float _timerDefault;
 	float _timer;
 	bool _open;
 public:

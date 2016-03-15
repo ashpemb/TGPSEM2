@@ -39,7 +39,7 @@ void Door::update(float delta)
 	}
 
 	if (_linkedButton->GetActive()) {
-		_timer = 4.0f;
+		_timer = _timerDefault;
 
 		if (!_open) {
 			Open(delta);
@@ -80,6 +80,7 @@ void Door::SetSprite(std::vector<FloorButton*> buttons, Sprite* newSprite)
 	for (int i = 0; i < buttons.size(); i++) {
 		if (buttons.at(i)->getName() == userdata) {
 			_linkedButton = buttons.at(i);
+			_timerDefault = _linkedButton->GetTimer();
 		}
 	}
 
