@@ -56,7 +56,7 @@ bool Door::Open(float delta)
 {
 	_open == true;
 
-	GetSprite()->runAction(FadeOut::create(1.0f));
+	GetSprite()->setTexture(TextureCache::getInstance()->addImage("transparent.png"));
 
 	return true;
 }
@@ -65,7 +65,7 @@ bool Door::Close(float delta)
 {
 	_open == false;
 
-	GetSprite()->runAction(FadeIn::create(1.0f));
+	GetSprite()->setTexture(TextureCache::getInstance()->addImage("Hardlight_Door.png"));
 
 	return true;
 }
