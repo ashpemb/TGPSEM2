@@ -78,6 +78,7 @@
         </Folder>
         <Project Name="Scene8.csd" Type="Scene" />
         <Project Name="Scene5.csd" Type="Scene" />
+        <Image Name="Button_Unpressed.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
