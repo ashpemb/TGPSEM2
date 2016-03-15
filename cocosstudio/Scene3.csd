@@ -80,7 +80,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0988" Y="0.5829" />
             <PreSize X="0.0430" Y="0.0833" />
-            <FileData Type="Normal" Path="Husky.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="StartGame" ActionTag="-389535744" Tag="45" IconVisible="False" LeftMargin="1106.6056" RightMargin="895.3944" TopMargin="651.5575" BottomMargin="848.4425" TouchEnable="True" FontSize="14" ButtonText="Start" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">

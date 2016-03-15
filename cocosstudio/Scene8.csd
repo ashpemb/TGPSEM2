@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="Scene4_0" Type="Scene" ID="cc4bee8c-9289-497e-b908-c4235f66d40e" Version="2.3.3.0" />
+  <PropertyGroup Name="Scene8" Type="Scene" ID="cc4bee8c-9289-497e-b908-c4235f66d40e" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -227,7 +227,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.1413" Y="0.4378" />
             <PreSize X="0.0430" Y="0.0833" />
-            <FileData Type="Normal" Path="Husky.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>

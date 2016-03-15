@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="Scene15" Type="Scene" ID="8768a6c9-effa-409f-a8a5-3b2c407e860d" Version="2.3.3.0" />
+  <PropertyGroup Name="Scene1" Type="Scene" ID="8768a6c9-effa-409f-a8a5-3b2c407e860d" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -91,9 +91,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3322" Y="0.0624" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Switch_Left_Off.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Left_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Left_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Left_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -105,9 +105,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0340" Y="0.4744" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Switch_Right_On.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Switch_Left_Off.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Left_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Right_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Left_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -119,9 +119,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4902" Y="0.9129" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Switch_Left_On.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Switch_Left_Off.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Left_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Left_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Left_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -133,9 +133,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6942" Y="0.3362" />
             <PreSize X="0.0088" Y="0.0228" />
-            <NormalBackFileData Type="Normal" Path="Switch_Down_On.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Switch_Down_On.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Switch_Down_Off.png" Plist="" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Down_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Down_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Down_Off.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -224,7 +224,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.1060" Y="0.7187" />
             <PreSize X="0.0430" Y="0.0833" />
-            <FileData Type="Normal" Path="Husky.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Crate_Wooden_1" ActionTag="-1496754270" Tag="24" IconVisible="False" LeftMargin="190.5175" RightMargin="1825.4825" TopMargin="796.6210" BottomMargin="707.3790" ctype="SpriteObjectData">
@@ -330,7 +330,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0275" Y="0.5578" />
             <PreSize X="0.1563" Y="0.0716" />
-            <FileData Type="Normal" Path="Button_Up_Unpressed.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Button_Up_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Button_Down_1" ActionTag="573179343" Tag="33" IconVisible="False" LeftMargin="1731.3727" RightMargin="-3.3726" TopMargin="1422.7366" BottomMargin="3.2634" ctype="SpriteObjectData">
@@ -341,10 +341,10 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.9235" Y="0.0379" />
             <PreSize X="0.1563" Y="0.0716" />
-            <FileData Type="Normal" Path="Button_Down_Unpressed.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Door_1" ActionTag="-255199654" UserData="Button_Up_1" Tag="31" IconVisible="False" LeftMargin="848.6936" RightMargin="1191.3064" TopMargin="301.8281" BottomMargin="1106.1719" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Door_1" ActionTag="-255199654" UserData="Button_Up_1" Tag="31" IconVisible="False" LeftMargin="848.6936" RightMargin="1191.3064" TopMargin="301.8229" BottomMargin="1106.1771" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.4978" />
             <Position X="852.6936" Y="1169.8955" />
