@@ -294,9 +294,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6489" Y="0.0760" />
             <PreSize X="0.0879" Y="0.1016" />
-            <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
-            <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
-            <DisableBackFileData Type="MarkedSubImage" Path="Main Objects/Exit Dis.png" Plist="Exits.plist" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Exit.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Exit 7.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Exit Dis.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>

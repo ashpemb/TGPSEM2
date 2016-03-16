@@ -41,7 +41,7 @@ bool SceneManager::init()
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
-	Node* rootNode = CSLoader::createNode("Scene" + StringUtils::format("%d", _level) + ".csb");
+	Node* rootNode = CSLoader::createNode("Levels/Scene" + StringUtils::format("%d", _level) + ".csb");
 
 	addChild(rootNode);
 

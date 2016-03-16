@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="Scene4_0" Type="Scene" ID="8774273d-e74a-4350-a26d-40c0eb80bb03" Version="2.3.3.0" />
+  <PropertyGroup Name="Scene6" Type="Scene" ID="8774273d-e74a-4350-a26d-40c0eb80bb03" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -17,14 +17,14 @@
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="20.8033" RightMargin="27.1968" TopMargin="95.5942" BottomMargin="107.4058" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="997.8033" RightMargin="1004.1968" TopMargin="739.0942" BottomMargin="750.9058" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1020.8033" Y="773.9058" />
             <Scale ScaleX="1.0188" ScaleY="0.1809" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4984" Y="0.5038" />
-            <PreSize X="0.9766" Y="0.8678" />
+            <PreSize X="0.0225" Y="0.0299" />
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -106,9 +106,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0916" Y="0.4667" />
             <PreSize X="0.0879" Y="0.1016" />
-            <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
-            <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
-            <DisableBackFileData Type="MarkedSubImage" Path="Main Objects/Exit Dis.png" Plist="Exits.plist" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Exit.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Exit 7.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Exit Dis.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>

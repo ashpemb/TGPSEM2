@@ -5,10 +5,10 @@
 Box::Box(int boxType, float boxStartingWeight)
 {
 	_boxType = boxType;
-	scaler1 = 1;
-	scaler2 = 2;
-	scaler3 = 3;
-	scaler = 1;
+	scaler1 = 0;
+	scaler2 = 0;
+	scaler3 = 0;
+	scaler = 0;
 	unselect = 0;
 	isSelected = false;
 	_weight = boxStartingWeight;
@@ -98,6 +98,7 @@ void Box::Scaling()
 	}
 	else
 	{
+		_box->setScale(scaler);
 		Deselected();
 	}
 }
