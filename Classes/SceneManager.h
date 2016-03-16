@@ -46,6 +46,7 @@ private:
 	std::vector<cocos2d::Sprite*>		_movingPlatformHorizSprites;
 
 	std::vector<cocos2d::Sprite*>		_doorSprites;
+	std::vector<cocos2d::Sprite*>		_hatchSprites;
 
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesDown;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesLeft;
@@ -88,6 +89,7 @@ private:
 	std::vector<Switch*>		_switches;
 	std::vector<FloorButton*>	_buttons;
 	std::vector<Door*>			_doors;
+	std::vector<Door*>			_hatches;
 	std::vector<Platforms*>		_movingPlatformsVert;
 	std::vector<Platforms*>		_movingPlatformsHoriz;
 

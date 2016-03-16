@@ -194,6 +194,14 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	// HATCHES
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Hatch_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_hatchSprites.push_back(tempSprite);
+		i++;
+	}
+
 	// WOODEN CRATES
 	i = 1;
 	while ((tempSprite = (Sprite*)root->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i))) != nullptr)
@@ -552,6 +560,17 @@ void SceneManager::SetupClasses(Node* root)
 
 		addChild(door);
 	}
+
+	// HATCHES
+	for (unsigned int i = 0; i < _hatchSprites.size(); i++) {
+		Door* hatch = Door::create();
+		hatch->setName("Hatch_" + StringUtils::format("%d", i + 1));
+		hatch->SetSprite(_buttons, _hatchSprites[i]);
+
+		_doors.push_back(hatch);
+
+		addChild(hatch);
+	}
 }
 
 void SceneManager::ScheduleScore(float delta)
@@ -630,18 +649,28 @@ void SceneManager::CheckCollisions()
 	// DOOR COLLISIONS
 	for (unsigned int i = 0; i < _doors.size(); i++) {
 		if (!_doors[i]->GetOpen()) {
-			_player->CheckWallCollisions(_doors[i]->GetSprite());
+			if (getName().find("Hatch")) {
+				_player->CheckPlatformCollisions(_doors[i]->GetSprite());
 
-			for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
-				_woodBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
-			}
+				for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+					_woodBoxes[i2]->CheckPlatformCollisions(_doors[i]->GetSprite());
+				}
 
-			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
-				_metalBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+				for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+					_metalBoxes[i2]->CheckPlatformCollisions(_doors[i]->GetSprite());
+				}
 			}
-		}
-		else {
-			int debug = 229;
+			else {
+				_player->CheckWallCollisions(_doors[i]->GetSprite());
+
+				for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+					_woodBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+				}
+
+				for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+					_metalBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+				}
+			}
 		}
 	}
 

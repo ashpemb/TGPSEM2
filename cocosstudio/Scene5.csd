@@ -175,13 +175,13 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1554648950" Tag="114" IconVisible="False" LeftMargin="57.7861" RightMargin="1902.2139" TopMargin="925.3661" BottomMargin="482.6339" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="1554648950" Tag="114" IconVisible="False" LeftMargin="67.8447" RightMargin="1892.1553" TopMargin="932.0252" BottomMargin="475.9748" ctype="SpriteObjectData">
             <Size X="88.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="101.7861" Y="546.6339" />
+            <Position X="111.8447" Y="539.9748" />
             <Scale ScaleX="0.8000" ScaleY="0.8000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0497" Y="0.3559" />
+            <PrePosition X="0.0546" Y="0.3515" />
             <PreSize X="0.0430" Y="0.0833" />
             <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -285,15 +285,15 @@
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Door_4" ActionTag="-1184017183" UserData="Button_Down_4" Tag="134" RotationSkewX="90.0000" RotationSkewY="90.0035" IconVisible="False" LeftMargin="1787.7371" RightMargin="251.2629" TopMargin="796.1901" BottomMargin="705.8099" ctype="SpriteObjectData">
-            <Size X="9.0000" Y="34.0000" />
+          <AbstractNodeData Name="Hatch_1" ActionTag="-1184017183" UserData="Button_Down_4" Tag="134" RotationSkewY="0.0026" IconVisible="False" LeftMargin="1775.2327" RightMargin="238.7673" TopMargin="808.6912" BottomMargin="718.3088" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="9.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1792.2371" Y="722.8099" />
-            <Scale ScaleX="2.0000" ScaleY="5.4994" />
+            <Position X="1792.2327" Y="722.8088" />
+            <Scale ScaleX="5.5013" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8751" Y="0.4706" />
-            <PreSize X="0.0044" Y="0.0221" />
-            <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
+            <PreSize X="0.0166" Y="0.0059" />
+            <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Switch_Up_1" ActionTag="1156363944" Tag="138" IconVisible="False" LeftMargin="1227.7522" RightMargin="802.2478" TopMargin="995.9425" BottomMargin="505.0575" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">

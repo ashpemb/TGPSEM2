@@ -79,6 +79,7 @@
         <Project Name="Scene7.csd" Type="Scene" />
         <Project Name="Scene5.csd" Type="Scene" />
         <Image Name="Button_Unpressed.png" />
+        <Image Name="Hardlight_Hatch.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

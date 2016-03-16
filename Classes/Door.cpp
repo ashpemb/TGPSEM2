@@ -65,7 +65,12 @@ bool Door::Close(float delta)
 {
 	_open = false;
 
-	GetSprite()->setTexture(TextureCache::getInstance()->addImage("Hardlight_Door.png"));
+	if (getName().find("Hatch")) {
+		GetSprite()->setTexture(TextureCache::getInstance()->addImage("Hardlight_Hatch.png"));
+	}
+	else {
+		GetSprite()->setTexture(TextureCache::getInstance()->addImage("Hardlight_Door.png"));
+	}
 
 	return true;
 }
