@@ -479,7 +479,7 @@ void SceneManager::SetupClasses(Node* root)
 	// MOVING PLATFORMS - HORIZONTAL
 	for (int i = 0; i < _movingPlatformHorizSprites.size(); i++)
 	{
-		Platforms* movingPlats = Platforms::create();
+		Platforms* movingPlats = Platforms::create(_player, _woodBoxes, _metalBoxes);
 		movingPlats->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
 		movingPlats->setSprite(_movingPlatformHorizSprites[i]);
 		movingPlats->setZoneSprite();
@@ -492,7 +492,7 @@ void SceneManager::SetupClasses(Node* root)
 	// MOVING PLATFORMS - VERTICAL
 	for (int i = 0; i < _movingPlatformVertSprites.size(); i++)
 	{
-		Platforms* movingPlats = Platforms::create();
+		Platforms* movingPlats = Platforms::create(_player, _woodBoxes, _metalBoxes);
 		movingPlats->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
 		movingPlats->setSprite(_movingPlatformVertSprites[i]);
 		movingPlats->setZoneSprite();

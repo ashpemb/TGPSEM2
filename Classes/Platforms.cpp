@@ -4,14 +4,16 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-Platforms::Platforms()
+Platforms::Platforms(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
 {
-
+	_playerRef = ref;
+	_woodenRef = wood;
+	_metalRef = metal;
 }
 
-Platforms* Platforms::create()
+Platforms* Platforms::create(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
 {
-	Platforms* platform = new Platforms();
+	Platforms* platform = new Platforms(ref, wood, metal);
 
 	if (!platform->init()) {
 		return nullptr;
@@ -75,6 +77,52 @@ void Platforms::MovePlatformHorizontal(cocos2d::Vec2 T)
 {
 	_touchZone->setPositionX(T.x);
 	_movingPlat->setPositionX(T.x);
+
+	float scaledWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
+	float scaledHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
+	float scaledPlayerWidth = _playerRef->GetSprite()->getContentSize().width * _playerRef->GetSprite()->getScaleX();
+	float scaledPlayerHeight = _playerRef->GetSprite()->getContentSize().height * _playerRef->GetSprite()->getScaleY();
+
+	if (_playerRef->GetOrientationVertical()) {
+		if (_playerRef->GetSprite()->getPositionX() - (scaledPlayerWidth / 2) < getSprite()->getPositionX() + (scaledWidth / 2)
+			&& _playerRef->GetSprite()->getPositionX() + (scaledPlayerWidth / 2) > getSprite()->getPositionX() - (scaledWidth / 2)
+			&& _playerRef->GetSprite()->getPositionY() - (scaledPlayerHeight / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
+			&& _playerRef->GetSprite()->getPositionY() + (scaledPlayerHeight / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
+		{
+			_playerRef->GetSprite()->setPositionX(T.x);
+			_playerRef->SetTarget(T);
+		}
+	}
+
+	for (int i = 0; i < _woodenRef.size(); i++) {
+		float scaledWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
+		float scaledHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
+		float scaledBoxWidth = _woodenRef.at(i)->GetSprite()->getContentSize().width * _woodenRef.at(i)->GetSprite()->getScaleX();
+		float scaledBoxHeight = _woodenRef.at(i)->GetSprite()->getContentSize().height *_woodenRef.at(i)->GetSprite()->getScaleY();
+
+		if (_woodenRef.at(i)->GetSprite()->getPositionX() - (scaledBoxWidth / 2) < getSprite()->getPositionX() + (scaledWidth / 2)
+			&& _woodenRef.at(i)->GetSprite()->getPositionX() + (scaledBoxWidth / 2) > getSprite()->getPositionX() - (scaledWidth / 2)
+			&& _woodenRef.at(i)->GetSprite()->getPositionY() - (scaledBoxHeight / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
+			&& _woodenRef.at(i)->GetSprite()->getPositionY() + (scaledBoxHeight / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
+		{
+			_woodenRef.at(i)->GetSprite()->setPositionX(T.x);
+		}
+	}
+
+	for (int i = 0; i < _metalRef.size(); i++) {
+		float scaledWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
+		float scaledHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
+		float scaledBoxWidth = _metalRef.at(i)->GetSprite()->getContentSize().width * _metalRef.at(i)->GetSprite()->getScaleX();
+		float scaledBoxHeight = _metalRef.at(i)->GetSprite()->getContentSize().height *_metalRef.at(i)->GetSprite()->getScaleY();
+
+		if (_metalRef.at(i)->GetSprite()->getPositionX() - (scaledBoxWidth / 2) < getSprite()->getPositionX() + (scaledWidth / 2)
+			&& _metalRef.at(i)->GetSprite()->getPositionX() + (scaledBoxWidth / 2) > getSprite()->getPositionX() - (scaledWidth / 2)
+			&& _metalRef.at(i)->GetSprite()->getPositionY() - (scaledBoxHeight / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
+			&& _metalRef.at(i)->GetSprite()->getPositionY() + (scaledBoxHeight / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
+		{
+			_metalRef.at(i)->GetSprite()->setPositionX(T.x);
+		}
+	}
 }
 
 void Platforms::MovePlatformVertical(cocos2d::Vec2 T)

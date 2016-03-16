@@ -6,11 +6,17 @@
 #include "ui/CocosGUI.h"
 #include "Define.h"
 #include "GameManager.h"
+#include "Player.h"
+#include "Box.h"
 USING_NS_CC;
 
 class Platforms : public cocos2d::Node
 {
 private:
+	Player* _playerRef;
+	std::vector<Box*> _woodenRef;
+	std::vector<Box*> _metalRef;
+
 	Sprite* _movingPlat;
 	Sprite* _touchZone;
 	float OScale;
@@ -21,8 +27,8 @@ private:
 	int platformType = 0; // Gives platform types a number: 1 = Horizontal, 2 = vertical, 0 = no platform
 
 public:
-	Platforms();
-	static Platforms* create();
+	Platforms(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal);
+	static Platforms* create(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal);
 	~Platforms();
 
 	virtual bool init() override;
