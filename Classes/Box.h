@@ -84,5 +84,6 @@ public:
 	void SetStartingScale(float startingScale);
 	void Collision(cocos2d::Touch* touch);
 	void Scaling();
+	//void UpdateBoxScale(){ _box->setScale(scaler); }
 };
 

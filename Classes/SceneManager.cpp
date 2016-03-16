@@ -1478,4 +1478,3 @@ SceneManager::~SceneManager()
 	_gravSwitchesUp.clear();
 	_gravSwitchesRight.clear();
 }
-
