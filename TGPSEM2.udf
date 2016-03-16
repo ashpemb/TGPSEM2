@@ -2,9 +2,27 @@
   <Properties>
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
-        <LastPublishType Value="Resource" />
+        <LastPublishType Value="VS" />
         <IsLastPublish Value="True" />
         <LastRunType Value="Windows" />
+      </Value>
+    </Item>
+    <Item Key="PackageParamsKey">
+      <Value ctype="PackageParams">
+        <LuaIsEncrypt Value="False" />
+        <LuaEncryptKey Value="" />
+        <LuaEncryptSign Value="" />
+        <Android_PackageName Value="org.cocos.TGPSEM2" />
+        <AndroidkeyStore Value="" />
+        <AndroidVersion Value="" />
+        <iOS_Target Value="TGPSEM2-mobile" />
+        <iOS_BundleID Value="" />
+        <Platform Value="None" />
+        <RunPlatform Value="None" />
+        <FrameworkVersion Value="cocos2d-x-3.9" />
+        <IsDebugKeystore Value="True" />
+        <EnableSourceMap Value="False" />
+        <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
     <Item Key="TabsParamsKey">
@@ -14,9 +32,9 @@
           <FilePathData Path="Levels/Scene2.csd" />
           <FilePathData Path="Levels/Scene3.csd" />
           <FilePathData Path="Levels/Scene4.csd" />
-          <FilePathData Path="Levels/Scene5.csd" />
           <FilePathData Path="Levels/Scene6.csd" />
           <FilePathData Path="Levels/Scene7.csd" />
+          <FilePathData Path="Levels/Scene5.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="Levels/Scene5.csd" />
       </Value>

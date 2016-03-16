@@ -3,7 +3,96 @@
 <plist version="1.0">
 	<dict>
 		<key>frames</key>
-		<dict />
+		<dict>
+			<key>Main Objects/Exit.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Main Objects/Exit 2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{180,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Main Objects/Exit 3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{360,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Main Objects/Exit 4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{540,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Main Objects/Exit 5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{720,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Main Objects/Exit 6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{900,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Main Objects/Exit 7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1080,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+			<key>Main Objects/Exit Dis.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1260,0},{180,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,156}</string>
+			</dict>
+		</dict>
 		<key>metadata</key>
 		<dict>
 			<key>format</key>
@@ -13,14 +102,14 @@
 			<key>realTextureFileName</key>
 			<string>Exits.png</string>
 			<key>size</key>
-			<string>{32,32}</string>
+			<string>{2048,256}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>32</integer>
+			<integer>2048</integer>
 			<key>height</key>
-			<integer>32</integer>
+			<integer>256</integer>
 		</dict>
 	</dict>
 </plist>

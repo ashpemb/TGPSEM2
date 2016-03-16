@@ -56,19 +56,15 @@
           <Image Name="Test.png" />
           <Image Name="Wall 2.png" />
         </Folder>
-        <Image Name="Button_Unpressed.png" />
-        <Image Name="Hardlight_Hatch.png" />
-        <Image Name="MBoxSpawn.png" />
-        <Image Name="WBoxSpawn.png" />
-        <Project Name="Scene1.csd" Type="Scene" />
-        <Project Name="Scene2.csd" Type="Scene" />
-        <Project Name="Scene3.csd" Type="Scene" />
-        <Project Name="Scene4.csd" Type="Scene" />
-        <Project Name="Scene5.csd" Type="Scene" />
-        <Project Name="Scene6.csd" Type="Scene" />
-        <Project Name="Scene7.csd" Type="Scene" />
-        <Image Name="MBoxSpawn.png" />
-        <Image Name="WBoxSpawn.png" />
+        <Folder Name="Levels">
+          <Project Name="Scene7.csd" Type="Scene" />
+          <Project Name="Scene6.csd" Type="Scene" />
+          <Project Name="Scene5.csd" Type="Scene" />
+          <Project Name="Scene4.csd" Type="Scene" />
+          <Project Name="Scene3.csd" Type="Scene" />
+          <Project Name="Scene2.csd" Type="Scene" />
+          <Project Name="Scene1.csd" Type="Scene" />
+        </Folder>
         <Folder Name="Level Backgrounds">
           <Image Name="Main BG.png" />
           <Image Name="Platform 2.png" />
