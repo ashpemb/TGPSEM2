@@ -406,10 +406,10 @@ void Box::SetSprite(Sprite* newSprite) {
 	if (userdata == "Large" || userdata == "large") {
 		scaler = scaler3;
 	}
-	else if (userdata == "Medium" || userdata == "Medium") {
+	else if (userdata == "Medium" || userdata == "medium") {
 		scaler = scaler2;
 	}
-	else if (userdata == "Small" || userdata == "Small") {
+	else if (userdata == "Small" || userdata == "small") {
 		scaler = scaler1;
 	}
 

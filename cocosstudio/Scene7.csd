@@ -571,7 +571,7 @@
             <FileData Type="Normal" Path="Main Objects/Button_Up_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Up_2" ActionTag="1848735577" UserData="1000" Tag="172" IconVisible="False" LeftMargin="1602.2473" RightMargin="125.7527" TopMargin="120.0754" BottomMargin="1305.9246" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Up_2" ActionTag="1848735577" UserData="1000" Tag="172" IconVisible="False" LeftMargin="1600.4706" RightMargin="127.5294" TopMargin="120.0754" BottomMargin="1305.9246" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1760.4706" Y="1360.9246" />
