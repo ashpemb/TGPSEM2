@@ -618,13 +618,13 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Crate_Metal_1" ActionTag="-2050793953" UserData="large" Tag="176" IconVisible="False" LeftMargin="1618.5955" RightMargin="397.4045" TopMargin="841.6986" BottomMargin="662.3014" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Crate_Metal_1" ActionTag="-2050793953" UserData="large" Tag="176" IconVisible="False" LeftMargin="1630.7460" RightMargin="385.2540" TopMargin="749.7722" BottomMargin="754.2278" ctype="SpriteObjectData">
             <Size X="32.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1634.5955" Y="678.3014" />
+            <Position X="1646.7460" Y="770.2278" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7981" Y="0.4416" />
+            <PrePosition X="0.8041" Y="0.5015" />
             <PreSize X="0.0156" Y="0.0208" />
             <FileData Type="Normal" Path="Main Objects/MetalCrate.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
