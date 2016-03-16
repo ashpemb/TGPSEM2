@@ -76,8 +76,9 @@
           <Image Name="Switch_Up_On.png" />
           <Image Name="Solid_Door.png" />
         </Folder>
-        <Project Name="Scene8.csd" Type="Scene" />
+        <Project Name="Scene7.csd" Type="Scene" />
         <Project Name="Scene5.csd" Type="Scene" />
+        <Image Name="Button_Unpressed.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
