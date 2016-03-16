@@ -227,6 +227,28 @@
             <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="MetalBoxSpawn_1" ActionTag="-1937521030" Tag="39" IconVisible="False" LeftMargin="1891.3318" RightMargin="106.6682" TopMargin="871.7853" BottomMargin="614.2147" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1916.3318" Y="639.2147" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9357" Y="0.4162" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="MBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="WoodBoxSpawn_1" ActionTag="1566301637" Tag="38" IconVisible="False" LeftMargin="180.0768" RightMargin="1817.9232" TopMargin="783.8683" BottomMargin="702.1317" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="205.0768" Y="727.1317" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1001" Y="0.4734" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="WBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="Crate_Wooden_1" ActionTag="-1496754270" UserData="Medium" Tag="24" IconVisible="False" LeftMargin="190.5175" RightMargin="1825.4825" TopMargin="796.6210" BottomMargin="707.3790" ctype="SpriteObjectData">
             <Size X="32.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -354,6 +376,94 @@
             <PreSize X="0.0039" Y="0.0833" />
             <FileData Type="Normal" Path="Wall.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="RailStart_1" ActionTag="-1093379576" Tag="32" IconVisible="False" LeftMargin="636.8599" RightMargin="1361.1401" TopMargin="265.7024" BottomMargin="1220.2976" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="661.8599" Y="1245.2976" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3232" Y="0.8107" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="WBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="RailEnd_1" ActionTag="-965663733" Tag="33" IconVisible="False" LeftMargin="636.8596" RightMargin="1361.1404" TopMargin="894.5969" BottomMargin="591.4031" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="661.8596" Y="616.4031" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3232" Y="0.4013" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="Start.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="RailStart_2" ActionTag="1162068519" Tag="34" IconVisible="False" LeftMargin="1383.5015" RightMargin="614.4985" TopMargin="245.3424" BottomMargin="1240.6576" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1408.5015" Y="1265.6576" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6877" Y="0.8240" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="WBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="RailEnd_2" ActionTag="-1539695857" Tag="35" IconVisible="False" LeftMargin="1383.5015" RightMargin="614.4985" TopMargin="874.2186" BottomMargin="611.7814" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1408.5015" Y="636.7814" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6877" Y="0.4146" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="Start.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="RailStart_3" ActionTag="1472578453" Tag="36" IconVisible="False" LeftMargin="995.8862" RightMargin="1002.1138" TopMargin="548.9118" BottomMargin="937.0882" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1020.8862" Y="962.0882" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4985" Y="0.6264" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="WBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="RailEnd_3" ActionTag="-888905713" Tag="37" IconVisible="False" LeftMargin="995.8860" RightMargin="1002.1140" TopMargin="1331.8212" BottomMargin="154.1788" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1020.8860" Y="179.1788" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4985" Y="0.1167" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="Start.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="DEBUG_PlayerPos_X" ActionTag="-102764525" Tag="40" IconVisible="False" LeftMargin="74.0255" RightMargin="1920.9745" TopMargin="93.2191" BottomMargin="1401.7809" FontSize="36" LabelText="X:0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="53.0000" Y="41.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="100.5255" Y="1422.2809" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.0491" Y="0.9260" />
+            <PreSize X="0.0259" Y="0.0267" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="DEBUG_PlayerPos_Y" ActionTag="2136773464" Tag="41" IconVisible="False" LeftMargin="72.9766" RightMargin="1924.0234" TopMargin="131.9531" BottomMargin="1363.0469" FontSize="36" LabelText="Y:0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="51.0000" Y="41.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="98.4766" Y="1383.5469" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.0481" Y="0.9007" />
+            <PreSize X="0.0249" Y="0.0267" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

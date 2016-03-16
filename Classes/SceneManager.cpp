@@ -150,6 +150,7 @@ void SceneManager::SetupButtons(Node* root)
 void SceneManager::SetupSprites(Node* root)
 {
 	// REMINDER: Josh needs to follow our in-house comment conventions. 
+	// how about no
 	// PLAYER
 	_playerSprite = (Sprite*)root->getChildByName("Player");
 	int i = 1;
@@ -298,6 +299,41 @@ void SceneManager::SetupSprites(Node* root)
 	while ((tempButton = (Sprite*)(root->getChildByName("Button_Right_" + StringUtils::format("%d", i)))) != nullptr)
 	{
 		_rightButtons.push_back(tempButton);
+		i++;
+	}
+
+	// Rail Start
+	cocos2d::Sprite* tempRailStart;
+	i = 1;
+	while ((tempRailStart = (Sprite*)(root->getChildByName("RailStart_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_railStart.push_back(tempRailStart);
+		i++;
+	}
+
+	//Rail end
+	cocos2d::Sprite* tempRailEnd;
+	i = 1;
+	while ((tempRailEnd = (Sprite*)(root->getChildByName("RailEnd_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_railEnd.push_back(tempRailEnd);
+		i++;
+	}
+
+	// Crate Spawn zones
+	cocos2d::Sprite* tempWoodSpawn;
+	i = 1;
+	while ((tempWoodSpawn = (Sprite*)(root->getChildByName("WoodBoxSpawn_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_woodCrateSpawn.push_back(tempWoodSpawn);
+		i++;
+	}
+
+	cocos2d::Sprite* tempMetalSpawn;
+	i = 1;
+	while ((tempMetalSpawn = (Sprite*)(root->getChildByName("MetalBoxSpawn_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		_metalCrateSpawn.push_back(tempMetalSpawn);
 		i++;
 	}
 }
@@ -601,6 +637,11 @@ void SceneManager::update(float delta)
 			int sec = GameManager::sharedGameManager()->getSec();
 			int min = GameManager::sharedGameManager()->getMin();
 
+			std::string X = "X";
+			std::string Y = "Y";
+			int playerPosXFl = _player->GetSprite()->getPositionX();
+			int playerPosYFl = _player->GetSprite()->getPositionY();
+
 			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 
 			CheckCollisions();
@@ -643,6 +684,16 @@ void SceneManager::CheckCollisions()
 
 		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckWallCollisions(_walls[i]);
+		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsHoriz.size(); i2++)
+		{
+			_movingPlatformsHoriz[i2]->CheckWallCollisions(_walls[i]);
+		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsVert.size(); i2++)
+		{
+			_movingPlatformsVert[i2]->CheckWallCollisions(_walls[i]);
 		}
 	}
 
@@ -711,6 +762,34 @@ void SceneManager::CheckCollisions()
 
 		for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_buttons.at(i)->CheckBoxCollisions(_metalBoxes.at(i2));
+		}
+	}
+
+	// Rail Start
+	for (unsigned int i = 0; i < _railStart.size(); i++)
+	{
+		for (unsigned int i2 = 0; i2 < _movingPlatformsHoriz.size(); i2++)
+		{
+			_movingPlatformsHoriz[i2]->CheckPlatformCollisions(_railStart[i]);
+		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsVert.size(); i2++)
+		{
+			_movingPlatformsVert[i2]->CheckPlatformCollisions(_railStart[i]);
+		}
+	}
+
+	// Rail End
+	for (unsigned int i = 0; i < _railEnd.size(); i++)
+	{
+		for (unsigned int i2 = 0; i2 < _movingPlatformsHoriz.size(); i2++)
+		{
+			_movingPlatformsHoriz[i2]->CheckPlatformCollisions(_railEnd[i]);
+		}
+
+		for (unsigned int i2 = 0; i2 < _movingPlatformsVert.size(); i2++)
+		{
+			_movingPlatformsVert[i2]->CheckPlatformCollisions(_railEnd[i]);
 		}
 	}
 }
@@ -1368,14 +1447,54 @@ void SceneManager::FlipGravity(int direction)
 void SceneManager::IsPlayerInBounds()
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
-	if (_player->GetSprite()->getPosition().y < (0.0f - _player->GetSprite()->getContentSize().height))
+	// Checks if the player has gone off the bottom of the screen
+	if (_player->GetSprite()->getPosition().y < (0.0f - _player->GetSprite()->getContentSize().height)
+		|| _player->GetSprite()->getPosition().x < (0.0f - _player->GetSprite()->getContentSize().width))
 	{
-		GameManager::sharedGameManager()->setIsGameLive(false);
+		//GameManager::sharedGameManager()->setIsGameLive(false);
+		_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
 		
 	}
-	else if (_player->GetSprite()->getPosition().y > (winSize.height + _player->GetSprite()->getContentSize().height))
+	else if (_player->GetSprite()->getPosition().y > (winSize.height + _player->GetSprite()->getContentSize().height)
+		|| _player->GetSprite()->getPosition().x > (winSize.width + _player->GetSprite()->getContentSize().width))
 	{
-		GameManager::sharedGameManager()->setIsGameLive(false);
+		_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
+		//GameManager::sharedGameManager()->setIsGameLive(false);
+	}
+}
+
+void SceneManager::IsCrateInBounds()
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+
+	// Moves Wood crates to spawn area if off screen
+	for (int i = 0; i < _woodBoxes.size(); i++)
+	{
+		if (_woodBoxes[i]->GetSprite()->getPosition().y < (0.0f -_woodBoxes[i]->GetSprite()->getContentSize().height)
+			|| _woodBoxes[i]->GetSprite()->getPosition().x < (0.0f - _woodBoxes[i]->GetSprite()->getContentSize().width))
+		{
+			_woodBoxes[i]->GetSprite()->setPosition(_woodCrateSpawn[i]->getPosition());
+		}
+		else if (_woodBoxes[i]->GetSprite()->getPosition().y > (winSize.height + _woodBoxes[i]->GetSprite()->getContentSize().height)
+			|| _woodBoxes[i]->GetSprite()->getPosition().x >(winSize.width + _woodBoxes[i]->GetSprite()->getContentSize().width))
+		{
+			_woodBoxes[i]->GetSprite()->setPosition(_woodCrateSpawn[i]->getPosition());
+		}
+	}
+
+	// Moves Metal crates to spawn area if off screen
+	for (int i = 0; i < _metalBoxes.size(); i++)
+	{
+		if (_metalBoxes[i]->GetSprite()->getPosition().y < (0.0f - _metalBoxes[i]->GetSprite()->getContentSize().height)
+			|| _metalBoxes[i]->GetSprite()->getPosition().x < (0.0f - _metalBoxes[i]->GetSprite()->getContentSize().width))
+		{
+			_metalBoxes[i]->GetSprite()->setPosition(_metalCrateSpawn[i]->getPosition());
+		}
+		else if (_metalBoxes[i]->GetSprite()->getPosition().y >(winSize.height + _metalBoxes[i]->GetSprite()->getContentSize().height)
+			|| _metalBoxes[i]->GetSprite()->getPosition().x >(winSize.width + _metalBoxes[i]->GetSprite()->getContentSize().width))
+		{
+			_metalBoxes[i]->GetSprite()->setPosition(_metalCrateSpawn[i]->getPosition());
+		}
 	}
 }
 
@@ -1424,4 +1543,3 @@ SceneManager::~SceneManager()
 	_gravSwitchesUp.clear();
 	_gravSwitchesRight.clear();
 }
-

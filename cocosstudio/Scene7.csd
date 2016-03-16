@@ -568,7 +568,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6836" Y="0.8860" />
             <PreSize X="0.1563" Y="0.0716" />
-            <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Button_Up_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Button_Up_2" ActionTag="1848735577" UserData="1000" Tag="172" IconVisible="False" LeftMargin="1600.4706" RightMargin="127.5294" TopMargin="120.0754" BottomMargin="1305.9246" ctype="SpriteObjectData">
@@ -579,7 +579,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8596" Y="0.8860" />
             <PreSize X="0.1563" Y="0.0716" />
-            <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Button_Up_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Door_2" ActionTag="-1412288274" UserData="Button_Up_3" Tag="173" IconVisible="False" LeftMargin="1541.7166" RightMargin="497.2834" TopMargin="1158.5830" BottomMargin="343.4170" ctype="SpriteObjectData">
@@ -601,7 +601,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4995" Y="0.8855" />
             <PreSize X="0.1563" Y="0.0716" />
-            <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
+            <FileData Type="Normal" Path="Main Objects/Button_Up_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Exit_1" ActionTag="-665659550" Tag="175" IconVisible="False" LeftMargin="1709.2347" RightMargin="158.7653" TopMargin="1102.0300" BottomMargin="277.9699" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
