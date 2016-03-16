@@ -84,6 +84,8 @@
           <Project Name="Scene6.csd" Type="Scene" />
           <Project Name="Scene7.csd" Type="Scene" />
         </Folder>
+        <Image Name="WBoxSpawn.png" />
+        <Image Name="MBoxSpawn.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

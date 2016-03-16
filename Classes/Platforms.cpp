@@ -9,6 +9,9 @@ Platforms::Platforms(Player* ref, std::vector<Box*> wood, std::vector<Box*> meta
 	_playerRef = ref;
 	_woodenRef = wood;
 	_metalRef = metal;
+
+	CollidingWithPlatform = false;
+	CollidingWithWall = false;
 }
 
 Platforms* Platforms::create(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
@@ -127,8 +130,16 @@ void Platforms::MovePlatformHorizontal(cocos2d::Vec2 T)
 
 void Platforms::MovePlatformVertical(cocos2d::Vec2 T)
 {
-	_touchZone->setPositionY(T.y);
-	_movingPlat->setPositionY(T.y);
+	if (CollidingWithPlatform)
+	{
+		_touchZone->setPositionY(T.y);
+		_movingPlat->setPositionY(T.y);
+	}
+	else
+	{
+		_touchZone->setPositionY(_movingPlat->getPositionY());
+		_movingPlat->setPositionY(T.y);
+	}
 }
 
 //Touch Functions
@@ -156,17 +167,51 @@ void Platforms::onTouchMoved(Touch* touch, Event* event)
 	Vec2 T = touch->getLocation();
 	Rect platform = _touchZone->getBoundingBox();
 
-	if (platform.containsPoint(T) && platformType == 1)
+	if (!CollidingWithPlatform || !CollidingWithWall)
 	{
-		MovePlatformHorizontal(T);
-	}
-	else if (platform.containsPoint(T) && platformType == 2)
-	{
-		MovePlatformVertical(T);
+		if (platform.containsPoint(T) && platformType == 1)
+		{
+			MovePlatformHorizontal(T);
+		}
+		else if (platform.containsPoint(T) && platformType == 2)
+		{
+			MovePlatformVertical(T);
+		}
 	}
 }
 
 void Platforms::onTouchCancelled(Touch* touch, Event* event)
 {
 	cocos2d::log("touch cancelled");
+}
+
+void Platforms::CheckPlatformCollisions(cocos2d::Sprite* collider)
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+
+	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
+	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
+
+	float scaledPlatformHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
+	float scaledPlatformWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
+	
+	if (getSprite()->getPositionX() - (scaledPlatformWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
+		&& getSprite()->getPositionX() + (scaledPlatformWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
+		&& getSprite()->getPositionY() - (scaledPlatformHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
+		&& getSprite()->getPositionY() + (scaledPlatformHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
+	{
+			// checks if the moving platform is colliding with the top of a static platform
+			CollidingWithPlatform = true;
+			MovePlatformVertical(Vec2(collider->getPositionX() + (scaledPlatformWidth / 2), collider->getPositionY() + (scaledPlatformHeight)));
+		
+	}
+	else
+	{
+		//CollidingWithPlatform = false;
+	}
+}
+
+void Platforms::CheckWallCollisions(cocos2d::Sprite* collider)
+{
+
 }

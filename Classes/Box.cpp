@@ -1,3 +1,4 @@
+
 #include "Box.h"
 
 
@@ -56,6 +57,7 @@ void Box::update(float delta)
 		//_box->setScale(scaler2);
 		//_weight = 2.0f;
 		Scaling();
+		//UpdateBoxScale();
 	}
 	// Add box movement when pushed by player
 }
@@ -75,22 +77,23 @@ void Box::Scaling()
 	{
 		if (totalDiff > 10 && totalDiff < 200)
 		{
-			_box->setScale(scaler1);
+			//_box->setScale(scaler1);
 			scaler = scaler1;
 			_weight = 1.0f * _boxType;
 		}
 		else if (totalDiff > 200 && totalDiff < 500)
 		{
-			_box->setScale(scaler2);
+			//_box->setScale(scaler2);
 			scaler = scaler2;
 			_weight = 2.0f * _boxType;
 		}
 		else if (totalDiff > 500)
 		{
-			_box->setScale(scaler3);
+			//_box->setScale(scaler3);
 			scaler = scaler3;
 			_weight = 3.0f * _boxType;
 		}
+		_box->setScale(scaler);
 		Selected();
 	}
 	else
@@ -127,7 +130,7 @@ void Box::Collision(cocos2d::Touch* touch)
 	else if (isSelected == true)
 	{
 		unselect = unselect + 1;
-		if (unselect > 2)
+		if (unselect > 4)
 		{
 			isSelected = false;
 			unselect = 0;
