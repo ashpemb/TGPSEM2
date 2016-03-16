@@ -75,6 +75,7 @@
           <Image Name="Switch_Up_Off.png" />
           <Image Name="Switch_Up_On.png" />
           <Image Name="Solid_Door.png" />
+          <Image Name="Test.png" />
         </Folder>
         <Project Name="Scene7.csd" Type="Scene" />
         <Project Name="Scene5.csd" Type="Scene" />
