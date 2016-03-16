@@ -13,7 +13,7 @@ Box::Box(int boxType, float boxStartingWeight)
 	_weight = boxStartingWeight;
 }
 
-Box* Box::create(int boxType, float startingScale, float boxStartingWeight)
+Box* Box::create(int boxType, float boxStartingWeight)
 {
 	Box* box = new Box(boxType, boxStartingWeight);
 	if (!box->init())
@@ -24,7 +24,7 @@ Box* Box::create(int boxType, float startingScale, float boxStartingWeight)
 	box->SetGravity(-3.81f);
 	box->SetOrientationVertical(true);
 	box->SetOrientationHorizontal(false);
-	box->SetStartingScale(startingScale);
+	box->SetStartingScale();
 	box->autorelease();
 
 	return box;
@@ -60,11 +60,13 @@ void Box::update(float delta)
 	// Add box movement when pushed by player
 }
 
-void Box::SetStartingScale(float startingScale)
+void Box::SetStartingScale()
 {
-	scaler2 = startingScale;
-	scaler3 = startingScale*1.5f;
-	scaler1 = startingScale*0.5f;
+	scaler1 = 1.0f;
+	scaler2 = 1.5f;
+	scaler3 = 2.0f;
+
+	scaler = scaler1;
 }
 
 void Box::Scaling()
@@ -390,4 +392,24 @@ void Box::Flip()
 			GetSprite()->runAction(rotateTo);
 		}
 	}
+}
+
+void Box::SetSprite(Sprite* newSprite) {
+	_box = newSprite; 
+
+	cocostudio::ComExtensionData* data = dynamic_cast<cocostudio::ComExtensionData*>(GetSprite()->getComponent("ComExtensionData"));
+	std::string userdata = data->getCustomProperty();
+
+	if (userdata == "Large" || userdata == "large") {
+		scaler = scaler3;
+	}
+	else if (userdata == "Medium" || userdata == "Medium") {
+		scaler = scaler2;
+	}
+	else if (userdata == "Small" || userdata == "Small") {
+		scaler = scaler1;
+	}
+
+	_box->setScale(scaler);
+	this->addChild(_box);
 }

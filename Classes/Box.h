@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "cocostudio/CCComExtensionData.h"
 #include "GameManager.h"
 #include "ScalingObject.h"
 USING_NS_CC;
@@ -40,7 +41,7 @@ private:
 	bool isSelected;
 public:
 	Box(int, float);
-	static Box* create(int boxType, float startingScale, float boxStartingWeight);
+	static Box* create(int boxType, float boxStartingWeight);
 	~Box();
 
 	virtual bool init() override;
@@ -75,13 +76,13 @@ public:
 
 	// Sprite
 	Sprite* GetSprite() { return _box; };
-	void SetSprite(Sprite* newSprite) { _box = newSprite; this->addChild(_box); };
+	void SetSprite(Sprite* newSprite);
 
 	// Scaling
 	void SetTotalDiff(float totalDiffNew);
 	void Selected();
 	void Deselected();
-	void SetStartingScale(float startingScale);
+	void SetStartingScale();
 	void Collision(cocos2d::Touch* touch);
 	void Scaling();
 };
