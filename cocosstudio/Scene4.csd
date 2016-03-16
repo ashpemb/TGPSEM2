@@ -156,7 +156,7 @@
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Down_2" ActionTag="-480243673" UserData="1000" Tag="16" IconVisible="False" LeftMargin="718.3466" RightMargin="1009.6534" TopMargin="822.1154" BottomMargin="603.8846" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Down_2" ActionTag="-480243673" UserData="1000" Tag="16" IconVisible="False" LeftMargin="718.3466" RightMargin="1009.6533" TopMargin="822.1154" BottomMargin="603.8846" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="878.3466" Y="658.8846" />

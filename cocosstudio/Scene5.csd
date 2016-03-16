@@ -6,7 +6,7 @@
       <ObjectData Name="Scene" Tag="48" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="Second BG Panel 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="25.5789" RightMargin="22.4211" TopMargin="98.5568" BottomMargin="104.4432" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Second BG Panel 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="25.5789" RightMargin="22.4211" TopMargin="98.5569" BottomMargin="104.4432" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1025.5789" Y="770.9432" />
@@ -17,7 +17,7 @@
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="25.2629" RightMargin="22.7371" TopMargin="267.6552" BottomMargin="-64.6552" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="25.2629" RightMargin="22.7371" TopMargin="267.6553" BottomMargin="-64.6552" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1025.2629" Y="601.8448" />
@@ -39,7 +39,7 @@
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Second BG Panel 2" ActionTag="-2140291633" Tag="157" IconVisible="False" LeftMargin="86.5593" RightMargin="-38.5593" TopMargin="87.5739" BottomMargin="115.4261" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Second BG Panel 2" ActionTag="-2140291633" Tag="157" IconVisible="False" LeftMargin="86.5593" RightMargin="-38.5593" TopMargin="87.5740" BottomMargin="115.4261" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1086.5593" Y="781.9261" />
@@ -50,7 +50,7 @@
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Second BG Panel 3" ActionTag="-635937881" Tag="158" IconVisible="False" LeftMargin="-678.0005" RightMargin="726.0005" TopMargin="85.5765" BottomMargin="117.4235" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Second BG Panel 3" ActionTag="-635937881" Tag="158" IconVisible="False" LeftMargin="-678.0005" RightMargin="726.0005" TopMargin="85.5764" BottomMargin="117.4235" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="321.9995" Y="783.9235" />
@@ -61,7 +61,7 @@
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Second BG Panel 4" ActionTag="-886171249" Tag="160" IconVisible="False" LeftMargin="611.0342" RightMargin="-563.0342" TopMargin="212.4899" BottomMargin="-9.4899" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Second BG Panel 4" ActionTag="-886171249" Tag="160" IconVisible="False" LeftMargin="611.0342" RightMargin="-563.0342" TopMargin="212.4900" BottomMargin="-9.4899" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1611.0342" Y="657.0101" />
@@ -72,7 +72,7 @@
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Platform_1" ActionTag="-1500330469" Tag="49" IconVisible="False" LeftMargin="707.4031" RightMargin="1212.5969" TopMargin="1049.6018" BottomMargin="478.3981" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Platform_1" ActionTag="-1500330469" Tag="49" IconVisible="False" LeftMargin="707.4031" RightMargin="1212.5969" TopMargin="1049.6019" BottomMargin="478.3981" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="771.4031" Y="482.3981" />
@@ -208,7 +208,7 @@
             <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Solid_Door_1" ActionTag="-289802771" Tag="117" IconVisible="False" LeftMargin="3.5457" RightMargin="2036.4542" TopMargin="960.9103" BottomMargin="541.0897" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Solid_Door_1" ActionTag="-289802771" Tag="117" IconVisible="False" LeftMargin="3.5457" RightMargin="2036.4543" TopMargin="960.9103" BottomMargin="541.0897" ctype="SpriteObjectData">
             <Size X="8.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="7.5457" Y="558.0897" />
