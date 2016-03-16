@@ -77,15 +77,13 @@
         <Image Name="Hardlight_Hatch.png" />
         <Image Name="MBoxSpawn.png" />
         <Image Name="WBoxSpawn.png" />
-        <Folder Name="Levels">
-          <Project Name="Scene1.csd" Type="Scene" />
-          <Project Name="Scene2.csd" Type="Scene" />
-          <Project Name="Scene3.csd" Type="Scene" />
-          <Project Name="Scene4.csd" Type="Scene" />
-          <Project Name="Scene5.csd" Type="Scene" />
-          <Project Name="Scene6.csd" Type="Scene" />
-          <Project Name="Scene7.csd" Type="Scene" />
-        </Folder>
+        <Project Name="Scene1.csd" Type="Scene" />
+        <Project Name="Scene2.csd" Type="Scene" />
+        <Project Name="Scene3.csd" Type="Scene" />
+        <Project Name="Scene4.csd" Type="Scene" />
+        <Project Name="Scene5.csd" Type="Scene" />
+        <Project Name="Scene6.csd" Type="Scene" />
+        <Project Name="Scene7.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
