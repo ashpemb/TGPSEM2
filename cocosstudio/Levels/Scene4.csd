@@ -6,26 +6,26 @@
       <ObjectData Name="Scene" Tag="48" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="BG Back " ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="20.5814" RightMargin="27.4186" TopMargin="99.9872" BottomMargin="103.0128" ctype="SpriteObjectData">
-            <Size X="2000.0000" Y="1333.0000" />
+          <AbstractNodeData Name="BG Back " ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="997.5814" RightMargin="1004.4186" TopMargin="743.4872" BottomMargin="746.5128" ctype="SpriteObjectData">
+            <Size X="46.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1020.5814" Y="769.5128" />
             <Scale ScaleX="1.0236" ScaleY="0.4921" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4983" Y="0.5010" />
-            <PreSize X="0.9766" Y="0.8678" />
-            <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="20.8033" RightMargin="27.1968" TopMargin="95.5942" BottomMargin="107.4058" ctype="SpriteObjectData">
-            <Size X="2000.0000" Y="1333.0000" />
+          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="997.8033" RightMargin="1004.1968" TopMargin="739.0942" BottomMargin="750.9058" ctype="SpriteObjectData">
+            <Size X="46.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1020.8033" Y="773.9058" />
             <Scale ScaleX="1.0188" ScaleY="0.1809" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4984" Y="0.5038" />
-            <PreSize X="0.9766" Y="0.8678" />
-            <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Time" ActionTag="-334210610" Tag="88" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="979.5000" RightMargin="979.5000" TopMargin="21.3704" BottomMargin="1491.6296" FontSize="20" LabelText="00:00:000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
@@ -106,9 +106,9 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0916" Y="0.4667" />
             <PreSize X="0.0879" Y="0.1016" />
-            <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
-            <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
-            <DisableBackFileData Type="MarkedSubImage" Path="Main Objects/Exit Dis.png" Plist="Exits.plist" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Exit.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Exit 7.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Exit Dis.png" Plist="" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>

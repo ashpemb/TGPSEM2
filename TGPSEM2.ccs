@@ -19,40 +19,9 @@
         <Project Name="SplashScreen.csd" Type="Scene" />
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
-        <Image Name="Alex.png" />
-        <Image Name="Ash.png" />
-        <Image Name="David.png" />
-        <Image Name="HVLone.png" />
-        <Image Name="James.png" />
-        <Image Name="Josh.png" />
-        <Image Name="Matt.png" />
-        <Image Name="VikingLogo.png" />
-        <Project Name="GameWin.csd" Type="Scene" />
-        <Folder Name="LevelData">
-          <File Name="Level_1.xml" />
-          <File Name="Level_4.xml" />
-          <File Name="Level_5.xml" />
-          <File Name="Level_6.xml" />
-          <File Name="Level_7.xml" />
-        </Folder>
-        <Folder Name="Level Backgrounds">
-          <Image Name="Main BG.png" />
-          <Image Name="Second BG.png" />
-        </Folder>
+        <Image Name="WBoxSpawn.png" />
+        <Image Name="MBoxSpawn.png" />
         <Folder Name="Main Objects">
-          <Image Name="Platform 2.png" />
-          <Image Name="Wall 2.png" />
-          <Image Name="Exit 2.png" />
-          <Image Name="Exit 3.png" />
-          <Image Name="Exit 4.png" />
-          <Image Name="Exit 5.png" />
-          <Image Name="Exit 6.png" />
-          <Image Name="Exit 7.png" />
-          <Image Name="Exit Dis.png" />
-          <Image Name="Exit.png" />
-          <Image Name="Crate.png" />
-          <Image Name="MetalCrate.png" />
-          <Image Name="Hardlight_Door.png" />
           <Image Name="Button_Down_Pressed.png" />
           <Image Name="Button_Down_Unpressed.png" />
           <Image Name="Button_Left_Pressed.png" />
@@ -61,7 +30,21 @@
           <Image Name="Button_Right_Unpressed.png" />
           <Image Name="Button_Up_Pressed.png" />
           <Image Name="Button_Up_Unpressed.png" />
+          <Image Name="Crate.png" />
+          <Image Name="Exit 2.png" />
+          <Image Name="Exit 3.png" />
+          <Image Name="Exit 4.png" />
+          <Image Name="Exit 5.png" />
+          <Image Name="Exit 6.png" />
+          <Image Name="Exit 7.png" />
+          <Image Name="Exit Dis.png" />
+          <Image Name="Exit.png" />
+          <Image Name="Hardlight_Door.png" />
           <Image Name="Husky.png" />
+          <Image Name="MetalCrate.png" />
+          <Image Name="Platform 2.png" />
+          <Image Name="Platform holder.png" />
+          <Image Name="Solid_Door.png" />
           <Image Name="Switch_Down_Off.png" />
           <Image Name="Switch_Down_On.png" />
           <Image Name="Switch_Left_Off.png" />
@@ -70,22 +53,24 @@
           <Image Name="Switch_Right_On.png" />
           <Image Name="Switch_Up_Off.png" />
           <Image Name="Switch_Up_On.png" />
-          <Image Name="Solid_Door.png" />
           <Image Name="Test.png" />
+          <Image Name="Wall 2.png" />
         </Folder>
-        <Image Name="Button_Unpressed.png" />
-        <Image Name="Hardlight_Hatch.png" />
         <Folder Name="Levels">
-          <Project Name="Scene1.csd" Type="Scene" />
-          <Project Name="Scene2.csd" Type="Scene" />
-          <Project Name="Scene3.csd" Type="Scene" />
-          <Project Name="Scene4.csd" Type="Scene" />
-          <Project Name="Scene5.csd" Type="Scene" />
-          <Project Name="Scene6.csd" Type="Scene" />
           <Project Name="Scene7.csd" Type="Scene" />
+          <Project Name="Scene6.csd" Type="Scene" />
+          <Project Name="Scene5.csd" Type="Scene" />
+          <Project Name="Scene4.csd" Type="Scene" />
+          <Project Name="Scene3.csd" Type="Scene" />
+          <Project Name="Scene2.csd" Type="Scene" />
+          <Project Name="Scene1.csd" Type="Scene" />
         </Folder>
-        <Image Name="WBoxSpawn.png" />
-        <Image Name="MBoxSpawn.png" />
+        <Folder Name="Level Backgrounds">
+          <Image Name="Main BG.png" />
+          <Image Name="Platform 2.png" />
+          <Image Name="Second BG.png" />
+        </Folder>
+        <Image Name="Hardlight_Hatch.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
