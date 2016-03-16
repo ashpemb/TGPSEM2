@@ -10,9 +10,6 @@
         <Image Name="MuteUnPressed.png" />
         <Image Name="Platform.jpg" />
         <Image Name="MainMenuBackground.png" />
-        <Project Name="Scene1.csd" Type="Scene" />
-        <Project Name="Scene2.csd" Type="Scene" />
-        <Project Name="Scene3.csd" Type="Scene" />
         <Image Name="transparent.png" />
         <Image Name="BG1.png" />
         <Image Name="Wall.jpg" />
@@ -42,7 +39,6 @@
           <Image Name="Main BG.png" />
           <Image Name="Second BG.png" />
         </Folder>
-        <Project Name="Scene4.csd" Type="Scene" />
         <Folder Name="Main Objects">
           <Image Name="Platform 2.png" />
           <Image Name="Wall 2.png" />
@@ -77,10 +73,17 @@
           <Image Name="Solid_Door.png" />
           <Image Name="Test.png" />
         </Folder>
-        <Project Name="Scene7.csd" Type="Scene" />
-        <Project Name="Scene5.csd" Type="Scene" />
         <Image Name="Button_Unpressed.png" />
         <Image Name="Hardlight_Hatch.png" />
+        <Folder Name="Levels">
+          <Project Name="Scene1.csd" Type="Scene" />
+          <Project Name="Scene2.csd" Type="Scene" />
+          <Project Name="Scene3.csd" Type="Scene" />
+          <Project Name="Scene4.csd" Type="Scene" />
+          <Project Name="Scene5.csd" Type="Scene" />
+          <Project Name="Scene6.csd" Type="Scene" />
+          <Project Name="Scene7.csd" Type="Scene" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>
