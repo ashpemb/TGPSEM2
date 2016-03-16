@@ -41,7 +41,7 @@ bool SceneManager::init()
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
-	Node* rootNode = CSLoader::createNode("Scene" + StringUtils::format("%d", _level) + ".csb");
+	Node* rootNode = CSLoader::createNode("Levels/Scene" + StringUtils::format("%d", _level) + ".csb");
 
 	addChild(rootNode);
 
@@ -603,7 +603,7 @@ void SceneManager::SetupClasses(Node* root)
 		hatch->setName("Hatch_" + StringUtils::format("%d", i + 1));
 		hatch->SetSprite(_buttons, _hatchSprites[i]);
 
-		_doors.push_back(hatch);
+		_hatches.push_back(hatch);
 
 		addChild(hatch);
 	}
@@ -700,26 +700,33 @@ void SceneManager::CheckCollisions()
 	// DOOR COLLISIONS
 	for (unsigned int i = 0; i < _doors.size(); i++) {
 		if (!_doors[i]->GetOpen()) {
-			if (getName().find("Hatch")) {
-				_player->CheckPlatformCollisions(_doors[i]->GetSprite());
 
-				for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
-					_woodBoxes[i2]->CheckPlatformCollisions(_doors[i]->GetSprite());
-				}
+			_player->CheckWallCollisions(_doors[i]->GetSprite());
 
-				for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
-					_metalBoxes[i2]->CheckPlatformCollisions(_doors[i]->GetSprite());
-				}
+			for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+				_woodBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
 			}
-			else {
-				_player->CheckWallCollisions(_doors[i]->GetSprite());
+
+			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+				_metalBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+			}
+		}
+
+	}
+
+	// Hatch Collisions
+	for (unsigned int i = 0; i < _hatches.size(); i++) {
+		if (!_hatches[i]->GetOpen()) {
+			if (getName().find("Hatch"))
+			{
+				_player->CheckPlatformCollisions(_hatches[i]->GetSprite());
 
 				for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
-					_woodBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+					_woodBoxes[i2]->CheckPlatformCollisions(_hatches[i]->GetSprite());
 				}
 
 				for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
-					_metalBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+					_metalBoxes[i2]->CheckPlatformCollisions(_hatches[i]->GetSprite());
 				}
 			}
 		}
@@ -1451,15 +1458,15 @@ void SceneManager::IsPlayerInBounds()
 	if (_player->GetSprite()->getPosition().y < (0.0f - _player->GetSprite()->getContentSize().height)
 		|| _player->GetSprite()->getPosition().x < (0.0f - _player->GetSprite()->getContentSize().width))
 	{
-		//GameManager::sharedGameManager()->setIsGameLive(false);
-		_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
+		GameManager::sharedGameManager()->setIsGameLive(false);
+		//_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
 		
 	}
 	else if (_player->GetSprite()->getPosition().y > (winSize.height + _player->GetSprite()->getContentSize().height)
 		|| _player->GetSprite()->getPosition().x > (winSize.width + _player->GetSprite()->getContentSize().width))
 	{
-		_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
-		//GameManager::sharedGameManager()->setIsGameLive(false);
+		//_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
+		GameManager::sharedGameManager()->setIsGameLive(false);
 	}
 }
 
