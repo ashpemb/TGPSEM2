@@ -618,13 +618,13 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Crate_Metal_1" ActionTag="-2050793953" Tag="176" IconVisible="False" LeftMargin="1618.5955" RightMargin="397.4045" TopMargin="841.6986" BottomMargin="662.3014" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Crate_Metal_1" ActionTag="-2050793953" UserData="large" Tag="176" IconVisible="False" LeftMargin="1630.7460" RightMargin="385.2540" TopMargin="749.7722" BottomMargin="754.2278" ctype="SpriteObjectData">
             <Size X="32.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1634.5955" Y="678.3014" />
+            <Position X="1646.7460" Y="770.2278" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7981" Y="0.4416" />
+            <PrePosition X="0.8041" Y="0.5015" />
             <PreSize X="0.0156" Y="0.0208" />
             <FileData Type="Normal" Path="Main Objects/MetalCrate.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -706,6 +706,39 @@
             <PrePosition X="0.1239" Y="0.7392" />
             <PreSize X="0.0625" Y="0.0052" />
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Solid_Door_1" ActionTag="-830263596" Tag="66" IconVisible="False" LeftMargin="4.9637" RightMargin="2035.0363" TopMargin="1158.9662" BottomMargin="343.0338" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="34.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="8.9637" Y="360.0338" />
+            <Scale ScaleX="2.0000" ScaleY="4.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0044" Y="0.2344" />
+            <PreSize X="0.0039" Y="0.0221" />
+            <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Solid_Door_1_0" ActionTag="-1119174222" Tag="68" IconVisible="False" LeftMargin="4.9256" RightMargin="2035.0743" TopMargin="789.9048" BottomMargin="712.0952" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="34.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="8.9256" Y="729.0952" />
+            <Scale ScaleX="2.0000" ScaleY="4.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0044" Y="0.4747" />
+            <PreSize X="0.0039" Y="0.0221" />
+            <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Solid_Door_1_0_0" ActionTag="-366534805" Tag="69" IconVisible="False" LeftMargin="2038.1089" RightMargin="1.8911" TopMargin="790.0725" BottomMargin="711.9275" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="34.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="2042.1089" Y="728.9275" />
+            <Scale ScaleX="2.0000" ScaleY="4.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9971" Y="0.4746" />
+            <PreSize X="0.0039" Y="0.0221" />
+            <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>

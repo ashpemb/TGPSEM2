@@ -75,6 +75,8 @@
         </Folder>
         <Image Name="Button_Unpressed.png" />
         <Image Name="Hardlight_Hatch.png" />
+        <Image Name="MBoxSpawn.png" />
+        <Image Name="WBoxSpawn.png" />
         <Project Name="Scene1.csd" Type="Scene" />
         <Project Name="Scene2.csd" Type="Scene" />
         <Project Name="Scene3.csd" Type="Scene" />
