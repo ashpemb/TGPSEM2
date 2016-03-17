@@ -156,13 +156,13 @@
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Down_2" ActionTag="-480243673" UserData="1000" Tag="16" IconVisible="False" LeftMargin="718.3466" RightMargin="1009.6533" TopMargin="822.1154" BottomMargin="603.8846" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Down_2" ActionTag="-480243673" UserData="1000" Tag="16" IconVisible="False" LeftMargin="717.7002" RightMargin="1010.2998" TopMargin="801.1398" BottomMargin="624.8602" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="878.3466" Y="658.8846" />
+            <AnchorPoint ScaleX="0.5025" ScaleY="0.2503" />
+            <Position X="878.5082" Y="652.3909" />
             <Scale ScaleX="0.2000" ScaleY="0.2000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4289" Y="0.4290" />
+            <PrePosition X="0.4290" Y="0.4247" />
             <PreSize X="0.1563" Y="0.0716" />
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
