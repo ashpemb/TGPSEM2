@@ -47,8 +47,32 @@ void SwitchTimer::UpdateTimer(float dt)
 		_enabled = !_enabled;
 	}
 	_gravSwitchTimer->setEnabled(_enabled);
+	ReverseOrientation(GetOrientation());
 }
 
+void SwitchTimer::ReverseOrientation(int _orientation)
+{
+	//Switch from down to up
+	if (_orientation == 0)
+	{
+		_orientation = 2;
+	}
+	//Switch from up to down
+	if (_orientation == 2)
+	{
+		_orientation = 0;
+	}
+	//Switch from left to right
+	if (_orientation == 1)
+	{
+		_orientation = 3;
+	}
+	//Switch from right to left
+	if (_orientation == 3)
+	{
+		_orientation = 1;
+	}
+}
 
 void SwitchTimer::CheckNear(cocos2d::Sprite* player)
 {

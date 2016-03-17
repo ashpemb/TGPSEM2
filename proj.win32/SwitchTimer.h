@@ -27,10 +27,10 @@
 
 		void SetOrientation(int orientation) { _orientation = orientation; };
 		int GetOrientation() { return _orientation; };
-
 		void CheckNear(cocos2d::Sprite* player);
 
 		void UpdateTimer(float dt);
+		void ReverseOrientation(int _orientation);
 		cocos2d::ui::CheckBox* GetSprite() { return _gravSwitchTimer; };
 		void SetSprite(cocos2d::ui::CheckBox* newSprite);
 	};

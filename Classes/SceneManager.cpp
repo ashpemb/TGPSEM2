@@ -525,6 +525,25 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	}
 }
 
+void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (unsigned int i = 0; i < _switches.size(); i++) {
+		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
+			_flipped[i] = !_flipped[i];
+			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
+
+			// Flip Gravity
+			if (_flipGravityCooldown == 0.0f) {
+				FlipGravity(_switches.at(i)->GetOrientation());
+				_flipGravityCooldown = 1.0f;
+			}
+		}
+	}
+}
+
 void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CCLOG("In Touch! %d", type);

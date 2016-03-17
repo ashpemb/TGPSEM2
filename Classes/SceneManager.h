@@ -123,6 +123,7 @@ public:
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+	void SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 
 };
 
