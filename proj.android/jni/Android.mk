@@ -31,7 +31,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 			   ../../Classes/FloorButton.cpp \
 			   ../../Classes/GameWinScene.cpp \
 			   ../../Classes/Door.cpp \
-
+			   ../../Classes/SwitchTimer.cpp \
+			   ../../Classes/Wall.cpp \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
