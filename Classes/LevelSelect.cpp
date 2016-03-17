@@ -95,8 +95,8 @@ bool LevelSelect::init()
 		stars[i]->CreateSprite("World1.png", 2);
 		
 		stars[i]->sprite->setPosition3D(Vec3(rand() % screenSizeX, rand() % screenSizeY, rand() % 300));
-		stars[i]->sprite->setScale(0.1);
-		stars[i]->SetStartingScale(0.1);
+		stars[i]->sprite->setScale(0.1f);
+		stars[i]->SetStartingScale(0.1f);
 		addChild(stars[i]->sprite);
 	}
 	touchMGR = new TouchManager;

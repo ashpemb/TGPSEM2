@@ -108,7 +108,7 @@ void Wall::MovePlatformVertical(cocos2d::Vec2 T)
 		}
 	}
 
-	for (int i = 0; i < _woodenRef.size(); i++) {
+	for (int i = 0; i < (int)_woodenRef.size(); i++) {
 		float scaledWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
 		float scaledHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
 		float scaledBoxWidth = _woodenRef.at(i)->GetSprite()->getContentSize().width * _woodenRef.at(i)->GetSprite()->getScaleX();
@@ -123,7 +123,7 @@ void Wall::MovePlatformVertical(cocos2d::Vec2 T)
 		}
 	}
 
-	for (int i = 0; i < _metalRef.size(); i++) {
+	for (int i = 0; i < (int)_metalRef.size(); i++) {
 		float scaledWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
 		float scaledHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
 		float scaledBoxWidth = _metalRef.at(i)->GetSprite()->getContentSize().width * _metalRef.at(i)->GetSprite()->getScaleX();

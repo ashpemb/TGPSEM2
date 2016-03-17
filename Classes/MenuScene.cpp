@@ -72,11 +72,11 @@ bool MenuScene::init()
 	
 	if (GameManager::sharedGameManager()->getIsGameMuted() == true)
 	{
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MutePressed.png"));
 	}
 	else
 	{
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MuteUnPressed.png"));
 	}
 
 	_muteButton->setPosition(Vec2(winSize.width*0.05f, winSize.height*0.95f));
@@ -118,14 +118,14 @@ void MenuScene::MuteButtonPressed()
 {
 
 	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MutePressed.png"));
 
 		auEngine->PauseBackgroundMusic();
 		auEngine->PauseAllEffects();
 		GameManager::sharedGameManager()->setIsGameMuted(true);
 	}
 	else {
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressed.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MuteUnPressed.png"));
 
 		auEngine->ResumeBackgroundMusic();
 		auEngine->ResumeAllEffects();
