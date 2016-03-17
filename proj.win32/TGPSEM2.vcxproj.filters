@@ -23,6 +23,7 @@
     <ClCompile Include="..\Classes\FloorButton.cpp" />
     <ClCompile Include="..\Classes\Door.cpp" />
     <ClCompile Include="..\Classes\Wall.cpp" />
+    <ClCompile Include="..\Classes\SwitchTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="..\Classes\FloorButton.h" />
     <ClInclude Include="..\Classes\Door.h" />
     <ClInclude Include="..\Classes\Wall.h" />
+    <ClInclude Include="..\Classes\SwitchTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />

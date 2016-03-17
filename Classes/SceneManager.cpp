@@ -211,6 +211,13 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Solid_Door_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_solidDoorSprites.push_back(tempSprite);
+		i++;
+	}
+
 	// HATCHES
 	i = 1;
 	while ((tempSprite = (Sprite*)root->getChildByName("Hatch_" + StringUtils::format("%d", i))) != nullptr)
@@ -270,6 +277,15 @@ void SceneManager::SetupSprites(Node* root)
 	{
 		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
 		_gravSwitchesRight.push_back(tempCheck);
+		i++;
+	}
+	// Timer Switches
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_timerSwitches.push_back(tempCheck);
+		_flipped.push_back(false);
 		i++;
 	}
 
@@ -649,6 +665,18 @@ void SceneManager::SetupClasses(Node* root)
 
 		addChild(hatch);
 	}
+
+	//Timer Switches
+	for (unsigned int i = 0; i < _timerSwitches.size(); i++) {
+		SwitchTimer* gravSwitch = SwitchTimer::create();
+		gravSwitch->setName("SwitchTimer_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitches[i]);
+		gravSwitch->SetOrientation((i + 1) % 4);
+
+		_tSwitches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
 }
 
 void SceneManager::ScheduleScore(float delta)
@@ -751,6 +779,22 @@ void SceneManager::CheckCollisions()
 
 			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 				_metalBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+			}
+		}
+
+	}
+
+	for (unsigned int i = 0; i < _solidDoorSprites.size(); i++) {
+		if (!_doors[i]->GetOpen()) {
+
+			_player->CheckWallCollisions(_solidDoorSprites[i]);
+
+			for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+				_woodBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
+			}
+
+			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+				_metalBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
 			}
 		}
 
@@ -1063,13 +1107,31 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 
 void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	// Find what switch has been clicked
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
 	for (unsigned int i = 0; i < _exit.size(); i++) {
 		if (findCheckBox->getName() == _exit.at(i)->getName()) {
 			auto scene = GameWinScene::createScene();
 			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+		}
+	}
+}
+
+void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (unsigned int i = 0; i < _switches.size(); i++) {
+		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
+			_flipped[i] = !_flipped[i];
+			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
+
+			// Flip Gravity
+			if (_flipGravityCooldown == 0.0f) {
+				FlipGravity(_switches.at(i)->GetOrientation());
+				_flipGravityCooldown = 1.0f;
+			}
 		}
 	}
 }
