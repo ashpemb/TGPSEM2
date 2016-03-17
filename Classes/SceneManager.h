@@ -57,8 +57,14 @@ private:
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesLeft;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesUp;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesRight;
-	std::vector<cocos2d::ui::CheckBox*> _timerSwitches;
+
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesDown;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesLeft;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesUp;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesRight;
+	
 	Sprite*								_playerSpawn;
+
 
 	// BACKGROUND
 	Sprite*	_background1;
@@ -111,6 +117,7 @@ private:
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
+	int		_previousDirection;
 	int		_gravityOrientation;
 	bool	_gravityHighlight;
 	float	_flipGravityCooldown = 1.0f;	// One second cooldown
@@ -145,9 +152,11 @@ public:
 	void update(float delta);
 	void ScheduleScore(float delta);
 	void CheckNear(float delta);
+	void CheckNearTimer(float delta);
 	void CheckNearDoor(float delta);
 	void IsPlayerInBounds();
 	void IsCrateInBounds();
+	void RevertGravity();
 
 	// implement the "static create()" method manually
 	//CREATE_FUNC(Scene1);

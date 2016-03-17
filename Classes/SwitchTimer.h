@@ -3,32 +3,47 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "cocostudio/CCComExtensionData.h"
 #include <cstdlib>
 #include <ctime>
-	USING_NS_CC;
+USING_NS_CC;
 
-	class SwitchTimer : public Node
-	{
-	private:
-		cocos2d::ui::CheckBox* _gravSwitchTimer;
+class SwitchTimer : public Node
+{
+private:
+	cocos2d::ui::CheckBox* _gravSwitchTimer;
 
-		// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
-		int _orientation;
-		int _timerLength;
-	public:
-		SwitchTimer();
-		~SwitchTimer();
-		static SwitchTimer* create();
+	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
+	int _orientation;
+	float _timerDefault;
+	float _timer;
+	int _mil;
+	int _sec;
+	int _min;
+	bool _isTimerStarted;
+	bool _isEnabled;
+	bool _revertGravity;
+public:
+	SwitchTimer();
+	~SwitchTimer();
+	static SwitchTimer* create();
 
-		virtual bool init() override;
+	void update(float delta);
 
-		void SetOrientation(int orientation) { _orientation = orientation; };
-		int GetOrientation() { return _orientation; };
+	virtual bool init() override;
 
-		void CheckNear(cocos2d::Sprite* player);
+	void SetOrientation(int orientation) { _orientation = orientation; };
+	int GetOrientation() { return _orientation; };
 
-		void UpdateTimer(float dt);
-		cocos2d::ui::CheckBox* GetSprite() { return _gravSwitchTimer; };
-		void SetSprite(cocos2d::ui::CheckBox* newSprite);
-	};
+	void SetRevertGravity(bool revert) { _revertGravity = revert; };
+	bool GetRevertGravity();
+
+	int SwitchGravity();
+
+	cocos2d::ui::CheckBox* GetSprite() { return _gravSwitchTimer; };
+	void SetSprite(cocos2d::ui::CheckBox* newSprite);
+
+	void ResetTimer();
+	bool IsTimerRunning();
+};
 

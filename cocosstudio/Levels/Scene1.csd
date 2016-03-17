@@ -475,6 +475,20 @@
             <FileData Type="Normal" Path="Wall.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="SwitchTimer_Up_1" ActionTag="-1288972167" UserData="3.0" Tag="44" IconVisible="False" LeftMargin="522.6805" RightMargin="1507.3196" TopMargin="1001.1256" BottomMargin="499.8744" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="18.0000" Y="35.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="531.6805" Y="517.3744" />
+            <Scale ScaleX="3.0800" ScaleY="3.0800" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2596" Y="0.3368" />
+            <PreSize X="0.0088" Y="0.0228" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Up_Off.png" Plist="" />
+            <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
+            <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
