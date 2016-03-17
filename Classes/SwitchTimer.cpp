@@ -55,7 +55,8 @@ void SwitchTimer::UpdateTimer(float dt)
 	else {
 		_gravSwitchTimer->setEnabled(false);
 	}
-	if (_timerLength)
+
+	//if (_timerLength)
 }
 
 void SwitchTimer::SetSprite(cocos2d::ui::CheckBox* newSprite)

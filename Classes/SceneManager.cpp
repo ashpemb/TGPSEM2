@@ -1084,6 +1084,8 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 
 void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
 	for (unsigned int i = 0; i < _exit.size(); i++) {
 		if (findCheckBox->getName() == _exit.at(i)->getName()) {
 			auto scene = GameWinScene::createScene();
