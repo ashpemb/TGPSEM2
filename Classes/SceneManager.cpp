@@ -211,6 +211,13 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Solid_Door_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_solidDoorSprites.push_back(tempSprite);
+		i++;
+	}
+
 	// HATCHES
 	i = 1;
 	while ((tempSprite = (Sprite*)root->getChildByName("Hatch_" + StringUtils::format("%d", i))) != nullptr)
@@ -772,6 +779,22 @@ void SceneManager::CheckCollisions()
 
 			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 				_metalBoxes[i2]->CheckWallCollisions(_doors[i]->GetSprite());
+			}
+		}
+
+	}
+
+	for (unsigned int i = 0; i < _solidDoorSprites.size(); i++) {
+		if (!_doors[i]->GetOpen()) {
+
+			_player->CheckWallCollisions(_solidDoorSprites[i]);
+
+			for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+				_woodBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
+			}
+
+			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+				_metalBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
 			}
 		}
 
