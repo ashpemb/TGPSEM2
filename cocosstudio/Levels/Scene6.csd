@@ -65,7 +65,7 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Platform_2" ActionTag="201292790" Tag="131" IconVisible="False" LeftMargin="206.0591" RightMargin="1713.9409" TopMargin="1097.6656" BottomMargin="430.3344" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Platform_2" ActionTag="201292790" Tag="131" IconVisible="False" LeftMargin="206.0591" RightMargin="1713.9409" TopMargin="1097.6655" BottomMargin="430.3344" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="270.0591" Y="434.3344" />
@@ -208,7 +208,7 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MovingPlatformX_2" ActionTag="-1044559327" Tag="129" IconVisible="False" LeftMargin="1191.1666" RightMargin="728.8334" TopMargin="1363.4094" BottomMargin="164.5905" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MovingPlatformX_2" ActionTag="-1044559327" Tag="129" IconVisible="False" LeftMargin="1191.1666" RightMargin="728.8334" TopMargin="1363.4095" BottomMargin="164.5905" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1255.1666" Y="168.5905" />
@@ -230,7 +230,7 @@
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Solid_Door_1" ActionTag="1112665991" Tag="192" IconVisible="False" LeftMargin="240.7841" RightMargin="1799.2158" TopMargin="1272.8887" BottomMargin="229.1114" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Solid_Door_1" ActionTag="1112665991" Tag="192" IconVisible="False" LeftMargin="240.7841" RightMargin="1799.2159" TopMargin="1272.8887" BottomMargin="229.1114" ctype="SpriteObjectData">
             <Size X="8.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="244.7841" Y="246.1114" />
@@ -264,6 +264,17 @@
             <PrePosition X="0.9274" Y="0.6187" />
             <PreSize X="0.0044" Y="0.0221" />
             <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="MovingWallY_1" ActionTag="1810547072" Tag="67" IconVisible="False" LeftMargin="1176.5955" RightMargin="863.4045" TopMargin="815.5605" BottomMargin="592.4395" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="128.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1180.5955" Y="656.4395" />
+            <Scale ScaleX="2.0100" ScaleY="2.5022" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5765" Y="0.4274" />
+            <PreSize X="0.0039" Y="0.0833" />
+            <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>
