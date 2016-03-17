@@ -70,11 +70,11 @@ bool GameOverScene::init()
 	
 	if (GameManager::sharedGameManager()->getIsGameMuted() == true)
 	{
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MutePressed.png"));
 	}
 	else
 	{
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressedGO.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MuteUnPressedGO.png"));
 	}
 	_muteButton->setPosition(Vec2(winSize.width*0.05f, winSize.height*0.95f));
 
@@ -122,14 +122,14 @@ void GameOverScene::MainMenuButtonPressed(Ref *sender, cocos2d::ui::Widget::Touc
 void GameOverScene::MuteButtonPressed()
 {
 	if (GameManager::sharedGameManager()->getIsGameMuted() == false) {
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MutePressed.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MutePressed.png"));
 
 		auEngine->PauseBackgroundMusic();
 		auEngine->PauseAllEffects();
 		GameManager::sharedGameManager()->setIsGameMuted(true);
 	}
 	else {
-		_muteButton->setTexture(TextureCache::getInstance()->addImage("MuteUnPressedGO.png"));
+		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MuteUnPressedGO.png"));
 
 		auEngine->ResumeBackgroundMusic();
 		auEngine->ResumeAllEffects();

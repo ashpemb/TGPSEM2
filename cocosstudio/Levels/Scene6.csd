@@ -65,7 +65,7 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Platform_2" ActionTag="201292790" Tag="131" IconVisible="False" LeftMargin="210.0591" RightMargin="1709.9409" TopMargin="1097.6656" BottomMargin="430.3343" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Platform_2" ActionTag="201292790" Tag="131" IconVisible="False" LeftMargin="210.0591" RightMargin="1709.9409" TopMargin="1097.6658" BottomMargin="430.3343" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="274.0591" Y="434.3343" />
@@ -208,7 +208,7 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_5" ActionTag="1930783512" Tag="73" IconVisible="False" LeftMargin="4.0970" RightMargin="2035.9031" TopMargin="916.2670" BottomMargin="491.7330" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_5" ActionTag="1930783512" Tag="73" IconVisible="False" LeftMargin="4.0970" RightMargin="2035.9030" TopMargin="916.2670" BottomMargin="491.7330" FlipX="True" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="8.0970" Y="555.7330" />
@@ -230,7 +230,7 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MovingPlatformX_3" ActionTag="-1093797519" Tag="69" IconVisible="False" LeftMargin="63.7659" RightMargin="1856.2340" TopMargin="170.0657" BottomMargin="1357.9343" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MovingPlatformX_3" ActionTag="-1093797519" Tag="69" IconVisible="False" LeftMargin="63.7659" RightMargin="1856.2341" TopMargin="170.0657" BottomMargin="1357.9343" FlipY="True" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="127.7659" Y="1361.9343" />
@@ -263,13 +263,13 @@
             <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Exit_1" ActionTag="168414293" Tag="193" IconVisible="False" LeftMargin="15.1770" RightMargin="1852.8230" TopMargin="1217.6122" BottomMargin="162.3878" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Exit_1" ActionTag="168414293" Tag="193" IconVisible="False" LeftMargin="9.9606" RightMargin="1858.0394" TopMargin="1218.6294" BottomMargin="161.3707" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="180.0000" Y="156.0000" />
-            <AnchorPoint ScaleX="0.3551" ScaleY="0.4674" />
-            <Position X="79.0950" Y="235.3022" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="99.9606" Y="239.3707" />
             <Scale ScaleX="0.8000" ScaleY="0.8000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0386" Y="0.1532" />
+            <PrePosition X="0.0488" Y="0.1558" />
             <PreSize X="0.0879" Y="0.1016" />
             <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
             <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
@@ -299,7 +299,7 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MovingWallY_2" ActionTag="961166304" Tag="68" IconVisible="False" LeftMargin="5.1534" RightMargin="2034.8467" TopMargin="460.5825" BottomMargin="947.4175" FlipX="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MovingWallY_2" ActionTag="961166304" Tag="68" IconVisible="False" LeftMargin="5.1534" RightMargin="2034.8466" TopMargin="460.5825" BottomMargin="947.4175" FlipX="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="9.1534" Y="1011.4175" />

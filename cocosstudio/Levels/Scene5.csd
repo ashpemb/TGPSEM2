@@ -127,13 +127,13 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_1" ActionTag="1931522162" Tag="69" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="189.9452" RightMargin="1850.0548" TopMargin="519.0462" BottomMargin="888.9538" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_1" ActionTag="1931522162" Tag="69" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="190.2044" RightMargin="1849.7957" TopMargin="512.0364" BottomMargin="895.9636" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
-            <AnchorPoint ScaleX="0.5114" ScaleY="0.5186" />
-            <Position X="194.0364" Y="955.3346" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="194.2044" Y="959.9636" />
             <Scale ScaleX="1.8418" ScaleY="1.9443" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0947" Y="0.6220" />
+            <PrePosition X="0.0948" Y="0.6250" />
             <PreSize X="0.0039" Y="0.0833" />
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -368,13 +368,13 @@
             <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
             <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Up_Off.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Exit_1" ActionTag="-327023598" Tag="146" IconVisible="False" LeftMargin="1707.2385" RightMargin="160.7615" TopMargin="907.5996" BottomMargin="472.4004" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Exit_1" ActionTag="-327023598" Tag="146" IconVisible="False" LeftMargin="1702.0221" RightMargin="165.9779" TopMargin="908.6167" BottomMargin="471.3833" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="180.0000" Y="156.0000" />
-            <AnchorPoint ScaleX="0.3551" ScaleY="0.4674" />
-            <Position X="1771.1565" Y="545.3148" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1792.0221" Y="549.3833" />
             <Scale ScaleX="0.8000" ScaleY="0.8000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8648" Y="0.3550" />
+            <PrePosition X="0.8750" Y="0.3577" />
             <PreSize X="0.0879" Y="0.1016" />
             <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
             <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />

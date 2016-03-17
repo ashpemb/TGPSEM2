@@ -56,7 +56,7 @@ bool Door::Open(float delta)
 {
 	_open = true;
 
-	GetSprite()->setTexture(TextureCache::getInstance()->addImage("transparent.png"));
+	GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("transparent.png"));
 
 	return true;
 }
@@ -66,10 +66,10 @@ bool Door::Close(float delta)
 	_open = false;
 
 	if (getName().find("Hatch")) {
-		GetSprite()->setTexture(TextureCache::getInstance()->addImage("Hardlight_Hatch.png"));
+		GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Hardlight_Hatch.png"));
 	}
 	else {
-		GetSprite()->setTexture(TextureCache::getInstance()->addImage("Hardlight_Door.png"));
+		GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Hardlight_Door.png"));
 	}
 
 	return true;
@@ -82,7 +82,7 @@ void Door::SetSprite(std::vector<FloorButton*> buttons, Sprite* newSprite)
 	cocostudio::ComExtensionData* data = dynamic_cast<cocostudio::ComExtensionData*>(_sprite->getComponent("ComExtensionData"));
 	std::string userdata = data->getCustomProperty();
 
-	for (int i = 0; i < buttons.size(); i++) {
+	for (int i = 0; i < (int)buttons.size(); i++) {
 		if (buttons.at(i)->getName() == userdata) {
 			_linkedButton = buttons.at(i);
 			_timerDefault = _linkedButton->GetTimer();

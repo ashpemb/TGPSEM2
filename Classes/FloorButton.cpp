@@ -45,30 +45,30 @@ void FloorButton::SetActive(bool activeState)
 
 	if (_activated) {
 		if (GetOrientation() == 0) {	// Down
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Down_Pressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Down_Pressed.png"));
 		}
 		else if (GetOrientation() == 1) {	// Left
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Left_Pressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Left_Pressed.png"));
 		}
 		else if (GetOrientation() == 2) {	// Up
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Up_Pressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Up_Pressed.png"));
 		}
 		else if (GetOrientation() == 3) {	// Right
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Right_Pressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Right_Pressed.png"));
 		}
 	}
 	else if (!_activated) {
 		if (GetOrientation() == 0) {	// Down
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Down_Unpressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Down_Unpressed.png"));
 		}
 		else if (GetOrientation() == 1) {	// Left
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Left_Unpressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Left_Unpressed.png"));
 		}
 		else if (GetOrientation() == 2) {	// Up
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Up_Unpressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Up_Unpressed.png"));
 		}
 		else if (GetOrientation() == 3) {	// Right
-			_buttonSprite->setTexture(TextureCache::getInstance()->addImage("Button_Right_Unpressed.png"));
+			_buttonSprite->setTexture(Director::getInstance()->getTextureCache()->addImage("Button_Right_Unpressed.png"));
 		}
 	}
 }

@@ -30,7 +30,16 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="Levels/Scene4.csd" />
+          <FilePathData Path="Levels/Scene3.csd" />
+          <FilePathData Path="Levels/Scene2.csd" />
+          <FilePathData Path="Levels/Scene1.csd" />
+          <FilePathData Path="Levels/Scene5.csd" />
+          <FilePathData Path="Levels/Scene6.csd" />
+          <FilePathData Path="Levels/Scene7.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="Levels/Scene7.csd" />
       </Value>
     </Item>
   </Properties>
