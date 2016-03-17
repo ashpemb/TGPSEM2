@@ -179,6 +179,22 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	//Horizontal Moving Walls
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("MovingWallY_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_movingWallVertSprites.push_back(tempSprite);
+		i++;
+	}
+
+	//Vertical Moving Walls
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("MovingWallX_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_movingWallHorizSprites.push_back(tempSprite);
+		i++;
+	}
+
 	// WALLS
 	i = 1;
 	while ((tempSprite = (Sprite*)root->getChildByName("Wall_" + StringUtils::format("%d", i))) != nullptr)
@@ -538,6 +554,32 @@ void SceneManager::SetupClasses(Node* root)
 		addChild(movingPlats);
 	}
 
+	// MOVING WALLS - HORIZONTAL
+	for (int i = 0; i < _movingWallHorizSprites.size(); i++)
+	{
+		Wall* movingWall = Wall::create(_player, _woodBoxes, _metalBoxes);
+		movingWall->setName("MovingWall_" + StringUtils::format("%d", i + 1));
+		movingWall->setSprite(_movingWallHorizSprites[i]);
+		movingWall->setZoneSprite();
+
+		_movingWallsHoriz.push_back(movingWall);
+
+		addChild(movingWall);
+	}
+
+	// MOVING WALLS - VERTICAL
+	for (int i = 0; i < _movingWallVertSprites.size(); i++)
+	{
+		Wall* movingWall = Wall::create(_player, _woodBoxes, _metalBoxes);
+		movingWall->setName("MovingWall_" + StringUtils::format("%d", i + 1));
+		movingWall->setSprite(_movingWallVertSprites[i]);
+		movingWall->setZoneSprite();
+
+		_movingWallsVert.push_back(movingWall);
+
+		addChild(movingWall);
+	}
+
 	// FLOOR BUTTONS - DOWN
 	for (int i = 0; i < _downButtons.size(); i++) {
 		FloorButton* button = FloorButton::create(0);
@@ -757,6 +799,31 @@ void SceneManager::CheckCollisions()
 		}
 	}
 
+	// MOVING WALL COLLISIONS
+	for (int i = 0; i < _movingWallsHoriz.size(); i++) {
+		_player->CheckWallCollisions(_movingWallsHoriz[i]->getSprite());
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckWallCollisions(_movingWallsHoriz[i]->getSprite());
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckWallCollisions(_movingWallsHoriz[i]->getSprite());
+		}
+	}
+
+	for (int i = 0; i < _movingWallsVert.size(); i++) {
+		_player->CheckWallCollisions(_movingWallsVert[i]->getSprite());
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckWallCollisions(_movingWallsVert[i]->getSprite());
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckWallCollisions(_movingWallsVert[i]->getSprite());
+		}
+	}
+
 	// BUTTON COLLISIONS
 	for (unsigned int i = 0; i < _buttons.size(); i++) {
 		_buttons.at(i)->SetActive(false);
@@ -863,7 +930,38 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 					_movingPlatformsVert[i]->onTouchBegan(touch, event);
 				}
 			}
-			
+		}
+
+		// Touch detection for horizontal moving walls
+		for (int i = 0; i < _movingWallsHoriz.size(); i++)
+		{
+			currPlatform = _movingWallsHoriz[i]->getSprite()->getBoundingBox();
+			currTouchZone = _movingWallsHoriz[i]->getTouchZone()->getBoundingBox();
+			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+				for (int i = 0; i < _movingWallsHoriz.size(); i++)
+				{
+					_movingWallsHoriz[i]->PlatformType(1);
+					_movingWallsHoriz[i]->onTouchBegan(touch, event);
+				}
+			}
+		}
+
+		// Touch detection for vertical moving walls
+		for (int i = 0; i < _movingWallsVert.size(); i++)
+		{
+			currPlatform = _movingWallsVert[i]->getSprite()->getBoundingBox();
+			currTouchZone = _movingWallsVert[i]->getTouchZone()->getBoundingBox();
+			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+				for (int i = 0; i < _movingWallsVert.size(); i++)
+				{
+					_movingWallsVert[i]->PlatformType(2);
+					_movingWallsVert[i]->onTouchBegan(touch, event);
+				}
+			}
 		}
 
 		if (!GameManager::sharedGameManager()->getIsObjectTouched())
@@ -902,6 +1000,16 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 			{
 				_movingPlatformsVert[i]->onTouchEnded(touch, event);
 			}
+
+			for (int i = 0; i < _movingWallsHoriz.size(); i++)
+			{
+				_movingWallsHoriz[i]->onTouchEnded(touch, event);
+			}
+
+			for (int i = 0; i < _movingWallsVert.size(); i++)
+			{
+				_movingWallsVert[i]->onTouchEnded(touch, event);
+			}
 		}
 	}
 }
@@ -919,6 +1027,16 @@ void SceneManager::onTouchMoved(Touch* touch, Event* event)
 	for (int i = 0; i < _movingPlatformsVert.size(); i++)
 	{
 		_movingPlatformsVert[i]->onTouchMoved(touch, event);
+	}
+
+	for (int i = 0; i < _movingWallsHoriz.size(); i++)
+	{
+		_movingWallsHoriz[i]->onTouchMoved(touch, event);
+	}
+
+	for (int i = 0; i < _movingWallsVert.size(); i++)
+	{
+		_movingWallsVert[i]->onTouchMoved(touch, event);
 	}
 }
 

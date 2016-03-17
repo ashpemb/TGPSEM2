@@ -1,10 +1,7 @@
-#include "Platforms.h"
+#include "Wall.h"
 
-USING_NS_CC;
 
-using namespace cocostudio::timeline;
-
-Platforms::Platforms(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
+Wall::Wall(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
 {
 	_playerRef = ref;
 	_woodenRef = wood;
@@ -14,20 +11,20 @@ Platforms::Platforms(Player* ref, std::vector<Box*> wood, std::vector<Box*> meta
 	CollidingWithWall = false;
 }
 
-Platforms* Platforms::create(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
+Wall* Wall::create(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
 {
-	Platforms* platform = new Platforms(ref, wood, metal);
+	Wall* wall = new Wall(ref, wood, metal);
 
-	if (!platform->init()) {
+	if (!wall->init()) {
 		return nullptr;
 	}
 
-	platform->autorelease();
+	wall->autorelease();
 
-	return platform;
+	return wall;
 }
 
-bool Platforms::init()
+bool Wall::init()
 {
 	if (!Node::init())
 	{
@@ -39,60 +36,74 @@ bool Platforms::init()
 	return true;
 }
 
-Platforms::~Platforms()
+Wall::~Wall()
 {
-
 }
 
-void Platforms::setZoneSprite()
+void Wall::setZoneSprite()
 {
-	_touchZone = Sprite::create("Platform.jpg");
+	_touchZone = Sprite::create("Wall.jpg");
 	this->addChild(_touchZone);
 	_touchZone->setPosition(_movingPlat->getPosition());
-	_touchZone->setScaleX(_movingPlat->getScaleX() * 1.2);
-	_touchZone->setScaleY(_movingPlat->getScaleY() * 3.5);
+	_touchZone->setScaleX(_movingPlat->getScaleX() * 3.5);
+	_touchZone->setScaleY(_movingPlat->getScaleY() * 1.2);
 	_touchZone->setOpacity(75);
 
-	OTouchZoneYScale = _touchZone->getScaleY();
+	OTouchZoneXScale = _touchZone->getScaleX();
 }
 
-void Platforms::update(float delta)
+void Wall::update(float delta)
 {
 	// TO DO
 }
 
-void Platforms::Selected()
+void Wall::Selected()
 {
 	NScale = (OScale*1.2);
-	NTouchZoneYScale = (OTouchZoneYScale * 6);
+	NTouchZoneXScale = (OTouchZoneXScale * 6);
 
 	_movingPlat->setScale(NScale);
-	_touchZone->setScaleY(NTouchZoneYScale);
+	_touchZone->setScaleX(NTouchZoneXScale);
 }
 
-void Platforms::UnSelected()
+void Wall::UnSelected()
 {
 	_movingPlat->setScale(OScale);
-	_touchZone->setScaleY(OTouchZoneYScale);
+	_touchZone->setScaleX(OTouchZoneXScale);
 }
 
-void Platforms::MovePlatformHorizontal(cocos2d::Vec2 T)
+void Wall::MovePlatformHorizontal(cocos2d::Vec2 T)
 {
-	_touchZone->setPositionX(T.x);
-	_movingPlat->setPositionX(T.x);
+	if (CollidingWithPlatform)
+	{
+		_touchZone->setPositionX(T.x);
+		_movingPlat->setPositionX(T.x);
+	}
+	else
+	{
+		_touchZone->setPositionX(_movingPlat->getPositionX());
+		_movingPlat->setPositionX(T.x);
+	}
+	
+}
+
+void Wall::MovePlatformVertical(cocos2d::Vec2 T)
+{
+	_touchZone->setPositionY(T.y);
+	_movingPlat->setPositionY(T.y);
 
 	float scaledWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
 	float scaledHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
 	float scaledPlayerWidth = _playerRef->GetSprite()->getContentSize().width * _playerRef->GetSprite()->getScaleX();
 	float scaledPlayerHeight = _playerRef->GetSprite()->getContentSize().height * _playerRef->GetSprite()->getScaleY();
 
-	if (_playerRef->GetOrientationVertical()) {
+	if (_playerRef->GetOrientationHorizontal()) {
 		if (_playerRef->GetSprite()->getPositionX() - (scaledPlayerWidth / 2) < getSprite()->getPositionX() + (scaledWidth / 2)
 			&& _playerRef->GetSprite()->getPositionX() + (scaledPlayerWidth / 2) > getSprite()->getPositionX() - (scaledWidth / 2)
 			&& _playerRef->GetSprite()->getPositionY() - (scaledPlayerHeight / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
 			&& _playerRef->GetSprite()->getPositionY() + (scaledPlayerHeight / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
 		{
-			_playerRef->GetSprite()->setPositionX(T.x);
+			_playerRef->GetSprite()->setPositionY(T.y);
 			_playerRef->SetTarget(T);
 		}
 	}
@@ -108,7 +119,7 @@ void Platforms::MovePlatformHorizontal(cocos2d::Vec2 T)
 			&& _woodenRef.at(i)->GetSprite()->getPositionY() - (scaledBoxHeight / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
 			&& _woodenRef.at(i)->GetSprite()->getPositionY() + (scaledBoxHeight / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
 		{
-			_woodenRef.at(i)->GetSprite()->setPositionX(T.x);
+			_woodenRef.at(i)->GetSprite()->setPositionY(T.y);
 		}
 	}
 
@@ -123,27 +134,13 @@ void Platforms::MovePlatformHorizontal(cocos2d::Vec2 T)
 			&& _metalRef.at(i)->GetSprite()->getPositionY() - (scaledBoxHeight / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
 			&& _metalRef.at(i)->GetSprite()->getPositionY() + (scaledBoxHeight / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
 		{
-			_metalRef.at(i)->GetSprite()->setPositionX(T.x);
+			_metalRef.at(i)->GetSprite()->setPositionY(T.y);
 		}
 	}
 }
 
-void Platforms::MovePlatformVertical(cocos2d::Vec2 T)
-{
-	if (CollidingWithPlatform)
-	{
-		_touchZone->setPositionY(T.y);
-		_movingPlat->setPositionY(T.y);
-	}
-	else
-	{
-		_touchZone->setPositionY(_movingPlat->getPositionY());
-		_movingPlat->setPositionY(T.y);
-	}
-}
-
 //Touch Functions
-void Platforms::onTouchBegan(Touch* touch, Event* event)
+void Wall::onTouchBegan(Touch* touch, Event* event)
 {
 	GameManager::sharedGameManager()->setIsObjectTouched(true);
 	Vec2 T = touch->getLocation();
@@ -155,13 +152,13 @@ void Platforms::onTouchBegan(Touch* touch, Event* event)
 	}
 }
 
-void Platforms::onTouchEnded(Touch* touch, Event* event)
+void Wall::onTouchEnded(Touch* touch, Event* event)
 {
 	GameManager::sharedGameManager()->setIsObjectTouched(false);
 	UnSelected();
 }
 
-void Platforms::onTouchMoved(Touch* touch, Event* event)
+void Wall::onTouchMoved(Touch* touch, Event* event)
 {
 
 	Vec2 T = touch->getLocation();
@@ -180,12 +177,12 @@ void Platforms::onTouchMoved(Touch* touch, Event* event)
 	}
 }
 
-void Platforms::onTouchCancelled(Touch* touch, Event* event)
+void Wall::onTouchCancelled(Touch* touch, Event* event)
 {
 	cocos2d::log("touch cancelled");
 }
 
-void Platforms::CheckPlatformCollisions(cocos2d::Sprite* collider)
+void Wall::CheckPlatformCollisions(cocos2d::Sprite* collider)
 {
 	auto winSize = Director::getInstance()->getVisibleSize();
 
@@ -194,16 +191,16 @@ void Platforms::CheckPlatformCollisions(cocos2d::Sprite* collider)
 
 	float scaledPlatformHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
 	float scaledPlatformWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
-	
+
 	if (getSprite()->getPositionX() - (scaledPlatformWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
 		&& getSprite()->getPositionX() + (scaledPlatformWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
 		&& getSprite()->getPositionY() - (scaledPlatformHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
 		&& getSprite()->getPositionY() + (scaledPlatformHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
 	{
-			// checks if the moving platform is colliding with the top of a static platform
-			CollidingWithPlatform = true;
-			MovePlatformVertical(Vec2(collider->getPositionX() + (scaledPlatformWidth / 2), collider->getPositionY() + (scaledPlatformHeight)));
-		
+		// checks if the moving platform is colliding with the top of a static platform
+		CollidingWithPlatform = true;
+		MovePlatformVertical(Vec2(collider->getPositionX() + (scaledPlatformWidth / 2), collider->getPositionY() + (scaledPlatformHeight)));
+
 	}
 	else
 	{
@@ -211,7 +208,7 @@ void Platforms::CheckPlatformCollisions(cocos2d::Sprite* collider)
 	}
 }
 
-void Platforms::CheckWallCollisions(cocos2d::Sprite* collider)
+void Wall::CheckWallCollisions(cocos2d::Sprite* collider)
 {
 
 }

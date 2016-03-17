@@ -22,6 +22,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Classes\FloorButton.cpp" />
     <ClCompile Include="..\Classes\Door.cpp" />
+    <ClCompile Include="..\Classes\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="..\Classes\FloorButton.h" />
     <ClInclude Include="..\Classes\Door.h" />
+    <ClInclude Include="..\Classes\Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />

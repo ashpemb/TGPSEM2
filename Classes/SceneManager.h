@@ -16,6 +16,7 @@
 #include "TouchManager.h"
 #include "Platforms.h"
 #include "Door.h"
+#include "Wall.h"
 
 USING_NS_CC;
 
@@ -44,6 +45,8 @@ private:
 
 	std::vector<cocos2d::Sprite*>		_movingPlatformVertSprites;
 	std::vector<cocos2d::Sprite*>		_movingPlatformHorizSprites;
+	std::vector<cocos2d::Sprite*>		_movingWallVertSprites;
+	std::vector<cocos2d::Sprite*>		_movingWallHorizSprites;
 
 	std::vector<cocos2d::Sprite*>		_doorSprites;
 	std::vector<cocos2d::Sprite*>		_hatchSprites;
@@ -88,8 +91,6 @@ private:
 	std::vector<cocos2d::Sprite*>		_woodCrateSpawn;
 	std::vector<cocos2d::Sprite*>		_metalCrateSpawn;
 
-
-
 	// SCENE CLASSES
 	Player* _player;
 	std::vector<Box*>			_woodBoxes;
@@ -100,6 +101,8 @@ private:
 	std::vector<Door*>			_hatches;
 	std::vector<Platforms*>		_movingPlatformsVert;
 	std::vector<Platforms*>		_movingPlatformsHoriz;
+	std::vector<Wall*>			_movingWallsVert;
+	std::vector<Wall*>			_movingWallsHoriz;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
