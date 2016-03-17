@@ -87,10 +87,10 @@ void ScoreManager::storeHighscoreToFile(int level, int star, int minutes, int se
 			fileContents = firstHalf;
 
 			// Now add the other tags
-			fileContents += "\n\t\t<star>" + StringUtils::format("%d", star) + "</star>";
+			fileContents += "\n\t\t<star>" + StringUtils::format("%d", star) + "</star>\n";
 			fileContents += "\t\t<minutes>" + StringUtils::format("%d", minutes) + "</minutes>\n";
 			fileContents += "\t\t<seconds>" + StringUtils::format("%d", seconds) + "</seconds>\n";
-			fileContents += "\t\t<miliseconds>" + StringUtils::format("%d", miliseconds) + "</miliseconds>\n";
+			fileContents += "\t\t<miliseconds>" + StringUtils::format("%d", miliseconds) + "</miliseconds>";
 			fileContents += "\n\t";
 
 			for (unsigned int i2 = indexTagEnd; i2 < fileContents.size(); i2++) {
