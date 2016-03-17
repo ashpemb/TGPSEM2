@@ -272,13 +272,41 @@ void SceneManager::SetupSprites(Node* root)
 		_gravSwitchesRight.push_back(tempCheck);
 		i++;
 	}
+
+	//
 	// Timer Switches
 	i = 1;
-	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_" + StringUtils::format("%d", i)))) != nullptr)
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_Down_" + StringUtils::format("%d", i)))) != nullptr)
 	{
-		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
-		_timerSwitches.push_back(tempCheck);
-		_flipped.push_back(false);
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchTimerPressed, this));
+		_timerSwitchesDown.push_back(tempCheck);
+		i++;
+	}
+
+	// Left
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_Left_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchTimerPressed, this));
+		_timerSwitchesLeft.push_back(tempCheck);
+		i++;
+	}
+
+	// Up
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_Up_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchTimerPressed, this));
+		_timerSwitchesUp.push_back(tempCheck);
+		i++;
+	}
+
+	// Right
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_Right_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchTimerPressed, this));
+		_timerSwitchesRight.push_back(tempCheck);
 		i++;
 	}
 
@@ -659,12 +687,45 @@ void SceneManager::SetupClasses(Node* root)
 		addChild(hatch);
 	}
 
-	//Timer Switches
-	for (unsigned int i = 0; i < _timerSwitches.size(); i++) {
+	//Timer Switches Down
+	for (unsigned int i = 0; i < _timerSwitchesDown.size(); i++) {
 		SwitchTimer* gravSwitch = SwitchTimer::create();
-		gravSwitch->setName("SwitchTimer_" + StringUtils::format("%d", i + 1));
-		gravSwitch->SetSprite(_timerSwitches[i]);
-		gravSwitch->SetOrientation((i + 1) % 4);
+		gravSwitch->setName("SwitchTimerDown_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitchesDown[i]);
+		gravSwitch->SetOrientation(0);
+
+		_tSwitches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
+	//Timer Switches Left
+	for (unsigned int i = 0; i < _timerSwitchesLeft.size(); i++) {
+		SwitchTimer* gravSwitch = SwitchTimer::create();
+		gravSwitch->setName("SwitchTimerLeft_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitchesLeft[i]);
+		gravSwitch->SetOrientation(1);
+
+		_tSwitches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
+	//Timer Switches Up
+	for (unsigned int i = 0; i < _timerSwitchesLeft.size(); i++) {
+		SwitchTimer* gravSwitch = SwitchTimer::create();
+		gravSwitch->setName("SwitchTimerUp_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitchesUp[i]);
+		gravSwitch->SetOrientation(2);
+
+		_tSwitches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
+	//Timer Switches Right
+	for (unsigned int i = 0; i < _timerSwitchesLeft.size(); i++) {
+		SwitchTimer* gravSwitch = SwitchTimer::create();
+		gravSwitch->setName("SwitchTimerRight_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitchesRight[i]);
+		gravSwitch->SetOrientation(3);
 
 		_tSwitches.push_back(gravSwitch);
 
@@ -1082,6 +1143,22 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	}
 }
 
+void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (unsigned int i = 0; i < _tSwitches.size(); i++) {
+		if (findCheckBox->getName() == _tSwitches.at(i)->GetSprite()->getName()) {
+			// Flip Gravity
+			if (_flipGravityCooldown == 0.0f) {
+				FlipGravity(_tSwitches.at(i)->GetOrientation());
+				_flipGravityCooldown = 1.0f;
+			}
+		}
+	}
+}
+
 void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
@@ -1094,24 +1171,6 @@ void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType 
 	}
 }
 
-void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
-{
-	// Find what switch has been clicked
-	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
-
-	for (unsigned int i = 0; i < _switches.size(); i++) {
-		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
-			_flipped[i] = !_flipped[i];
-			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
-
-			// Flip Gravity
-			if (_flipGravityCooldown == 0.0f) {
-				FlipGravity(_switches.at(i)->GetOrientation());
-				_flipGravityCooldown = 1.0f;
-			}
-		}
-	}
-}
 
 void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
