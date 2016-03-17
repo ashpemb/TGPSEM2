@@ -294,9 +294,8 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6489" Y="0.0760" />
             <PreSize X="0.0879" Y="0.1016" />
-            <NormalBackFileData Type="Normal" Path="Main Objects/Exit.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Main Objects/Exit 7.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Main Objects/Exit Dis.png" Plist="" />
+            <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
+            <DisableBackFileData Type="MarkedSubImage" Path="Main Objects/Exit Dis.png" Plist="Exits.plist" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
@@ -464,6 +463,17 @@
             <PreSize X="0.0249" Y="0.0267" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="MovingWallX_1" ActionTag="867782622" Tag="86" IconVisible="False" LeftMargin="63.4539" RightMargin="1976.5461" TopMargin="1073.7671" BottomMargin="334.2329" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="128.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="67.4539" Y="398.2329" />
+            <Scale ScaleX="2.0100" ScaleY="2.5022" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0329" Y="0.2593" />
+            <PreSize X="0.0039" Y="0.0833" />
+            <FileData Type="Normal" Path="Wall.jpg" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

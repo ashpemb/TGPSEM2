@@ -149,8 +149,6 @@ void SceneManager::SetupButtons(Node* root)
 
 void SceneManager::SetupSprites(Node* root)
 {
-	// REMINDER: Josh needs to follow our in-house comment conventions. 
-	// how about no
 	// PLAYER
 	_playerSprite = (Sprite*)root->getChildByName("Player");
 	int i = 1;
@@ -179,6 +177,22 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+	//Horizontal Moving Walls
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("MovingWallY_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_movingWallVertSprites.push_back(tempSprite);
+		i++;
+	}
+
+	//Vertical Moving Walls
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("MovingWallX_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_movingWallHorizSprites.push_back(tempSprite);
+		i++;
+	}
+
 	// WALLS
 	i = 1;
 	while ((tempSprite = (Sprite*)root->getChildByName("Wall_" + StringUtils::format("%d", i))) != nullptr)
@@ -192,6 +206,13 @@ void SceneManager::SetupSprites(Node* root)
 	while ((tempSprite = (Sprite*)root->getChildByName("Door_" + StringUtils::format("%d", i))) != nullptr)
 	{
 		_doorSprites.push_back(tempSprite);
+		i++;
+	}
+
+	i = 1;
+	while ((tempSprite = (Sprite*)root->getChildByName("Solid_Door_" + StringUtils::format("%d", i))) != nullptr)
+	{
+		_solidDoorSprites.push_back(tempSprite);
 		i++;
 	}
 
@@ -254,6 +275,15 @@ void SceneManager::SetupSprites(Node* root)
 	{
 		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
 		_gravSwitchesRight.push_back(tempCheck);
+		i++;
+	}
+	// Timer Switches
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_timerSwitches.push_back(tempCheck);
+		_flipped.push_back(false);
 		i++;
 	}
 
@@ -538,6 +568,32 @@ void SceneManager::SetupClasses(Node* root)
 		addChild(movingPlats);
 	}
 
+	// MOVING WALLS - HORIZONTAL
+	for (int i = 0; i < _movingWallHorizSprites.size(); i++)
+	{
+		Wall* movingWall = Wall::create(_player, _woodBoxes, _metalBoxes);
+		movingWall->setName("MovingWall_" + StringUtils::format("%d", i + 1));
+		movingWall->setSprite(_movingWallHorizSprites[i]);
+		movingWall->setZoneSprite();
+
+		_movingWallsHoriz.push_back(movingWall);
+
+		addChild(movingWall);
+	}
+
+	// MOVING WALLS - VERTICAL
+	for (int i = 0; i < _movingWallVertSprites.size(); i++)
+	{
+		Wall* movingWall = Wall::create(_player, _woodBoxes, _metalBoxes);
+		movingWall->setName("MovingWall_" + StringUtils::format("%d", i + 1));
+		movingWall->setSprite(_movingWallVertSprites[i]);
+		movingWall->setZoneSprite();
+
+		_movingWallsVert.push_back(movingWall);
+
+		addChild(movingWall);
+	}
+
 	// FLOOR BUTTONS - DOWN
 	for (int i = 0; i < _downButtons.size(); i++) {
 		FloorButton* button = FloorButton::create(0);
@@ -606,6 +662,18 @@ void SceneManager::SetupClasses(Node* root)
 		_hatches.push_back(hatch);
 
 		addChild(hatch);
+	}
+
+	//Timer Switches
+	for (unsigned int i = 0; i < _timerSwitches.size(); i++) {
+		SwitchTimer* gravSwitch = SwitchTimer::create();
+		gravSwitch->setName("SwitchTimer_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitches[i]);
+		gravSwitch->SetOrientation((i + 1) % 4);
+
+		_tSwitches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
 	}
 }
 
@@ -714,6 +782,22 @@ void SceneManager::CheckCollisions()
 
 	}
 
+	for (unsigned int i = 0; i < _solidDoorSprites.size(); i++) {
+		if (!_doors[i]->GetOpen()) {
+
+			_player->CheckWallCollisions(_solidDoorSprites[i]);
+
+			for (unsigned int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+				_woodBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
+			}
+
+			for (unsigned int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+				_metalBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
+			}
+		}
+
+	}
+
 	// Hatch Collisions
 	for (unsigned int i = 0; i < _hatches.size(); i++) {
 		if (!_hatches[i]->GetOpen()) {
@@ -754,6 +838,31 @@ void SceneManager::CheckCollisions()
 
 		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
 			_metalBoxes[i2]->CheckPlatformCollisions(_movingPlatformsVert[i]->getSprite());
+		}
+	}
+
+	// MOVING WALL COLLISIONS
+	for (int i = 0; i < _movingWallsHoriz.size(); i++) {
+		_player->CheckWallCollisions(_movingWallsHoriz[i]->getSprite());
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckWallCollisions(_movingWallsHoriz[i]->getSprite());
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckWallCollisions(_movingWallsHoriz[i]->getSprite());
+		}
+	}
+
+	for (int i = 0; i < _movingWallsVert.size(); i++) {
+		_player->CheckWallCollisions(_movingWallsVert[i]->getSprite());
+
+		for (int i2 = 0; i2 < _woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckWallCollisions(_movingWallsVert[i]->getSprite());
+		}
+
+		for (int i2 = 0; i2 < _metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckWallCollisions(_movingWallsVert[i]->getSprite());
 		}
 	}
 
@@ -863,7 +972,38 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 					_movingPlatformsVert[i]->onTouchBegan(touch, event);
 				}
 			}
-			
+		}
+
+		// Touch detection for horizontal moving walls
+		for (int i = 0; i < _movingWallsHoriz.size(); i++)
+		{
+			currPlatform = _movingWallsHoriz[i]->getSprite()->getBoundingBox();
+			currTouchZone = _movingWallsHoriz[i]->getTouchZone()->getBoundingBox();
+			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+				for (int i = 0; i < _movingWallsHoriz.size(); i++)
+				{
+					_movingWallsHoriz[i]->PlatformType(1);
+					_movingWallsHoriz[i]->onTouchBegan(touch, event);
+				}
+			}
+		}
+
+		// Touch detection for vertical moving walls
+		for (int i = 0; i < _movingWallsVert.size(); i++)
+		{
+			currPlatform = _movingWallsVert[i]->getSprite()->getBoundingBox();
+			currTouchZone = _movingWallsVert[i]->getTouchZone()->getBoundingBox();
+			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+				for (int i = 0; i < _movingWallsVert.size(); i++)
+				{
+					_movingWallsVert[i]->PlatformType(2);
+					_movingWallsVert[i]->onTouchBegan(touch, event);
+				}
+			}
 		}
 
 		if (!GameManager::sharedGameManager()->getIsObjectTouched())
@@ -902,6 +1042,16 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 			{
 				_movingPlatformsVert[i]->onTouchEnded(touch, event);
 			}
+
+			for (int i = 0; i < _movingWallsHoriz.size(); i++)
+			{
+				_movingWallsHoriz[i]->onTouchEnded(touch, event);
+			}
+
+			for (int i = 0; i < _movingWallsVert.size(); i++)
+			{
+				_movingWallsVert[i]->onTouchEnded(touch, event);
+			}
 		}
 	}
 }
@@ -919,6 +1069,16 @@ void SceneManager::onTouchMoved(Touch* touch, Event* event)
 	for (int i = 0; i < _movingPlatformsVert.size(); i++)
 	{
 		_movingPlatformsVert[i]->onTouchMoved(touch, event);
+	}
+
+	for (int i = 0; i < _movingWallsHoriz.size(); i++)
+	{
+		_movingWallsHoriz[i]->onTouchMoved(touch, event);
+	}
+
+	for (int i = 0; i < _movingWallsVert.size(); i++)
+	{
+		_movingWallsVert[i]->onTouchMoved(touch, event);
 	}
 }
 
@@ -945,13 +1105,31 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 
 void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	// Find what switch has been clicked
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
 	for (unsigned int i = 0; i < _exit.size(); i++) {
 		if (findCheckBox->getName() == _exit.at(i)->getName()) {
 			auto scene = GameWinScene::createScene();
 			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+		}
+	}
+}
+
+void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (unsigned int i = 0; i < _switches.size(); i++) {
+		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
+			_flipped[i] = !_flipped[i];
+			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
+
+			// Flip Gravity
+			if (_flipGravityCooldown == 0.0f) {
+				FlipGravity(_switches.at(i)->GetOrientation());
+				_flipGravityCooldown = 1.0f;
+			}
 		}
 	}
 }

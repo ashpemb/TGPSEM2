@@ -27,7 +27,7 @@ void ScoreManager::compareScoreToHighscore()
 	// TODO
 }
 
-void ScoreManager::storeHighscoreToFile(int level, int star, int time)
+void ScoreManager::storeHighscoreToFile(int level, int star, int minutes, int seconds, int miliseconds)
 {
 	bool levelTagFound = false;
 	bool starTagFound = false;
@@ -53,7 +53,9 @@ void ScoreManager::storeHighscoreToFile(int level, int star, int time)
 			int indexTagEnd = fileContents.find("</data>");
 			std::string insertString = "\t<level_" + StringUtils::format("%d", level) + ">\n";
 			insertString += "\t\t<star>" + StringUtils::format("%d", star) + "</star>\n";
-			insertString += "\t\t<time>" + StringUtils::format("%d", time) + "</time>\n";
+			insertString += "\t\t<minutes>" + StringUtils::format("%d", minutes) + "</minutes>\n";
+			insertString += "\t\t<seconds>" + StringUtils::format("%d", seconds) + "</seconds>\n";
+			insertString += "\t\t<miliseconds>" + StringUtils::format("%d", miliseconds) + "</miliseconds>\n";
 			insertString += "\t</level_" + StringUtils::format("%d", level) + ">\n";
 
 			std::string firstHalf = "";
@@ -86,7 +88,9 @@ void ScoreManager::storeHighscoreToFile(int level, int star, int time)
 
 			// Now add the other tags
 			fileContents += "\n\t\t<star>" + StringUtils::format("%d", star) + "</star>";
-			fileContents += "\n\t\t<time>" + StringUtils::format("%d", time) + "</time>";
+			fileContents += "\t\t<minutes>" + StringUtils::format("%d", minutes) + "</minutes>\n";
+			fileContents += "\t\t<seconds>" + StringUtils::format("%d", seconds) + "</seconds>\n";
+			fileContents += "\t\t<miliseconds>" + StringUtils::format("%d", miliseconds) + "</miliseconds>\n";
 			fileContents += "\n\t";
 
 			for (unsigned int i2 = indexTagEnd; i2 < fileContents.size(); i2++) {
@@ -116,7 +120,9 @@ void ScoreManager::storeHighscoreToFile(int level, int star, int time)
 		value += StringUtils::format("\n<data>");
 		value += StringUtils::format("\n\t<level_%d>", level);
 		value += StringUtils::format("\n\t\t<star>%d</star>", star);
-		value += StringUtils::format("\n\t\t<time>") + StringUtils::format("%d", time) + StringUtils::format("</time>");
+		value += StringUtils::format("\n\t\t<minutes>%d</minutes>", minutes);
+		value += StringUtils::format("\n\t\t<seconds>%d</seconds>", seconds);
+		value += StringUtils::format("\n\t\t<miliseconds>%d</miliseconds>", miliseconds);
 		value += StringUtils::format("\n\t</level_%d>", level);
 		value += StringUtils::format("\n</data>");
 
@@ -168,7 +174,7 @@ int ScoreManager::getStarFromFile(int level)
 	return starRating;
 }
 
-std::string ScoreManager::getTimeFromFile(int level)
+std::string ScoreManager::getMinutesFromFile(int level)
 {
 	bool levelTagFound = false;
 	bool timeTagFound = false;
@@ -193,7 +199,101 @@ std::string ScoreManager::getTimeFromFile(int level)
 			}
 			// Check if level tag has been found, otherwise these checks are not worth doing
 			else {
-				int found = currLine.find("<time>");
+				int found = currLine.find("<minutes>");
+
+				if (found != -1) {
+					// Time tag has been found
+					timeTagFound = true;
+
+					int indexScoreStart = currLine.find(">");
+					int indexScoreEnd = currLine.find("<", indexScoreStart + 1);
+
+					time = "";
+
+					for (int i = indexScoreStart + 1; i < indexScoreEnd; i++) {
+						time += currLine.at(i);
+					}
+				}
+			}
+		}
+	}
+
+	return time;
+}
+
+std::string ScoreManager::getSecondsFromFile(int level)
+{
+	bool levelTagFound = false;
+	bool timeTagFound = false;
+
+	//int starRating = 0;
+	std::string time = "";
+
+	// Insert code to get highscore from file
+	std::string path = getFilePath();
+
+	std::ifstream infile(path);
+	std::string currLine;
+
+	while (std::getline(infile, currLine)) {
+		if (!timeTagFound) {
+			if (!levelTagFound) {
+				int found = currLine.find("<level_" + StringUtils::format("%d", level) + ">");
+				if (found != -1) {
+					// Level tag has been found
+					levelTagFound = true;
+				}
+			}
+			// Check if level tag has been found, otherwise these checks are not worth doing
+			else {
+				int found = currLine.find("<seconds>");
+
+				if (found != -1) {
+					// Time tag has been found
+					timeTagFound = true;
+
+					int indexScoreStart = currLine.find(">");
+					int indexScoreEnd = currLine.find("<", indexScoreStart + 1);
+
+					time = "";
+
+					for (int i = indexScoreStart + 1; i < indexScoreEnd; i++) {
+						time += currLine.at(i);
+					}
+				}
+			}
+		}
+	}
+
+	return time;
+}
+
+std::string ScoreManager::getMilisecondsFromFile(int level)
+{
+	bool levelTagFound = false;
+	bool timeTagFound = false;
+
+	//int starRating = 0;
+	std::string time = "";
+
+	// Insert code to get highscore from file
+	std::string path = getFilePath();
+
+	std::ifstream infile(path);
+	std::string currLine;
+
+	while (std::getline(infile, currLine)) {
+		if (!timeTagFound) {
+			if (!levelTagFound) {
+				int found = currLine.find("<level_" + StringUtils::format("%d", level) + ">");
+				if (found != -1) {
+					// Level tag has been found
+					levelTagFound = true;
+				}
+			}
+			// Check if level tag has been found, otherwise these checks are not worth doing
+			else {
+				int found = currLine.find("<miliseconds>");
 
 				if (found != -1) {
 					// Time tag has been found
@@ -291,55 +391,58 @@ int ScoreManager::getDefaultStarRating(int level)
 	}
 
 	// Have a look at the time
+	int minutes = GameManager::sharedGameManager()->getMin();
+	int seconds = GameManager::sharedGameManager()->getSec();
+	int miliseconds = GameManager::sharedGameManager()->getMil();
 	int time = (GameManager::sharedGameManager()->getMin() * 60) + GameManager::sharedGameManager()->getSec();
 
 	// Check if time can award 3 stars
 	if (time < star3) {
-		storeHighscoreToFile(level, 3, time);
+		storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
 		return 3;
 	}
 	else if (time == star3) {
 		if (GameManager::sharedGameManager()->getMil() == 0) {
-			storeHighscoreToFile(level, 3, time);
+			storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
 			return 3;
 		}
 		else {
-			storeHighscoreToFile(level, 2, time);
+			storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
 			return 2;
 		}
 	}
 	// Check if time can award 2 stars
 	else if (time < star2) {
-		storeHighscoreToFile(level, 2, time);
+		storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
 		return 2;
 	}
 	else if (time == star2) {
 		if (GameManager::sharedGameManager()->getMil() == 0) {
-			storeHighscoreToFile(level, 2, time);
+			storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
 			return 2;
 		}
 		else {
-			storeHighscoreToFile(level, 1, time);
+			storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
 			return 1;
 		}
 	}
 	// Check if time can award 1 star
 	else if (time < star1) {
-		storeHighscoreToFile(level, 1, time);
+		storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
 		return 1;
 	}
 	else if (time == star1) {
 		if (GameManager::sharedGameManager()->getMil() == 0) {
-			storeHighscoreToFile(level, 1, time);
+			storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
 			return 1;
 		}
 		else {
-			storeHighscoreToFile(level, 0, time);
+			storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
 			return 0;
 		}
 	}
 
-	storeHighscoreToFile(level, 0, time);
+	storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
 	return 0;
 }
 
