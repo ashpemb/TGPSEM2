@@ -343,6 +343,17 @@ void SceneManager::SetupClasses()
 
 		addChild(gravSwitch);
 	}
+	//Timer Switches
+	for (unsigned int i = 0; i < _timerSwitches.size(); i++) {
+		SwitchTimer* gravSwitch = SwitchTimer::create();
+		gravSwitch->setName("SwitchTimer_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitches[i]);
+		gravSwitch->SetOrientation((i + 1) % 4);
+
+		_tSwitches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
+	}
 }
 
 void SceneManager::ScheduleScore(float delta)

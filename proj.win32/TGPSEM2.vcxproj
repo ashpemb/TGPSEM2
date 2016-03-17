@@ -163,6 +163,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\Switch.cpp" />
     <ClCompile Include="..\Classes\TouchManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SwitchTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -183,6 +184,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\TouchManager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="SwitchTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />

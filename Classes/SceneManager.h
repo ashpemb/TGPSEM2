@@ -12,6 +12,7 @@
 #include "Box.h"
 #include "Switch.h"
 #include "TouchManager.h"
+#include "SwitchTimer.h"
 
 USING_NS_CC;
 
@@ -33,6 +34,7 @@ private:
 	std::vector<cocos2d::Sprite*> _woodenSprites;
 	std::vector<cocos2d::Sprite*> _metalSprites;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitches;
 
 	// BACKGROUND
 	Sprite*	_background1;
@@ -69,6 +71,8 @@ private:
 	std::vector<Box*> _woodBoxes;
 	std::vector<Box*> _metalBoxes;
 	std::vector<Switch*> _switches;
+	std::vector<SwitchTimer*> _tSwitches;
+
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
