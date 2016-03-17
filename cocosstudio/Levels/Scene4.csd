@@ -6,25 +6,25 @@
       <ObjectData Name="Scene" Tag="48" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="BG Back " ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="997.5814" RightMargin="1004.4186" TopMargin="743.4872" BottomMargin="746.5128" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Back " ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="20.5814" RightMargin="27.4186" TopMargin="99.9872" BottomMargin="103.0128" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1020.5814" Y="769.5128" />
             <Scale ScaleX="1.0236" ScaleY="0.4921" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4983" Y="0.5010" />
-            <PreSize X="0.0225" Y="0.0299" />
+            <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="997.8033" RightMargin="1004.1968" TopMargin="739.0942" BottomMargin="750.9058" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="20.8033" RightMargin="27.1968" TopMargin="95.5942" BottomMargin="107.4058" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1020.8033" Y="773.9058" />
             <Scale ScaleX="1.0188" ScaleY="0.1809" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4984" Y="0.5038" />
-            <PreSize X="0.0225" Y="0.0299" />
+            <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -87,38 +87,38 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="-761270994" Tag="98" IconVisible="False" LeftMargin="401.6093" RightMargin="1558.3906" TopMargin="763.8192" BottomMargin="644.1808" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="-761270994" Tag="98" IconVisible="False" LeftMargin="436.0034" RightMargin="1523.9966" TopMargin="763.8225" BottomMargin="644.1775" ctype="SpriteObjectData">
             <Size X="88.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="445.6093" Y="708.1808" />
+            <Position X="480.0034" Y="708.1775" />
             <Scale ScaleX="0.8000" ScaleY="0.8000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2176" Y="0.4611" />
+            <PrePosition X="0.2344" Y="0.4611" />
             <PreSize X="0.0430" Y="0.0833" />
             <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Exit_1" ActionTag="-1943391294" Tag="51" IconVisible="False" LeftMargin="97.6554" RightMargin="1770.3446" TopMargin="741.1411" BottomMargin="638.8589" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Exit_1" ActionTag="-1943391294" Tag="51" IconVisible="False" LeftMargin="50.6556" RightMargin="1817.3445" TopMargin="741.1417" BottomMargin="638.8583" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="180.0000" Y="156.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="187.6554" Y="716.8589" />
+            <Position X="140.6556" Y="716.8583" />
             <Scale ScaleX="0.8000" ScaleY="0.8000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0916" Y="0.4667" />
+            <PrePosition X="0.0687" Y="0.4667" />
             <PreSize X="0.0879" Y="0.1016" />
-            <NormalBackFileData Type="Normal" Path="Main Objects/Exit.png" Plist="" />
-            <PressedBackFileData Type="Normal" Path="Main Objects/Exit 7.png" Plist="" />
-            <DisableBackFileData Type="Normal" Path="Main Objects/Exit Dis.png" Plist="" />
+            <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
+            <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
+            <DisableBackFileData Type="MarkedSubImage" Path="Main Objects/Exit Dis.png" Plist="Exits.plist" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Door_1" ActionTag="-970711153" UserData="Button_Down_1" Tag="11" IconVisible="False" LeftMargin="312.3981" RightMargin="1726.6019" TopMargin="794.5814" BottomMargin="707.4186" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Door_1" ActionTag="-970711153" UserData="Button_Down_1" Tag="11" IconVisible="False" LeftMargin="379.3954" RightMargin="1659.6046" TopMargin="794.5814" BottomMargin="707.4186" ctype="SpriteObjectData">
             <Size X="9.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="316.8981" Y="724.4186" />
+            <Position X="383.8954" Y="724.4186" />
             <Scale ScaleX="2.0000" ScaleY="4.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1547" Y="0.4716" />
+            <PrePosition X="0.1874" Y="0.4716" />
             <PreSize X="0.0044" Y="0.0221" />
             <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -134,18 +134,18 @@
             <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Solid_Door_1" ActionTag="1960003164" Tag="12" IconVisible="False" LeftMargin="6.0963" RightMargin="2033.9037" TopMargin="797.5767" BottomMargin="704.4233" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Solid_Door_1" ActionTag="1960003164" Tag="12" IconVisible="False" LeftMargin="1.9742" RightMargin="2038.0258" TopMargin="799.6378" BottomMargin="702.3622" ctype="SpriteObjectData">
             <Size X="8.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="10.0963" Y="721.4233" />
+            <Position X="5.9742" Y="719.3622" />
             <Scale ScaleX="2.0000" ScaleY="4.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0049" Y="0.4697" />
+            <PrePosition X="0.0029" Y="0.4683" />
             <PreSize X="0.0039" Y="0.0221" />
             <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Down_1" ActionTag="1340027401" UserData="8" Tag="14" IconVisible="False" LeftMargin="1610.1526" RightMargin="117.8474" TopMargin="821.8400" BottomMargin="604.1600" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Down_1" ActionTag="1340027401" UserData="7" Tag="14" IconVisible="False" LeftMargin="1610.1526" RightMargin="117.8474" TopMargin="821.8400" BottomMargin="604.1600" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1770.1526" Y="659.1600" />
@@ -156,13 +156,13 @@
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_Down_2" ActionTag="-480243673" UserData="1000" Tag="16" IconVisible="False" LeftMargin="718.3466" RightMargin="1009.6533" TopMargin="822.1154" BottomMargin="603.8846" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Button_Down_2" ActionTag="-480243673" UserData="1000" Tag="16" IconVisible="False" LeftMargin="717.7002" RightMargin="1010.2998" TopMargin="801.1398" BottomMargin="624.8602" ctype="SpriteObjectData">
             <Size X="320.0000" Y="110.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="878.3466" Y="658.8846" />
+            <AnchorPoint ScaleX="0.5025" ScaleY="0.2503" />
+            <Position X="878.5082" Y="652.3909" />
             <Scale ScaleX="0.2000" ScaleY="0.2000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4289" Y="0.4290" />
+            <PrePosition X="0.4290" Y="0.4247" />
             <PreSize X="0.1563" Y="0.0716" />
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />

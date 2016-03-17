@@ -492,6 +492,28 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Hatch_2" ActionTag="-417638347" UserData="Button_Down_5" Tag="113" RotationSkewY="0.0026" IconVisible="False" LeftMargin="1775.2341" RightMargin="238.7659" TopMargin="690.6815" BottomMargin="836.3185" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="9.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1792.2341" Y="840.8185" />
+            <Scale ScaleX="5.5013" ScaleY="2.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8751" Y="0.5474" />
+            <PreSize X="0.0166" Y="0.0059" />
+            <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Button_Down_5" ActionTag="-893225274" UserData="5" Tag="114" IconVisible="False" LeftMargin="1323.7336" RightMargin="404.2664" TopMargin="987.8138" BottomMargin="438.1862" ctype="SpriteObjectData">
+            <Size X="320.0000" Y="110.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1483.7336" Y="493.1862" />
+            <Scale ScaleX="0.2129" ScaleY="0.2000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7245" Y="0.3211" />
+            <PreSize X="0.1563" Y="0.0716" />
+            <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
