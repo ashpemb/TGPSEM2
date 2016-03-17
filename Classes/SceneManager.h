@@ -17,6 +17,7 @@
 #include "Platforms.h"
 #include "Door.h"
 #include "Wall.h"
+#include "SwitchTimer.h"
 
 USING_NS_CC;
 
@@ -55,6 +56,7 @@ private:
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesLeft;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesUp;
 	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesRight;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitches;
 
 	// BACKGROUND
 	Sprite*	_background1;
@@ -96,6 +98,7 @@ private:
 	std::vector<Box*>			_woodBoxes;
 	std::vector<Box*>			_metalBoxes;
 	std::vector<Switch*>		_switches;
+	std::vector<SwitchTimer*>	_tSwitches;
 	std::vector<FloorButton*>	_buttons;
 	std::vector<Door*>			_doors;
 	std::vector<Door*>			_hatches;
@@ -158,6 +161,7 @@ public:
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+	void SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 
 };
 

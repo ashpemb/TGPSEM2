@@ -272,6 +272,15 @@ void SceneManager::SetupSprites(Node* root)
 		_gravSwitchesRight.push_back(tempCheck);
 		i++;
 	}
+	// Timer Switches
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_timerSwitches.push_back(tempCheck);
+		_flipped.push_back(false);
+		i++;
+	}
 
 	// EXIT DOOR
 	cocos2d::ui::CheckBox* exit;
@@ -648,6 +657,18 @@ void SceneManager::SetupClasses(Node* root)
 		_hatches.push_back(hatch);
 
 		addChild(hatch);
+	}
+
+	//Timer Switches
+	for (unsigned int i = 0; i < _timerSwitches.size(); i++) {
+		SwitchTimer* gravSwitch = SwitchTimer::create();
+		gravSwitch->setName("SwitchTimer_" + StringUtils::format("%d", i + 1));
+		gravSwitch->SetSprite(_timerSwitches[i]);
+		gravSwitch->SetOrientation((i + 1) % 4);
+
+		_tSwitches.push_back(gravSwitch);
+
+		addChild(gravSwitch);
 	}
 }
 
@@ -1063,13 +1084,29 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 
 void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	// Find what switch has been clicked
-	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
-
 	for (unsigned int i = 0; i < _exit.size(); i++) {
 		if (findCheckBox->getName() == _exit.at(i)->getName()) {
 			auto scene = GameWinScene::createScene();
 			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+		}
+	}
+}
+
+void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	// Find what switch has been clicked
+	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
+
+	for (unsigned int i = 0; i < _switches.size(); i++) {
+		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
+			_flipped[i] = !_flipped[i];
+			_switches.at(i)->GetSprite()->setFlippedX(_flipped[i]);
+
+			// Flip Gravity
+			if (_flipGravityCooldown == 0.0f) {
+				FlipGravity(_switches.at(i)->GetOrientation());
+				_flipGravityCooldown = 1.0f;
+			}
 		}
 	}
 }
