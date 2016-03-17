@@ -13,6 +13,9 @@ Box::Box(int boxType, float boxStartingWeight)
 	isSelected = false;
 	_touchTimer = 0.0f;
 	_weight = boxStartingWeight;
+
+	// Default node stuff
+	setPosition(Vec2(0.0f, 0.0f));
 }
 
 Box* Box::create(int boxType, float boxStartingWeight)

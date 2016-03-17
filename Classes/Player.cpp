@@ -3,6 +3,8 @@
 
 Player::Player()
 {
+	// Default node stuff
+	setPosition(Vec2(0.0f, 0.0f));
 }
 
 Player* Player::create()
