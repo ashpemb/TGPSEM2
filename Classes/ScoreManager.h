@@ -26,9 +26,11 @@ public:
 
 	void compareScoreToHighscore();
 
-	void storeHighscoreToFile(int level, int star, int time);
+	void storeHighscoreToFile(int level, int star, int minutes, int seconds, int miliseconds);
 	int getStarFromFile(int level);
-	std::string getTimeFromFile(int level);
+	std::string getMinutesFromFile(int level);
+	std::string getSecondsFromFile(int level);
+	std::string getMilisecondsFromFile(int level);
 
 	int getDefaultStarRating(int level);
 };

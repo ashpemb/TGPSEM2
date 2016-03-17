@@ -149,8 +149,6 @@ void SceneManager::SetupButtons(Node* root)
 
 void SceneManager::SetupSprites(Node* root)
 {
-	// REMINDER: Josh needs to follow our in-house comment conventions. 
-	// how about no
 	// PLAYER
 	_playerSprite = (Sprite*)root->getChildByName("Player");
 	int i = 1;
