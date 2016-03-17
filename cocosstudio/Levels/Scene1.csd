@@ -139,17 +139,6 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="SwitchTimer_Up_1" ActionTag="-1704711343" Tag="43" IconVisible="False" LeftMargin="664.9524" RightMargin="1365.0476" TopMargin="1013.9631" BottomMargin="487.0369" ctype="SpriteObjectData">
-            <Size X="18.0000" Y="35.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="673.9524" Y="504.5369" />
-            <Scale ScaleX="2.7090" ScaleY="2.2556" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3291" Y="0.3285" />
-            <PreSize X="0.0088" Y="0.0228" />
-            <FileData Type="Normal" Path="Main Objects/Switch_Up_Off.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
           <AbstractNodeData Name="Time" ActionTag="1073860001" Tag="3" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="979.5000" RightMargin="979.5000" TopMargin="21.3704" BottomMargin="1491.6296" FontSize="20" LabelText="00:00:000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="89.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -485,6 +474,20 @@
             <PreSize X="0.0039" Y="0.0833" />
             <FileData Type="Normal" Path="Wall.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="SwitchTimer_Up_1" ActionTag="-1288972167" UserData="3.0" Tag="44" IconVisible="False" LeftMargin="522.6805" RightMargin="1507.3196" TopMargin="1001.1256" BottomMargin="499.8744" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="18.0000" Y="35.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="531.6805" Y="517.3744" />
+            <Scale ScaleX="3.0800" ScaleY="3.0800" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2596" Y="0.3368" />
+            <PreSize X="0.0088" Y="0.0228" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Up_Off.png" Plist="" />
+            <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
+            <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

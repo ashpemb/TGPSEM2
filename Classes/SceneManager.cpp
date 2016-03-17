@@ -768,8 +768,6 @@ void SceneManager::update(float delta)
 
 			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 
-
-
 			CheckCollisions();
 			CheckNearTimer(delta);
 			RevertGravity();
@@ -793,7 +791,7 @@ void SceneManager::RevertGravity()
 	{
 		if (_tSwitches[i]->GetRevertGravity() == true)
 		{
-			FlipGravity(_previousDirection);
+			FlipGravity(_tSwitches[i]->SwitchGravity());
 		}
 	}
 }
@@ -1168,6 +1166,8 @@ void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEve
 			// Flip Gravity
 			if (_flipGravityCooldown == 0.0f) {
 				FlipGravity(_tSwitches.at(i)->GetOrientation());
+				//_tSwitches.at(i)->SwitchGravity();
+				_tSwitches.at(i)->ResetTimer();
 				_flipGravityCooldown = 1.0f;
 			}
 		}
