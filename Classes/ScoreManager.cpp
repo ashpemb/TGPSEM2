@@ -430,18 +430,22 @@ int ScoreManager::getDefaultStarRating(int level)
 					}
 					else {
 						higherScore = true;
+						return 3;
 					}
 				}
 				else {
 					higherScore = true;
+					return 3;
 				}
 			}
 			else {
 				higherScore = true;
+				return 3;
 			}
 		}
 		else {
 			higherScore = true;
+			return 3;
 		}
 	}
 	else if (time == star3) {
@@ -472,15 +476,18 @@ int ScoreManager::getDefaultStarRating(int level)
 						}
 						else {
 							higherScore = true;
+							return 3;
 						}
 					}
 				}
 				else {
 					higherScore = true;
+					return 3;
 				}
 			}
 			else {
 				higherScore = true;
+				return 3;
 			}
 		}
 		else {
@@ -510,18 +517,22 @@ int ScoreManager::getDefaultStarRating(int level)
 						}
 						else {
 							higherScore = true;
+							return 2;
 						}
 					}
 					else {
 						higherScore = true;
+						return 2;
 					}
 				}
 				else {
 					higherScore = true;
+					return 2;
 				}
 			}
 			else {
 				higherScore = true;
+				return 2;
 			}
 		}
 	}
@@ -553,18 +564,22 @@ int ScoreManager::getDefaultStarRating(int level)
 					}
 					else {
 						higherScore = true;
+						return 2;
 					}
 				}
 				else {
 					higherScore = true;
+					return 2;
 				}
 			}
 			else {
 				higherScore = true;
+				return 2;
 			}
 		}
 		else {
 			higherScore = true;
+			return 2;
 		}
 	}
 	else if (time == star2) {
@@ -595,18 +610,22 @@ int ScoreManager::getDefaultStarRating(int level)
 						}
 						else {
 							higherScore = true;
+							return 2;
 						}
 					}
 					else {
 						higherScore = true;
+						return 2;
 					}
 				}
 				else {
 					higherScore = true;
+					return 2;
 				}
 			}
 			else {
 				higherScore = true;
+				return 2;
 			}
 		}
 		else {
@@ -636,18 +655,22 @@ int ScoreManager::getDefaultStarRating(int level)
 						}
 						else {
 							higherScore = true;
+							return 1;
 						}
 					}
 					else {
 						higherScore = true;
+						return 1;
 					}
 				}
 				else {
 					higherScore = true;
+					return 1;
 				}
 			}
 			else {
 				higherScore = true;
+				return 1;
 			}
 		}
 	}
@@ -679,18 +702,22 @@ int ScoreManager::getDefaultStarRating(int level)
 					}
 					else {
 						higherScore = true;
+						return 1;
 					}
 				}
 				else {
 					higherScore = true;
+					return 1;
 				}
 			}
 			else {
 				higherScore = true;
+				return 1;
 			}
 		}
 		else {
 			higherScore = true;
+			return 1;
 		}
 	}
 	else if (time == star1) {
@@ -721,18 +748,22 @@ int ScoreManager::getDefaultStarRating(int level)
 						}
 						else {
 							higherScore = true;
+							return 1;
 						}
 					}
 					else {
 						higherScore = true;
+						return 1;
 					}
 				}
 				else {
 					higherScore = true;
+					return 1;
 				}
 			}
 			else {
 				higherScore = true;
+				return 1;
 			}
 		}
 		else {
@@ -757,14 +788,17 @@ int ScoreManager::getDefaultStarRating(int level)
 					}
 					else {
 						higherScore = true;
+						return 0;
 					}
 				}
 				else {
 					higherScore = true;
+					return 0;
 				}
 			}
 			else {
 				higherScore = true;
+				return 0;
 			}
 		}
 	}

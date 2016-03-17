@@ -13,6 +13,10 @@ Scene* GameWinScene::createScene()
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
 
+	if (!scene->init()) {
+		return nullptr;
+	}
+
 	// 'layer' is an autorelease object
 	auto layer = GameWinScene::create();
 
