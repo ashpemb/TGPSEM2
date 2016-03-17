@@ -165,7 +165,10 @@ int ScoreManager::getStarFromFile(int level)
 					int indexScoreStart = currLine.find(">");
 					int indexScoreEnd = currLine.find("<", indexScoreStart + 1);
 
-					starRating = currLine.at(indexScoreStart + 1);
+					std::string temp = "";
+					temp += currLine.at(indexScoreStart + 1);
+
+					starRating = strtod(temp.c_str(), nullptr);
 				}
 			}
 		}
@@ -396,53 +399,380 @@ int ScoreManager::getDefaultStarRating(int level)
 	int miliseconds = GameManager::sharedGameManager()->getMil();
 	int time = (GameManager::sharedGameManager()->getMin() * 60) + GameManager::sharedGameManager()->getSec();
 
+	// Check if score is lower than previous saved
+	bool higherScore = false;
+
 	// Check if time can award 3 stars
 	if (time < star3) {
-		storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
-		return 3;
-	}
-	else if (time == star3) {
-		if (GameManager::sharedGameManager()->getMil() == 0) {
+		if (getStarFromFile(level) < 3) {
 			storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
 			return 3;
 		}
+		else if (getStarFromFile(level) == 3) {
+			if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+				// stored score has higher minute value, this is a new highscore
+				storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
+				return 3;
+			}
+			else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+				// Same minute value, check seconds
+				if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+					// stored score has higher second value, this is a new highscore
+					storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
+					return 3;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+					// Same second value, check miliseconds
+					if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+						// stored score has higher milisecond value, this is a new highscore
+						storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
+						return 3;
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
+		}
 		else {
-			storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
-			return 2;
+			higherScore = true;
+		}
+	}
+	else if (time == star3) {
+		if (GameManager::sharedGameManager()->getMil() == 0) {
+			if (getStarFromFile(level) < 3) {
+				storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
+				return 3;
+			}
+			else if (getStarFromFile(level) == 3) {
+				if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+					// stored score has higher minute value, this is a new highscore
+					storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
+					return 3;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+					// Same minute value, check seconds
+					if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+						// stored score has higher second value, this is a new highscore
+						storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
+						return 3;
+					}
+					else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+						// Same second value, check miliseconds
+						if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+							// stored score has higher milisecond value, this is a new highscore
+							storeHighscoreToFile(level, 3, minutes, seconds, miliseconds);
+							return 3;
+						}
+						else {
+							higherScore = true;
+						}
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
+		}
+		else {
+			if (getStarFromFile(level) < 2) {
+				storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+				return 2;
+			}
+			else if (getStarFromFile(level) == 2) {
+				if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+					// stored score has higher minute value, this is a new highscore
+					storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+					return 2;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+					// Same minute value, check seconds
+					if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+						// stored score has higher second value, this is a new highscore
+						storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+						return 2;
+					}
+					else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+						// Same second value, check miliseconds
+						if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+							// stored score has higher milisecond value, this is a new highscore
+							storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+							return 2;
+						}
+						else {
+							higherScore = true;
+						}
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
 		}
 	}
 	// Check if time can award 2 stars
 	else if (time < star2) {
-		storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
-		return 2;
-	}
-	else if (time == star2) {
-		if (GameManager::sharedGameManager()->getMil() == 0) {
+		if (getStarFromFile(level) < 2) {
 			storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
 			return 2;
 		}
+		else if (getStarFromFile(level) == 2) {
+			if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+				// stored score has higher minute value, this is a new highscore
+				storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+				return 2;
+			}
+			else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+				// Same minute value, check seconds
+				if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+					// stored score has higher second value, this is a new highscore
+					storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+					return 2;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+					// Same second value, check miliseconds
+					if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+						// stored score has higher milisecond value, this is a new highscore
+						storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+						return 2;
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
+		}
 		else {
-			storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
-			return 1;
+			higherScore = true;
+		}
+	}
+	else if (time == star2) {
+		if (GameManager::sharedGameManager()->getMil() == 0) {
+			if (getStarFromFile(level) < 2) {
+				storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+				return 2;
+			}
+			else if (getStarFromFile(level) == 2) {
+				if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+					// stored score has higher minute value, this is a new highscore
+					storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+					return 2;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+					// Same minute value, check seconds
+					if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+						// stored score has higher second value, this is a new highscore
+						storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+						return 2;
+					}
+					else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+						// Same second value, check miliseconds
+						if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+							// stored score has higher milisecond value, this is a new highscore
+							storeHighscoreToFile(level, 2, minutes, seconds, miliseconds);
+							return 2;
+						}
+						else {
+							higherScore = true;
+						}
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
+		}
+		else {
+			if (getStarFromFile(level) < 1) {
+				storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+				return 1;
+			}
+			else if (getStarFromFile(level) == 1) {
+				if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+					// stored score has higher minute value, this is a new highscore
+					storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+					return 1;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+					// Same minute value, check seconds
+					if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+						// stored score has higher second value, this is a new highscore
+						storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+						return 1;
+					}
+					else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+						// Same second value, check miliseconds
+						if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+							// stored score has higher milisecond value, this is a new highscore
+							storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+							return 1;
+						}
+						else {
+							higherScore = true;
+						}
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
 		}
 	}
 	// Check if time can award 1 star
 	else if (time < star1) {
-		storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
-		return 1;
-	}
-	else if (time == star1) {
-		if (GameManager::sharedGameManager()->getMil() == 0) {
+		if (getStarFromFile(level) < 1) {
 			storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
 			return 1;
 		}
+		else if (getStarFromFile(level) == 1) {
+			if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+				// stored score has higher minute value, this is a new highscore
+				storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+				return 1;
+			}
+			else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+				// Same minute value, check seconds
+				if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+					// stored score has higher second value, this is a new highscore
+					storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+					return 1;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+					// Same second value, check miliseconds
+					if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+						// stored score has higher milisecond value, this is a new highscore
+						storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+						return 1;
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
+		}
 		else {
-			storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
-			return 0;
+			higherScore = true;
+		}
+	}
+	else if (time == star1) {
+		if (GameManager::sharedGameManager()->getMil() == 0) {
+			if (getStarFromFile(level) < 1) {
+				storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+				return 1;
+			}
+			else if (getStarFromFile(level) == 1) {
+				if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+					// stored score has higher minute value, this is a new highscore
+					storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+					return 1;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+					// Same minute value, check seconds
+					if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+						// stored score has higher second value, this is a new highscore
+						storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+						return 1;
+					}
+					else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+						// Same second value, check miliseconds
+						if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+							// stored score has higher milisecond value, this is a new highscore
+							storeHighscoreToFile(level, 1, minutes, seconds, miliseconds);
+							return 1;
+						}
+						else {
+							higherScore = true;
+						}
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
+		}
+		else {
+			if (strtod(getMinutesFromFile(level).c_str(), nullptr) > minutes) {
+				// stored score has higher minute value, this is a new highscore
+				storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
+				return 0;
+			}
+			else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == minutes) {
+				// Same minute value, check seconds
+				if (strtod(getSecondsFromFile(level).c_str(), nullptr) > seconds) {
+					// stored score has higher second value, this is a new highscore
+					storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
+					return 0;
+				}
+				else if (strtod(getMinutesFromFile(level).c_str(), nullptr) == seconds) {
+					// Same second value, check miliseconds
+					if (strtod(getMilisecondsFromFile(level).c_str(), nullptr) > miliseconds) {
+						// stored score has higher milisecond value, this is a new highscore
+						storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
+						return 0;
+					}
+					else {
+						higherScore = true;
+					}
+				}
+				else {
+					higherScore = true;
+				}
+			}
+			else {
+				higherScore = true;
+			}
 		}
 	}
 
-	storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
+	if (!higherScore) {
+		storeHighscoreToFile(level, 0, minutes, seconds, miliseconds);
+	}
+
 	return 0;
 }
 
