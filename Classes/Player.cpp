@@ -77,7 +77,7 @@ void Player::CheckPlatformCollisions(cocos2d::Sprite* collider)
 
 	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
-	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
+	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX() * 0.77;
 	float scaledPlayerHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
 
 	if (_orientationVertical) {
@@ -114,7 +114,7 @@ void Player::CheckWallCollisions(cocos2d::Sprite* collider)
 
 	float scaledWidth = collider->getContentSize().width * collider->getScaleX();
 	float scaledHeight = collider->getContentSize().height * collider->getScaleY();
-	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX();
+	float scaledPlayerWidth = GetSprite()->getContentSize().width * GetSprite()->getScaleX() * 0.77;
 	float scaledPlayerHeight = GetSprite()->getContentSize().height * GetSprite()->getScaleY();
 
 	if (_orientationVertical) {
