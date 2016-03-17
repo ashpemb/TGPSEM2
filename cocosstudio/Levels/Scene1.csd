@@ -288,12 +288,13 @@
           </AbstractNodeData>
           <AbstractNodeData Name="Exit_1" ActionTag="-410753888" Tag="27" IconVisible="False" LeftMargin="1264.9294" RightMargin="603.0706" TopMargin="1336.1703" BottomMargin="43.8297" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="180.0000" Y="156.0000" />
-            <AnchorPoint ScaleX="0.3551" ScaleY="0.4674" />
-            <Position X="1328.8474" Y="116.7441" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1354.9294" Y="121.8297" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6489" Y="0.0760" />
+            <PrePosition X="0.6616" Y="0.0793" />
             <PreSize X="0.0879" Y="0.1016" />
+            <NormalBackFileData Type="MarkedSubImage" Path="Main Objects/Exit.png" Plist="Exits.plist" />
             <PressedBackFileData Type="MarkedSubImage" Path="Main Objects/Exit 7.png" Plist="Exits.plist" />
             <DisableBackFileData Type="MarkedSubImage" Path="Main Objects/Exit Dis.png" Plist="Exits.plist" />
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
