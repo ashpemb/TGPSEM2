@@ -47,8 +47,6 @@ void SwitchTimer::UpdateTimer(float dt)
 		_enabled = !_enabled;
 	}
 	_gravSwitchTimer->setEnabled(_enabled);
-
-
 }
 
 

@@ -193,6 +193,15 @@ void SceneManager::SetupSprites(Node* root)
 		_flipped.push_back(false);
 		i++;
 	}
+	// Timer Switches
+	i = 1;
+	while ((tempCheck = static_cast<cocos2d::ui::CheckBox*>(root->getChildByName("SwitchTimer_" + StringUtils::format("%d", i)))) != nullptr)
+	{
+		tempCheck->addTouchEventListener(CC_CALLBACK_2(SceneManager::SwitchPressed, this));
+		_timerSwitches.push_back(tempCheck);
+		_flipped.push_back(false);
+		i++;
+	}
 
 	// EXIT DOOR
 	cocos2d::ui::CheckBox* exit;
