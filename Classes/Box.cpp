@@ -11,6 +11,7 @@ Box::Box(int boxType, float boxStartingWeight)
 	scaler = 0;
 	unselect = 0;
 	isSelected = false;
+	_touchTimer = 0.0f;
 	_weight = boxStartingWeight;
 }
 
@@ -50,6 +51,10 @@ void Box::update(float delta)
 {
 	if (!GameManager::sharedGameManager()->getIsGamePaused())
 	{
+		if (_touchTimer > 0.0f) {
+			_touchTimer -= delta;
+		}
+
 		if (_fallingHorizontal || _fallingVertical) {
 			Fall(delta);
 		}
@@ -125,17 +130,11 @@ void Box::Collision(cocos2d::Touch* touch)
 
 	if (rect.containsPoint(p))
 	{
-		unselect = 0;
-		isSelected = true;
-	}
-	else if (isSelected == true)
-	{
-		unselect = unselect + 1;
-		if (unselect > 4)
-		{
-			isSelected = false;
-			unselect = 0;
+		if (_touchTimer <= 0.0f) {
+			_touchTimer = _defaultTouchTimer;
+			isSelected = !isSelected;
 		}
+
 	}
 }
 

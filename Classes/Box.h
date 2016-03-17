@@ -14,6 +14,8 @@ private:
 	Sprite* _box;
 
 	// Gravity variables
+	float	_defaultTouchTimer = 0.5f;
+	float	_touchTimer;
 	float	_timeFalling;
 	float	_gravity;
 

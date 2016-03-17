@@ -925,23 +925,6 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 		_initialTouchPos = touchPos;
 		_inTouch = true;
 
-		if (_woodBoxes.size() > 0)
-		{
-			for (int i = 0; i < _woodBoxes.size(); i++)
-			{
-				_woodBoxes[i]->Collision(touch);
-				_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
-			}
-		}
-		if (_metalBoxes.size() > 0)
-		{
-			for (int i = 0; i < _metalBoxes.size(); i++)
-			{
-				_metalBoxes[i]->Collision(touch);
-				_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
-			}
-		}
-
 		// Touch detection for horizontal moving platforms
 		for (int i = 0; i < _movingPlatformsHoriz.size(); i++)
 		{
@@ -1032,6 +1015,23 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 			// Add checks to ensure no object is clicked
 			// If an object is clicked, DO NOT let the player move to it, instead:
 			// call the appropiate methods specific to that object
+
+			if (_woodBoxes.size() > 0)
+			{
+				for (int i = 0; i < _woodBoxes.size(); i++)
+				{
+					_woodBoxes[i]->Collision(touch);
+					_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+				}
+			}
+			if (_metalBoxes.size() > 0)
+			{
+				for (int i = 0; i < _metalBoxes.size(); i++)
+				{
+					_metalBoxes[i]->Collision(touch);
+					_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+				}
+			}
 
 			for (int i = 0; i < _movingPlatformsHoriz.size(); i++)
 			{
