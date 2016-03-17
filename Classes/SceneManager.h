@@ -114,6 +114,7 @@ private:
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
+	int		_previousDirection;
 	int		_gravityOrientation;
 	bool	_gravityHighlight;
 	float	_flipGravityCooldown = 1.0f;	// One second cooldown
@@ -148,9 +149,11 @@ public:
 	void update(float delta);
 	void ScheduleScore(float delta);
 	void CheckNear(float delta);
+	void CheckNearTimer(float delta);
 	void CheckNearDoor(float delta);
 	void IsPlayerInBounds();
 	void IsCrateInBounds();
+	void RevertGravity();
 
 	// implement the "static create()" method manually
 	//CREATE_FUNC(Scene1);

@@ -690,7 +690,7 @@ void SceneManager::SetupClasses(Node* root)
 	//Timer Switches Down
 	for (unsigned int i = 0; i < _timerSwitchesDown.size(); i++) {
 		SwitchTimer* gravSwitch = SwitchTimer::create();
-		gravSwitch->setName("SwitchTimerDown_" + StringUtils::format("%d", i + 1));
+		gravSwitch->setName("SwitchTimer_Down_" + StringUtils::format("%d", i + 1));
 		gravSwitch->SetSprite(_timerSwitchesDown[i]);
 		gravSwitch->SetOrientation(0);
 
@@ -701,7 +701,7 @@ void SceneManager::SetupClasses(Node* root)
 	//Timer Switches Left
 	for (unsigned int i = 0; i < _timerSwitchesLeft.size(); i++) {
 		SwitchTimer* gravSwitch = SwitchTimer::create();
-		gravSwitch->setName("SwitchTimerLeft_" + StringUtils::format("%d", i + 1));
+		gravSwitch->setName("SwitchTimer_Left_" + StringUtils::format("%d", i + 1));
 		gravSwitch->SetSprite(_timerSwitchesLeft[i]);
 		gravSwitch->SetOrientation(1);
 
@@ -710,9 +710,9 @@ void SceneManager::SetupClasses(Node* root)
 		addChild(gravSwitch);
 	}
 	//Timer Switches Up
-	for (unsigned int i = 0; i < _timerSwitchesLeft.size(); i++) {
+	for (unsigned int i = 0; i < _timerSwitchesUp.size(); i++) {
 		SwitchTimer* gravSwitch = SwitchTimer::create();
-		gravSwitch->setName("SwitchTimerUp_" + StringUtils::format("%d", i + 1));
+		gravSwitch->setName("SwitchTimer_Up_" + StringUtils::format("%d", i + 1));
 		gravSwitch->SetSprite(_timerSwitchesUp[i]);
 		gravSwitch->SetOrientation(2);
 
@@ -721,9 +721,9 @@ void SceneManager::SetupClasses(Node* root)
 		addChild(gravSwitch);
 	}
 	//Timer Switches Right
-	for (unsigned int i = 0; i < _timerSwitchesLeft.size(); i++) {
+	for (unsigned int i = 0; i < _timerSwitchesRight.size(); i++) {
 		SwitchTimer* gravSwitch = SwitchTimer::create();
-		gravSwitch->setName("SwitchTimerRight_" + StringUtils::format("%d", i + 1));
+		gravSwitch->setName("SwitchTimer_Right_" + StringUtils::format("%d", i + 1));
 		gravSwitch->SetSprite(_timerSwitchesRight[i]);
 		gravSwitch->SetOrientation(3);
 
@@ -768,7 +768,11 @@ void SceneManager::update(float delta)
 
 			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 
+
+
 			CheckCollisions();
+			CheckNearTimer(delta);
+			RevertGravity();
 			CheckNear(delta);
 			CheckNearDoor(delta);
 			IsPlayerInBounds();
@@ -779,6 +783,17 @@ void SceneManager::update(float delta)
 			GameManager::sharedGameManager()->setIsGameLive(false);
 			auto scene = GameOverScene::createScene();
 			Director::getInstance()->replaceScene(TransitionFade::create(0.0f, scene));
+		}
+	}
+}
+
+void SceneManager::RevertGravity()
+{
+	for (int i = 0; i < _tSwitches.size(); i++)
+	{
+		if (_tSwitches[i]->GetRevertGravity() == true)
+		{
+			FlipGravity(_previousDirection);
 		}
 	}
 }
@@ -1276,6 +1291,97 @@ void SceneManager::CheckNear(float delta)
 	}
 }
 
+void SceneManager::CheckNearTimer(float delta)
+{
+	bool inProximty = false;
+
+	for (unsigned int i = 0; i < _tSwitches.size(); i++) {
+		// Player needs to be near the switch to press
+		float scaledWidth = _tSwitches.at(i)->GetSprite()->getContentSize().width * _tSwitches.at(i)->GetSprite()->getScaleX();
+		float scaledHeight = _tSwitches.at(i)->GetSprite()->getContentSize().height * _tSwitches.at(i)->GetSprite()->getScaleY();
+
+		if (_player->GetSprite()->getPositionX() - (_player->GetSprite()->getContentSize().width / 2) < _tSwitches.at(i)->GetSprite()->getPositionX() + (scaledWidth / 2) + (_player->GetSprite()->getContentSize().width / 2) + 20
+			&& _player->GetSprite()->getPositionX() + (_player->GetSprite()->getContentSize().width / 2) > _tSwitches.at(i)->GetSprite()->getPositionX() - (scaledWidth / 2) - (_player->GetSprite()->getContentSize().width / 2) - 20
+			&& _player->GetSprite()->getPositionY() - (_player->GetSprite()->getContentSize().height / 2) < _tSwitches.at(i)->GetSprite()->getPositionY() + (scaledHeight / 2) + (_player->GetSprite()->getContentSize().height / 2) + 20
+			&& _player->GetSprite()->getPositionY() + (_player->GetSprite()->getContentSize().height / 2) > _tSwitches.at(i)->GetSprite()->getPositionY() - (scaledHeight / 2) - (_player->GetSprite()->getContentSize().height / 2) - 20)
+		{
+			//_tSwitches.at(i)->GetSprite()->setEnabled(true);
+			_tSwitches.at(i)->GetSprite()->setEnabled(true);
+
+			inProximty = true;
+
+			if (_tSwitches.at(i)->GetOrientation() == 0) {	// Down
+				if (!_bottomHighlightEnabled) {
+					_bottomHighlightTime = 1.0f;
+					_bottomHighlight->runAction(FadeIn::create(_bottomHighlightTime));
+					_bottomHighlightEnabled = true;
+				}
+			}
+			else if (_tSwitches.at(i)->GetOrientation() == 1) {	// Left
+				if (!_leftHighlightEnabled) {
+					_leftHighlightTime = 1.0f;
+					_leftHighlight->runAction(FadeIn::create(_leftHighlightTime));
+					_leftHighlightEnabled = true;
+				}
+			}
+			else if (_tSwitches.at(i)->GetOrientation() == 2) {	// Up
+				if (!_topHighlightEnabled) {
+					_topHighlightTime = 1.0f;
+					_topHighlight->runAction(FadeIn::create(_topHighlightTime));
+					_topHighlightEnabled = true;
+				}
+			}
+			else if (_tSwitches.at(i)->GetOrientation() == 3) {	// Right
+				if (!_rightHighlightEnabled) {
+					_rightHighlightTime = 1.0f;
+					_rightHighlight->runAction(FadeIn::create(_rightHighlightTime));
+					_rightHighlightEnabled = true;
+				}
+			}
+		}
+		else {
+			_tSwitches.at(i)->GetSprite()->setEnabled(false);
+		}
+	}
+
+	if (_topHighlightEnabled) {
+		if (_topHighlightTime > 0.0f) {
+			_topHighlightTime -= delta;
+		}
+		else if (!inProximty) {
+			_topHighlight->runAction(FadeOut::create(1.0f));
+			_topHighlightEnabled = false;
+		}
+	}
+	else if (_rightHighlightEnabled) {
+		if (_rightHighlightTime > 0.0f) {
+			_rightHighlightTime -= delta;
+		}
+		else if (!inProximty) {
+			_rightHighlight->runAction(FadeOut::create(1.0f));
+			_rightHighlightEnabled = false;
+		}
+	}
+	else if (_bottomHighlightEnabled) {
+		if (_bottomHighlightTime > 0.0f) {
+			_bottomHighlightTime -= delta;
+		}
+		else if (!inProximty) {
+			_bottomHighlight->runAction(FadeOut::create(1.0f));
+			_bottomHighlightEnabled = false;
+		}
+	}
+	else if (_leftHighlightEnabled) {
+		if (_leftHighlightTime > 0.0f) {
+			_leftHighlightTime -= delta;
+		}
+		else if (!inProximty) {
+			_leftHighlight->runAction(FadeOut::create(1.0f));
+			_leftHighlightEnabled = false;
+		}
+	}
+}
+
 void SceneManager::CheckNearDoor(float delta)
 {
 	for (unsigned int i = 0; i < _exit.size(); i++) {
@@ -1301,11 +1407,11 @@ void SceneManager::CheckNearDoor(float delta)
 
 void SceneManager::FlipGravity(int direction)
 {
-	int previousDirection = _gravityOrientation;
+	_previousDirection = _gravityOrientation;
 	_gravityOrientation = direction;
 
 	// Handle DOWN gravity
-	if (previousDirection == 0) {
+	if (_previousDirection == 0) {
 		if (direction == 1) { // Left
 			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() + 0.5f);
 			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
@@ -1395,7 +1501,7 @@ void SceneManager::FlipGravity(int direction)
 		}
 	}
 	// Handle LEFT gravity
-	else if (previousDirection == 1) {
+	else if (_previousDirection == 1) {
 		if (direction == 0) { // Down
 			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
 			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() + 0.5f);
@@ -1485,7 +1591,7 @@ void SceneManager::FlipGravity(int direction)
 		}
 	}
 	// Handle UP gravity
-	else if (previousDirection == 2) {
+	else if (_previousDirection == 2) {
 		if (direction == 1) { // Left
 			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
 			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
@@ -1575,7 +1681,7 @@ void SceneManager::FlipGravity(int direction)
 		}
 	}
 	// Handle RIGHT gravity
-	else if (previousDirection == 3) {
+	else if (_previousDirection == 3) {
 		if (direction == 0) { // Down
 			_player->GetSprite()->setPositionY(_player->GetSprite()->getPositionY() - 0.5f);
 			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
@@ -1765,4 +1871,25 @@ SceneManager::~SceneManager()
 	_gravSwitchesLeft.clear();
 	_gravSwitchesUp.clear();
 	_gravSwitchesRight.clear();
+
+	for (unsigned int i = 0; i < _timerSwitchesDown.size(); i++) {
+		delete _switches.at(i)->GetSprite();
+	}
+
+	for (unsigned int i = 0; i < _timerSwitchesLeft.size(); i++) {
+		delete _switches.at(i)->GetSprite();
+	}
+
+	for (unsigned int i = 0; i < _timerSwitchesUp.size(); i++) {
+		delete _switches.at(i)->GetSprite();
+	}
+
+	for (unsigned int i = 0; i < _timerSwitchesRight.size(); i++) {
+		delete _switches.at(i)->GetSprite();
+	}
+
+	_timerSwitchesDown.clear();
+	_timerSwitchesLeft.clear();
+	_timerSwitchesUp.clear();
+	_timerSwitchesRight.clear();
 }

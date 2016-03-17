@@ -21,6 +21,7 @@
 		bool _isTimerStarted;
 		bool _isPlayerNearBy;
 		bool _isEnabled;
+		bool _revertGravity;
 	public:
 		SwitchTimer();
 		~SwitchTimer();
@@ -30,9 +31,10 @@
 
 		void SetOrientation(int orientation) { _orientation = orientation; };
 		int GetOrientation() { return _orientation; };
-
+		bool GetRevertGravity() { return _revertGravity; };
 		void CheckNear(cocos2d::Sprite* player);
 		void StartTimer();
+		int SwitchGravity();
 		void UpdateTimer(float dt);
 		void Update(float dt);
 		cocos2d::ui::CheckBox* GetSprite() { return _gravSwitchTimer; };

@@ -45,11 +45,7 @@ bool SwitchTimer::init()
 
 void SwitchTimer::Update(float dt)
  {
-	if (_isPlayerNearBy == true)
-		 {
-		_isEnabled = !_isEnabled;
-		}
-	_gravSwitchTimer->setEnabled(_isEnabled);
+
 }
 
 void SwitchTimer::StartTimer()
@@ -61,6 +57,12 @@ void SwitchTimer::StartTimer()
 
 void SwitchTimer::UpdateTimer(float dt)
 {
+	if (_isPlayerNearBy == true)
+	{
+		_isEnabled = true;
+		_gravSwitchTimer->setEnabled(true);
+	}
+
 	_mil++;
 
 	if (_mil > 1000)
@@ -72,9 +74,34 @@ void SwitchTimer::UpdateTimer(float dt)
 	if (_sec >= 15)
 	{
 		_min++;
+		_revertGravity = true;
 		_sec = _sec - 15;
-		_isEnabled = !_isEnabled;
 	}
+	else
+	{
+		_revertGravity = false;
+	}
+}
+
+int SwitchTimer::SwitchGravity()
+{
+	if (GetOrientation() == 0)
+	{
+		_orientation = 2;
+	}	
+	if (GetOrientation() == 2)
+	{
+		_orientation = 0;
+	}
+	if (GetOrientation() == 1)
+	{
+		_orientation = 3;
+	}
+	if (GetOrientation() == 3)
+	{
+		_orientation = 1;
+	}
+	return _orientation;
 }
 
 void SwitchTimer::CheckNear(cocos2d::Sprite* player)
@@ -90,9 +117,19 @@ void SwitchTimer::CheckNear(cocos2d::Sprite* player)
 	{
 				//_gravSwitches[i]->setEnabled(true);
 		_isPlayerNearBy = true;
+		_gravSwitchTimer->setEnabled(true);
+
 	}
 	else 
 	{
 		_isPlayerNearBy = false;
+		_gravSwitchTimer->setEnabled(false);
 	}
+}
+
+void SwitchTimer::SetSprite(cocos2d::ui::CheckBox* newSprite)
+{
+	_gravSwitchTimer = newSprite;
+
+	this->addChild(_gravSwitchTimer);
 }
