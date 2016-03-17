@@ -230,7 +230,7 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MovingPlatformX_3" ActionTag="-1093797519" Tag="69" IconVisible="False" LeftMargin="63.7659" RightMargin="1856.2341" TopMargin="170.0657" BottomMargin="1357.9343" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MovingPlatformX_1" ActionTag="-1093797519" Tag="69" IconVisible="False" LeftMargin="63.7659" RightMargin="1856.2341" TopMargin="170.0657" BottomMargin="1357.9343" FlipY="True" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="127.7659" Y="1361.9343" />
