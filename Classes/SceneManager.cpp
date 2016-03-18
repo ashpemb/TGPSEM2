@@ -1195,6 +1195,12 @@ void SceneManager::SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventTyp
 	// Find what switch has been clicked
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
+	for (int i = 0; i < (int)_tSwitches.size(); i++) {
+		if (_tSwitches.at(i)->IsTimerRunning()) {
+			_tSwitches.at(i)->DisableSwitchTimer();
+		}
+	}
+
 	for (int i = 0; i < (int)_switches.size(); i++) {
 		if (findCheckBox->getName() == _switches.at(i)->GetSprite()->getName()) {
 			// Flip Gravity
