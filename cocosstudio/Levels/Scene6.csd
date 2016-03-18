@@ -6,24 +6,24 @@
       <ObjectData Name="Scene" Tag="48" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="BG Back 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="27.9541" RightMargin="20.0459" TopMargin="98.0033" BottomMargin="104.9967" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Back 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="27.9541" RightMargin="20.0459" TopMargin="97.4463" BottomMargin="105.5537" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1027.9541" Y="771.4967" />
+            <Position X="1027.9541" Y="772.0537" />
             <Scale ScaleX="1.0236" ScaleY="1.0709" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5019" Y="0.5023" />
+            <PrePosition X="0.5019" Y="0.5026" />
             <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="27.0718" RightMargin="20.9282" TopMargin="94.1180" BottomMargin="108.8820" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="34.2709" RightMargin="13.7291" TopMargin="93.2484" BottomMargin="109.7516" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1027.0718" Y="775.3820" />
+            <Position X="1034.2709" Y="776.2516" />
             <Scale ScaleX="1.0239" ScaleY="0.9054" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5015" Y="0.5048" />
+            <PrePosition X="0.5050" Y="0.5054" />
             <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -442,59 +442,59 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Hatch_1" ActionTag="1313011095" UserData="Button_Down_3" Tag="173" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="159.6807" RightMargin="1879.3193" TopMargin="1084.5789" BottomMargin="417.4211" ctype="SpriteObjectData">
-            <Size X="9.0000" Y="34.0000" />
+          <AbstractNodeData Name="Hatch_1" ActionTag="1313011095" UserData="Button_Down_3" Tag="173" IconVisible="False" LeftMargin="147.6177" RightMargin="1866.3823" TopMargin="1097.0789" BottomMargin="429.9212" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="9.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="164.1807" Y="434.4211" />
-            <Scale ScaleX="2.0000" ScaleY="4.1900" />
+            <Position X="164.6177" Y="434.4212" />
+            <Scale ScaleX="4.2131" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0802" Y="0.2828" />
-            <PreSize X="0.0044" Y="0.0221" />
-            <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
+            <PrePosition X="0.0804" Y="0.2828" />
+            <PreSize X="0.0166" Y="0.0059" />
+            <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Hatch_2" ActionTag="503156633" UserData="Button_Down_2" Tag="178" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="637.1090" RightMargin="1401.8910" TopMargin="1158.0950" BottomMargin="343.9050" ctype="SpriteObjectData">
-            <Size X="9.0000" Y="34.0000" />
+          <AbstractNodeData Name="Hatch_2" ActionTag="503156633" UserData="Button_Down_2" Tag="178" IconVisible="False" LeftMargin="624.9221" RightMargin="1389.0779" TopMargin="1171.5475" BottomMargin="355.4525" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="9.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="641.6090" Y="360.9050" />
-            <Scale ScaleX="2.0000" ScaleY="3.0661" />
+            <Position X="641.9221" Y="359.9525" />
+            <Scale ScaleX="3.1078" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3133" Y="0.2350" />
-            <PreSize X="0.0044" Y="0.0221" />
-            <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
+            <PrePosition X="0.3134" Y="0.2343" />
+            <PreSize X="0.0166" Y="0.0059" />
+            <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Hatch_3" ActionTag="-2046734079" UserData="Button_Down_3" Tag="295" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1067.9368" RightMargin="971.0632" TopMargin="339.0671" BottomMargin="1162.9329" ctype="SpriteObjectData">
-            <Size X="9.0000" Y="34.0000" />
+          <AbstractNodeData Name="Hatch_3" ActionTag="-2046734079" UserData="Button_Down_3" Tag="295" IconVisible="False" LeftMargin="1055.4343" RightMargin="958.5657" TopMargin="351.5674" BottomMargin="1175.4326" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="9.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1072.4368" Y="1179.9329" />
-            <Scale ScaleX="2.0000" ScaleY="3.0661" />
+            <Position X="1072.4343" Y="1179.9326" />
+            <Scale ScaleX="3.1138" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5237" Y="0.7682" />
-            <PreSize X="0.0044" Y="0.0221" />
-            <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
+            <PrePosition X="0.5236" Y="0.7682" />
+            <PreSize X="0.0166" Y="0.0059" />
+            <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Hatch_5" ActionTag="-913756404" UserData="Button_Down_3" Tag="305" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="940.0749" RightMargin="1098.9250" TopMargin="145.0657" BottomMargin="1356.9343" ctype="SpriteObjectData">
-            <Size X="9.0000" Y="34.0000" />
+          <AbstractNodeData Name="Hatch_5" ActionTag="-913756404" UserData="Button_Down_3" Tag="305" IconVisible="False" LeftMargin="927.5737" RightMargin="1086.4263" TopMargin="152.5598" BottomMargin="1374.4402" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="9.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="944.5749" Y="1373.9343" />
-            <Scale ScaleX="1.0000" ScaleY="2.5122" />
+            <Position X="944.5737" Y="1378.9402" />
+            <Scale ScaleX="2.5239" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4612" Y="0.8945" />
-            <PreSize X="0.0044" Y="0.0221" />
-            <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
+            <PrePosition X="0.4612" Y="0.8977" />
+            <PreSize X="0.0166" Y="0.0059" />
+            <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Hatch_4" ActionTag="-1317044341" UserData="Button_Up_1" Tag="304" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="799.9176" RightMargin="1239.0824" TopMargin="1361.9652" BottomMargin="140.0348" ctype="SpriteObjectData">
-            <Size X="9.0000" Y="34.0000" />
+          <AbstractNodeData Name="Hatch_4" ActionTag="-1317044341" UserData="Button_Up_1" Tag="304" IconVisible="False" LeftMargin="787.4177" RightMargin="1226.5823" TopMargin="1379.4652" BottomMargin="147.5348" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="9.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="804.4176" Y="157.0348" />
-            <Scale ScaleX="1.0000" ScaleY="2.5122" />
+            <Position X="804.4177" Y="152.0348" />
+            <Scale ScaleX="2.5044" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3928" Y="0.1022" />
-            <PreSize X="0.0044" Y="0.0221" />
-            <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
+            <PrePosition X="0.3928" Y="0.0990" />
+            <PreSize X="0.0166" Y="0.0059" />
+            <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Button_Down_1" ActionTag="1452660931" UserData="40" Tag="190" IconVisible="False" LeftMargin="1303.5360" RightMargin="424.4640" TopMargin="441.9095" BottomMargin="984.0905" ctype="SpriteObjectData">
