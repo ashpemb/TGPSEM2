@@ -501,6 +501,34 @@
             <FileData Type="Normal" Path="Wall.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="SwitchTimer_Left_1" ActionTag="2141176682" UserData="3.0" Tag="45" IconVisible="False" LeftMargin="383.7022" RightMargin="1646.2977" TopMargin="999.2072" BottomMargin="501.7928" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="18.0000" Y="35.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="392.7022" Y="519.2928" />
+            <Scale ScaleX="3.0800" ScaleY="3.0800" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1917" Y="0.3381" />
+            <PreSize X="0.0088" Y="0.0228" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Left_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Left_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Left_Off.png" Plist="" />
+            <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
+            <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="SwitchTimer_Right_1" ActionTag="-1407881115" UserData="3.0" Tag="46" IconVisible="False" LeftMargin="727.4325" RightMargin="1302.5675" TopMargin="1001.2601" BottomMargin="499.7399" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="18.0000" Y="35.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="736.4325" Y="517.2399" />
+            <Scale ScaleX="3.0800" ScaleY="3.0800" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3596" Y="0.3367" />
+            <PreSize X="0.0088" Y="0.0228" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Right_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Right_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Right_Off.png" Plist="" />
+            <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
+            <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
