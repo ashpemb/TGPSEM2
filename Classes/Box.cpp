@@ -26,11 +26,11 @@ Box* Box::create(int boxType, float boxStartingWeight)
 		return nullptr;
 	}
 
-	box->SetGravity(-3.81f);
+	box->SetGravity(0.0f);
 	box->SetOrientationVertical(true);
 	box->SetOrientationHorizontal(false);
 	box->SetStartingScale();
-	box->autorelease();
+	//box->autorelease();
 
 	return box;
 }
@@ -106,7 +106,7 @@ void Box::Scaling()
 	}
 	else
 	{
-		_box->setScale(scaler);
+		//_box->setScale(scaler);
 		Deselected();
 	}
 }
@@ -286,12 +286,12 @@ void Box::Fall(float delta)
 			_timeFalling += delta;
 
 			// Calculate and set new velocity
-			if (_verticalVelocity > -12.0f) {
-				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling);
+			if (_verticalVelocity > -48.0f) {
+				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling / 2);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x, GetSprite()->getPosition().y + _verticalVelocity));
 			}
-			else if (_verticalVelocity < 12.0f) {
-				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling);
+			else if (_verticalVelocity < 48.0f) {
+				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling / 2);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x, GetSprite()->getPosition().y + _verticalVelocity));
 			}
 			else {
@@ -315,12 +315,12 @@ void Box::Fall(float delta)
 			_timeFalling += delta;
 
 			// Calculate and set new velocity
-			if (_horizontalVelocity > -12.0f) {
-				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling);
+			if (_horizontalVelocity > -48.0f) {
+				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling / 2);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x + _horizontalVelocity, GetSprite()->getPosition().y));
 			}
-			else if (_horizontalVelocity < 12.0f) {
-				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling);
+			else if (_horizontalVelocity < 48.0f) {
+				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling / 2);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x + _horizontalVelocity, GetSprite()->getPosition().y));
 			}
 			else {
@@ -402,6 +402,11 @@ void Box::Flip()
 
 void Box::SetSprite(Sprite* newSprite) {
 	_box = newSprite; 
+
+	if (_box->getPosition() != newSprite->getPosition())
+	{
+		_box->setPosition(newSprite->getPosition());
+	}
 
 	cocostudio::ComExtensionData* data = dynamic_cast<cocostudio::ComExtensionData*>(GetSprite()->getComponent("ComExtensionData"));
 	std::string userdata = data->getCustomProperty();

@@ -394,6 +394,9 @@ void SceneManager::SetupSprites(Node* root)
 		_metalCrateSpawn.push_back(tempMetalSpawn);
 		i++;
 	}
+
+	// Player Spawn Point
+	_playerSpawn = (Sprite*)root->getChildByName("PlayerSpawn");
 }
 
 void SceneManager::SetupBackground(Node* root)
@@ -495,9 +498,15 @@ void SceneManager::SetupClasses(Node* root)
 {
 	// PLAYER
 	_player = Player::create();
-	_player->SetSprite(_playerSprite);
+	_player->SetSprite(_playerSprite, _playerSpawn);
 	_player->setName("Player");
 	addChild(_player);
+
+	_player->SetGravity(-3.81f);
+	if (_player->GetSprite()->getPosition() != _player->GetSprite()->getPosition())
+	{
+		_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
+	}
 
 	// WOODEN CRATES
 	for (int i = 0; i < (int)_woodenSprites.size(); i++) {
@@ -510,6 +519,16 @@ void SceneManager::SetupClasses(Node* root)
 		addChild(box);
 	}
 
+	for (int i = 0; i < _woodBoxes.size(); i++)
+	{
+		if (_woodBoxes[i]->GetSprite()->getPosition() != _woodBoxes[i]->GetSprite()->getPosition())
+		{
+			_woodBoxes[i]->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
+		}
+
+		_woodBoxes[i]->SetGravity(-3.81f);
+	}
+
 	// METAL CRATES
 	for (int i = 0; i < (int)_metalSprites.size(); i++) {
 		Box* box = Box::create(2, 2.0f);
@@ -519,6 +538,16 @@ void SceneManager::SetupClasses(Node* root)
 		_metalBoxes.push_back(box);
 
 		addChild(box);
+	}
+
+	for (int i = 0; i < _metalBoxes.size(); i++)
+	{
+		if (_metalBoxes[i]->GetSprite()->getPosition() != _metalBoxes[i]->GetSprite()->getPosition())
+		{
+			_metalBoxes[i]->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
+		}
+
+		_metalBoxes[i]->SetGravity(-3.81f);
 	}
 
 	// SWITCHES

@@ -62,6 +62,8 @@ private:
 	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesLeft;
 	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesUp;
 	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesRight;
+	
+	Sprite*								_playerSpawn;
 
 
 	// BACKGROUND
