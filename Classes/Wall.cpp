@@ -98,10 +98,10 @@ void Wall::MovePlatformVertical(cocos2d::Vec2 T)
 	float scaledPlayerHeight = _playerRef->GetSprite()->getContentSize().height * _playerRef->GetSprite()->getScaleY();
 
 	if (_playerRef->GetOrientationHorizontal()) {
-		if (_playerRef->GetSprite()->getPositionX() - (scaledPlayerWidth / 2) < getSprite()->getPositionX() + (scaledWidth / 2)
-			&& _playerRef->GetSprite()->getPositionX() + (scaledPlayerWidth / 2) > getSprite()->getPositionX() - (scaledWidth / 2)
-			&& _playerRef->GetSprite()->getPositionY() - (scaledPlayerHeight / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
-			&& _playerRef->GetSprite()->getPositionY() + (scaledPlayerHeight / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
+		if (_playerRef->GetSprite()->getPositionX() - (scaledPlayerHeight / 2) < getSprite()->getPositionX() + (scaledWidth / 2)
+			&& _playerRef->GetSprite()->getPositionX() + (scaledPlayerHeight / 2) > getSprite()->getPositionX() - (scaledWidth / 2)
+			&& _playerRef->GetSprite()->getPositionY() - (scaledPlayerWidth / 2) < getSprite()->getPositionY() + (scaledHeight / 2)
+			&& _playerRef->GetSprite()->getPositionY() + (scaledPlayerWidth / 2) > getSprite()->getPositionY() - (scaledHeight / 2))
 		{
 			_playerRef->GetSprite()->setPositionY(T.y);
 			_playerRef->SetTarget(T);

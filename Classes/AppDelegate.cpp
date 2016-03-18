@@ -44,7 +44,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
 	//SceneManager* menuScene = SceneManager::createScene(1);
 	//auto scene = SplashScreenScene::createScene();
-	auto scene = SceneManager::createScene(6);
+	auto scene = SceneManager::createScene(1);
 
     // run
 	director->runWithScene(scene);

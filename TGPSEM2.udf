@@ -28,5 +28,14 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="Levels/Scene1.csd" />
+          <FilePathData Path="Levels/Scene2.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="Levels/Scene1.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>
