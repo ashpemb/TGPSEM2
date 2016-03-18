@@ -618,6 +618,28 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
+          <AbstractNodeData Name="MetalBoxSpawn_1" ActionTag="-1197413876" Tag="111" IconVisible="False" LeftMargin="1623.3173" RightMargin="374.6827" TopMargin="714.6965" BottomMargin="771.3035" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1648.3173" Y="796.3035" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8048" Y="0.5184" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="MBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="MetalBoxSpawn_2" ActionTag="2109335572" Tag="112" IconVisible="False" LeftMargin="336.4006" RightMargin="1661.5994" TopMargin="202.0029" BottomMargin="1283.9971" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="361.4006" Y="1308.9971" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1765" Y="0.8522" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="MBoxSpawn.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="Crate_Metal_1" ActionTag="-2050793953" UserData="large" Tag="176" IconVisible="False" LeftMargin="1630.7460" RightMargin="385.2540" TopMargin="749.7722" BottomMargin="754.2278" ctype="SpriteObjectData">
             <Size X="32.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -739,6 +761,17 @@
             <PrePosition X="0.9971" Y="0.4746" />
             <PreSize X="0.0039" Y="0.0221" />
             <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="PlayerSpawn" ActionTag="-339830354" Tag="156" IconVisible="False" LeftMargin="106.3648" RightMargin="1891.6353" TopMargin="1087.3511" BottomMargin="398.6490" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="131.3648" Y="423.6490" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0641" Y="0.2758" />
+            <PreSize X="0.0244" Y="0.0326" />
+            <FileData Type="Normal" Path="Start.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>
