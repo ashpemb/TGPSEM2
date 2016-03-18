@@ -501,7 +501,7 @@
             <FileData Type="Normal" Path="Wall.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="SwitchTimer_Left_1" ActionTag="2141176682" UserData="3.0" Tag="45" IconVisible="False" LeftMargin="383.7022" RightMargin="1646.2977" TopMargin="999.2072" BottomMargin="501.7928" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="SwitchTimer_Left_1" ActionTag="2141176682" UserData="3.0" Tag="45" IconVisible="False" LeftMargin="383.7022" RightMargin="1646.2979" TopMargin="999.2072" BottomMargin="501.7928" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="18.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="392.7022" Y="519.2928" />

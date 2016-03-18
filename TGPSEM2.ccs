@@ -29,6 +29,7 @@
           <Project Name="Scene3.csd" Type="Scene" />
           <Project Name="Scene2.csd" Type="Scene" />
           <Project Name="Scene1.csd" Type="Scene" />
+          <Project Name="Scene8.csd" Type="Scene" />
         </Folder>
         <Folder Name="Main Objects">
           <Image Name="Button_Down_Pressed.png" />

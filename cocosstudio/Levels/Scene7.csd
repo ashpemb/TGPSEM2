@@ -424,7 +424,7 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_11" ActionTag="-2088848579" Tag="97" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="1889.6918" RightMargin="150.3082" TopMargin="1063.3593" BottomMargin="344.6407" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_11" ActionTag="-2088848579" Tag="97" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="False" LeftMargin="1889.6918" RightMargin="150.3082" TopMargin="1063.3594" BottomMargin="344.6407" FlipX="True" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1893.6918" Y="408.6407" />
