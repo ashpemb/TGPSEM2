@@ -1792,7 +1792,7 @@ void SceneManager::FlipGravity(int direction)
 				_metalBoxes[i]->SetFallingHorizontal(false);
 			}
 		}
-		else if (direction == 3) { // Left
+		else if (direction == 1) { // Left
 			_player->GetSprite()->setPositionX(_player->GetSprite()->getPositionX() - 0.5f);
 
 			for (int i = 0; i < (int)_woodBoxes.size(); i++) {

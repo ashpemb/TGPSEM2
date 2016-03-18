@@ -142,13 +142,13 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="-761270994" Tag="98" IconVisible="False" LeftMargin="379.8112" RightMargin="1580.1888" TopMargin="1231.9866" BottomMargin="176.0134" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="-761270994" Tag="98" IconVisible="False" LeftMargin="304.0992" RightMargin="1655.9008" TopMargin="1241.7646" BottomMargin="166.2354" ctype="SpriteObjectData">
             <Size X="88.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="423.8112" Y="240.0134" />
+            <Position X="348.0992" Y="230.2354" />
             <Scale ScaleX="0.8000" ScaleY="0.8000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2069" Y="0.1563" />
+            <PrePosition X="0.1700" Y="0.1499" />
             <PreSize X="0.0430" Y="0.0833" />
             <FileData Type="Normal" Path="Main Objects/Husky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -230,7 +230,7 @@
             <FileData Type="Normal" Path="Main Objects/Platform 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MovingPlatformX_3" ActionTag="-1093797519" Tag="69" IconVisible="False" LeftMargin="63.7659" RightMargin="1856.2341" TopMargin="170.0657" BottomMargin="1357.9343" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MovingPlatformX_1" ActionTag="-1093797519" Tag="69" IconVisible="False" LeftMargin="63.7659" RightMargin="1856.2341" TopMargin="170.0657" BottomMargin="1357.9343" FlipY="True" ctype="SpriteObjectData">
             <Size X="128.0000" Y="8.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="127.7659" Y="1361.9343" />
@@ -252,18 +252,18 @@
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Solid_Door_1" ActionTag="1112665991" Tag="192" IconVisible="False" LeftMargin="240.7841" RightMargin="1799.2159" TopMargin="1272.8887" BottomMargin="229.1114" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Solid_Door_1" ActionTag="1112665991" Tag="192" IconVisible="False" LeftMargin="269.7842" RightMargin="1770.2158" TopMargin="1272.8887" BottomMargin="229.1114" ctype="SpriteObjectData">
             <Size X="8.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="244.7841" Y="246.1114" />
+            <Position X="273.7842" Y="246.1114" />
             <Scale ScaleX="2.0000" ScaleY="4.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1195" Y="0.1602" />
+            <PrePosition X="0.1337" Y="0.1602" />
             <PreSize X="0.0039" Y="0.0221" />
             <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Exit_1" ActionTag="168414293" Tag="193" IconVisible="False" LeftMargin="9.9606" RightMargin="1858.0394" TopMargin="1218.6294" BottomMargin="161.3707" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Exit_1" ActionTag="168414293" Tag="193" IconVisible="False" LeftMargin="9.9606" RightMargin="1858.0394" TopMargin="1218.6293" BottomMargin="161.3707" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="180.0000" Y="156.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="99.9606" Y="239.3707" />
@@ -288,7 +288,7 @@
             <FileData Type="Normal" Path="Main Objects/Hardlight_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MovingWallY_1" ActionTag="1810547072" Tag="67" IconVisible="False" LeftMargin="2037.3418" RightMargin="2.6582" TopMargin="1140.9404" BottomMargin="267.0596" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MovingWallX_1" ActionTag="1810547072" Tag="67" IconVisible="False" LeftMargin="2037.3418" RightMargin="2.6582" TopMargin="1140.9404" BottomMargin="267.0596" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="2041.3418" Y="331.0596" />
@@ -332,6 +332,41 @@
             <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
             <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
             <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Up_Off.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="SwitchTimer_Up_1" ActionTag="-630552566" UserData="1.2" Tag="217" IconVisible="False" LeftMargin="428.4850" RightMargin="1601.5150" TopMargin="1310.0637" BottomMargin="190.9363" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="18.0000" Y="35.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="437.4850" Y="208.4363" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2136" Y="0.1357" />
+            <PreSize X="0.0088" Y="0.0228" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Up_Off.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="SwitchTimer_Right_1" ActionTag="-499276886" CallBackType="Event" UserData="3.0" Tag="218" IconVisible="False" LeftMargin="1828.2048" RightMargin="201.7952" TopMargin="1311.7717" BottomMargin="189.2282" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+            <Size X="18.0000" Y="35.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1837.2048" Y="206.7282" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8971" Y="0.1346" />
+            <PreSize X="0.0088" Y="0.0228" />
+            <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Right_On.png" Plist="" />
+            <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Right_On.png" Plist="" />
+            <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Right_Off.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Wall_6" ActionTag="507874916" Tag="219" IconVisible="False" LeftMargin="1951.3669" RightMargin="88.6331" TopMargin="1191.2429" BottomMargin="216.7570" FlipY="True" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="128.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1955.3669" Y="280.7570" />
+            <Scale ScaleX="1.8418" ScaleY="1.6227" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9548" Y="0.1828" />
+            <PreSize X="0.0039" Y="0.0833" />
+            <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
