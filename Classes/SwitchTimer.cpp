@@ -103,3 +103,10 @@ bool SwitchTimer::IsTimerRunning()
 {
 	return (_isTimerStarted == true);
 }
+
+void SwitchTimer::DisableSwitchTimer()
+{
+	_isTimerStarted = false;
+	_revertGravity = false;
+	_timer = 0.0f;
+}

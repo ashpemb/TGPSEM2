@@ -1212,11 +1212,16 @@ void SceneManager::SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEve
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
 	for (int i = 0; i < (int)_tSwitches.size(); i++) {
+		if (_tSwitches.at(i)->IsTimerRunning()) {
+			_tSwitches.at(i)->DisableSwitchTimer();
+		}
+	}
+
+	for (int i = 0; i < (int)_tSwitches.size(); i++) {
 		if (findCheckBox->getName() == _tSwitches.at(i)->GetSprite()->getName()) {
 			// Flip Gravity
 			if (_flipGravityCooldown == 0.0f) {
 				FlipGravity(_tSwitches.at(i)->GetOrientation());
-				//_tSwitches.at(i)->SwitchGravity();
 				_tSwitches.at(i)->ResetTimer();
 				_flipGravityCooldown = 1.0f;
 			}

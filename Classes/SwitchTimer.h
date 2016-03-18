@@ -45,5 +45,7 @@ public:
 
 	void ResetTimer();
 	bool IsTimerRunning();
+
+	void DisableSwitchTimer();
 };
 
