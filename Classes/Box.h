@@ -78,7 +78,7 @@ public:
 
 	// Sprite
 	Sprite* GetSprite() { return _box; };
-	void SetSprite(Sprite* newSprite, Sprite* spawnPoint);
+	void SetSprite(Sprite* newSprite);
 
 	// Scaling
 	void SetTotalDiff(float totalDiffNew);
