@@ -65,6 +65,7 @@
           <Image Name="Switch_Up_On.png" />
           <Image Name="Test.png" />
           <Image Name="Wall 2.png" />
+          <Image Name="Temp_Art.png" />
         </Folder>
         <Folder Name="Level Backgrounds">
           <Image Name="Main BG.png" />
