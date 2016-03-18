@@ -14,10 +14,10 @@ Player* Player::create()
 		return nullptr;
 	}
 
-	player->SetGravity(-3.81f);
+	player->SetGravity(0.0f);
 	player->SetOrientationVertical(true);
 	player->SetOrientationHorizontal(false);
-	player->autorelease();
+	//player->autorelease();
 
 	return player;
 }
@@ -358,10 +358,15 @@ void Player::FlipPlayer()
 	}
 }
 
-void Player::SetSprite(Sprite* newSprite) 
+void Player::SetSprite(Sprite* newSprite, Sprite* spawnPoint) 
 { 
 	_playerSprite = newSprite;
+	if (_playerSprite->getPosition() != newSprite->getPosition())
+	{
+		_playerSprite->setPosition(spawnPoint->getPosition());
+	}
+
 	SetTarget(newSprite->getPosition());
 	
-	this->addChild(_playerSprite); 
+	this->addChild(_playerSprite);
 }
