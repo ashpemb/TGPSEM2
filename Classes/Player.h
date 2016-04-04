@@ -63,7 +63,7 @@ public:
 
 	//Sprite
 	Sprite* GetSprite() { return _playerSprite; };
-	void SetSprite(Sprite* newSprite, Sprite* spawnPoint);
+	void SetSprite(Sprite* newSprite);
 
 	void Land(cocos2d::Sprite* collider);
 	void BreakFall() { _fallingHorizontal, _fallingVertical = false; };

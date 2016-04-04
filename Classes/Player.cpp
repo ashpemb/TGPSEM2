@@ -358,13 +358,14 @@ void Player::FlipPlayer()
 	}
 }
 
-void Player::SetSprite(Sprite* newSprite, Sprite* spawnPoint) 
+void Player::SetSprite(Sprite* newSprite) 
 { 
 	_playerSprite = newSprite;
-	if (_playerSprite->getPosition() != newSprite->getPosition())
+
+	/*if (_playerSprite->getPosition() != newSprite->getPosition())
 	{
 		_playerSprite->setPosition(spawnPoint->getPosition());
-	}
+	}*/
 
 	SetTarget(newSprite->getPosition());
 	
