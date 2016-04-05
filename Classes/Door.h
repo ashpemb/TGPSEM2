@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __Door_H__
+#define __Door_H__
 
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
@@ -36,3 +37,4 @@ public:
 	bool Close(float delta);
 };
 
+#endif

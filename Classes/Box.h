@@ -1,7 +1,10 @@
-#pragma once
+#ifndef __Box_H__
+#define __Box_H__
+
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "cocostudio/CCComExtensionData.h"
+#include "ui/CocosGUI.h"
 #include "GameManager.h"
 #include "ScalingObject.h"
 USING_NS_CC;
@@ -42,8 +45,8 @@ private:
 	int unselect;
 	bool isSelected;
 public:
-	Box(int, float);
-	static Box* create(int boxType, float boxStartingWeight);
+	Box(int, float, float);
+	static Box* create(int boxType, float boxStartingWeight, float boxGravity);
 	~Box();
 
 	virtual bool init() override;
@@ -90,3 +93,4 @@ public:
 	//void UpdateBoxScale(){ _box->setScale(scaler); }
 };
 
+#endif

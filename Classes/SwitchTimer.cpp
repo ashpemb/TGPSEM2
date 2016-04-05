@@ -1,5 +1,9 @@
 #include "SwitchTimer.h"
 
+USING_NS_CC;
+
+using namespace cocostudio::timeline;
+
 SwitchTimer::SwitchTimer()
 {
 

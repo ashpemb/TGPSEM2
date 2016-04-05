@@ -1,6 +1,9 @@
-#pragma once
+#ifndef __Player_H__
+#define __Player_H__
+
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
 #include "GameManager.h"
 USING_NS_CC;
 
@@ -73,3 +76,4 @@ public:
 	void SetTarget(Vec2 target);
 };
 
+#endif

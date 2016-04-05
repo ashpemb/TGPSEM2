@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __Switch_H__
+#define __Switch_H__
+
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
@@ -28,3 +30,4 @@ public:
 	void SetSprite(cocos2d::ui::CheckBox* newSprite);
 };
 
+#endif

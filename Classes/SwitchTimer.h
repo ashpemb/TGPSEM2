@@ -1,5 +1,6 @@
-#pragma once
-#pragma once
+#ifndef __Switch_Timer_H__
+#define __Switch_Timer_H__
+
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
@@ -49,3 +50,4 @@ public:
 	void DisableSwitchTimer();
 };
 
+#endif

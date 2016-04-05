@@ -41,7 +41,7 @@ bool SceneManager::init()
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
-	Node* rootNode = CSLoader::createNode("Levels/Scene" + StringUtils::format("%d", _level) + ".csb");
+	rootNode = CSLoader::createNode("Levels/Scene" + StringUtils::format("%d", _level) + ".csb");
 
 	addChild(rootNode);
 
@@ -53,29 +53,11 @@ bool SceneManager::init()
 	GameManager::sharedGameManager()->setIsObjectTouched(false);
 	GameManager::sharedGameManager()->setCurrentLevel(_level);
 
-	// TOUCH SETUP
-	SetupTouches();
-
-	// TIMER SETUP
-	SetupTimer(rootNode);
-
-	// AUDIO SETUP
-	SetupAudio(rootNode);
-
-	// SPRITE SETUP
-	SetupSprites(rootNode);
-
-	// BACKGROUND SETUP
-	SetupBackground(rootNode);
-
-	// HIGHLIGHT SETUP
-	SetupHighlights(rootNode);
-
 	// BUTTON SETUP
 	SetupButtons(rootNode);
 
-	// CLASS SETUP
-	SetupClasses(rootNode);
+	// BACKGROUND SETUP
+	SetupBackground(rootNode);
 
 
 	return true;
@@ -502,7 +484,6 @@ void SceneManager::SetupClasses(Node* root)
 	_player->setName("Player");
 	addChild(_player);
 
-	_player->SetGravity(-3.81f);
 	if (_player->GetSprite()->getPosition() != _player->GetSprite()->getPosition())
 	{
 		_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
@@ -510,7 +491,7 @@ void SceneManager::SetupClasses(Node* root)
 
 	// WOODEN CRATES
 	for (int i = 0; i < (int)_woodenSprites.size(); i++) {
-		Box* box = Box::create(1, 1.0f);
+		Box* box = Box::create(1, 1.0f, -3.81f);
 		box->setName("Crate_Wooden_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_woodenSprites[i]);
 
@@ -531,7 +512,7 @@ void SceneManager::SetupClasses(Node* root)
 
 	// METAL CRATES
 	for (int i = 0; i < (int)_metalSprites.size(); i++) {
-		Box* box = Box::create(2, 2.0f);
+		Box* box = Box::create(2, 2.0f, -3.81f);
 		box->setName("Crate_Metal_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_metalSprites[i]);
 
@@ -1252,6 +1233,23 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		CCLOG("touch ended");
+		// TOUCH SETUP
+		SetupTouches();
+
+		// TIMER SETUP
+		SetupTimer(rootNode);
+
+		// AUDIO SETUP
+		SetupAudio(rootNode);
+
+		// SPRITE SETUP
+		SetupSprites(rootNode);
+
+		// HIGHLIGHT SETUP
+		SetupHighlights(rootNode);
+
+		// CLASS SETUP
+		SetupClasses(rootNode);
 
 		GameManager::sharedGameManager()->setIsGamePaused(false);
 		_startGame->setVisible(false);

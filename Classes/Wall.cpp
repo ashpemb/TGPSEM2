@@ -1,5 +1,8 @@
 #include "Wall.h"
 
+USING_NS_CC;
+
+using namespace cocostudio::timeline;
 
 Wall::Wall(Player* ref, std::vector<Box*> wood, std::vector<Box*> metal)
 {

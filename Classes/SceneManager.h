@@ -26,7 +26,7 @@ class SceneManager : public Scene
 private:
 	int _level;
 	int _score;
-
+	Node* rootNode;
 	// UI
 	cocos2d::ui::Text*		_timeLabel;
 	cocos2d::ui::Button*	_startGame;
