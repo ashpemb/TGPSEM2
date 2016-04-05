@@ -45,6 +45,12 @@ void Player::update(float delta)
 {
 	//Debug
 	//_falling = true;
+
+	// Never let falling become minus
+	if (_timeFalling < 0.0f) {
+		_timeFalling = 0.0f;
+	}
+
 	if (!GameManager::sharedGameManager()->getIsGamePaused())
 	{
 		if (_fallingHorizontal || _fallingVertical) {
@@ -360,14 +366,9 @@ void Player::FlipPlayer()
 
 void Player::SetSprite(Sprite* newSprite) 
 { 
-	_playerSprite = newSprite;
+	_playerSprite = Sprite::createWithTexture(newSprite->getTexture());
+	_playerSprite->setScale(newSprite->getScale());
+	_playerSprite->setPosition(newSprite->getPosition());
 
-	/*if (_playerSprite->getPosition() != newSprite->getPosition())
-	{
-		_playerSprite->setPosition(spawnPoint->getPosition());
-	}*/
-
-	SetTarget(newSprite->getPosition());
-	
 	this->addChild(_playerSprite);
 }

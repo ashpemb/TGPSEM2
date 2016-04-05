@@ -171,6 +171,8 @@ bool SceneManager::SetupPlayer(Node* root)
 
 		addChild(_player);
 
+		root->removeChildByName("Player");
+
 		return true;
 	}
 	catch (...) {
@@ -197,12 +199,13 @@ bool SceneManager::SetupPlatforms(Node* root)
 		{
 			//_movingPlatformVertSprites.push_back(tempSprite);
 			Platforms* movingPlat = Platforms::create(_player, _woodBoxes, _metalBoxes);
-			movingPlat->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
-			movingPlat->setSprite(tempSprite);
+			movingPlat->setName("MovingPlatform_" + StringUtils::format("%d", i));
+			movingPlat->SetSprite(tempSprite);
 			movingPlat->setZoneSprite();
 
 			_movingPlatformsHorizontal.push_back(movingPlat);
 			addChild(movingPlat);
+			root->removeChildByName("MovingPlatformX_" + StringUtils::format("%d", i));
 			i++;
 		}
 
@@ -211,12 +214,13 @@ bool SceneManager::SetupPlatforms(Node* root)
 		while ((tempSprite = (Sprite*)root->getChildByName("MovingPlatformY_" + StringUtils::format("%d", i))) != nullptr)
 		{
 			Platforms* movingPlat = Platforms::create(_player, _woodBoxes, _metalBoxes);
-			movingPlat->setName("MovingPlatform_" + StringUtils::format("%d", i + 1));
-			movingPlat->setSprite(tempSprite);
+			movingPlat->setName("MovingPlatform_" + StringUtils::format("%d", i));
+			movingPlat->SetSprite(tempSprite);
 			movingPlat->setZoneSprite();
 
 			_movingPlatformsVertical.push_back(movingPlat);
 			addChild(movingPlat);
+			root->removeChildByName("MovingPlatformY_" + StringUtils::format("%d", i));
 			i++;
 		}
 
@@ -285,12 +289,13 @@ bool SceneManager::SetupBoxes(Node* root)
 		while ((tempSprite = (Sprite*)root->getChildByName("Crate_Wooden_" + StringUtils::format("%d", i))) != nullptr)
 		{
 			Box* box = Box::create(1, 1.0f);
-			box->setName("Crate_Wooden_" + StringUtils::format("%d", i + 1));
+			box->setName("Crate_Wooden_" + StringUtils::format("%d", i));
 			box->SetSprite(tempSprite);
 			box->SetGravity(-3.81f);
 
 			_woodBoxes.push_back(box);
 			addChild(box);
+			root->removeChildByName("Crate_Wooden_" + StringUtils::format("%d", i));
 			i++;
 		}
 
@@ -300,12 +305,13 @@ bool SceneManager::SetupBoxes(Node* root)
 		while ((tempSprite = (Sprite*)root->getChildByName("Crate_Metal_" + StringUtils::format("%d", i))) != nullptr)
 		{
 			Box* box = Box::create(2, 2.0f);
-			box->setName("Crate_Metal_" + StringUtils::format("%d", i + 1));
+			box->setName("Crate_Metal_" + StringUtils::format("%d", i));
 			box->SetSprite(tempSprite);
 			box->SetGravity(-3.81f);
 
 			_metalBoxes.push_back(box);
 			addChild(box);
+			root->removeChildByName("Crate_Metal_" + StringUtils::format("%d", i));
 			i++;
 		}
 
@@ -789,8 +795,8 @@ void SceneManager::update(float delta)
 
 			std::string X = "X";
 			std::string Y = "Y";
-			int playerPosXFl = _player->GetSprite()->getPositionX();
-			int playerPosYFl = _player->GetSprite()->getPositionY();
+			/*int playerPosXFl = _player->GetSprite()->getPositionX();
+			int playerPosYFl = _player->GetSprite()->getPositionY();*/
 
 			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 

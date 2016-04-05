@@ -215,3 +215,13 @@ void Platforms::CheckWallCollisions(cocos2d::Sprite* collider)
 {
 
 }
+
+void Platforms::SetSprite(Sprite* newSprite) 
+{
+	_movingPlat = Sprite::createWithTexture(newSprite->getTexture());
+	_movingPlat->setScale(newSprite->getScale());
+	_movingPlat->setPosition(newSprite->getPosition());
+
+	this->addChild(_movingPlat); 
+	OScale = _movingPlat->getScale(); 
+};

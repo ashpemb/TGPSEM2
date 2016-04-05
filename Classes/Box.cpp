@@ -400,15 +400,13 @@ void Box::Flip()
 	}
 }
 
-void Box::SetSprite(Sprite* newSprite) {
-	_box = newSprite; 
+void Box::SetSprite(Sprite* newSprite) 
+{
+	_box = Sprite::createWithTexture(newSprite->getTexture()); 
+	_box->setScale(newSprite->getScale());
+	_box->setPosition(newSprite->getPosition());
 
-	if (_box->getPosition() != newSprite->getPosition())
-	{
-		_box->setPosition(newSprite->getPosition());
-	}
-
-	cocostudio::ComExtensionData* data = dynamic_cast<cocostudio::ComExtensionData*>(GetSprite()->getComponent("ComExtensionData"));
+	cocostudio::ComExtensionData* data = dynamic_cast<cocostudio::ComExtensionData*>(newSprite->getComponent("ComExtensionData"));
 	std::string userdata = data->getCustomProperty();
 
 	if (userdata == "Large" || userdata == "large") {
