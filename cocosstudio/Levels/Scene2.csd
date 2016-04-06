@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="Scene5" Type="Scene" ID="7981dec6-4758-4e5d-b9f1-3e3a30c46a87" Version="2.3.3.0" />
+  <PropertyGroup Name="Scene2" Type="Scene" ID="7981dec6-4758-4e5d-b9f1-3e3a30c46a87" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -437,7 +437,7 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_7" ActionTag="650492808" Tag="154" IconVisible="False" LeftMargin="597.1812" RightMargin="1442.8188" TopMargin="688.8441" BottomMargin="719.1559" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_6" ActionTag="650492808" Tag="154" IconVisible="False" LeftMargin="597.1812" RightMargin="1442.8188" TopMargin="688.8441" BottomMargin="719.1559" FlipX="True" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="601.1812" Y="783.1559" />
@@ -448,7 +448,7 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_8" ActionTag="-1458493255" Tag="155" IconVisible="False" LeftMargin="1360.7561" RightMargin="679.2439" TopMargin="688.7474" BottomMargin="719.2526" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_7" ActionTag="-1458493255" Tag="155" IconVisible="False" LeftMargin="1360.7561" RightMargin="679.2439" TopMargin="688.7474" BottomMargin="719.2526" FlipX="True" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1364.7561" Y="783.2526" />
