@@ -59,6 +59,23 @@ bool SceneManager::init()
 	// BACKGROUND SETUP
 	SetupBackground(rootNode);
 
+	// TOUCH SETUP
+	SetupTouches();
+
+	// TIMER SETUP
+	SetupTimer(rootNode);
+
+	// AUDIO SETUP
+	SetupAudio(rootNode);
+
+	// SPRITE SETUP
+	SetupSprites(rootNode);
+
+	// HIGHLIGHT SETUP
+	SetupHighlights(rootNode);
+
+	// CLASS SETUP
+	SetupClasses(rootNode);
 
 	return true;
 		
@@ -1252,23 +1269,6 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		CCLOG("touch ended");
-		// TOUCH SETUP
-		SetupTouches();
-
-		// TIMER SETUP
-		SetupTimer(rootNode);
-
-		// AUDIO SETUP
-		SetupAudio(rootNode);
-
-		// SPRITE SETUP
-		SetupSprites(rootNode);
-
-		// HIGHLIGHT SETUP
-		SetupHighlights(rootNode);
-
-		// CLASS SETUP
-		SetupClasses(rootNode);
 
 		GameManager::sharedGameManager()->setIsGamePaused(false);
 		_startGame->setVisible(false);

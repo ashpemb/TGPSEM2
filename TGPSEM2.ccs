@@ -73,8 +73,6 @@
           <Image Name="Second BG.png" />
         </Folder>
         <Image Name="Hardlight_Hatch.png" />
-        <Image Name="RetryButtonPressed.png" />
-        <Image Name="RetryButtonUnPressed.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
