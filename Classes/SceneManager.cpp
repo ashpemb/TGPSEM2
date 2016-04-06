@@ -867,18 +867,18 @@ void SceneManager::CheckCollisions()
 	}
 
 	for (int i = 0; i < (int)_solidDoorSprites.size(); i++) {
-		if (!_doors[i]->GetOpen()) {
 
-			_player->CheckWallCollisions(_solidDoorSprites[i]);
 
-			for (int i2 = 0; i2 < (int)_woodBoxes.size(); i2++) {
-				_woodBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
-			}
+		_player->CheckWallCollisions(_solidDoorSprites[i]);
 
-			for (int i2 = 0; i2 < (int)_metalBoxes.size(); i2++) {
-				_metalBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
-			}
+		for (int i2 = 0; i2 < (int)_woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
 		}
+
+		for (int i2 = 0; i2 < (int)_metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
+		}
+
 
 	}
 
