@@ -53,9 +53,6 @@ bool SceneManager::init()
 	GameManager::sharedGameManager()->setIsObjectTouched(false);
 	GameManager::sharedGameManager()->setCurrentLevel(_level);
 
-	// BUTTON SETUP
-	SetupButtons(rootNode);
-
 	// BACKGROUND SETUP
 	SetupBackground(rootNode);
 
@@ -76,6 +73,9 @@ bool SceneManager::init()
 
 	// CLASS SETUP
 	SetupClasses(rootNode);
+
+	// BUTTON SETUP
+	SetupButtons(rootNode);
 
 	return true;
 		
@@ -144,6 +144,7 @@ void SceneManager::SetupButtons(Node* root)
 	_startGame = static_cast<ui::Button*>(root->getChildByName("StartGame"));
 	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
 	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
+	_startGame->setZOrder(500);
 
 	// Retry Button
 	_retryButton = ui::Button::create();
@@ -151,8 +152,7 @@ void SceneManager::SetupButtons(Node* root)
 	_retryButton->loadTexturePressed("RetryButtonPressed.png");
 	_retryButton->loadTextureDisabled("RetryButtonUnPressed.png");
 	_retryButton->addTouchEventListener(CC_CALLBACK_2(SceneManager::RetryButtonPressed, this));
-	_retryButton->setScale(0.5f);
-	_retryButton->setPosition(Vec2(0.0f + (_retryButton->getSize().width / 4), winSize.height - (_retryButton->getSize().height / 4)));
+	_retryButton->setPosition(Vec2(0.0f + (_retryButton->getSize().width / 2), winSize.height - (_retryButton->getSize().height / 2)));
 
 	addChild(_retryButton);
 }
@@ -1269,6 +1269,25 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		CCLOG("touch ended");
+
+		_gravityOrientation = 0;
+
+		_player->SetOrientationVertical(true);
+
+		for (int i = 0; i < _woodBoxes.size(); i++)
+		{
+			_woodBoxes[i]->SetOrientationVertical(true);
+		}
+
+		for (int i = 0; i < _metalBoxes.size(); i++)
+		{
+			_metalBoxes[i]->SetOrientationVertical(true);
+		}
+
+		for (int i = 0; i < _metalBoxes.size(); i++)
+		{
+			_metalBoxes[i]->SetOrientationVertical(true);
+		}
 
 		GameManager::sharedGameManager()->setIsGamePaused(false);
 		_startGame->setVisible(false);
