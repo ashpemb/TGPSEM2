@@ -51,6 +51,7 @@ void AudioEngine::PlayBackgroundMusic(std::string fileLocation, bool loop)
 		const char * c = fileLocation.c_str();
 
 		audioManager->getInstance()->playBackgroundMusic(c, true);
+		bgmPlaying = true;
 	//}
 }
 
@@ -63,6 +64,7 @@ void AudioEngine::SetBackgroundVolume(float volume)
 void AudioEngine::StopBackgroundMusic()
 {
 	audioManager->getInstance()->stopBackgroundMusic();
+	bgmPlaying = false;
 }
 
 int AudioEngine::PlaySoundEffect(std::string fileLocation, bool loop)

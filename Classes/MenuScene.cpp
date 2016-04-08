@@ -131,7 +131,10 @@ bool MenuScene::init()
 	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
 
 	{
-		auEngine->PlayBackgroundMusic("menu.mp3", true);
+		if (!auEngine->isAudioPlaying())
+		{
+			auEngine->PlayBackgroundMusic("menu.mp3", true);
+		}
 	}
 
 	return true;
@@ -200,7 +203,7 @@ void MenuScene::StartGame()
 
 void MenuScene::Credits()
 {
-	auEngine->PauseBackgroundMusic();
+	//auEngine->PauseBackgroundMusic();
 	Scene* scene = CreditsScene::createScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }

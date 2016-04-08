@@ -85,11 +85,11 @@ bool CreditsScene::init()
 	_rotatePlanetTimerDefault = 240.0f;
 	_rotatePlanetTimer = 0.0f;
 
-	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
+	/*if (GameManager::sharedGameManager()->getIsGameMuted() == false)
 
 	{
-		auEngine->PlayBackgroundMusic("menu.mp3", true);
-	}
+		auEngine->ResumeBackgroundMusic();
+	}*/
 
 	return true;
 }
@@ -112,7 +112,7 @@ void CreditsScene::ReturnButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchE
 
 void CreditsScene::ReturnToMenu()
 {
-	auEngine->PauseBackgroundMusic();
+	//auEngine->PauseBackgroundMusic();
 	Scene* scene = MenuScene::createScene();
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
