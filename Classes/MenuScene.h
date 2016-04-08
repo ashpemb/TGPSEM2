@@ -63,6 +63,14 @@ private:
 	float _rotatePlanetTimerDefault;
 	float _rotatePlanetTimer;
 
+	float _rotateShipTimerDefault;
+	float _rotateShipTimer;
+	bool _rotateShipLeft;
+
+	float _moveButtonTimerDefault;
+	float _moveButtonTimer;
+	bool _moveButtonUp;
+
 	SceneManager * gameScene;
 
 	AudioEngine*			auEngine;
