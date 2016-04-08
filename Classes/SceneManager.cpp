@@ -1273,6 +1273,7 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 		_gravityOrientation = 0;
 
 		_player->SetOrientationVertical(true);
+		_player->SetTarget(_player->GetSprite()->getPosition());
 
 		for (int i = 0; i < _woodBoxes.size(); i++)
 		{
