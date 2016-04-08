@@ -406,7 +406,7 @@ void Box::Flip()
 }
 
 void Box::SetSprite(Sprite* newSprite) {
-	_box = newSprite; 
+	_box = newSprite;
 
 	if (_box->getPosition() != newSprite->getPosition())
 	{

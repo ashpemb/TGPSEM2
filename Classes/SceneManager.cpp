@@ -806,8 +806,8 @@ void SceneManager::update(float delta)
 
 			std::string X = "X";
 			std::string Y = "Y";
-			int playerPosXFl = _player->GetSprite()->getPositionX();
-			int playerPosYFl = _player->GetSprite()->getPositionY();
+			/*int playerPosXFl = _player->GetSprite()->getPositionX();
+			int playerPosYFl = _player->GetSprite()->getPositionY();*/
 
 			_timeLabel->setString(StringUtils::format("%d:%d:%d", min, sec, mil));
 

@@ -194,16 +194,16 @@ void Platforms::CheckPlatformCollisions(cocos2d::Sprite* collider)
 
 	float scaledPlatformHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
 	float scaledPlatformWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
-	
+
 	if (getSprite()->getPositionX() - (scaledPlatformWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
 		&& getSprite()->getPositionX() + (scaledPlatformWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
 		&& getSprite()->getPositionY() - (scaledPlatformHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
 		&& getSprite()->getPositionY() + (scaledPlatformHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
 	{
-			// checks if the moving platform is colliding with the top of a static platform
-			CollidingWithPlatform = true;
-			MovePlatformVertical(Vec2(collider->getPositionX() + (scaledPlatformWidth / 2), collider->getPositionY() + (scaledPlatformHeight)));
-		
+		// checks if the moving platform is colliding with the top of a static platform
+		CollidingWithPlatform = true;
+		MovePlatformVertical(Vec2(collider->getPositionX() + (scaledPlatformWidth / 2), collider->getPositionY() + (scaledPlatformHeight)));
+
 	}
 	else
 	{
