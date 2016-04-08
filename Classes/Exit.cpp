@@ -4,8 +4,6 @@
 Exit::Exit(cocos2d::ui::CheckBox* checkBox)
 {
 	_exit = checkBox;
-
-	int woof = 229;
 }
 
 Exit* Exit::create(cocos2d::ui::CheckBox* checkBox)
@@ -53,9 +51,14 @@ void Exit::CheckNear(cocos2d::Sprite* player)
 		&& player->getPositionY() - (player->getContentSize().height / 2) < _exit->getPositionY() + (scaledHeight / 2)
 		&& player->getPositionY() + (player->getContentSize().height / 2) > _exit->getPositionY() - (scaledHeight / 2))
 	{
-		_exit->setEnabled(true);
+		if (!_exit->isEnabled()) {
+			_exit->setEnabled(true);
+		}
+
 	}
 	else {
-		_exit->setEnabled(false);
+		if (_exit->isEnabled()) {
+			_exit->setEnabled(false);
+		}
 	}
 }

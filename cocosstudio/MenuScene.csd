@@ -21,7 +21,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="SettingsButton" ActionTag="581712485" Tag="5" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="819.2000" RightMargin="819.2000" TopMargin="993.9456" BottomMargin="388.4544" TouchEnable="True" FontSize="34" ButtonText="Settings" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="CreditsButton" ActionTag="581712485" Tag="5" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="819.2000" RightMargin="819.2000" TopMargin="993.9456" BottomMargin="388.4544" TouchEnable="True" FontSize="34" ButtonText="Credits" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="409.6000" Y="153.6000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1024.0000" Y="465.2544" />
@@ -51,7 +51,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="MuteButton" ActionTag="-269671579" Tag="26" IconVisible="False" LeftMargin="40.9366" RightMargin="1879.0635" TopMargin="35.7017" BottomMargin="1392.2983" ctype="SpriteObjectData">
+          <AbstractNodeData Name="MuteButton" ActionTag="-269671579" Tag="26" IconVisible="False" LeftMargin="40.9366" RightMargin="1879.0634" TopMargin="35.7017" BottomMargin="1392.2983" ctype="SpriteObjectData">
             <Size X="128.0000" Y="108.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="104.9366" Y="1446.2983" />

@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 
-
+LOCAL_DISABLE_FORMAT_STRING_CHECKS := true
 
 
 LOCAL_MODULE := cocos2dcpp_shared
@@ -28,7 +28,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 			   ../../Classes/Exit.cpp \
 			   ../../Classes/Platforms.cpp \
 			   ../../Classes/Switch.cpp \
-
+			   ../../Classes/FloorButton.cpp \
+			   ../../Classes/GameWinScene.cpp \
+			   ../../Classes/Door.cpp \
+			   ../../Classes/SwitchTimer.cpp \
+			   ../../Classes/Wall.cpp \
+			   ../../Classes/CreditsScene.cpp \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

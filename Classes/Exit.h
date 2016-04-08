@@ -1,7 +1,10 @@
-#pragma once
+#ifndef __Exit_H__
+#define __Exit_H__
+
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "GameWinScene.h"
 USING_NS_CC;
 
 class Exit : public Node
@@ -18,3 +21,4 @@ public:
 	void CheckNear(cocos2d::Sprite* player);
 };
 
+#endif

@@ -10,37 +10,75 @@
         <Image Name="MuteUnPressed.png" />
         <Image Name="Platform.jpg" />
         <Image Name="MainMenuBackground.png" />
-        <Project Name="Scene1.csd" Type="Scene" />
-        <Project Name="Scene2.csd" Type="Scene" />
-        <Project Name="Scene3.csd" Type="Scene" />
-        <Image Name="SwitchSheet.png" />
-        <Image Name="Switch Left.png" />
-        <Image Name="Switch Right.png" />
-        <Image Name="Switch Static.png" />
         <Image Name="transparent.png" />
         <Image Name="BG1.png" />
         <Image Name="Wall.jpg" />
         <Image Name="Start.png" />
         <Image Name="WBoxSpawn.png" />
         <Image Name="MBoxSpawn.png" />
-        <Image Name="Husky.png" />
-        <Image Name="Crate.png" />
-        <Image Name="MetalCrate.png" />
         <Project Name="GameOver.csd" Type="Scene" />
-        <Image Name="Exit.png" />
-        <Image Name="Exit Dis.png" />
-        <Image Name="Exit 7.png" />
         <PlistInfo Name="Exits.csi" Type="Plist" />
-        <Image Name="Exit 2.png" />
-        <Image Name="Exit 3.png" />
-        <Image Name="Exit 4.png" />
-        <Image Name="Exit 5.png" />
-        <Image Name="Exit 6.png" />
         <Project Name="SplashScreen.csd" Type="Scene" />
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
-        <Image Name="light.png" />
-        <Image Name="orangelight.png" />
+        <Folder Name="Levels">
+          <Project Name="Scene4.csd" Type="Scene" />
+          <Project Name="Scene3.csd" Type="Scene" />
+          <Project Name="Scene2.csd" Type="Scene" />
+          <Project Name="Scene1.csd" Type="Scene" />
+          <Project Name="Sceneold3.csd" Type="Scene" />
+          <Project Name="Sceneold2.csd" Type="Scene" />
+          <Project Name="SceneTest.csd" Type="Scene" />
+          <Project Name="Scene8.csd" Type="Scene" />
+        </Folder>
+        <Folder Name="Main Objects">
+          <Image Name="Button_Down_Pressed.png" />
+          <Image Name="Button_Down_Unpressed.png" />
+          <Image Name="Button_Left_Pressed.png" />
+          <Image Name="Button_Left_Unpressed.png" />
+          <Image Name="Button_Right_Pressed.png" />
+          <Image Name="Button_Right_Unpressed.png" />
+          <Image Name="Button_Up_Pressed.png" />
+          <Image Name="Button_Up_Unpressed.png" />
+          <Image Name="Crate.png" />
+          <Image Name="Exit 2.png" />
+          <Image Name="Exit 3.png" />
+          <Image Name="Exit 4.png" />
+          <Image Name="Exit 5.png" />
+          <Image Name="Exit 6.png" />
+          <Image Name="Exit 7.png" />
+          <Image Name="Exit Dis.png" />
+          <Image Name="Exit.png" />
+          <Image Name="Hardlight_Door.png" />
+          <Image Name="Husky.png" />
+          <Image Name="MetalCrate.png" />
+          <Image Name="Platform 2.png" />
+          <Image Name="Platform holder.png" />
+          <Image Name="Solid_Door.png" />
+          <Image Name="Switch_Down_Off.png" />
+          <Image Name="Switch_Down_On.png" />
+          <Image Name="Switch_Left_Off.png" />
+          <Image Name="Switch_Left_On.png" />
+          <Image Name="Switch_Right_Off.png" />
+          <Image Name="Switch_Right_On.png" />
+          <Image Name="Switch_Up_Off.png" />
+          <Image Name="Switch_Up_On.png" />
+          <Image Name="Test.png" />
+          <Image Name="Wall 2.png" />
+          <Image Name="Temp_Art.png" />
+        </Folder>
+        <Folder Name="Level Backgrounds">
+          <Image Name="Main BG.png" />
+          <Image Name="Platform 2.png" />
+          <Image Name="Second BG.png" />
+          <Image Name="HuskySpaceShipDamage.png" />
+          <Image Name="Planet.png" />
+          <Image Name="SpaceStar.png" />
+          <Image Name="Logo.png" />
+        </Folder>
+        <Image Name="Hardlight_Hatch.png" />
+        <Project Name="Credits.csd" Type="Scene" />
+        <Image Name="CreditsScreen.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

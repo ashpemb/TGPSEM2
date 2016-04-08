@@ -29,6 +29,7 @@ public:
 	void ResumeAllEffects();
 	void ResumeBackgroundMusic();
 	~AudioEngine();
+	bool isAudioPlaying(){ return bgmPlaying; }
 private:
 	float effectVolume;
 	float bgmVolume;

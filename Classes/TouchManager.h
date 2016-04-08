@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __Touch_Manager_H__
+#define __Touch_Manager_H__
+
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
@@ -19,3 +21,4 @@ public:
 	float totalDiff;
 };
 
+#endif

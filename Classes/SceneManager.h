@@ -9,12 +9,15 @@
 #include "GameManager.h"
 #include "AudioEngine.h"
 #include "GameOverScene.h"
+#include "GameWinScene.h"
 #include "Box.h"
 #include "Switch.h"
+#include "FloorButton.h"
 #include "TouchManager.h"
 #include "Platforms.h"
-#include "Lightbulb.h"
-
+#include "Door.h"
+#include "Wall.h"
+#include "SwitchTimer.h"
 
 USING_NS_CC;
 
@@ -23,26 +26,47 @@ class SceneManager : public Scene
 private:
 	int _level;
 	int _score;
-
+	Node* rootNode;
 	// UI
-	cocos2d::ui::Text*	_timeLabel;
-	cocos2d::ui::Button* _startGame;
+	cocos2d::ui::Text*		_timeLabel;
+	cocos2d::ui::Button*	_startGame;
+	cocos2d::ui::Button*	_retryButton;
 
 	// AUDIO
 	AudioEngine* auEngine;
 
 	// Sprites that need to be passed to classes
-	Sprite* _playerSprite;
-	std::vector<cocos2d::Sprite*> _woodenSprites;
-	std::vector<cocos2d::Sprite*> _metalSprites;
-	std::vector<cocos2d::ui::CheckBox*> _gravSwitches;
-	std::vector<cocos2d::Sprite*> _movingPlatformVertSprites;
-	std::vector<cocos2d::Sprite*> _movingPlatformHorizSprites;
-	std::vector<cocos2d::Sprite*> _lightBulbSprites;
+	Sprite*								_playerSprite;
+	std::vector<cocos2d::Sprite*>		_woodenSprites;
+	std::vector<cocos2d::Sprite*>		_metalSprites;
 
+	std::vector<cocos2d::Sprite*>		_downButtons;
+	std::vector<cocos2d::Sprite*>		_leftButtons;
+	std::vector<cocos2d::Sprite*>		_upButtons;
+	std::vector<cocos2d::Sprite*>		_rightButtons;
+
+	std::vector<cocos2d::Sprite*>		_movingPlatformVertSprites;
+	std::vector<cocos2d::Sprite*>		_movingPlatformHorizSprites;
+	std::vector<cocos2d::Sprite*>		_movingWallVertSprites;
+	std::vector<cocos2d::Sprite*>		_movingWallHorizSprites;
+
+	std::vector<cocos2d::Sprite*>		_doorSprites;
+	std::vector<cocos2d::Sprite*>		_solidDoorSprites;
+	std::vector<cocos2d::Sprite*>		_hatchSprites;
+
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesDown;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesLeft;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesUp;
+	std::vector<cocos2d::ui::CheckBox*> _gravSwitchesRight;
+
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesDown;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesLeft;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesUp;
+	std::vector<cocos2d::ui::CheckBox*> _timerSwitchesRight;
+	
+	Sprite*								_playerSpawn;
 
 	// BACKGROUND
-
 	Sprite*	_background1;
 	Sprite*	_background2;
 	Sprite*	_background3;
@@ -67,32 +91,44 @@ private:
 	bool	_leftHighlightEnabled;
 
 	// SCENE ELEMENTS
-	std::vector<cocos2d::Sprite*> _platforms;
-	std::vector<cocos2d::Sprite*> _walls;
+	std::vector<cocos2d::Sprite*>		_platforms;
+	std::vector<cocos2d::Sprite*>		_walls;
 	std::vector<cocos2d::ui::CheckBox*> _exit;
-	std::vector<bool> _flipped;
+
+	std::vector<bool>					_flipped;
+	std::vector<cocos2d::Sprite*>		_railStart;
+	std::vector<cocos2d::Sprite*>		_railEnd;
+	std::vector<cocos2d::Sprite*>		_woodCrateSpawn;
+	std::vector<cocos2d::Sprite*>		_metalCrateSpawn;
 
 	// SCENE CLASSES
 	Player* _player;
-	std::vector<Box*> _woodBoxes;
-	std::vector<Box*> _metalBoxes;
-	std::vector<Switch*> _switches;
-	std::vector<Platforms*> _movingPlatformsVert;
-	std::vector<Platforms*> _movingPlatformsHoriz;
-	std::vector<LightBulb*> _lightBulb;
+	std::vector<Box*>			_woodBoxes;
+	std::vector<Box*>			_metalBoxes;
+	std::vector<Switch*>		_switches;
+	std::vector<SwitchTimer*>	_tSwitches;
+	std::vector<FloorButton*>	_buttons;
+	std::vector<Door*>			_doors;
+	std::vector<Door*>			_hatches;
+	std::vector<Platforms*>		_movingPlatformsVert;
+	std::vector<Platforms*>		_movingPlatformsHoriz;
+	std::vector<Wall*>			_movingWallsVert;
+	std::vector<Wall*>			_movingWallsHoriz;
 
 	// GRAVITY
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
-	int _gravityOrientation;
-	bool _gravityHighlight;
-	float _flipGravityCooldown = 1.0f;	// One second cooldown
+	int		_previousDirection;
+	int		_gravityOrientation;
+	bool	_gravityHighlight;
+	float	_flipGravityCooldown = 1.0f;	// One second cooldown
 	void FlipGravity(int direction);
 
 	// TOUCHES
-	TouchManager* touchMGR;
-	bool _inTouch;
-	cocos2d::Vec2 _initialTouchPos;
-	bool isObjectTouched;
+	TouchManager*	touchMGR;
+	bool			_inTouch;
+	cocos2d::Vec2	_initialTouchPos;
+	bool			isObjectTouched;
+
 
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -109,15 +145,18 @@ public:
 	void SetupSprites(Node* root);
 	void SetupBackground(Node* root);
 	void SetupHighlights(Node* root);
-	void SetupClasses();
+	void SetupClasses(Node* root);
 
 	void CheckCollisions();
 
 	void update(float delta);
 	void ScheduleScore(float delta);
 	void CheckNear(float delta);
-	void CheckNearDoor();
+	void CheckNearTimer(float delta);
+	void CheckNearDoor(float delta);
 	void IsPlayerInBounds();
+	void IsCrateInBounds();
+	void RevertGravity();
 
 	// implement the "static create()" method manually
 	//CREATE_FUNC(Scene1);
@@ -131,7 +170,10 @@ public:
 	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void RetryButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+	void SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 
 };
 

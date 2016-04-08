@@ -2,14 +2,14 @@
   <PropertyGroup Name="Exits" Type="Plist" ID="6d1a22a8-7f01-4cc7-a77a-697662b52f68" Version="2.3.3.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="False" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
-      <FilePathData Path="Exit.png" />
-      <FilePathData Path="Exit 2.png" />
-      <FilePathData Path="Exit 3.png" />
-      <FilePathData Path="Exit 4.png" />
-      <FilePathData Path="Exit 5.png" />
-      <FilePathData Path="Exit 6.png" />
-      <FilePathData Path="Exit 7.png" />
-      <FilePathData Path="Exit Dis.png" />
+      <FilePathData Path="Main Objects/Exit.png" />
+      <FilePathData Path="Main Objects/Exit 2.png" />
+      <FilePathData Path="Main Objects/Exit 3.png" />
+      <FilePathData Path="Main Objects/Exit 4.png" />
+      <FilePathData Path="Main Objects/Exit 5.png" />
+      <FilePathData Path="Main Objects/Exit 6.png" />
+      <FilePathData Path="Main Objects/Exit 7.png" />
+      <FilePathData Path="Main Objects/Exit Dis.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

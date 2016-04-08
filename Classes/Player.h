@@ -1,6 +1,9 @@
-#pragma once
+#ifndef __Player_H__
+#define __Player_H__
+
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
 #include "GameManager.h"
 USING_NS_CC;
 
@@ -44,8 +47,8 @@ public:
 	void SetOrientationVertical(bool orientation);
 	void SetOrientationHorizontal(bool orientation);
 
-	bool GetOrientationVertical() { return _fallingVertical; };
-	bool GetOrientationHorizontal() { return _fallingHorizontal; };
+	bool GetOrientationVertical() { return _orientationVertical; };
+	bool GetOrientationHorizontal() { return _orientationHorizontal; };
 
 	void SetFallingVertical(bool falling);
 	void SetFallingHorizontal(bool falling);
@@ -63,12 +66,14 @@ public:
 
 	//Sprite
 	Sprite* GetSprite() { return _playerSprite; };
-	void SetSprite(Sprite* newSprite);
+	void SetSprite(Sprite* newSprite, Sprite* spawnPoint);
 
 	void Land(cocos2d::Sprite* collider);
+	void BreakFall() { _fallingHorizontal, _fallingVertical = false; };
 	void Fall(float delta);
 
 	// Movement
 	void SetTarget(Vec2 target);
 };
 
+#endif

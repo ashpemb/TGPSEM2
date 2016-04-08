@@ -1,6 +1,10 @@
-#pragma once
+#ifndef __Box_H__
+#define __Box_H__
+
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "cocostudio/CCComExtensionData.h"
+#include "ui/CocosGUI.h"
 #include "GameManager.h"
 #include "ScalingObject.h"
 #include "TouchManager.h"
@@ -15,6 +19,8 @@ private:
 	Sprite* _box;
 
 	// Gravity variables
+	float	_defaultTouchTimer = 0.5f;
+	float	_touchTimer;
 	float	_timeFalling;
 	float	_gravity;
 
@@ -30,6 +36,7 @@ private:
 
 	// Box Variables
 	int _boxType;
+	float _weight;
 
 	// Scaler
 	float scaler1;
@@ -40,8 +47,8 @@ private:
 	int unselect;
 	bool isSelected;
 public:
-	Box(int);
-	static Box* create(int boxType, float startingScale);
+	Box(int, float, float);
+	static Box* create(int boxType, float boxStartingWeight, float boxGravity);
 	~Box();
 
 	virtual bool init() override;
@@ -53,8 +60,8 @@ public:
 	void SetOrientationVertical(bool orientation);
 	void SetOrientationHorizontal(bool orientation);
 
-	bool GetOrientationVertical() { return _fallingVertical; };
-	bool GetOrientationHorizontal() { return _fallingHorizontal; };
+	bool GetOrientationVertical() { return _orientationVertical; };
+	bool GetOrientationHorizontal() { return _orientationHorizontal; };
 
 	void SetFallingVertical(bool falling);
 	void SetFallingHorizontal(bool falling);
@@ -72,16 +79,20 @@ public:
 	void Land(cocos2d::Sprite* collider);
 	void Fall(float delta);
 
+	float GetBoxWeight() { return _weight; }
+
 	// Sprite
 	Sprite* GetSprite() { return _box; };
-	void SetSprite(Sprite* newSprite) { _box = newSprite; this->addChild(_box); };
+	void SetSprite(Sprite* newSprite);
 
 	// Scaling
 	void SetTotalDiff(float totalDiffNew);
 	void Selected();
 	void Deselected();
-	void SetStartingScale(float startingScale);
+	void SetStartingScale();
 	void Collision(cocos2d::Touch* touch);
 	void Scaling();
+	//void UpdateBoxScale(){ _box->setScale(scaler); }
 };
 
+#endif
