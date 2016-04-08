@@ -1,8 +1,11 @@
 
 #include "Box.h"
 
+USING_NS_CC;
 
-Box::Box(int boxType, float boxStartingWeight)
+using namespace cocostudio::timeline;
+
+Box::Box(int boxType, float boxStartingWeight, float gravity)
 {
 	_boxType = boxType;
 	scaler1 = 0;
@@ -13,24 +16,26 @@ Box::Box(int boxType, float boxStartingWeight)
 	isSelected = false;
 	_touchTimer = 0.0f;
 	_weight = boxStartingWeight;
+	SetStartingScale();
+	SetGravity(gravity);
+	SetOrientationVertical(true);
+	//SetFallingVertical(true);
+	SetOrientationHorizontal(false);
+	//SetFallingHorizontal(false);
 
 	// Default node stuff
-	setPosition(Vec2(0.0f, 0.0f));
+	//setPosition(Vec2(0.0f, 0.0f));
 }
 
-Box* Box::create(int boxType, float boxStartingWeight)
+Box* Box::create(int boxType, float boxStartingWeight, float boxGravity)
 {
-	Box* box = new Box(boxType, boxStartingWeight);
+	Box* box = new Box(boxType, boxStartingWeight, boxGravity);
 	if (!box->init())
 	{
 		return nullptr;
 	}
 
-	box->SetGravity(0.0f);
-	box->SetOrientationVertical(true);
-	box->SetOrientationHorizontal(false);
-	box->SetStartingScale();
-	//box->autorelease();
+	box->autorelease();
 
 	return box;
 }

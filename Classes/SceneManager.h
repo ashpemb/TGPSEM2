@@ -26,10 +26,11 @@ class SceneManager : public Scene
 private:
 	int _level;
 	int _score;
-
+	Node* rootNode;
 	// UI
 	cocos2d::ui::Text*		_timeLabel;
 	cocos2d::ui::Button*	_startGame;
+	cocos2d::ui::Button*	_retryButton;
 
 	// AUDIO
 	AudioEngine* auEngine;
@@ -171,6 +172,7 @@ public:
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void RetryButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	void SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 

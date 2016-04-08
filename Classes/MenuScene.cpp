@@ -54,17 +54,24 @@ bool MenuScene::init()
 	//Start button
 	_startButton = static_cast<ui::Button*>(rootNode->getChildByName("StartButton"));
 	_startButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::StartButtonPressed, this));
-	_startButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.45f));
+	_startButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.45f));
+	_startButton->setGlobalZOrder(9);
+	_startButton->setScale(1.5f);
 
-	//Settings Button
-	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
-	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
-	_settingsButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.30f));
+	//Credits Button
+
+	_creditsButton = static_cast<ui::Button*>(rootNode->getChildByName("CreditsButton"));
+	_creditsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::CreditsButtonPressed, this));
+	_creditsButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
+	_creditsButton->setGlobalZOrder(9);
+	_creditsButton->setScale(1.5f);
 
 	//Exit Button
 	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
 	_exitButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::ExitButtonPressed, this));
-	_exitButton->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.15f));
+	_exitButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.15f));
+	_exitButton->setGlobalZOrder(9);
+	_exitButton->setScale(1.5f);
 
 	//Mute Button
 	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
@@ -83,13 +90,52 @@ bool MenuScene::init()
 
 	//BACKGROUND
 	//_background = (Sprite*)rootNode->getChildByName("Background");
-	_background = Sprite::create("MainMenuBackground.png");
+	/*_background = Sprite::create("MainMenuBackground.png");
 	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
 	_background->setScaleX(winSize.width / _background->getContentSize().width);
 	_background->setScaleY(winSize.height / _background->getContentSize().height);
-	_background->setLocalZOrder(-1);
+	_background->setLocalZOrder(-1);*/
 
-	this->addChild(_background);
+	_logo = Sprite::create("Logo.png");
+	_logo->setPosition(Vec2(winSize.width*0.60f, winSize.height*0.75f));
+	_logo->setScale(0.75f);
+
+	this->addChild(_logo);
+
+	_planet = Sprite::create("Planet.png");
+	_planet->setPosition(Vec2(0.0f, 0.0f - (_planet->getContentSize().height / 8)));
+	//_planet->setScale(8.0f);
+	this->addChild(_planet);
+
+	_ship = Sprite::create("HuskySpaceShipDamage.png");
+	_ship->setPosition(Vec2(winSize.width*0.3f, winSize.height*0.55f));
+	_ship->setScale(0.25f);
+	_ship->setRotation(30);
+
+	this->addChild(_ship);
+
+	for (int i = 0; i < 100; i++) {
+		_stars.push_back(Sprite::create("SpaceStar.png"));
+
+		int randomWidth = cocos2d::RandomHelper::random_real(0.0f, winSize.width);
+		int randomHeight = cocos2d::RandomHelper::random_real(0.0f, winSize.height);
+
+		_stars.at(i)->setPosition(Vec2(randomWidth, randomHeight));
+		_stars.at(i)->setGlobalZOrder(-2);
+
+		this->addChild(_stars.at(i));
+	}
+
+	_rotatePlanetTimerDefault = 240.0f;
+	_rotatePlanetTimer = 0.0f;
+
+	_rotateShipTimerDefault = 10.0f;
+	_rotateShipTimer = 0.0f;
+	_rotateShipLeft = true;
+
+	_moveButtonTimerDefault = 5.0f;
+	_moveButtonTimer = 0.0f;
+	_moveButtonUp = true;
 
 	// AUDIO
 	auEngine = new AudioEngine();
@@ -97,10 +143,65 @@ bool MenuScene::init()
 	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
 
 	{
-		auEngine->PlayBackgroundMusic("menu.mp3", true);
+		if (!auEngine->isAudioPlaying())
+		{
+			auEngine->PlayBackgroundMusic("menu.mp3", true);
+		}
 	}
 
 	return true;
+}
+
+void MenuScene::update(float delta)
+{
+	_rotateShipTimer -= delta;
+	_moveButtonTimer -= delta;
+
+	_planet->setRotation(_planet->getRotation() + (M_PI / _rotatePlanetTimerDefault));
+
+	if (_rotateShipTimer <= 0.0f) {
+		_rotateShipTimer = _rotateShipTimerDefault;
+
+		if (_rotateShipLeft) {
+			_rotateShipLeft = false;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 25.0f);
+			_ship->runAction(rotateTo);
+		}
+		else {
+			_rotateShipLeft = true;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 35.0f);
+			_ship->runAction(rotateTo);
+		}
+	}
+
+	if (_moveButtonTimer <= 0.0f) {
+		_moveButtonTimer = _moveButtonTimerDefault;
+
+		if (_moveButtonUp) {
+			_moveButtonUp = false;
+
+			auto startMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() - Vec2(0.0f, 20.0f));
+			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() - Vec2(0.0f, 20.0f));
+			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() - Vec2(0.0f, 20.0f));
+
+			_startButton->runAction(startMoveTo);
+			_creditsButton->runAction(creditMoveTo);
+			_exitButton->runAction(exitMoveTo);
+		}
+		else {
+			_moveButtonUp = true;
+
+			auto startMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() + Vec2(0.0f, 20.0f));
+			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() + Vec2(0.0f, 20.0f));
+			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() + Vec2(0.0f, 20.0f));
+
+			_startButton->runAction(startMoveTo);
+			_creditsButton->runAction(creditMoveTo);
+			_exitButton->runAction(exitMoveTo);
+		}
+	}
 }
 
 void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -133,11 +234,12 @@ void MenuScene::MuteButtonPressed()
 	}
 }
 
-void MenuScene::SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+void MenuScene::CreditsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		//TODO
+		this->Credits();
 	}
 }
 
@@ -155,6 +257,13 @@ void MenuScene::StartGame()
 	auEngine->StopBackgroundMusic();
 	Scene* scene = LevelSelect::createScene();
 
+	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
+}
+
+void MenuScene::Credits()
+{
+	//auEngine->PauseBackgroundMusic();
+	Scene* scene = CreditsScene::createScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
 
@@ -191,4 +300,10 @@ void MenuScene::onTouchMoved(Touch* touch, Event* event)
 void MenuScene::onTouchCancelled(Touch* touch, Event* event)
 {
 	cocos2d::log("touch cancelled");
+}
+
+void MenuScene::RotatePlanet()
+{
+	auto rotateTo = RotateTo::create(2.0f, 320.0f);
+	_planet->runAction(rotateTo);
 }

@@ -22,13 +22,13 @@
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
         <Folder Name="Levels">
-          <Project Name="Scene7.csd" Type="Scene" />
-          <Project Name="Scene6.csd" Type="Scene" />
-          <Project Name="Scene5.csd" Type="Scene" />
           <Project Name="Scene4.csd" Type="Scene" />
           <Project Name="Scene3.csd" Type="Scene" />
           <Project Name="Scene2.csd" Type="Scene" />
           <Project Name="Scene1.csd" Type="Scene" />
+          <Project Name="Sceneold3.csd" Type="Scene" />
+          <Project Name="Sceneold2.csd" Type="Scene" />
+          <Project Name="SceneTest.csd" Type="Scene" />
           <Project Name="Scene8.csd" Type="Scene" />
         </Folder>
         <Folder Name="Main Objects">
@@ -71,8 +71,17 @@
           <Image Name="Main BG.png" />
           <Image Name="Platform 2.png" />
           <Image Name="Second BG.png" />
+          <Image Name="HuskySpaceShipDamage.png" />
+          <Image Name="Planet.png" />
+          <Image Name="SpaceStar.png" />
+          <Image Name="Logo.png" />
         </Folder>
         <Image Name="Hardlight_Hatch.png" />
+        <Image Name="CreditsButton.png" />
+        <Image Name="ExitButton.png" />
+        <Image Name="StartButton.png" />
+        <Project Name="Credits.csd" Type="Scene" />
+        <Image Name="CreditsScreen.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

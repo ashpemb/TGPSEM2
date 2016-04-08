@@ -12,6 +12,7 @@
 #include "SceneManager.h"
 #include "AudioEngine.h"
 #include "LevelSelect.h"
+#include "CreditsScene.h"
 
 USING_NS_CC;
 
@@ -26,6 +27,8 @@ public:
 	virtual bool init();
 	CREATE_FUNC(MenuScene);
 
+	void update(float delta);
+
 	void AudioTesting();
 
 	// Touch input
@@ -36,20 +39,37 @@ public:
 
 	//Button event
 	void StartButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
-	void SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void CreditsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void ExitButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void MuteButtonPressed();
 
 
 	void StartGame();
+	void Credits();
 
+	// Background
+	void RotatePlanet();
 private:
 	cocos2d::ui::Button*    _startButton;
-	cocos2d::ui::Button*    _settingsButton;
+	cocos2d::ui::Button*    _creditsButton;
 	cocos2d::ui::Button*    _exitButton;
 	cocos2d::Sprite*		_muteButton;
 
-	cocos2d::Sprite*		_background;
+	cocos2d::Sprite*				_logo;
+	cocos2d::Sprite*				_planet;
+	cocos2d::Sprite*				_ship;
+	std::vector<cocos2d::Sprite*>	_stars;
+
+	float _rotatePlanetTimerDefault;
+	float _rotatePlanetTimer;
+
+	float _rotateShipTimerDefault;
+	float _rotateShipTimer;
+	bool _rotateShipLeft;
+
+	float _moveButtonTimerDefault;
+	float _moveButtonTimer;
+	bool _moveButtonUp;
 
 	SceneManager * gameScene;
 

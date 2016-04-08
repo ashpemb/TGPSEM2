@@ -181,25 +181,33 @@ void LevelSelect::LevelRight(cocos2d::Ref *sender)
 	{
 		SceneSelected += 1;
 		std::stringstream ss;
-		ss << SceneSelected-1;
+		ss << SceneSelected;
 		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		labelTouchInfo->setString("Level " + str);
 	}
 	if (LevelSelected == 2)
 	{
 		SceneSelected += 1;
 		std::stringstream ss;
-		ss << SceneSelected - 1;
+		ss << SceneSelected;
 		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		labelTouchInfo->setString("Level " + str);
 	}
 	if (LevelSelected == 3)
 	{
 		SceneSelected += 1;
 		std::stringstream ss;
-		ss << SceneSelected - 1;
+		ss << SceneSelected;
 		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		labelTouchInfo->setString("Level " + str);
+	}
+	if (LevelSelected == 4)
+	{
+		SceneSelected += 1;
+		std::stringstream ss;
+		ss << SceneSelected;
+		std::string str = ss.str();
+		labelTouchInfo->setString("Level " + str);
 	}
 }
 
@@ -209,25 +217,33 @@ void LevelSelect::LevelLeft(cocos2d::Ref *sender)
 	{
 		SceneSelected -= 1;
 		std::stringstream ss;
-		ss << SceneSelected+1;
+		ss << SceneSelected;
 		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		labelTouchInfo->setString("Level " + str);
 	}
 	if (LevelSelected == 2)
 	{
 		SceneSelected -= 1;
 		std::stringstream ss;
-		ss << SceneSelected+1;
+		ss << SceneSelected;
 		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		labelTouchInfo->setString("Level " + str);
 	}
 	if (LevelSelected == 3)
 	{
 		SceneSelected -= 1;
 		std::stringstream ss;
-		ss << SceneSelected + 1;
+		ss << SceneSelected;
 		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		labelTouchInfo->setString("Level " + str);
+	}
+	if (LevelSelected == 4)
+	{
+		SceneSelected -= 1;
+		std::stringstream ss;
+		ss << SceneSelected;
+		std::string str = ss.str();
+		labelTouchInfo->setString("Level " + str);
 	}
 }
 
@@ -717,23 +733,48 @@ void LevelSelect::update(float delta)
 	if (SceneSelected == 1)
 	{
 		levelSelectRotation = 0;
+		std::stringstream ss;
+		ss << SceneSelected;
+		std::string str = ss.str();
+
+		labelTouchInfo->setString("Level " + str);
 	}
 	if (SceneSelected == 2)
 	{
 		levelSelectRotation = 90;
+
+		std::stringstream ss;
+		ss << SceneSelected;
+		std::string str = ss.str();
+
+		labelTouchInfo->setString("Level " + str);
 	}
 	if (SceneSelected == 3)
 	{
 		levelSelectRotation = 180;
+		std::stringstream ss;
+		ss << SceneSelected;
+		std::string str = ss.str();
+
+		labelTouchInfo->setString("Level " + str);
+	}
+	if (SceneSelected == 4)
+	{
+		levelSelectRotation = 270;
+		std::stringstream ss;
+		ss << SceneSelected;
+		std::string str = ss.str();
+
+		labelTouchInfo->setString("Level " + str);
 	}
 
-	if (SceneSelected > 3)
+	if (SceneSelected > 4)
 	{
 		SceneSelected = 1;
 	}
 	if (SceneSelected < 1)
 	{
-		SceneSelected = 3;
+		SceneSelected = 4;
 	}
 
 
@@ -757,8 +798,8 @@ void LevelSelect::update(float delta)
 
 void LevelSelect::GoToGameScene(cocos2d::Ref *sender)
 {
-	//auto scene = SceneManager::createScene(SceneSelected);
-	auto scene = SceneManager::createScene(5);
+	auto scene = SceneManager::createScene(SceneSelected);
+	//auto scene = SceneManager::createScene(5);
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }

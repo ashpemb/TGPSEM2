@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __Floor_Button_H__
+#define __Floor_Button_H__
+
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
@@ -46,3 +48,4 @@ public:
 	float GetTimer() { return _timer; };
 };
 
+#endif

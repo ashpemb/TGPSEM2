@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __Exit_H__
+#define __Exit_H__
+
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
@@ -19,3 +21,4 @@ public:
 	void CheckNear(cocos2d::Sprite* player);
 };
 
+#endif

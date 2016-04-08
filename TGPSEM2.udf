@@ -12,9 +12,9 @@
         <LuaIsEncrypt Value="False" />
         <LuaEncryptKey Value="" />
         <LuaEncryptSign Value="" />
-        <Android_PackageName Value="org.cocos.TGPSEM2" />
+        <Android_PackageName Value="org.cocos.SAHS" />
         <AndroidkeyStore Value="" />
-        <AndroidVersion Value="android-20" />
+        <AndroidVersion Value="android-22" />
         <iOS_Target Value="TGPSEM2-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="Android" />

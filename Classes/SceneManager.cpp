@@ -41,7 +41,7 @@ bool SceneManager::init()
 	auto winSize = Director::getInstance()->getVisibleSize(); //Gets the size of the screen
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
-	Node* rootNode = CSLoader::createNode("Levels/Scene" + StringUtils::format("%d", _level) + ".csb");
+	rootNode = CSLoader::createNode("Levels/Scene" + StringUtils::format("%d", _level) + ".csb");
 
 	addChild(rootNode);
 
@@ -52,6 +52,9 @@ bool SceneManager::init()
 	GameManager::sharedGameManager()->setIsGamePaused(true);
 	GameManager::sharedGameManager()->setIsObjectTouched(false);
 	GameManager::sharedGameManager()->setCurrentLevel(_level);
+
+	// BACKGROUND SETUP
+	SetupBackground(rootNode);
 
 	// TOUCH SETUP
 	SetupTouches();
@@ -65,18 +68,14 @@ bool SceneManager::init()
 	// SPRITE SETUP
 	SetupSprites(rootNode);
 
-	// BACKGROUND SETUP
-	SetupBackground(rootNode);
-
 	// HIGHLIGHT SETUP
 	SetupHighlights(rootNode);
-
-	// BUTTON SETUP
-	SetupButtons(rootNode);
 
 	// CLASS SETUP
 	SetupClasses(rootNode);
 
+	// BUTTON SETUP
+	SetupButtons(rootNode);
 
 	return true;
 		
@@ -145,6 +144,17 @@ void SceneManager::SetupButtons(Node* root)
 	_startGame = static_cast<ui::Button*>(root->getChildByName("StartGame"));
 	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
 	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
+	_startGame->setZOrder(500);
+
+	// Retry Button
+	_retryButton = ui::Button::create();
+	_retryButton->loadTextureNormal("RetryButtonUnPressed.png");
+	_retryButton->loadTexturePressed("RetryButtonPressed.png");
+	_retryButton->loadTextureDisabled("RetryButtonUnPressed.png");
+	_retryButton->addTouchEventListener(CC_CALLBACK_2(SceneManager::RetryButtonPressed, this));
+	_retryButton->setPosition(Vec2(0.0f + (_retryButton->getSize().width / 2), winSize.height - (_retryButton->getSize().height / 2)));
+
+	addChild(_retryButton);
 }
 
 void SceneManager::SetupSprites(Node* root)
@@ -502,7 +512,6 @@ void SceneManager::SetupClasses(Node* root)
 	_player->setName("Player");
 	addChild(_player);
 
-	_player->SetGravity(-3.81f);
 	if (_player->GetSprite()->getPosition() != _player->GetSprite()->getPosition())
 	{
 		_player->GetSprite()->setPosition(_woodCrateSpawn[0]->getPosition());
@@ -510,7 +519,7 @@ void SceneManager::SetupClasses(Node* root)
 
 	// WOODEN CRATES
 	for (int i = 0; i < (int)_woodenSprites.size(); i++) {
-		Box* box = Box::create(1, 1.0f);
+		Box* box = Box::create(1, 1.0f, -3.81f);
 		box->setName("Crate_Wooden_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_woodenSprites[i]);
 
@@ -531,7 +540,7 @@ void SceneManager::SetupClasses(Node* root)
 
 	// METAL CRATES
 	for (int i = 0; i < (int)_metalSprites.size(); i++) {
-		Box* box = Box::create(2, 2.0f);
+		Box* box = Box::create(2, 2.0f, -3.81f);
 		box->setName("Crate_Metal_" + StringUtils::format("%d", i + 1));
 		box->SetSprite(_metalSprites[i]);
 
@@ -886,18 +895,18 @@ void SceneManager::CheckCollisions()
 	}
 
 	for (int i = 0; i < (int)_solidDoorSprites.size(); i++) {
-		if (!_doors[i]->GetOpen()) {
 
-			_player->CheckWallCollisions(_solidDoorSprites[i]);
 
-			for (int i2 = 0; i2 < (int)_woodBoxes.size(); i2++) {
-				_woodBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
-			}
+		_player->CheckWallCollisions(_solidDoorSprites[i]);
 
-			for (int i2 = 0; i2 < (int)_metalBoxes.size(); i2++) {
-				_metalBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
-			}
+		for (int i2 = 0; i2 < (int)_woodBoxes.size(); i2++) {
+			_woodBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
 		}
+
+		for (int i2 = 0; i2 < (int)_metalBoxes.size(); i2++) {
+			_metalBoxes[i2]->CheckWallCollisions(_solidDoorSprites[i]);
+		}
+
 
 	}
 
@@ -1244,6 +1253,14 @@ void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType 
 	}
 }
 
+void SceneManager::RetryButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		auto scene = SceneManager::createScene(_level); //Gets the current level from SceneManager
+		Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
+	}
+}
 
 void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
@@ -1252,6 +1269,25 @@ void SceneManager::StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEve
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		CCLOG("touch ended");
+
+		_gravityOrientation = 0;
+
+		_player->SetOrientationVertical(true);
+
+		for (int i = 0; i < _woodBoxes.size(); i++)
+		{
+			_woodBoxes[i]->SetOrientationVertical(true);
+		}
+
+		for (int i = 0; i < _metalBoxes.size(); i++)
+		{
+			_metalBoxes[i]->SetOrientationVertical(true);
+		}
+
+		for (int i = 0; i < _metalBoxes.size(); i++)
+		{
+			_metalBoxes[i]->SetOrientationVertical(true);
+		}
 
 		GameManager::sharedGameManager()->setIsGamePaused(false);
 		_startGame->setVisible(false);

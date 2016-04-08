@@ -1,10 +1,16 @@
 #include "Player.h"
 
+USING_NS_CC;
+
+using namespace cocostudio::timeline;
 
 Player::Player()
 {
+	SetGravity(-3.81f);
+	SetOrientationVertical(true);
+	SetOrientationHorizontal(false);
 	// Default node stuff
-	setPosition(Vec2(0.0f, 0.0f));
+	//setPosition(Vec2(0.0f, 0.0f));
 }
 
 Player* Player::create()
@@ -14,10 +20,7 @@ Player* Player::create()
 		return nullptr;
 	}
 
-	player->SetGravity(0.0f);
-	player->SetOrientationVertical(true);
-	player->SetOrientationHorizontal(false);
-	//player->autorelease();
+	player->autorelease();
 
 	return player;
 }
