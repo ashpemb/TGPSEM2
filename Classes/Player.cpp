@@ -364,11 +364,13 @@ void Player::FlipPlayer()
 	}
 }
 
-void Player::SetSprite(Sprite* newSprite) 
+void Player::SetSprite(Sprite* newSprite, Sprite* spawnPoint) 
 { 
-	_playerSprite = Sprite::createWithTexture(newSprite->getTexture());
-	_playerSprite->setScale(newSprite->getScale());
-	_playerSprite->setPosition(newSprite->getPosition());
+	_playerSprite = newSprite;
+	if (_playerSprite->getPosition() != newSprite->getPosition())
+	{
+		_playerSprite->setPosition(spawnPoint->getPosition());
+	}
 
 	this->addChild(_playerSprite);
 }
