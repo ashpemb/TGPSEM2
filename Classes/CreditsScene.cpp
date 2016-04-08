@@ -75,12 +75,28 @@ bool CreditsScene::init()
 		this->addChild(_stars.at(i));
 	}
 
+
 	_creditsBG = Sprite::create("CreditsScreen.png");
 	_creditsBG->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.37f));
 	_creditsBG->setScaleX(1.5f);
 	_creditsBG->setScaleY(1.89);
 
 	this->addChild(_creditsBG);
+
+	_progCredit = (ui::Text*)rootNode->getChildByName("Progr_Credits");
+	_progCredit->setPosition(Vec2(winSize.width*0.20f, winSize.height*0.4f));
+	_progCredit->setGlobalZOrder(9);
+	this->addChild(_progCredit);
+
+	_artCredit = (ui::Text*)rootNode->getChildByName("Art_Credits");
+	_artCredit->setPosition(Vec2(winSize.width*0.45f, winSize.height*0.47f));
+	_artCredit->setGlobalZOrder(9);
+	this->addChild(_artCredit);
+
+	_ldCredit = (ui::Text*)rootNode->getChildByName("LD_Credits");
+	_ldCredit->setPosition(Vec2(winSize.width*0.70f, winSize.height*0.47f));
+	_ldCredit->setGlobalZOrder(9);
+	this->addChild(_ldCredit);
 
 	_rotatePlanetTimerDefault = 240.0f;
 	_rotatePlanetTimer = 0.0f;

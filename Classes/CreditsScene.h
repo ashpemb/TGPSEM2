@@ -52,5 +52,10 @@ private:
 
 	AudioEngine*			auEngine;
 	bool muted;
+
+	cocos2d::ui::Text*	_progCredit;
+	cocos2d::ui::Text*	_artCredit;
+	cocos2d::ui::Text*	_ldCredit;
+	cocos2d::ui::Text*	_musicCredit;
 };
 
