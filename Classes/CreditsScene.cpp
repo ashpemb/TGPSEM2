@@ -84,19 +84,27 @@ bool CreditsScene::init()
 	this->addChild(_creditsBG);
 
 	_progCredit = (ui::Text*)rootNode->getChildByName("Progr_Credits");
-	_progCredit->setPosition(Vec2(winSize.width*0.20f, winSize.height*0.4f));
-	_progCredit->setGlobalZOrder(9);
+	_progCredit->setAnchorPoint(Vec2(0.5, 1));
+	_progCredit->setPosition(Vec2(winSize.width*0.20f, winSize.height*0.55f));
+	//_progCredit->setGlobalZOrder(9);
 	this->addChild(_progCredit);
 
 	_artCredit = (ui::Text*)rootNode->getChildByName("Art_Credits");
-	_artCredit->setPosition(Vec2(winSize.width*0.45f, winSize.height*0.47f));
-	_artCredit->setGlobalZOrder(9);
+	_artCredit->setAnchorPoint(Vec2(0.5, 1));
+	_artCredit->setPosition(Vec2(winSize.width*0.45f, winSize.height*0.55f));
+	//_artCredit->setGlobalZOrder(9);
 	this->addChild(_artCredit);
 
 	_ldCredit = (ui::Text*)rootNode->getChildByName("LD_Credits");
-	_ldCredit->setPosition(Vec2(winSize.width*0.70f, winSize.height*0.47f));
-	_ldCredit->setGlobalZOrder(9);
+	_ldCredit->setAnchorPoint(Vec2(0.5, 1));
+	_ldCredit->setPosition(Vec2(winSize.width*0.65f, winSize.height*0.55f));
+	//_ldCredit->setGlobalZOrder(9);
 	this->addChild(_ldCredit);
+
+	_musicCredit = (ui::Text*)rootNode->getChildByName("Music_Credits");
+	_musicCredit->setAnchorPoint(Vec2(0.5, 1));
+	_musicCredit->setPosition(Vec2(winSize.width*0.85f, winSize.height*0.55f));
+	this->addChild(_musicCredit);
 
 	_rotatePlanetTimerDefault = 240.0f;
 	_rotatePlanetTimer = 0.0f;

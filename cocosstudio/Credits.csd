@@ -21,7 +21,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Progr_Credits" ActionTag="116819573" Tag="16" IconVisible="False" LeftMargin="-661.1838" RightMargin="2130.1838" TopMargin="323.6909" BottomMargin="827.3091" FontSize="48" LabelText="Programming:&#xA;David Smith&#xA;Joshua Marshall&#xA;Ash Parkhouse-Pemberton&#xA;James Edgerton&#xA;Matt Trent&#xA;Alexander Thomas" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Progr_Credits" ActionTag="116819573" Tag="16" IconVisible="False" LeftMargin="-661.1839" RightMargin="2130.1838" TopMargin="323.6909" BottomMargin="827.3091" FontSize="48" LabelText="Programming:&#xA;David Smith&#xA;Joshua Marshall&#xA;Ash Parkhouse-Pemberton&#xA;James Edgerton&#xA;Matt Trent&#xA;Alexander Thomas" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="579.0000" Y="385.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-371.6839" Y="1019.8091" />
@@ -32,7 +32,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Art_Credits" ActionTag="-1190550822" Tag="17" IconVisible="False" LeftMargin="-553.0146" RightMargin="2250.0146" TopMargin="849.0043" BottomMargin="521.9957" FontSize="48" LabelText="Art:&#xA;James Edgerton&#xA;David Smith" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Art_Credits" ActionTag="-1190550822" Tag="17" IconVisible="False" LeftMargin="-553.0147" RightMargin="2250.0146" TopMargin="849.0043" BottomMargin="521.9957" FontSize="48" LabelText="Art:&#xA;James Edgerton&#xA;David Smith" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="351.0000" Y="165.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-377.5147" Y="604.4957" />
@@ -54,14 +54,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Music_Credits" ActionTag="-750053619" Tag="19" IconVisible="False" LeftMargin="-522.0090" RightMargin="2233.0090" TopMargin="80.6097" BottomMargin="1345.3903" FontSize="48" LabelText="Music:&#xA;Alex 'Lexi' Earle" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="337.0000" Y="110.0000" />
+          <AbstractNodeData Name="Music_Credits" ActionTag="-750053619" Tag="19" IconVisible="False" LeftMargin="-524.5436" RightMargin="2230.5437" TopMargin="80.6105" BottomMargin="1345.3895" FontSize="48" LabelText="Music:&#xA;Alexander Earle" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="342.0000" Y="110.0000" />
             <AnchorPoint ScaleX="0.5060" ScaleY="0.4480" />
             <Position X="-351.4916" Y="1394.6696" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="0" G="0" B="0" />
             <PrePosition X="-0.1716" Y="0.9080" />
-            <PreSize X="0.1646" Y="0.0716" />
+            <PreSize X="0.1670" Y="0.0716" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
