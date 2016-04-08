@@ -71,6 +71,10 @@
           <Image Name="Main BG.png" />
           <Image Name="Platform 2.png" />
           <Image Name="Second BG.png" />
+          <Image Name="HuskySpaceShipDamage.png" />
+          <Image Name="Planet.png" />
+          <Image Name="SpaceStar.png" />
+          <Image Name="Logo.png" />
         </Folder>
         <Image Name="Hardlight_Hatch.png" />
       </RootFolder>

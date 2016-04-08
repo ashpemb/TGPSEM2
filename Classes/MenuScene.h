@@ -26,6 +26,8 @@ public:
 	virtual bool init();
 	CREATE_FUNC(MenuScene);
 
+	void update(float delta);
+
 	void AudioTesting();
 
 	// Touch input
@@ -43,13 +45,21 @@ public:
 
 	void StartGame();
 
+	// Background
+	void RotatePlanet();
 private:
 	cocos2d::ui::Button*    _startButton;
 	cocos2d::ui::Button*    _settingsButton;
 	cocos2d::ui::Button*    _exitButton;
 	cocos2d::Sprite*		_muteButton;
 
-	cocos2d::Sprite*		_background;
+	cocos2d::Sprite*				_logo;
+	cocos2d::Sprite*				_planet;
+	cocos2d::Sprite*				_ship;
+	std::vector<cocos2d::Sprite*>	_stars;
+
+	float _rotatePlanetTimerDefault;
+	float _rotatePlanetTimer;
 
 	SceneManager * gameScene;
 
