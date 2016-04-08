@@ -80,6 +80,8 @@
         <Image Name="CreditsButton.png" />
         <Image Name="ExitButton.png" />
         <Image Name="StartButton.png" />
+        <Project Name="Credits.csd" Type="Scene" />
+        <Image Name="CreditsScreen.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

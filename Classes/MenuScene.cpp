@@ -58,12 +58,13 @@ bool MenuScene::init()
 	_startButton->setGlobalZOrder(9);
 	_startButton->setScale(1.5f);
 
-	//Settings Button
-	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
-	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
-	_settingsButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
-	_settingsButton->setGlobalZOrder(9);
-	_settingsButton->setScale(1.5f);
+	//Credits Button
+
+	_creditsButton = static_cast<ui::Button*>(rootNode->getChildByName("CreditsButton"));
+	_creditsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::CreditsButtonPressed, this));
+	_creditsButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
+	_creditsButton->setGlobalZOrder(9);
+	_creditsButton->setScale(1.5f);
 
 	//Exit Button
 	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
@@ -142,7 +143,10 @@ bool MenuScene::init()
 	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
 
 	{
-		auEngine->PlayBackgroundMusic("menu.mp3", true);
+		if (!auEngine->isAudioPlaying())
+		{
+			auEngine->PlayBackgroundMusic("menu.mp3", true);
+		}
 	}
 
 	return true;
@@ -179,22 +183,22 @@ void MenuScene::update(float delta)
 			_moveButtonUp = false;
 
 			auto startMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() - Vec2(0.0f, 20.0f));
-			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _settingsButton->getPosition() - Vec2(0.0f, 20.0f));
+			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() - Vec2(0.0f, 20.0f));
 			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() - Vec2(0.0f, 20.0f));
 
 			_startButton->runAction(startMoveTo);
-			_settingsButton->runAction(creditMoveTo);
+			_creditsButton->runAction(creditMoveTo);
 			_exitButton->runAction(exitMoveTo);
 		}
 		else {
 			_moveButtonUp = true;
 
 			auto startMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() + Vec2(0.0f, 20.0f));
-			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _settingsButton->getPosition() + Vec2(0.0f, 20.0f));
+			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() + Vec2(0.0f, 20.0f));
 			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() + Vec2(0.0f, 20.0f));
 
 			_startButton->runAction(startMoveTo);
-			_settingsButton->runAction(creditMoveTo);
+			_creditsButton->runAction(creditMoveTo);
 			_exitButton->runAction(exitMoveTo);
 		}
 	}
@@ -230,11 +234,12 @@ void MenuScene::MuteButtonPressed()
 	}
 }
 
-void MenuScene::SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+void MenuScene::CreditsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		//TODO
+		this->Credits();
 	}
 }
 
@@ -252,6 +257,13 @@ void MenuScene::StartGame()
 	auEngine->StopBackgroundMusic();
 	Scene* scene = LevelSelect::createScene();
 
+	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
+}
+
+void MenuScene::Credits()
+{
+	//auEngine->PauseBackgroundMusic();
+	Scene* scene = CreditsScene::createScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
 

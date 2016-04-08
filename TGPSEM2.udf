@@ -12,7 +12,7 @@
         <LuaIsEncrypt Value="False" />
         <LuaEncryptKey Value="" />
         <LuaEncryptSign Value="" />
-        <Android_PackageName Value="org.cocos.TGPSEM2" />
+        <Android_PackageName Value="org.cocos.SAHS" />
         <AndroidkeyStore Value="" />
         <AndroidVersion Value="android-22" />
         <iOS_Target Value="TGPSEM2-mobile" />
@@ -26,14 +26,6 @@
         <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
-      </Value>
-    </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="MenuScene.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="MenuScene.csd" />
       </Value>
     </Item>
   </Properties>
