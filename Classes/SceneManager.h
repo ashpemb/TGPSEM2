@@ -66,7 +66,6 @@ private:
 	
 	Sprite*								_playerSpawn;
 
-
 	// BACKGROUND
 	Sprite*	_background1;
 	Sprite*	_background2;

@@ -19,6 +19,7 @@ float scaler2;
 float scaler3;
 float totalDiff;
 int unselect;
+
 // on "init" you need to initialize your instance
 bool ScalingObject::init()
 {
@@ -31,7 +32,7 @@ bool ScalingObject::init()
 	cocos2d::Size frameSize = cocos2d::Director::getInstance()->getOpenGLView()->getFrameSize();
 	screenSize1Y = frameSize.height;
 	screenSize1X = frameSize.width;
-	
+
 	scaler1 = 100;
 	scaler2 = 50;
 	scaler3 = 20;

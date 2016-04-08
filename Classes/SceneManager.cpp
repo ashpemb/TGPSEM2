@@ -250,6 +250,7 @@ void SceneManager::SetupSprites(Node* root)
 		i++;
 	}
 
+
 	// SWITCHES
 	// Down
 	cocos2d::ui::CheckBox* tempCheck;
@@ -607,6 +608,7 @@ void SceneManager::SetupClasses(Node* root)
 
 		addChild(gravSwitch);
 	}
+
 
 	// MOVING PLATFORMS - HORIZONTAL
 	for (int i = 0; i < (int)_movingPlatformHorizSprites.size(); i++)
