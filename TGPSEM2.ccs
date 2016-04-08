@@ -77,6 +77,8 @@
           <Image Name="Logo.png" />
         </Folder>
         <Image Name="Hardlight_Hatch.png" />
+        <Project Name="Credits.csd" Type="Scene" />
+        <Image Name="CreditsScreen.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -58,10 +58,10 @@ bool MenuScene::init()
 	_startButton->setGlobalZOrder(9);
 
 	//Settings Button
-	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
-	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
-	_settingsButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
-	_settingsButton->setGlobalZOrder(9);
+	_creditsButton = static_cast<ui::Button*>(rootNode->getChildByName("CreditsButton"));
+	_creditsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::CreditsButtonPressed, this));
+	_creditsButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
+	_creditsButton->setGlobalZOrder(9);
 
 	//Exit Button
 	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
@@ -172,11 +172,12 @@ void MenuScene::MuteButtonPressed()
 	}
 }
 
-void MenuScene::SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
+void MenuScene::CreditsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		//TODO
+		this->Credits();
 	}
 }
 
@@ -194,6 +195,13 @@ void MenuScene::StartGame()
 	auEngine->StopBackgroundMusic();
 	Scene* scene = LevelSelect::createScene();
 
+	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
+}
+
+void MenuScene::Credits()
+{
+	auEngine->PauseBackgroundMusic();
+	Scene* scene = CreditsScene::createScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
 
