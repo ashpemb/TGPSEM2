@@ -194,16 +194,16 @@ void Platforms::CheckPlatformCollisions(cocos2d::Sprite* collider)
 
 	float scaledPlatformHeight = getSprite()->getContentSize().height * getSprite()->getScaleY();
 	float scaledPlatformWidth = getSprite()->getContentSize().width * getSprite()->getScaleX();
-	
+
 	if (getSprite()->getPositionX() - (scaledPlatformWidth / 2) < collider->getPositionX() + (scaledWidth / 2)
 		&& getSprite()->getPositionX() + (scaledPlatformWidth / 2) > collider->getPositionX() - (scaledWidth / 2)
 		&& getSprite()->getPositionY() - (scaledPlatformHeight / 2) < collider->getPositionY() + (scaledHeight / 2)
 		&& getSprite()->getPositionY() + (scaledPlatformHeight / 2) > collider->getPositionY() - (scaledHeight / 2))
 	{
-			// checks if the moving platform is colliding with the top of a static platform
-			CollidingWithPlatform = true;
-			MovePlatformVertical(Vec2(collider->getPositionX() + (scaledPlatformWidth / 2), collider->getPositionY() + (scaledPlatformHeight)));
-		
+		// checks if the moving platform is colliding with the top of a static platform
+		CollidingWithPlatform = true;
+		MovePlatformVertical(Vec2(collider->getPositionX() + (scaledPlatformWidth / 2), collider->getPositionY() + (scaledPlatformHeight)));
+
 	}
 	else
 	{
@@ -215,13 +215,3 @@ void Platforms::CheckWallCollisions(cocos2d::Sprite* collider)
 {
 
 }
-
-void Platforms::SetSprite(Sprite* newSprite) 
-{
-	_movingPlat = Sprite::createWithTexture(newSprite->getTexture());
-	_movingPlat->setScale(newSprite->getScale());
-	_movingPlat->setPosition(newSprite->getPosition());
-
-	this->addChild(_movingPlat); 
-	OScale = _movingPlat->getScale(); 
-};

@@ -37,7 +37,8 @@ public:
 
 	void update(float delta);
 
-	void SetSprite(Sprite* newSprite);
+	// CONFIRMED FINE
+	void setSprite(Sprite* newSprite) { _movingPlat = newSprite; this->addChild(_movingPlat); OScale = _movingPlat->getScale(); };
 	void setZoneSprite();
 	Sprite* getSprite() { return _movingPlat; };
 	Sprite* getTouchZone() { return _touchZone; }
@@ -52,6 +53,8 @@ public:
 
 	void CheckPlatformCollisions(cocos2d::Sprite* collider);
 	void CheckWallCollisions(cocos2d::Sprite* collider);
+
+	// END CONFIRM
 
 	cocos2d::Sprite* sprite;
 
