@@ -77,6 +77,9 @@
           <Image Name="Logo.png" />
         </Folder>
         <Image Name="Hardlight_Hatch.png" />
+        <Image Name="CreditsButton.png" />
+        <Image Name="ExitButton.png" />
+        <Image Name="StartButton.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -56,18 +56,21 @@ bool MenuScene::init()
 	_startButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::StartButtonPressed, this));
 	_startButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.45f));
 	_startButton->setGlobalZOrder(9);
+	_startButton->setScale(1.5f);
 
 	//Settings Button
 	_settingsButton = static_cast<ui::Button*>(rootNode->getChildByName("SettingsButton"));
 	_settingsButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::SettingsButtonPressed, this));
 	_settingsButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
 	_settingsButton->setGlobalZOrder(9);
+	_settingsButton->setScale(1.5f);
 
 	//Exit Button
 	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
 	_exitButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::ExitButtonPressed, this));
 	_exitButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.15f));
 	_exitButton->setGlobalZOrder(9);
+	_exitButton->setScale(1.5f);
 
 	//Mute Button
 	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
@@ -125,6 +128,14 @@ bool MenuScene::init()
 	_rotatePlanetTimerDefault = 240.0f;
 	_rotatePlanetTimer = 0.0f;
 
+	_rotateShipTimerDefault = 10.0f;
+	_rotateShipTimer = 0.0f;
+	_rotateShipLeft = true;
+
+	_moveButtonTimerDefault = 5.0f;
+	_moveButtonTimer = 0.0f;
+	_moveButtonUp = true;
+
 	// AUDIO
 	auEngine = new AudioEngine();
 
@@ -139,7 +150,54 @@ bool MenuScene::init()
 
 void MenuScene::update(float delta)
 {
+	_rotateShipTimer -= delta;
+	_moveButtonTimer -= delta;
+
 	_planet->setRotation(_planet->getRotation() + (M_PI / _rotatePlanetTimerDefault));
+
+	if (_rotateShipTimer <= 0.0f) {
+		_rotateShipTimer = _rotateShipTimerDefault;
+
+		if (_rotateShipLeft) {
+			_rotateShipLeft = false;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 25.0f);
+			_ship->runAction(rotateTo);
+		}
+		else {
+			_rotateShipLeft = true;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 35.0f);
+			_ship->runAction(rotateTo);
+		}
+	}
+
+	if (_moveButtonTimer <= 0.0f) {
+		_moveButtonTimer = _moveButtonTimerDefault;
+
+		if (_moveButtonUp) {
+			_moveButtonUp = false;
+
+			auto startMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() - Vec2(0.0f, 20.0f));
+			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _settingsButton->getPosition() - Vec2(0.0f, 20.0f));
+			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() - Vec2(0.0f, 20.0f));
+
+			_startButton->runAction(startMoveTo);
+			_settingsButton->runAction(creditMoveTo);
+			_exitButton->runAction(exitMoveTo);
+		}
+		else {
+			_moveButtonUp = true;
+
+			auto startMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() + Vec2(0.0f, 20.0f));
+			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _settingsButton->getPosition() + Vec2(0.0f, 20.0f));
+			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() + Vec2(0.0f, 20.0f));
+
+			_startButton->runAction(startMoveTo);
+			_settingsButton->runAction(creditMoveTo);
+			_exitButton->runAction(exitMoveTo);
+		}
+	}
 }
 
 void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
