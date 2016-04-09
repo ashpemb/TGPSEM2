@@ -6,18 +6,18 @@
       <ObjectData Name="Scene" Tag="12" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="ReturnButton" ActionTag="-481833127" Tag="13" IconVisible="False" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="1571.5020" RightMargin="66.8979" TopMargin="1328.1116" BottomMargin="54.2884" TouchEnable="True" FontSize="36" ButtonText="Return " Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="409.6000" Y="153.6000" />
+          <AbstractNodeData Name="ReturnButton" ActionTag="-481833127" Tag="13" IconVisible="False" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="1651.3020" RightMargin="146.6980" TopMargin="1354.9116" BottomMargin="81.0884" TouchEnable="True" FontSize="36" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="220" Scale9Height="78" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="250.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1776.3020" Y="131.0884" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8673" Y="0.0853" />
-            <PreSize X="0.2000" Y="0.1000" />
+            <PreSize X="0.1221" Y="0.0651" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
-            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
-            <NormalFileData Type="Default" Path="Default/Button_Normal.png" Plist="" />
+            <DisabledFileData Type="Normal" Path="MenuButton.png" Plist="" />
+            <PressedFileData Type="Normal" Path="MenuButton.png" Plist="" />
+            <NormalFileData Type="Normal" Path="MenuButton.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

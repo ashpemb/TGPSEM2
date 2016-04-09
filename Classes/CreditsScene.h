@@ -57,5 +57,15 @@ private:
 	cocos2d::ui::Text*	_artCredit;
 	cocos2d::ui::Text*	_ldCredit;
 	cocos2d::ui::Text*	_musicCredit;
+
+	float _moveButtonTimerDefault;
+	float _moveButtonTimer;
+	float _opacityButton;
+	bool _opacityButtonUp;
+	bool _moveButtonUp;
+
+	float _rotateShipTimerDefault;
+	float _rotateShipTimer;
+	bool _rotateShipLeft;
 };
 

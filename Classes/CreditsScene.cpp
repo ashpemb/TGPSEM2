@@ -43,6 +43,8 @@ bool CreditsScene::init()
 	_returnButton->addTouchEventListener(CC_CALLBACK_2(CreditsScene::ReturnButtonPressed, this));
 	_returnButton->setPosition(Vec2(winSize.width*0.825f, winSize.height*0.10f));
 	_returnButton->setGlobalZOrder(9);
+	_returnButton->setScale(1.5f);
+	_returnButton->setCascadeOpacityEnabled(true);
 
 
 	_logo = Sprite::create("Logo.png");
@@ -109,18 +111,78 @@ bool CreditsScene::init()
 	_rotatePlanetTimerDefault = 240.0f;
 	_rotatePlanetTimer = 0.0f;
 
-	/*if (GameManager::sharedGameManager()->getIsGameMuted() == false)
+	_rotateShipTimerDefault = 10.0f;
+	_rotateShipTimer = 0.0f;
+	_rotateShipLeft = true;
 
-	{
-		auEngine->ResumeBackgroundMusic();
-	}*/
+	_moveButtonTimerDefault = 5.0f;
+	_moveButtonTimer = 0.0f;
+	_moveButtonUp = true;
+	_opacityButtonUp = true;
+	_opacityButton = _returnButton->getOpacity();
 
 	return true;
 }
 
 void CreditsScene::update(float delta)
 {
+	_rotateShipTimer -= delta;
+	_moveButtonTimer -= delta;
 	_planet->setRotation(_planet->getRotation() + (M_PI / _rotatePlanetTimerDefault));
+
+	if (_rotateShipTimer <= 0.0f) {
+		_rotateShipTimer = _rotateShipTimerDefault;
+
+		if (_rotateShipLeft) {
+			_rotateShipLeft = false;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 25.0f);
+			_ship->runAction(rotateTo);
+		}
+		else {
+			_rotateShipLeft = true;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 35.0f);
+			_ship->runAction(rotateTo);
+		}
+	}
+
+	if (_moveButtonTimer <= 0.0f) {
+		_moveButtonTimer = _moveButtonTimerDefault;
+
+		if (_moveButtonUp) {
+			_moveButtonUp = false;
+
+			auto returnMoveTo = MoveTo::create(_moveButtonTimerDefault, _returnButton->getPosition() - Vec2(0.0f, 20.0f));
+
+			_returnButton->runAction(returnMoveTo);
+
+		}
+		else {
+			_moveButtonUp = true;
+
+			auto returnMoveTo = MoveTo::create(_moveButtonTimerDefault, _returnButton->getPosition() + Vec2(0.0f, 20.0f));
+			
+			_returnButton->runAction(returnMoveTo);
+			
+		}
+	}
+
+	if (_returnButton->getOpacity() >= 254 && _opacityButtonUp) {
+		_opacityButtonUp = false;
+	}
+	else if (_returnButton->getOpacity() <= 100 && !_opacityButtonUp) {
+		_opacityButtonUp = true;
+	}
+
+	if (_opacityButtonUp) {
+		_opacityButton += 70 * delta;
+	}
+	else {
+		_opacityButton -= 70 * delta;
+	}
+
+	_returnButton->setOpacity(_opacityButton);
 }
 
 void CreditsScene::ReturnButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
