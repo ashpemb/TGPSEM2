@@ -7,10 +7,19 @@ using namespace cocostudio::timeline;
 Player::Player()
 {
 	SetGravity(-3.81f);
-	SetOrientationVertical(true);
-	SetOrientationHorizontal(false);
-	// Default node stuff
-	//setPosition(Vec2(0.0f, 0.0f));
+
+	_timeFalling = 0.0f;
+	_speed = 0.0f;
+
+	_orientationHorizontal = false;
+	_orientationVertical = true;
+	_fallingVertical = false;
+	_fallingHorizontal = false;
+
+	_horizontalVelocity = 0.0f;
+	_horizontalVelocityLast = 0.0f;
+	_verticalVelocityLast = 0.0f;
+	_verticalVelocity = 0.0f;
 }
 
 Player* Player::create()

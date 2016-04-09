@@ -18,13 +18,18 @@ Box::Box(int boxType, float boxStartingWeight, float gravity)
 	_weight = boxStartingWeight;
 	SetStartingScale();
 	SetGravity(gravity);
-	SetOrientationVertical(true);
-	//SetFallingVertical(true);
-	SetOrientationHorizontal(false);
-	//SetFallingHorizontal(false);
 
-	// Default node stuff
-	//setPosition(Vec2(0.0f, 0.0f));
+	_timeFalling = 0.0f;
+
+	_orientationHorizontal = false;
+	_orientationVertical = true;
+	_fallingVertical = false;
+	_fallingHorizontal = false;
+
+	_horizontalVelocity = 0.0f;
+	_horizontalVelocityLast = 0.0f;
+	_verticalVelocityLast = 0.0f;
+	_verticalVelocity = 0.0f;
 }
 
 Box* Box::create(int boxType, float boxStartingWeight, float boxGravity)
