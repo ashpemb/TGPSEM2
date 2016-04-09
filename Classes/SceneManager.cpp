@@ -141,10 +141,11 @@ void SceneManager::SetupButtons(Node* root)
 
 	// START BUTTON
 	// Note: This is a debug button that may need removing for the final version
-	_startGame = static_cast<ui::Button*>(root->getChildByName("StartGame"));
+	_startGame = ui::Button::create("StartButton.png", "StartButton.png", "StartButton.png");
 	_startGame->addTouchEventListener(CC_CALLBACK_2(SceneManager::StartButtonPressed, this));
 	_startGame->setPosition(Vec2(winSize.width*0.5, winSize.height*0.5));
-	_startGame->setZOrder(500);
+	_startGame->setGlobalZOrder(10);
+	this->addChild(_startGame);
 
 	// Retry Button
 	_retryButton = ui::Button::create();

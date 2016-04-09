@@ -49,6 +49,8 @@ private:
 	cocos2d::ui::Button*    _retryButton;
 	cocos2d::ui::Button*    _mainMenuButton;
 
+	std::vector<cocos2d::Sprite*>	_stars;
+
 	cocos2d::ui::Text*	_timeLabel;
 
 	AudioEngine*			auEngine;

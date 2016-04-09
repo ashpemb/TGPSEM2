@@ -67,7 +67,20 @@ bool GameOverScene::init()
 	//Mute Button
 	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
 	//_muteButton->addTouchEventListener(CC_CALLBACK_2(MenuScene::MuteButtonPressed, this));
-	
+
+
+	for (int i = 0; i < 100; i++) {
+		_stars.push_back(Sprite::create("SpaceStar.png"));
+
+		int randomWidth = cocos2d::RandomHelper::random_real(0.0f, winSize.width);
+		int randomHeight = cocos2d::RandomHelper::random_real(0.0f, winSize.height);
+
+		_stars.at(i)->setPosition(Vec2(randomWidth, randomHeight));
+		_stars.at(i)->setGlobalZOrder(-2);
+
+		this->addChild(_stars.at(i));
+	}
+
 	if (GameManager::sharedGameManager()->getIsGameMuted() == true)
 	{
 		_muteButton->setTexture(Director::getInstance()->getTextureCache()->addImage("MutePressed.png"));
@@ -84,7 +97,7 @@ bool GameOverScene::init()
 	_background->setPosition(Vec2(winSize.width*0.5f, winSize.height*0.5f));
 	_background->setScaleX(winSize.width / _background->getContentSize().width);
 	_background->setScaleY(winSize.height / _background->getContentSize().height);
-	_background->setLocalZOrder(-1);
+	_background->setGlobalZOrder(-3);
 
 	this->addChild(_background);
 

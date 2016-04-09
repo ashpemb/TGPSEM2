@@ -62,7 +62,7 @@ bool GameWinScene::init()
 	//Next Level button
 	_nextLevelButton = static_cast<ui::Button*>(rootNode->getChildByName("NextLevelButton"));
 	_nextLevelButton->addTouchEventListener(CC_CALLBACK_2(GameWinScene::NextLevelButtonPressed, this));
-	_nextLevelButton->setPosition(Vec2(winSize.width*0.2f, winSize.height*0.10f));
+	_nextLevelButton->setPosition(Vec2(winSize.width*0.8f, winSize.height*0.10f));
 
 	//Retry button
 	_retryButton = static_cast<ui::Button*>(rootNode->getChildByName("RetryButton"));
@@ -72,7 +72,7 @@ bool GameWinScene::init()
 	//MainMenu Button
 	_mainMenuButton = static_cast<ui::Button*>(rootNode->getChildByName("MainMenuButton"));
 	_mainMenuButton->addTouchEventListener(CC_CALLBACK_2(GameWinScene::MainMenuButtonPressed, this));
-	_mainMenuButton->setPosition(Vec2(winSize.width*0.8f, winSize.height*0.10f));
+	_mainMenuButton->setPosition(Vec2(winSize.width*0.2f, winSize.height*0.10f));
 
 	//Mute Button
 	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
@@ -95,6 +95,18 @@ bool GameWinScene::init()
 	_background->setScaleX(winSize.width / _background->getContentSize().width);
 	_background->setScaleY(winSize.height / _background->getContentSize().height);
 	_background->setLocalZOrder(-1);
+
+	for (int i = 0; i < 100; i++) {
+		_stars.push_back(Sprite::create("SpaceStar.png"));
+
+		int randomWidth = cocos2d::RandomHelper::random_real(0.0f, winSize.width);
+		int randomHeight = cocos2d::RandomHelper::random_real(0.0f, winSize.height);
+
+		_stars.at(i)->setPosition(Vec2(randomWidth, randomHeight));
+		_stars.at(i)->setGlobalZOrder(-2);
+
+		this->addChild(_stars.at(i));
+	}
 
 	// Rating
 	_rating = Sprite::create("Rating.png");

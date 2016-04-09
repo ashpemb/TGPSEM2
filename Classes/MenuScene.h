@@ -53,6 +53,9 @@ private:
 	cocos2d::ui::Button*    _startButton;
 	cocos2d::ui::Button*    _creditsButton;
 	cocos2d::ui::Button*    _exitButton;
+	cocos2d::Sprite*		_startButtonFrame;
+	cocos2d::Sprite*		_creditsButtonFrame;
+	cocos2d::Sprite*		_exitButtonFrame;
 	cocos2d::Sprite*		_muteButton;
 
 	cocos2d::Sprite*				_logo;
@@ -69,6 +72,8 @@ private:
 
 	float _moveButtonTimerDefault;
 	float _moveButtonTimer;
+	float _opacityButton;
+	bool _opacityButtonUp;
 	bool _moveButtonUp;
 
 	SceneManager * gameScene;
