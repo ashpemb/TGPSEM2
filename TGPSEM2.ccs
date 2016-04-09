@@ -82,6 +82,14 @@
         <Image Name="StartButton.png" />
         <Project Name="Credits.csd" Type="Scene" />
         <Image Name="CreditsScreen.png" />
+        <Image Name="ButtonFrame.png" />
+        <Image Name="CreditsNoFrame.png" />
+        <Image Name="ExitNoFrame.png" />
+        <Image Name="StartNoFrame.png" />
+        <Image Name="NextButton.png" />
+        <Image Name="RetryButton.png" />
+        <Image Name="MenuButton.png" />
+        <Project Name="GameWin.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

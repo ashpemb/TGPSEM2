@@ -57,6 +57,13 @@ bool MenuScene::init()
 	_startButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.45f));
 	_startButton->setGlobalZOrder(9);
 	_startButton->setScale(1.5f);
+	_startButton->setCascadeOpacityEnabled(true);
+
+	_startButtonFrame = Sprite::create("ButtonFrame.png");
+	_startButtonFrame->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.45f));
+	_startButtonFrame->setGlobalZOrder(10);
+	_startButtonFrame->setScale(1.5f);
+	this->addChild(_startButtonFrame);
 
 	//Credits Button
 
@@ -65,6 +72,13 @@ bool MenuScene::init()
 	_creditsButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
 	_creditsButton->setGlobalZOrder(9);
 	_creditsButton->setScale(1.5f);
+	_creditsButton->setCascadeOpacityEnabled(true);
+
+	_creditsButtonFrame = Sprite::create("ButtonFrame.png");
+	_creditsButtonFrame->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.30f));
+	_creditsButtonFrame->setGlobalZOrder(10);
+	_creditsButtonFrame->setScale(1.5f);
+	this->addChild(_creditsButtonFrame);
 
 	//Exit Button
 	_exitButton = static_cast<ui::Button*>(rootNode->getChildByName("ExitButton"));
@@ -72,6 +86,13 @@ bool MenuScene::init()
 	_exitButton->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.15f));
 	_exitButton->setGlobalZOrder(9);
 	_exitButton->setScale(1.5f);
+	_exitButton->setCascadeOpacityEnabled(true);
+
+	_exitButtonFrame = Sprite::create("ButtonFrame.png");
+	_exitButtonFrame->setPosition(Vec2(winSize.width*0.75f, winSize.height*0.15f));
+	_exitButtonFrame->setGlobalZOrder(10);
+	_exitButtonFrame->setScale(1.5f);
+	this->addChild(_exitButtonFrame);
 
 	//Mute Button
 	_muteButton = (cocos2d::Sprite*)(rootNode->getChildByName("MuteButton"));
@@ -136,6 +157,8 @@ bool MenuScene::init()
 	_moveButtonTimerDefault = 5.0f;
 	_moveButtonTimer = 0.0f;
 	_moveButtonUp = true;
+	_opacityButtonUp = true;
+	_opacityButton = _startButton->getOpacity();
 
 	// AUDIO
 	auEngine = new AudioEngine();
@@ -186,9 +209,17 @@ void MenuScene::update(float delta)
 			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() - Vec2(0.0f, 20.0f));
 			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() - Vec2(0.0f, 20.0f));
 
+			auto startFrameMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() - Vec2(0.0f, 20.0f));
+			auto creditFrameMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() - Vec2(0.0f, 20.0f));
+			auto exitFrameMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() - Vec2(0.0f, 20.0f));
+
 			_startButton->runAction(startMoveTo);
 			_creditsButton->runAction(creditMoveTo);
 			_exitButton->runAction(exitMoveTo);
+
+			_startButtonFrame->runAction(startFrameMoveTo);
+			_creditsButtonFrame->runAction(creditFrameMoveTo);
+			_exitButtonFrame->runAction(exitFrameMoveTo);
 		}
 		else {
 			_moveButtonUp = true;
@@ -197,11 +228,37 @@ void MenuScene::update(float delta)
 			auto creditMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() + Vec2(0.0f, 20.0f));
 			auto exitMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() + Vec2(0.0f, 20.0f));
 
+			auto startFrameMoveTo = MoveTo::create(_moveButtonTimerDefault, _startButton->getPosition() + Vec2(0.0f, 20.0f));
+			auto creditFrameMoveTo = MoveTo::create(_moveButtonTimerDefault, _creditsButton->getPosition() + Vec2(0.0f, 20.0f));
+			auto exitFrameMoveTo = MoveTo::create(_moveButtonTimerDefault, _exitButton->getPosition() + Vec2(0.0f, 20.0f));
+
 			_startButton->runAction(startMoveTo);
 			_creditsButton->runAction(creditMoveTo);
 			_exitButton->runAction(exitMoveTo);
+
+			_startButtonFrame->runAction(startFrameMoveTo);
+			_creditsButtonFrame->runAction(creditFrameMoveTo);
+			_exitButtonFrame->runAction(exitFrameMoveTo);
 		}
 	}
+
+	if (_startButton->getOpacity() >= 254 && _opacityButtonUp) {
+		_opacityButtonUp = false;
+	}
+	else if (_startButton->getOpacity() <= 100 && !_opacityButtonUp) {
+		_opacityButtonUp = true;
+	}
+
+	if (_opacityButtonUp) {
+		_opacityButton += 70 * delta;
+	}
+	else {
+		_opacityButton -= 70 * delta;
+	}
+
+	_startButton->setOpacity(_opacityButton);
+	_creditsButton->setOpacity(_opacityButton);
+	_exitButton->setOpacity(_opacityButton);
 }
 
 void MenuScene::StartButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

@@ -40,6 +40,8 @@ private:
 	cocos2d::ui::Button*    _retryButton;
 	cocos2d::ui::Button*    _mainMenuButton;
 
+	std::vector<cocos2d::Sprite*>	_stars;
+
 	AudioEngine*			auEngine;
 	bool muted;
 
