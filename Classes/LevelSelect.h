@@ -65,6 +65,18 @@ private:
 	Sprite* _InfoBox;
 	Sprite* _Background;
 	std::vector<ParticleGalaxy*> _GalaxyParticle;
+
+	cocos2d::Sprite*				_logo;
+	cocos2d::Sprite*				_planet;
+	cocos2d::Sprite*				_ship;
+	std::vector<cocos2d::Sprite*>	_stars;
+
+	float _rotatePlanetTimerDefault;
+	float _rotatePlanetTimer;
+
+	float _rotateShipTimerDefault;
+	float _rotateShipTimer;
+	bool _rotateShipLeft;
 };
 
 #endif // __LevelSelect_SCENE_H__
