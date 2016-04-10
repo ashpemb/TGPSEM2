@@ -86,7 +86,7 @@ void Box::SetStartingScale()
 
 void Box::Scaling()
 {
-	if (isSelected == true)
+	if (isSelected)
 	{
 		if (totalDiff > 10 && totalDiff < 200)
 		{
@@ -141,6 +141,7 @@ void Box::Collision(cocos2d::Touch* touch)
 		if (_touchTimer <= 0.0f) {
 			_touchTimer = _defaultTouchTimer;
 			isSelected = !isSelected;
+			//isSelected = true;
 		}
 
 	}

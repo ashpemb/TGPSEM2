@@ -27,13 +27,21 @@ TouchManager::~TouchManager()
 
 void TouchManager::onTouchesBegan(const std::vector<Touch*>& touches, cocos2d::Event* event)
 {
+	/*touch1Start = touches[0]->getLocationInView();
+	touch2Start = touches[1]->getLocationInView();
 
+	touch1Start = Director::getInstance()->convertToGL(touch1Start);
+	touch2Start = Director::getInstance()->convertToGL(touch2Start);*/
 }
 
 
 void TouchManager::onTouchesEnded(const std::vector<Touch*>& touches, cocos2d::Event* event)
 {
+	/*touch1End = touches[0]->getLocationInView();
+	touch2End = touches[1]->getLocationInView();
 
+	touch1End = Director::getInstance()->convertToGL(touch1End);
+	touch2End = Director::getInstance()->convertToGL(touch2End);*/
 }
 
 void TouchManager::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event* event)
@@ -58,4 +66,9 @@ void TouchManager::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::E
 
 void TouchManager::onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event)
 {
+}
+
+void TouchManager::CalculateDistance()
+{
+
 }

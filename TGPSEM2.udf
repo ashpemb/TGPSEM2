@@ -3,8 +3,8 @@
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="VS" />
-        <IsLastPublish Value="False" />
-        <LastRunType Value="Windows" />
+        <IsLastPublish Value="True" />
+        <LastRunType Value="Android" />
       </Value>
     </Item>
     <Item Key="PackageParamsKey">
@@ -18,7 +18,7 @@
         <iOS_Target Value="TGPSEM2-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="Android" />
-        <RunPlatform Value="None" />
+        <RunPlatform Value="Android" />
         <FrameworkVersion Value="cocos2d-x-3.9" />
         <IsDebugKeystore Value="True" />
         <KeystorePassword Value="" />

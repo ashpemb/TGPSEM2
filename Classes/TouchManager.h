@@ -19,6 +19,14 @@ public:
 	void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
 	void onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
 	float totalDiff;
+
+	void CalculateDistance();
+
+private:
+	/*Point touch1Start;
+	Point touch2Start;
+	Point touch2End;
+	Point touch1End;*/
 };
 
 #endif

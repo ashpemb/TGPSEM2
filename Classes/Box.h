@@ -90,6 +90,7 @@ public:
 	void SetStartingScale();
 	void Collision(cocos2d::Touch* touch);
 	void Scaling();
+	bool getIsSelected() { return isSelected; }
 	//void UpdateBoxScale(){ _box->setScale(scaler); }
 };
 

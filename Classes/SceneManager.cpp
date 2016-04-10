@@ -1033,10 +1033,12 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 		Point touchPos = touch->getLocationInView();
 		touchPos = Director::getInstance()->convertToGL(touchPos);
 		touchPos = convertToNodeSpace(touchPos);
-		Rect currPlatform;
+		Rect currPlatform, currBox;
 		Rect currTouchZone;
 		_initialTouchPos = touchPos;
 		_inTouch = true;
+
+		int boxesSelected = 0;
 
 		// Touch detection for horizontal moving platforms
 		for (int i = 0; i < (int)_movingPlatformsHoriz.size(); i++)
@@ -1046,11 +1048,10 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
 			{
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
-				for (int i = 0; i < (int)_movingPlatformsHoriz.size(); i++)
-				{
-					_movingPlatformsHoriz[i]->PlatformType(1);
-					_movingPlatformsHoriz[i]->onTouchBegan(touch, event);
-				}
+				
+				_movingPlatformsHoriz[i]->PlatformType(1);
+				_movingPlatformsHoriz[i]->onTouchBegan(touch, event);
+				
 			}
 		}
 
@@ -1062,11 +1063,10 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
 			{
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
-				for (int i = 0; i < (int)_movingPlatformsVert.size(); i++)
-				{
-					_movingPlatformsVert[i]->PlatformType(2);
-					_movingPlatformsVert[i]->onTouchBegan(touch, event);
-				}
+				
+				_movingPlatformsVert[i]->PlatformType(2);
+				_movingPlatformsVert[i]->onTouchBegan(touch, event);
+				
 			}
 		}
 
@@ -1078,11 +1078,10 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
 			{
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
-				for (int i = 0; i < (int)_movingWallsHoriz.size(); i++)
-				{
-					_movingWallsHoriz[i]->PlatformType(1);
-					_movingWallsHoriz[i]->onTouchBegan(touch, event);
-				}
+				
+				_movingWallsHoriz[i]->PlatformType(1);
+				_movingWallsHoriz[i]->onTouchBegan(touch, event);
+				
 			}
 		}
 
@@ -1094,17 +1093,71 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 			if (currPlatform.containsPoint(_initialTouchPos) || currTouchZone.containsPoint(_initialTouchPos))
 			{
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
-				for (int i = 0; i < (int)_movingWallsVert.size(); i++)
-				{
-					_movingWallsVert[i]->PlatformType(2);
-					_movingWallsVert[i]->onTouchBegan(touch, event);
-				}
+				
+				_movingWallsVert[i]->PlatformType(2);
+				_movingWallsVert[i]->onTouchBegan(touch, event);
+				
 			}
 		}
 
+		
+		for (int i = 0; i < (int)_woodBoxes.size(); i++)
+		{
+			currBox = _woodBoxes[i]->GetSprite()->getBoundingBox();
+
+			if (currBox.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+
+				_woodBoxes[i]->Collision(touch);
+				_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+			}
+		}
+		
+		
+		for (int i = 0; i < (int)_metalBoxes.size(); i++)
+		{
+			currBox = _metalBoxes[i]->GetSprite()->getBoundingBox();
+
+			if (currBox.containsPoint(_initialTouchPos))
+			{
+				GameManager::sharedGameManager()->setIsObjectTouched(true);
+
+				_metalBoxes[i]->Collision(touch);
+				_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+			}
+		}
+		
+
 		if (!GameManager::sharedGameManager()->getIsObjectTouched())
 		{
-			_player->SetTarget(_initialTouchPos);
+			if (_woodBoxes.size() > 0)
+			{
+				for (int i = 0; i < _woodBoxes.size(); i++)
+				{
+					if (_woodBoxes[i]->getIsSelected())
+					{
+						boxesSelected++;
+					}
+				}
+			}
+			else if (_metalBoxes.size() > 0)
+			{
+				for (int i = 0; i < _metalBoxes.size(); i++)
+				{
+					if (_metalBoxes[i]->getIsSelected())
+					{
+						boxesSelected++;
+						
+					}
+				}
+			}
+			
+			if (boxesSelected == 0)
+			{
+				_player->SetTarget(_initialTouchPos);
+			}
+				
 		}
 
 		return true;
@@ -1129,22 +1182,6 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 			// If an object is clicked, DO NOT let the player move to it, instead:
 			// call the appropiate methods specific to that object
 
-			if (_woodBoxes.size() > 0)
-			{
-				for (int i = 0; i < (int)_woodBoxes.size(); i++)
-				{
-					_woodBoxes[i]->Collision(touch);
-					_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
-				}
-			}
-			if (_metalBoxes.size() > 0)
-			{
-				for (int i = 0; i < (int)_metalBoxes.size(); i++)
-				{
-					_metalBoxes[i]->Collision(touch);
-					_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
-				}
-			}
 
 			for (int i = 0; i < (int)_movingPlatformsHoriz.size(); i++)
 			{
