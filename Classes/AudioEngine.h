@@ -21,7 +21,6 @@ public:
 	void PauseAllEffects();
 	void PauseEffect(int soundID);
 	float GetBackgroundVolume();
-	float GetEffectVolume();
 	void BGMPlaylistNext();
 	void SetBGMPlaylist(std::string fileLocations[5]);
 	void MuteAllAudio(bool mute);
@@ -29,7 +28,10 @@ public:
 	void ResumeAllEffects();
 	void ResumeBackgroundMusic();
 	~AudioEngine();
-	bool isAudioPlaying(){ return bgmPlaying; }
+	void SetEffectVolume(float _newEffectVolume) { effectVolume = _newEffectVolume; }
+	float GetEffectVolume() { return effectVolume; }
+	void SetBGMVolume(float _newBGMVolume) { bgmVolume = _newBGMVolume; }
+	float GetBGMVolume() { return bgmVolume; }
 private:
 	float effectVolume;
 	float bgmVolume;
