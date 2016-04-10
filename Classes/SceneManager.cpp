@@ -1099,7 +1099,6 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 				
 			}
 		}
-
 		
 		for (int i = 0; i < (int)_woodBoxes.size(); i++)
 		{
@@ -1108,13 +1107,12 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 			if (currBox.containsPoint(_initialTouchPos))
 			{
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
-
 				_woodBoxes[i]->Collision(touch);
-				_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+				
 			}
 		}
-		
-		
+
+
 		for (int i = 0; i < (int)_metalBoxes.size(); i++)
 		{
 			currBox = _metalBoxes[i]->GetSprite()->getBoundingBox();
@@ -1124,10 +1122,8 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 				GameManager::sharedGameManager()->setIsObjectTouched(true);
 
 				_metalBoxes[i]->Collision(touch);
-				_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
 			}
 		}
-		
 
 		if (!GameManager::sharedGameManager()->getIsObjectTouched())
 		{
@@ -1152,6 +1148,7 @@ bool SceneManager::onTouchBegan(Touch* touch, Event* event)
 					}
 				}
 			}
+
 			
 			if (boxesSelected == 0)
 			{
@@ -1176,12 +1173,31 @@ void SceneManager::onTouchEnded(Touch* touch, Event* event)
 	if (GameManager::sharedGameManager()->getIsGameLive() == true) {
 		if (!GameManager::sharedGameManager()->getIsGamePaused()) {
 			_inTouch = false;
-
+			Rect currBox;
 			// TODO
 			// Add checks to ensure no object is clicked
 			// If an object is clicked, DO NOT let the player move to it, instead:
 			// call the appropiate methods specific to that object
 
+			for (int i = 0; i < (int)_woodBoxes.size(); i++)
+			{
+				if (_woodBoxes[i]->getIsSelected())
+				{
+					_woodBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+				}
+
+			}
+
+
+			for (int i = 0; i < (int)_metalBoxes.size(); i++)
+			{
+				if (_metalBoxes[i]->getIsSelected())
+				{
+					_metalBoxes[i]->SetTotalDiff(touchMGR->totalDiff);
+				}
+
+
+			}
 
 			for (int i = 0; i < (int)_movingPlatformsHoriz.size(); i++)
 			{
