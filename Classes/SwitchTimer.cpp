@@ -19,14 +19,15 @@ SwitchTimer* SwitchTimer::create()
 	gravSwitchTimer->_isEnabled = false;
 	gravSwitchTimer->autorelease();
 	gravSwitchTimer->_isTimerStarted = false;
-		
+	gravSwitchTimer->auManager = new AudioEngine();
+	gravSwitchTimer->_tickerSoundID = 0;
 	return gravSwitchTimer;
 }
 
 
 SwitchTimer::~SwitchTimer()
 {
-
+	delete auManager;
 }
 
 bool SwitchTimer::init()
@@ -40,20 +41,39 @@ bool SwitchTimer::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
 	this->scheduleUpdate();
+	this->schedule(schedule_selector(SwitchTimer::UpdateAudio), 1.0f);
+
 	return true;
 }
 
 void SwitchTimer::update(float dt)
 {
-	if (_timer > 0.0f) {
+	if (_timer > 0.0f) 
+	{
 		_timer -= dt;
+		_isTimerStarted = true;
 	}
-	else {
-		if (IsTimerRunning()) {
+	else 
+	{
+		if (IsTimerRunning()) 
+		{
 			_isTimerStarted = false;
 			_revertGravity = true;
 		}
+	}	
+}
+
+void SwitchTimer::UpdateAudio(float dt)
+{
+	if (_isTimerStarted == true)
+	{
+		_tickerSoundID = auManager->PlaySoundEffect("TickingClock.wav", false);
 	}
+	else
+	{
+		auManager->StopSoundEffect(_tickerSoundID);
+	}
+	//setColor(Color3B(255, 255, 255));
 }
 
 int SwitchTimer::SwitchGravity()
