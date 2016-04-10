@@ -67,7 +67,7 @@ bool LevelSelect::init()
 		temp->setGlobalZOrder(10+i);
 		temp->setPosition3D(Vec3(rand() % screenSizeX,rand() % screenSizeY,-750));
 		_GalaxyParticle.push_back(temp);
-		addChild(_GalaxyParticle[i]);
+	//	addChild(_GalaxyParticle[i]);
 	}
 	float segdeg = 2 * Pi / LEVELCOUNT;
 	for (int i = 0; i < LEVELCOUNT; i++)
@@ -259,7 +259,7 @@ void LevelSelect::LevelMovement()
 		Vec3 _Position = _AllLevels[i]._Sprite->getPosition3D();
 		if (_Position != _AllLevels[i]._Destination)
 		{
-			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5 && _Position.y + 5 < _AllLevels[i]._Destination.y - 5)
+			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5)
 			{
 				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x - _LevelMovementSpeed), _Position.y, _Position.z));
 			}

@@ -64,6 +64,7 @@ private:
 	int LevelSelected;
 	Sprite* _InfoBox;
 	Sprite* _Background;
+	Size winSize;
 	std::vector<ParticleGalaxy*> _GalaxyParticle;
 };
 
