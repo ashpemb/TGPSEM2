@@ -5,7 +5,7 @@ using namespace cocostudio::timeline;
 
 SceneManager::SceneManager(int level)
 {
-	_level = level;
+	_level = 1;
 	_gravityOrientation = 0;
 }
 

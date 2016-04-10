@@ -4,25 +4,8 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 Label* labelTouchInfo;
-Sprite3D* sprite;
-Sprite3D* sprite2;
-Sprite3D* sprite3;
-ScalingObject* stars[25];
 int screenSizeY;
 int screenSizeX;
-int LevelSelected;
-Vec3 SelectedLevelPos;
-Vec3 SecondLevelPos;
-Vec3 ThirdLevelPos;
-float rotation1;
-float rotation2;
-float rotation3;
-float scale1;
-float scale2;
-float scale3;
-float levelSelectRotation;
-int SceneSelected;
-int fallingSpeed;
 int timer;
 
 Scene* LevelSelect::createScene()
@@ -60,7 +43,6 @@ bool LevelSelect::init()
 	cocos2d::Size frameSize = Director::getInstance()->getVisibleSize();
 	screenSizeY = frameSize.height;
 	screenSizeX = frameSize.width;
-	Device::setAccelerometerEnabled(true);
 
 	auto touchListener = EventListenerTouchOneByOne::create();
 
@@ -72,33 +54,55 @@ bool LevelSelect::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	auto keyboardListener = EventListenerKeyboard::create();
-	keyboardListener->onKeyPressed = CC_CALLBACK_2(LevelSelect::onKeyPressed, this);
-	keyboardListener->onKeyReleased = CC_CALLBACK_2(LevelSelect::onKeyReleased, this);
-
-	auto AccelListener = EventListenerAcceleration::create(CC_CALLBACK_2(LevelSelect::onAcceleration, this));
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(AccelListener, this);
-
-
 	this->schedule(schedule_selector(LevelSelect::UpdateTimer), 1.0f);
-
-	SelectedLevelPos = Vec3(screenSizeX / 2, screenSizeY / 2, 100);
-	SecondLevelPos = Vec3(screenSizeX - 60, screenSizeY / 2, -200);
-	ThirdLevelPos = Vec3(100, screenSizeY / 2, -200);
-
-	for (int i = 0; i < 25; i++)
+	_Background = Sprite::create("LevelSelect/Background.png");
+	_Background->setGlobalZOrder(0);
+	_Background->setScale(4);
+	_Background->setPosition3D(Vec3(screenSizeX, screenSizeY, -750));
+	addChild(_Background);
+	for (int i = 0; i < GALAXYCOUNT; i++)
 	{
-		stars[i] = new ScalingObject;
-		stars[i]->init();
-		stars[i]->sprite = new Sprite;
-		//stars[i]->CreateSO("cube.obj", "World1.png");
-		stars[i]->CreateSprite("World1.png", 2);
-		
-		stars[i]->sprite->setPosition3D(Vec3(rand() % screenSizeX, rand() % screenSizeY, rand() % 300));
-		stars[i]->sprite->setScale(0.1);
-		stars[i]->SetStartingScale(0.1);
-		addChild(stars[i]->sprite);
+		ParticleGalaxy* temp = ParticleGalaxy::create();
+		temp->setScale(rand() % 3);
+		temp->setGlobalZOrder(10+i);
+		temp->setPosition3D(Vec3(rand() % screenSizeX,rand() % screenSizeY,-750));
+		_GalaxyParticle.push_back(temp);
+		addChild(_GalaxyParticle[i]);
 	}
+	float segdeg = 2 * Pi / LEVELCOUNT;
+	for (int i = 0; i < LEVELCOUNT; i++)
+	{
+		_LevelPositions.push_back(Vec3(sin(segdeg*i) * 640 + screenSizeX / 2, ((screenSizeY / 2) - 250), cos(segdeg*i) * 640));
+	}
+	for (int i = 0; i < LEVELCOUNT; i++)
+	{
+		Level temp;
+		temp._ID = i+1;
+		temp._CustomLevelName = "-";
+		temp._Scale = Vec3(100, 80, 60);
+		temp._Sprite = Sprite3D::create("cube.obj", "Level1Preview.png");
+		temp._Sprite->setGlobalZOrder(i+40);
+		temp._Sprite->setScale(temp._Scale.z);
+		temp._Sprite->setPosition3D(_LevelPositions[i]);
+		temp._IsFocused = false;
+		temp._RotationAngles = Vec3(0, 0, 0);
+		temp._RotationAngles.z = rand() % 1000 - 500;
+		temp._StarRating = _ScoreManager->getStarFromFile(temp._ID);
+		temp._BestTimeMinutes = _ScoreManager->getMinutesFromFile(temp._ID);
+		temp._BestTimeSeconds = _ScoreManager->getSecondsFromFile(temp._ID);
+		_AllLevels.push_back(temp);
+	}
+	_AllLevels[0]._CustomLevelName = "Where it all began.";
+	for (int i = 0; i < LEVELCOUNT; i++)
+	{
+		addChild(_AllLevels[i]._Sprite);
+	}
+
+	_InfoBox = Sprite::create("TempInfoBox.png");
+	_InfoBox->setPosition(Vec2(screenSizeX / 2, screenSizeY - 100));
+	_InfoBox->setScale(0.75f,0.5f);
+	_InfoBox->setGlobalZOrder(1);
+	addChild(_InfoBox);
 	touchMGR = new TouchManager;
 	auto touchesListener = EventListenerTouchAllAtOnce::create();
 
@@ -110,15 +114,11 @@ bool LevelSelect::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchesListener, this);
 	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchesListener, this);
 
-
-	sprite = Sprite3D::create("cube.obj", "World1.png");
-	sprite->setPosition3D(SelectedLevelPos);
-	sprite->setScale(100.0f);
-	sprite->setColor(Color3B(255, 255, 255));
 	labelTouchInfo = Label::create();
 	labelTouchInfo->setPosition(Vec2(screenSizeX/2, screenSizeY -100));
-	labelTouchInfo->setSystemFontName("Times New Roman");
-	labelTouchInfo->setSystemFontSize(64);
+	labelTouchInfo->setSystemFontName("Franklin Gothic");
+	labelTouchInfo->setSystemFontSize(36);
+	labelTouchInfo->setGlobalZOrder(3);
 	//auto _textureCube = TextureCube::create("bluecloud_lf.jpg", "bluecloud_rt.jpg",
 	//	"bluecloud_dn.png", "bluecloud_up.jpg", "bluecloud_ft.jpg", "bluecloud_bk.jpg");
 
@@ -135,99 +135,46 @@ bool LevelSelect::init()
 	//_state->setUniformTexture("u_cubeTex", _textureCube);
 	//
 	//sprite->setTexture(_textureCube);
-	addChild(sprite);
+	//addChild(sprite);
 	addChild(labelTouchInfo);
-
-
-    sprite2 = Sprite3D::create("cube.obj", "World2.png");
-	sprite2->setPosition3D(SecondLevelPos);
-	sprite2->setScale(80.0f);
-	sprite2->setColor(Color3B(255, 255, 255));
-	addChild(sprite2);
-
-	sprite3 = Sprite3D::create("cube.obj", "World3.png");
-	sprite3->setPosition3D(ThirdLevelPos);
-	sprite3->setScale(80.0f);
-	sprite3->setColor(Color3B(255, 255, 255));
-	addChild(sprite3);
-
 	auto playItem = MenuItemImage::create("Play Button.png", "Play Button Clicked.png", CC_CALLBACK_1(LevelSelect::GoToGameScene, this));
 	auto leftItem = MenuItemImage::create("Left.png", "Left2.png", CC_CALLBACK_1(LevelSelect::LevelLeft, this));
-	leftItem->setPosition(Vec2(-150, 0));
+	leftItem->setPosition(Vec2(-840, screenSizeY - 300));
 
 	auto rightItem = MenuItemImage::create("Right.png", "Right2.png", CC_CALLBACK_1(LevelSelect::LevelRight, this));
-	rightItem->setPosition(Vec2(150, 0));
+	rightItem->setPosition(Vec2(840, screenSizeY - 300));
 
 	auto menu = Menu::create(playItem, leftItem,rightItem,NULL);
 	menu->setPosition(Vec2(screenSizeX / 2, screenSizeY / 8));
+	menu->setGlobalZOrder(2);
 	addChild(menu);
-	LevelSelected = 1;
-	rotation1 = 0;
-	rotation2 = 0;
-	rotation3 = 0;
-	scale1 = 100;
-	scale2 = 80;
-	scale3 = 80;
-	levelSelectRotation = 0;
-	SceneSelected = 1;
+	LevelSelected = 0;
 	timer = 0;
-
+	_LevelMovementSpeed = 3.25f;
 	return true;
 }
 
 void LevelSelect::LevelRight(cocos2d::Ref *sender)
 {
-	if (LevelSelected == 1)
+	if (LevelSelected >= LEVELCOUNT-1)
 	{
-		SceneSelected += 1;
-		std::stringstream ss;
-		ss << SceneSelected-1;
-		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		LevelSelected = 0;
 	}
-	if (LevelSelected == 2)
+	else
 	{
-		SceneSelected += 1;
-		std::stringstream ss;
-		ss << SceneSelected - 1;
-		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
-	}
-	if (LevelSelected == 3)
-	{
-		SceneSelected += 1;
-		std::stringstream ss;
-		ss << SceneSelected - 1;
-		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		++LevelSelected;
 	}
 }
 
 void LevelSelect::LevelLeft(cocos2d::Ref *sender)
 {
-	if (LevelSelected == 1)
+	if (LevelSelected <= 0)
 	{
-		SceneSelected -= 1;
-		std::stringstream ss;
-		ss << SceneSelected+1;
-		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		LevelSelected = LEVELCOUNT-1;
 	}
-	if (LevelSelected == 2)
+	else
 	{
-		SceneSelected -= 1;
-		std::stringstream ss;
-		ss << SceneSelected+1;
-		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
-	}
-	if (LevelSelected == 3)
-	{
-		SceneSelected -= 1;
-		std::stringstream ss;
-		ss << SceneSelected + 1;
-		std::string str = ss.str();
-		labelTouchInfo->setString("Scene " + str);
+		--LevelSelected;
 	}
 }
 
@@ -235,461 +182,106 @@ void LevelSelect::LevelLeft(cocos2d::Ref *sender)
 void LevelSelect::UpdateTimer(float dt)
 {
 
+	std::stringstream ss;
+	ss << _AllLevels[LevelSelected]._ID;
+	std::string str = ss.str();
+
+	std::stringstream _StringStream;
+	_StringStream << _AllLevels[LevelSelected]._StarRating;
+	std::string _FinalString = _StringStream.str();
+	for (int i = 0; i < _AllLevels.size(); i++)
+	{
+		if (_AllLevels[i]._CustomLevelName.length() != 1)
+		{
+			labelTouchInfo->setString("Level " + _AllLevels[i]._CustomLevelName + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[LevelSelected]._BestTimeMinutes + "." + _AllLevels[LevelSelected]._BestTimeSeconds);
+		}
+		else
+		{
+			labelTouchInfo->setString("Level " + str + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[LevelSelected]._BestTimeMinutes + "." + _AllLevels[LevelSelected]._BestTimeSeconds);
+		}
+	}
 }
 
 void LevelSelect::LevelScaling()
 {
-	if (LevelSelected == 1)
+	for (int i = 0; i < _AllLevels.size(); i++)
 	{
-		if (scale1 != 100.0f)
-		{
-			if (scale1 > 100.0f)
-			{
-				scale1 -= 0.5f;
-			}
-			if (scale1 < 100.f)
-			{
-				scale1 += 0.5f;
-			}
-		}
-		if (scale2 != 80.0f)
-		{
-			if (scale2 > 80.0f)
-			{
-				scale2 -= 0.5f;
-			}
-			if (scale2 < 80.f)
-			{
-				scale2 += 0.5f;
-			}
-		}
-		if (scale3 != 80.0f)
-		{
-			if (scale3 > 80.0f)
-			{
-				scale3 -= 0.5f;
-			}
-			if (scale3 < 80.f)
-			{
-				scale3 += 0.5f;
-			}
-		}
-	}
+		int _Scale = _AllLevels[i]._Sprite->getScale() + 0.5f;
+		int _NScale = _AllLevels[i]._Sprite->getScale() - 0.5f;
 
-	if (LevelSelected == 2)
-	{
-		if (scale2 != 100.0f)
+		if (LevelSelected == i)
 		{
-			if (scale2 > 100.0f)
+			if (_AllLevels[i]._Sprite->getScale() < _AllLevels[i]._Scale.x)
 			{
-				scale2 -= 0.5f;
+				_AllLevels[i]._Sprite->setScale(_Scale);
 			}
-			if (scale2 < 100.f)
+			else if (_AllLevels[i]._Sprite->getScale() > _AllLevels[i]._Scale.x)
 			{
-				scale2 += 0.5f;
+				_AllLevels[i]._Sprite->setScale(_NScale);
 			}
 		}
-		if (scale1 != 80.0f)
-		{
-			if (scale1 > 80.0f)
-			{
-				scale1 -= 0.5f;
-			}
-			if (scale1 < 80.f)
-			{
-				scale1 += 0.5f;
-			}
-		}
-		if (scale3 != 80.0f)
-		{
-			if (scale3 > 80.0f)
-			{
-				scale3 -= 0.5f;
-			}
-			if (scale3 < 80.f)
-			{
-				scale3 += 0.5f;
-			}
-		}
-	}
-	if (LevelSelected == 3)
-	{
-		if (scale3 != 100.0f)
-		{
-			if (scale3 > 100.0f)
-			{
-				scale3 -= 0.5f;
-			}
-			if (scale3 < 100.f)
-			{
-				scale3 += 0.5f;
-			}
-		}
-		if (scale1 != 80.0f)
-		{
-			if (scale1 > 80.0f)
-			{
-				scale1 -= 0.5f;
-			}
-			if (scale1 < 80.f)
-			{
-				scale1 += 0.5f;
-			}
-		}
-		if (scale2 != 80.0f)
-		{
-			if (scale2 > 80.0f)
-			{
-				scale2 -= 0.5f;
-			}
-			if (scale2 < 80.f)
-			{
-				scale2 += 0.5f;
-			}
-		}
-	}
-	sprite->setScale(scale1);
-	sprite3->setScale(scale3);
-	sprite2->setScale(scale2);
-}
-
-void LevelSelect::LevelRotation()
-{
-	if (LevelSelected == 1)
-	{
-		rotation2 += 0.5f;
-		rotation3 += 0.25f;
-		if (rotation1 != levelSelectRotation)
-		{
-			if (rotation1 > levelSelectRotation)
-			{
-				rotation1 -= 1.5f;
-			}
-			if (rotation1 < levelSelectRotation)
-			{
-				rotation1 += 1.5f;
-			}
-		}
-		sprite->setRotation3D(Vec3(rotation1, rotation1, accelRotation));
-		sprite2->setRotation3D(Vec3(rotation2, rotation2, 0));
-		sprite3->setRotation3D(Vec3(rotation3, rotation3, 0));
-	}
-	if (LevelSelected == 2)
-	{
-		rotation1 += 0.5f;
-		rotation3 += 0.25f;
-		if (rotation2 != levelSelectRotation)
-		{
-			if (rotation2 > levelSelectRotation)
-			{
-				rotation2 -= 1.5f;
-			}
-			if (rotation2 < levelSelectRotation)
-			{
-				rotation2 += 1.5f;
-			}
-		}
-		sprite->setRotation3D(Vec3(rotation1, rotation1, 0));
-		sprite2->setRotation3D(Vec3(rotation2, rotation2, accelRotation));
-		sprite3->setRotation3D(Vec3(rotation3, rotation3, 0));
-	}
-	if (LevelSelected == 3)
-	{
-		rotation2 += 0.5f;
-		rotation1 += 0.25f;
-		if (rotation3 != levelSelectRotation)
-		{
-			if (rotation3 > levelSelectRotation)
-			{
-				rotation3 -= 1.5f;
-			}
-			if (rotation2 < levelSelectRotation)
-			{
-				rotation3 += 1.5f;
-			}
-		}
-		sprite->setRotation3D(Vec3(rotation1, rotation1, 0));
-		sprite2->setRotation3D(Vec3(rotation2, rotation2, 0));
-		sprite3->setRotation3D(Vec3(rotation3, rotation3, accelRotation));
 	}
 }
 
 void LevelSelect::LevelMovement()
 {
-	if (LevelSelected == 1)
+
+	for (int i = 0; i < _AllLevels.size(); i++)
 	{
-		if (sprite->getPosition3D() != SelectedLevelPos)
+		if (LevelSelected == i)
 		{
-			if (sprite->getPositionX() < SelectedLevelPos.x)
-			{
-				sprite->setPositionX(sprite->getPositionX() + 4.0f);
-			}
-			if (sprite->getPositionX() > SelectedLevelPos.x)
-			{
-				sprite->setPositionX(sprite->getPositionX() - 4.0f);
-			}
-
-			if (sprite->getPositionY() < SelectedLevelPos.y)
-			{
-				sprite->setPositionY(sprite->getPositionY() + 4.0f);
-			}
-			if (sprite->getPositionY() > SelectedLevelPos.y)
-			{
-				sprite->setPositionY(sprite->getPositionY() - 4.0f);
-			}
-
-			if (sprite->getPositionZ() < SelectedLevelPos.z)
-			{
-				sprite->setPositionZ(sprite->getPositionZ() + 4.0f);
-			}
-			if (sprite->getPositionZ() > SelectedLevelPos.z)
-			{
-				sprite->setPositionZ(sprite->getPositionZ() - 4.0f);
-			}
+			_AllLevels[i]._IsFocused = true;
+			_AllLevels[i]._Sprite->setTexture("LevelSelect/Level1Preview.png");
 		}
-
-		if (sprite2->getPosition3D() != SecondLevelPos)
+		else
 		{
-			if (sprite2->getPositionX() < SecondLevelPos.x)
-			{
-				sprite2->setPositionX(sprite2->getPositionX() + 4.0f);
-			}
-			if (sprite2->getPositionX() > SecondLevelPos.x)
-			{
-				sprite2->setPositionX(sprite2->getPositionX() - 4.0f);
-			}
-
-			if (sprite2->getPositionY() < SecondLevelPos.y)
-			{
-				sprite2->setPositionY(sprite2->getPositionY() + 4.0f);
-			}
-			if (sprite2->getPositionY() > SecondLevelPos.y)
-			{
-				sprite2->setPositionY(sprite2->getPositionY() - 4.0f);
-			}
-
-			if (sprite2->getPositionZ() < SecondLevelPos.z)
-			{
-				sprite2->setPositionZ(sprite2->getPositionZ() + 4.0f);
-			}
-			if (sprite2->getPositionZ() > SecondLevelPos.z)
-			{
-				sprite2->setPositionZ(sprite2->getPositionZ() - 4.0f);
-			}
-		}
-
-		if (sprite3->getPosition3D() != ThirdLevelPos)
-		{
-			if (sprite3->getPositionX() < ThirdLevelPos.x)
-			{
-				sprite3->setPositionX(sprite3->getPositionX() + 4.0f);
-			}
-			if (sprite3->getPositionX() > ThirdLevelPos.x)
-			{
-				sprite3->setPositionX(sprite3->getPositionX() - 4.0f);
-			}
-
-			if (sprite3->getPositionY() < ThirdLevelPos.y)
-			{
-				sprite3->setPositionY(sprite3->getPositionY() + 4.0f);
-			}
-			if (sprite3->getPositionY() > ThirdLevelPos.y)
-			{
-				sprite3->setPositionY(sprite3->getPositionY() - 4.0f);
-			}
-
-			if (sprite3->getPositionZ() < ThirdLevelPos.z)
-			{
-				sprite3->setPositionZ(sprite3->getPositionZ() + 4.0f);
-			}
-			if (sprite3->getPositionZ() > ThirdLevelPos.z)
-			{
-				sprite3->setPositionZ(sprite3->getPositionZ() - 4.0f);
-			}
+			_AllLevels[i]._IsFocused = false;
+			_AllLevels[i]._Sprite->setTexture("World1.png");
 		}
 	}
-
-	if (LevelSelected == 2)
+	
+	for (int i = 0; i < _AllLevels.size(); i++)
 	{
-		if (sprite2->getPosition3D() != SelectedLevelPos)
+		if (_AllLevels[i]._IsFocused == true)
 		{
-			if (sprite2->getPositionX() < SelectedLevelPos.x)
-			{
-				sprite2->setPositionX(sprite2->getPositionX() + 4.0f);
-			}
-			if (sprite2->getPositionX() > SelectedLevelPos.x)
-			{
-				sprite2->setPositionX(sprite2->getPositionX() - 4.0f);
-			}
-
-			if (sprite2->getPositionY() < SelectedLevelPos.y)
-			{
-				sprite2->setPositionY(sprite2->getPositionY() + 4.0f);
-			}
-			if (sprite2->getPositionY() > SelectedLevelPos.y)
-			{
-				sprite2->setPositionY(sprite2->getPositionY() - 4.0f);
-			}
-
-			if (sprite2->getPositionZ() < SelectedLevelPos.z)
-			{
-				sprite2->setPositionZ(sprite2->getPositionZ() + 4.0f);
-			}
-			if (sprite2->getPositionZ() > SelectedLevelPos.z)
-			{
-				sprite2->setPositionZ(sprite2->getPositionZ() - 4.0f);
-			}
+			_FocusedDestination = Vec3(screenSizeX / 2, screenSizeY / 2 + 125, 600);
+			_AllLevels[i]._Sprite->setScale(_AllLevels[i]._Scale.x);
+			_AllLevels[i]._Destination = _FocusedDestination;
 		}
-
-		if (sprite3->getPosition3D() != SecondLevelPos)
+		else
 		{
-			if (sprite3->getPositionX() < SecondLevelPos.x)
-			{
-				sprite3->setPositionX(sprite3->getPositionX() + 4.0f);
-			}
-			if (sprite3->getPositionX() > SecondLevelPos.x)
-			{
-				sprite3->setPositionX(sprite3->getPositionX() - 4.0f);
-			}
-
-			if (sprite3->getPositionY() < SecondLevelPos.y)
-			{
-				sprite3->setPositionY(sprite3->getPositionY() + 4.0f);
-			}
-			if (sprite3->getPositionY() > SecondLevelPos.y)
-			{
-				sprite3->setPositionY(sprite3->getPositionY() - 4.0f);
-			}
-
-			if (sprite3->getPositionZ() < SecondLevelPos.z)
-			{
-				sprite3->setPositionZ(sprite3->getPositionZ() + 4.0f);
-			}
-			if (sprite3->getPositionZ() > SecondLevelPos.z)
-			{
-				sprite3->setPositionZ(sprite3->getPositionZ() - 4.0f);
-			}
-		}
-
-		if (sprite->getPosition3D() != ThirdLevelPos)
-		{
-			if (sprite->getPositionX() < ThirdLevelPos.x)
-			{
-				sprite->setPositionX(sprite->getPositionX() + 4.0f);
-			}
-			if (sprite->getPositionX() > ThirdLevelPos.x)
-			{
-				sprite->setPositionX(sprite->getPositionX() - 4.0f);
-			}
-
-			if (sprite->getPositionY() < ThirdLevelPos.y)
-			{
-				sprite->setPositionY(sprite->getPositionY() + 4.0f);
-			}
-			if (sprite->getPositionY() > ThirdLevelPos.y)
-			{
-				sprite->setPositionY(sprite->getPositionY() - 4.0f);
-			}
-
-			if (sprite->getPositionZ() < ThirdLevelPos.z)
-			{
-				sprite->setPositionZ(sprite->getPositionZ() + 4.0f);
-			}
-			if (sprite->getPositionZ() > ThirdLevelPos.z)
-			{
-				sprite->setPositionZ(sprite->getPositionZ() - 4.0f);
-			}
+			_AllLevels[i]._Sprite->setScale(_AllLevels[i]._Scale.y);
+			_AllLevels[i]._Destination = _LevelPositions[i];
 		}
 	}
-	if (LevelSelected == 3)
+	for (int i = 0; i < _AllLevels.size(); i++)
 	{
-		if (sprite3->getPosition3D() != SelectedLevelPos)
+		Vec3 _Position = _AllLevels[i]._Sprite->getPosition3D();
+		if (_Position != _AllLevels[i]._Destination)
 		{
-			if (sprite3->getPositionX() < SelectedLevelPos.x)
+			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5 && _Position.y + 5 < _AllLevels[i]._Destination.y - 5)
 			{
-				sprite3->setPositionX(sprite3->getPositionX() + 4.0f);
+				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x - _LevelMovementSpeed), _Position.y, _Position.z));
 			}
-			if (sprite3->getPositionX() > SelectedLevelPos.x)
+			if (_Position.x + 5  < _AllLevels[i]._Destination.x - 5)
 			{
-				sprite3->setPositionX(sprite3->getPositionX() - 4.0f);
+				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x + _LevelMovementSpeed), _Position.y, _Position.z));
 			}
-
-			if (sprite3->getPositionY() < SelectedLevelPos.y)
+			if (_Position.y - 5  > _AllLevels[i]._Destination.y + 5)
 			{
-				sprite3->setPositionY(sprite3->getPositionY() + 4.0f);
+				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, (_Position.y - _LevelMovementSpeed), _Position.z));
 			}
-			if (sprite3->getPositionY() > SelectedLevelPos.y)
+			if (_Position.y + 5 < _AllLevels[i]._Destination.y - 5)
 			{
-				sprite3->setPositionY(sprite3->getPositionY() - 4.0f);
+				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, (_Position.y + _LevelMovementSpeed), _Position.z));
 			}
-
-			if (sprite3->getPositionZ() < SelectedLevelPos.z)
+			if (_Position.z - 5  > _AllLevels[i]._Destination.z + 5)
 			{
-				sprite3->setPositionZ(sprite3->getPositionZ() + 4.0f);
+				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, _Position.y, (_Position.z - _LevelMovementSpeed)));
 			}
-			if (sprite3->getPositionZ() > SelectedLevelPos.z)
+			if (_Position.z + 5 < _AllLevels[i]._Destination.z - 5)
 			{
-				sprite3->setPositionZ(sprite3->getPositionZ() - 4.0f);
-			}
-		}
-
-		if (sprite->getPosition3D() != SecondLevelPos)
-		{
-			if (sprite->getPositionX() < SecondLevelPos.x)
-			{
-				sprite->setPositionX(sprite->getPositionX() + 4.0f);
-			}
-			if (sprite->getPositionX() > SecondLevelPos.x)
-			{
-				sprite->setPositionX(sprite->getPositionX() - 4.0f);
-			}
-
-			if (sprite->getPositionY() < SecondLevelPos.y)
-			{
-				sprite->setPositionY(sprite->getPositionY() + 4.0f);
-			}
-			if (sprite->getPositionY() > SecondLevelPos.y)
-			{
-				sprite->setPositionY(sprite->getPositionY() - 4.0f);
-			}
-
-			if (sprite->getPositionZ() < SecondLevelPos.z)
-			{
-				sprite->setPositionZ(sprite->getPositionZ() + 4.0f);
-			}
-			if (sprite->getPositionZ() > SecondLevelPos.z)
-			{
-				sprite->setPositionZ(sprite->getPositionZ() - 4.0f);
-			}
-		}
-
-		if (sprite2->getPosition3D() != ThirdLevelPos)
-		{
-			if (sprite2->getPositionX() < ThirdLevelPos.x)
-			{
-				sprite2->setPositionX(sprite2->getPositionX() + 4.0f);
-			}
-			if (sprite2->getPositionX() > ThirdLevelPos.x)
-			{
-				sprite2->setPositionX(sprite2->getPositionX() - 4.0f);
-			}
-
-			if (sprite2->getPositionY() < ThirdLevelPos.y)
-			{
-				sprite2->setPositionY(sprite2->getPositionY() + 4.0f);
-			}
-			if (sprite2->getPositionY() > ThirdLevelPos.y)
-			{
-				sprite2->setPositionY(sprite2->getPositionY() - 4.0f);
-			}
-
-			if (sprite2->getPositionZ() < ThirdLevelPos.z)
-			{
-				sprite2->setPositionZ(sprite2->getPositionZ() + 4.0f);
-			}
-			if (sprite2->getPositionZ() > ThirdLevelPos.z)
-			{
-				sprite2->setPositionZ(sprite2->getPositionZ() - 4.0f);
+				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, _Position.y, (_Position.z + _LevelMovementSpeed)));
 			}
 		}
 	}
@@ -697,68 +289,27 @@ void LevelSelect::LevelMovement()
 
 void LevelSelect::update(float delta)
 {
-	if (rotation1 > 360)
+	for (int i = 0; i < _AllLevels.size(); i++)
 	{
-		rotation1 = 0;
-	}	
-	if (rotation2 > 360)
-	{
-		rotation2 = 0;
-	}	
-	if (rotation3 > 360)
-	{
-		rotation3 = 0;
-	}	
-	if (levelSelectRotation > 360)
-	{
-		levelSelectRotation = 0;
-	}
-
-	if (SceneSelected == 1)
-	{
-		levelSelectRotation = 0;
-	}
-	if (SceneSelected == 2)
-	{
-		levelSelectRotation = 90;
-	}
-	if (SceneSelected == 3)
-	{
-		levelSelectRotation = 180;
-	}
-
-	if (SceneSelected > 3)
-	{
-		SceneSelected = 1;
-	}
-	if (SceneSelected < 1)
-	{
-		SceneSelected = 3;
-	}
-
-
-	for (int i = 0; i < 25; i++)
-	{
-		stars[i]->update(delta, touchMGR->totalDiff);
-		float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-		stars[i]->sprite->setPositionX(stars[i]->sprite->getPositionX() - r);
-		//stars[i]->sprite->setRotation3D(Vec3(rotation1, rotation2, rotation3));
-		if (stars[i]->sprite->getPositionX() < 0 - 100)
+		if (_AllLevels[i]._Rotation > 360)
 		{
-			stars[i]->sprite->setPositionX(screenSizeX + 200);
-			stars[i]->sprite->setPositionY(rand() % screenSizeY);
-			stars[i]->sprite->setPositionZ(rand() % 300);
+			_AllLevels[i]._Rotation = 0;
 		}
+		_AllLevels[i]._RotationAngles.x += 0.5f;
+		_AllLevels[i]._RotationAngles.z += 0.2f;
+		_AllLevels[i]._Sprite->setRotation3D(Vec3(_AllLevels[i]._RotationAngles.x, 0, _AllLevels[i]._RotationAngles.z * 0.24f));
 	}
+	_AllLevels[0]._Rotation = _AllLevels[0]._Rotation + 1;
+
 	LevelScaling();
-	LevelRotation();
+	//LevelRotation();
 	LevelMovement();
 }
 
 void LevelSelect::GoToGameScene(cocos2d::Ref *sender)
 {
 	//auto scene = SceneManager::createScene(SceneSelected);
-	auto scene = SceneManager::createScene(5);
+	auto scene = SceneManager::createScene(LevelSelected);
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
@@ -766,52 +317,19 @@ void LevelSelect::GoToGameScene(cocos2d::Ref *sender)
 bool LevelSelect::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	cocos2d::Vec2 p = touch->getLocation();
-	cocos2d::Rect rect = sprite->getBoundingBox();
-
-	if (rect.containsPoint(p))
+	
+	for (int i = 0; i < LEVELCOUNT; i++)
 	{
-		sprite->setTexture("World1-Highlighted.png");
-		LevelSelected = 1;
-		sprite->setTexture("World1-Highlighted.png");
-		sprite3->setTexture("World3.png");
-		sprite2->setTexture("World2.png");
-	}
-	else
-	{
-		sprite->setTexture("World1.png");
-	}
-	cocos2d::Rect rect2 = sprite2->getBoundingBox();
-
-	if (rect2.containsPoint(p))
-	{
-		sprite2->setTexture("World2-Highlighted.png");
-		LevelSelected = 2;
-		sprite2->setTexture("World2-Highlighted.png");
-		sprite->setTexture("World1.png");
-		sprite3->setTexture("World3.png");
-	}
-	else
-	{
-		sprite2->setTexture("World2.png");
-	}
-
-	cocos2d::Rect rect3 = sprite3->getBoundingBox();
-
-	if (rect3.containsPoint(p))
-	{
-		sprite3->setTexture("World3-Highlighted.png");
-		LevelSelected = 3;
-		sprite->setTexture("World1.png");
-		sprite2->setTexture("World2.png");
-	}
-	else
-	{
-		sprite3->setTexture("World3.png");
-	}
-
-	for (int i = 0; i < 25; i++)
-	{
-		stars[i]->Collision(touch);
+		cocos2d::Rect rect = _AllLevels[i]._Sprite->getBoundingBox();
+		if (rect.containsPoint(p))
+		{
+			LevelSelected = i;
+			_AllLevels[i]._IsFocused = true;
+		}
+		else
+		{
+			_AllLevels[i]._IsFocused = false;
+		}
 	}
 	return true;
 

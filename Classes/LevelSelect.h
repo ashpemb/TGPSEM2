@@ -13,9 +13,26 @@
 #include "TouchManager.h"
 #include "ScalingObject.h"
 
+#define Pi 3.14159265
+#define LEVELCOUNT 8
+#define GALAXYCOUNT 14
 class LevelSelect : public cocos2d::Layer
 {
 public:
+	struct Level
+	{
+		int _ID;
+		std::string _CustomLevelName;
+		Sprite3D* _Sprite;
+		Vec3 _Scale;
+		float _Rotation;
+		Vec3 _RotationAngles;
+		bool _IsFocused;
+		Vec3 _Destination;
+		int _StarRating;
+		std::string _BestTimeMinutes;
+		std::string _BestTimeSeconds;
+	};
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
 	static cocos2d::Scene* createScene();
 
@@ -39,6 +56,15 @@ public:
 	// implement the "static create()" method manually
 	CREATE_FUNC(LevelSelect);
 private:
+	std::vector<Vec3> _LevelPositions;
+	std::vector<Level> _AllLevels;
+	Vec3 _FocusedDestination;
+	float _LevelMovementSpeed;
+	ScoreManager* _ScoreManager;
+	int LevelSelected;
+	Sprite* _InfoBox;
+	Sprite* _Background;
+	std::vector<ParticleGalaxy*> _GalaxyParticle;
 };
 
 #endif // __LevelSelect_SCENE_H__

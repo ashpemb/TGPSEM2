@@ -6,13 +6,14 @@
 #include "cocostudio/CCComExtensionData.h"
 #include <cstdlib>
 #include <ctime>
+#include "AudioEngine.h"
 USING_NS_CC;
 
 class SwitchTimer : public Node
 {
 private:
 	cocos2d::ui::CheckBox* _gravSwitchTimer;
-
+	AudioEngine* auManager;
 	// Gravity Orientation: 0 = Down; 1 = Left; 2 = Up; 3 = Right;
 	int _orientation;
 	float _timerDefault;
@@ -23,6 +24,8 @@ private:
 	bool _isTimerStarted;
 	bool _isEnabled;
 	bool _revertGravity;
+	bool _isTimerPlaying;
+	int _tickerSoundID;
 public:
 	SwitchTimer();
 	~SwitchTimer();
@@ -31,7 +34,7 @@ public:
 	void update(float delta);
 
 	virtual bool init() override;
-
+	void UpdateAudio(float dt);
 	void SetOrientation(int orientation) { _orientation = orientation; };
 	int GetOrientation() { return _orientation; };
 
