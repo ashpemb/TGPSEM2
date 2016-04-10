@@ -66,6 +66,10 @@ private:
 	Sprite* _Background;
 	Size winSize;
 	std::vector<ParticleGalaxy*> _GalaxyParticle;
+	cocos2d::ui::Button*	_startGame;
+	Label* labelTouchInfo;
+	int screenSizeY;
+	int screenSizeX;
 };
 
 #endif // __LevelSelect_SCENE_H__

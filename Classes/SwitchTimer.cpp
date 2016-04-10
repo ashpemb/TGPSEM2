@@ -37,7 +37,7 @@ bool SwitchTimer::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin(); //Gets the origin of the screen
 
 	this->scheduleUpdate();
-	this->schedule(schedule_selector(SwitchTimer::UpdateAudio), 1.0f);
+	this->schedule(schedule_selector(SwitchTimer::UpdateAudio), 0.5f);
 
 	return true;
 }
