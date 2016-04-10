@@ -18,6 +18,7 @@
 #include "Door.h"
 #include "Wall.h"
 #include "SwitchTimer.h"
+#include "MenuScene.h"
 
 USING_NS_CC;
 
@@ -129,6 +130,8 @@ private:
 	cocos2d::Vec2	_initialTouchPos;
 	bool			isObjectTouched;
 
+	bool exists;
+
 
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -157,6 +160,8 @@ public:
 	void IsPlayerInBounds();
 	void IsCrateInBounds();
 	void RevertGravity();
+
+	bool CheckNode();
 
 	// implement the "static create()" method manually
 	//CREATE_FUNC(Scene1);

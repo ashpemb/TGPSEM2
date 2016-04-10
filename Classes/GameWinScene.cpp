@@ -181,9 +181,20 @@ void GameWinScene::NextLevelButtonPressed(Ref *pSender, cocos2d::ui::Widget::Tou
 
 		else
 		{
-			GameManager::sharedGameManager()->setCurrentLevel(GameManager::sharedGameManager()->getCurrentLevel() +1);
+			GameManager::sharedGameManager()->setCurrentLevel(GameManager::sharedGameManager()->getCurrentLevel() + 1);
 			auto scene = SceneManager::createScene(GameManager::sharedGameManager()->getCurrentLevel());
-			Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
+
+			if ((scene == nullptr)) 
+			{
+				auto scene = MenuScene::createScene();
+				Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
+			}
+			else 
+			{	
+				GameManager::sharedGameManager()->setCurrentLevel(GameManager::sharedGameManager()->getCurrentLevel() +1);
+				auto scene = SceneManager::createScene(GameManager::sharedGameManager()->getCurrentLevel());
+				Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
+			}
 		}
 	}
 }

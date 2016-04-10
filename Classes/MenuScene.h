@@ -63,8 +63,6 @@ private:
 	float _rotatePlanetTimerDefault;
 	float _rotatePlanetTimer;
 
-	SceneManager * gameScene;
-
 	AudioEngine*			auEngine;
 	bool muted;
 };

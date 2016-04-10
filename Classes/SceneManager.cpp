@@ -43,6 +43,14 @@ bool SceneManager::init()
 
 	rootNode = CSLoader::createNode("Levels/Scene" + StringUtils::format("%d", _level) + ".csb");
 
+	exists = CheckNode();
+
+	if (!exists)
+	{
+		auto scene = MenuScene::createScene();
+		return false;
+	}
+
 	addChild(rootNode);
 
 	this->scheduleUpdate();
@@ -79,6 +87,18 @@ bool SceneManager::init()
 
 	return true;
 		
+}
+
+bool SceneManager::CheckNode()
+{
+	if (rootNode == nullptr)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 void SceneManager::SetupTouches()
