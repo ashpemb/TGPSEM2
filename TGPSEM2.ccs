@@ -22,14 +22,14 @@
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
         <Folder Name="Levels">
-          <Project Name="Scene3.csd" Type="Scene" />
-          <Project Name="Scene4.csd" Type="Scene" />
-          <Project Name="Scene2.csd" Type="Scene" />
           <Project Name="Scene1.csd" Type="Scene" />
           <Project Name="Sceneold3.csd" Type="Scene" />
           <Project Name="Sceneold2.csd" Type="Scene" />
           <Project Name="SceneTest.csd" Type="Scene" />
           <Project Name="Scene8.csd" Type="Scene" />
+          <Project Name="Scene3.csd" Type="Scene" />
+          <Project Name="Scene4.csd" Type="Scene" />
+          <Project Name="Scene2.csd" Type="Scene" />
         </Folder>
         <Folder Name="Main Objects">
           <Image Name="Button_Down_Pressed.png" />
@@ -66,6 +66,12 @@
           <Image Name="Test.png" />
           <Image Name="Wall 2.png" />
           <Image Name="Temp_Art.png" />
+          <Image Name="Husky_Run_1.png" />
+          <Image Name="Husky_Run_2.png" />
+          <Image Name="Husky_Run_3.png" />
+          <Image Name="Husky_Run_4.png" />
+          <Image Name="Husky_Run_5.png" />
+          <Image Name="Husky_Run_6.png" />
         </Folder>
         <Folder Name="Level Backgrounds">
           <Image Name="Main BG.png" />
@@ -90,6 +96,115 @@
         <Image Name="RetryButton.png" />
         <Image Name="MenuButton.png" />
         <Project Name="GameWin.csd" Type="Scene" />
+        <Image Name="Husky Base.png" />
+        <Folder Name="Art">
+          <Folder Name="Art">
+            <Image Name="Cabinet.png" />
+            <Image Name="Detail.png" />
+            <Image Name="Door.png" />
+            <Image Name="Husky Base.png" />
+            <Image Name="Light 2.png" />
+            <Image Name="Light.png" />
+            <Image Name="One.png" />
+            <Image Name="Panel 1.png" />
+            <Image Name="Panel 10.png" />
+            <Image Name="Panel 11.png" />
+            <Image Name="Panel 12.png" />
+            <Image Name="Panel 13.png" />
+            <Image Name="Panel 2.png" />
+            <Image Name="Panel 3.png" />
+            <Image Name="Panel 4.png" />
+            <Image Name="Panel 5.png" />
+            <Image Name="Panel 6.png" />
+            <Image Name="Panel 7.png" />
+            <Image Name="Panel 8.png" />
+            <Image Name="Panel 9.png" />
+            <Image Name="Panel.png" />
+            <Image Name="Side Panel 1.png" />
+            <Image Name="Space Port (Small).png" />
+            <Image Name="Two.png" />
+            <Image Name="Window Large.png" />
+            <Image Name="Wires.png" />
+            <Image Name="Zero.png" />
+            <Image Name="Vent.png" />
+            <Image Name="Stacked Crate.png" />
+            <Image Name="Stacked Crates.png" />
+            <Image Name="L1.png" />
+            <Image Name="FR.png" />
+            <Image Name="Pipe.png" />
+            <Image Name="Danger.png" />
+            <Image Name="Wires 2.png" />
+            <Image Name="Holo.png" />
+          </Folder>
+          <Image Name="Cabinet.png" />
+          <Image Name="Detail.png" />
+          <Image Name="Door.png" />
+          <Image Name="Husky Base.png" />
+          <Image Name="Light 2.png" />
+          <Image Name="Light.png" />
+          <Image Name="One.png" />
+          <Image Name="Panel 1.png" />
+          <Image Name="Panel 10.png" />
+          <Image Name="Panel 11.png" />
+          <Image Name="Panel 12.png" />
+          <Image Name="Panel 13.png" />
+          <Image Name="Panel 2.png" />
+          <Image Name="Panel 3.png" />
+          <Image Name="Panel 4.png" />
+          <Image Name="Panel 5.png" />
+          <Image Name="Panel 6.png" />
+          <Image Name="Panel 7.png" />
+          <Image Name="Panel 8.png" />
+          <Image Name="Panel 9.png" />
+          <Image Name="Panel.png" />
+          <Image Name="Side Panel 1.png" />
+          <Image Name="Space Port (Small).png" />
+          <Image Name="Two.png" />
+          <Image Name="Window Large.png" />
+          <Image Name="Wires.png" />
+          <Image Name="Zero.png" />
+          <Image Name="Detail 2.png" />
+          <Image Name="Detail 3.png" />
+          <Image Name="Ladder Med.png" />
+          <Image Name="Space Port (Large).png" />
+          <Image Name="Most Wanted (Josh).png" />
+          <Image Name="Drill.png" />
+          <Image Name="Hammer.png" />
+          <Image Name="Phone.png" />
+          <Image Name="Small Locked Box.png" />
+          <Image Name="Wrench.png" />
+          <Image Name="Locker.png" />
+          <Image Name="Locked Locker.png" />
+          <Image Name="Clone.png" />
+          <Image Name="Sector.png" />
+          <Image Name="eq.png" />
+          <Image Name="Computers.png" />
+          <Image Name="Window Small.png" />
+          <Image Name="WE.png" />
+          <Image Name="NT.png" />
+          <Image Name="Chair.png" />
+          <Image Name="Table.png" />
+          <Image Name="RedWire.png" />
+          <Image Name="Blue m.png" />
+          <Image Name="Blue.png" />
+          <Image Name="Green.png" />
+          <Image Name="Yellow m.png" />
+          <Image Name="Yellow.png" />
+          <Image Name="RedWire M.png" />
+          <Image Name="Blue s.png" />
+          <Image Name="RedWire S.png" />
+          <Image Name="Green M.png" />
+          <Image Name="Green S.png" />
+          <Image Name="Purple M.png" />
+          <Image Name="Purple S.png" />
+          <Image Name="Purple.png" />
+          <Image Name="Rifle.png" />
+          <Image Name="Power.png" />
+          <Image Name="Bg 1.png" />
+          <Image Name="Vent 2.png" />
+          <Image Name="Eyes.png" />
+          <Image Name="Daisy.png" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

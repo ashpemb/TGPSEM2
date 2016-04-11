@@ -14,62 +14,50 @@
 #include "ScalingObject.h"
 
 #define Pi 3.14159265
-#define LEVELCOUNT 8
+#define LEVELCOUNT 4
 #define GALAXYCOUNT 14
+
+struct Level
+{
+	int			_ID;
+	std::string _CustomLevelName;
+	Sprite3D*	_Sprite;
+	Vec3		_Scale;
+	float		_Rotation;
+	Vec3		_RotationAngles;
+	bool		_IsFocused;
+	Vec3		_Destination;
+	int			_StarRating;
+	std::string _BestTimeMinutes;
+	std::string _BestTimeSeconds;
+};
+
 class LevelSelect : public cocos2d::Layer
 {
-public:
-	struct Level
-	{
-		int _ID;
-		std::string _CustomLevelName;
-		Sprite3D* _Sprite;
-		Vec3 _Scale;
-		float _Rotation;
-		Vec3 _RotationAngles;
-		bool _IsFocused;
-		Vec3 _Destination;
-		int _StarRating;
-		std::string _BestTimeMinutes;
-		std::string _BestTimeSeconds;
-	};
-	// there's no 'id' in cpp, so we recommend returning the class instance pointer
-	static cocos2d::Scene* createScene();
-
-	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-	virtual bool init();
-	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchCancelled(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onAcceleration(cocos2d::Acceleration* accel, cocos2d::Event* event);
-	void update(float);
-	void UpdateTimer(float dt);
-	void GoToGameScene(cocos2d::Ref *sender);
-	void LevelLeft(cocos2d::Ref *sender);
-	void LevelRight(cocos2d::Ref *sender);
-	void LevelMovement(); 
-	void LevelRotation();
-	void LevelScaling();
-	TouchManager* touchMGR;
-	float accelRotation;
-	// implement the "static create()" method manually
-	CREATE_FUNC(LevelSelect);
 private:
-	std::vector<Vec3> _LevelPositions;
-	std::vector<Level> _AllLevels;
-	Vec3 _FocusedDestination;
-	float _LevelMovementSpeed;
-	ScoreManager* _ScoreManager;
-	int LevelSelected;
-	Sprite* _InfoBox;
-	Sprite* _Background;
-	std::vector<ParticleGalaxy*> _GalaxyParticle;
+	// Level Data
+	ScoreManager*		_ScoreManager;
+	Sprite*				_InfoBox;
+	std::vector<Vec3>	_LevelPositions;
+	std::vector<Level>	_AllLevels;
 
-	cocos2d::Sprite*				_logo;
+	Vec3				_FocusedDestination;
+	float				_LevelMovementSpeed;
+	int					LevelSelected;
+
+	int timer;
+	// Buttons
+	cocos2d::ui::Button*	_startGame;
+	Label*					labelTouchInfo;
+
+	// Background and screen
+	Sprite*							_Background;
 	cocos2d::Sprite*				_planet;
 	cocos2d::Sprite*				_ship;
 	std::vector<cocos2d::Sprite*>	_stars;
+	std::vector<ParticleGalaxy*>	_GalaxyParticle;
+	int								screenSizeY;
+	int								screenSizeX;
 
 	float _rotatePlanetTimerDefault;
 	float _rotatePlanetTimer;
@@ -77,6 +65,38 @@ private:
 	float _rotateShipTimerDefault;
 	float _rotateShipTimer;
 	bool _rotateShipLeft;
+public:
+	// there's no 'id' in cpp, so we recommend returning the class instance pointer
+	static cocos2d::Scene* createScene();
+
+	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
+	virtual bool init();
+
+	void update(float);
+	void UpdateTimer(float dt);
+
+	// Touch Methods
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchCancelled(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onAcceleration(cocos2d::Acceleration* accel, cocos2d::Event* event);
+
+	// World Cube Methods
+	void LevelLeft(cocos2d::Ref *sender);
+	void LevelRight(cocos2d::Ref *sender);
+	void LevelMovement(); 
+	void LevelRotation();
+	void LevelScaling();
+	
+	void GoToGameScene(cocos2d::Ref *sender);
+
+	TouchManager* touchMGR;
+	float accelRotation;
+
+	// implement the "static create()" method manually
+	CREATE_FUNC(LevelSelect);
+
 };
 
 #endif // __LevelSelect_SCENE_H__

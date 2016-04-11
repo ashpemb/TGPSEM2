@@ -12,6 +12,10 @@ class Player : public Node
 private:
 	// Sprite
 	Sprite* _playerSprite;
+	int _frame;
+	bool _running;
+	float _spriteTimer;
+	float _spriteTimerDefault = 1.0f / 12.0f;
 
 	// Gravity variables
 	float	_timeFalling;

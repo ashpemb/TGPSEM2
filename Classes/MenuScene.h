@@ -76,8 +76,6 @@ private:
 	bool _opacityButtonUp;
 	bool _moveButtonUp;
 
-	SceneManager * gameScene;
-
 	AudioEngine*			auEngine;
 	bool muted;
 };

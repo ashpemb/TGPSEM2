@@ -165,10 +165,8 @@ bool MenuScene::init()
 
 	if (GameManager::sharedGameManager()->getIsGameMuted() == false)
 
-	{
-		
+	{	
 		auEngine->PlayBackgroundMusic("menu.mp3", true);
-		
 	}
 
 	return true;
