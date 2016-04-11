@@ -52,7 +52,6 @@ void AudioEngine::PlayBackgroundMusic(std::string fileLocation, bool loop)
 		const char * c = fileLocation.c_str();
 
 		audioManager->getInstance()->playBackgroundMusic(c, true);
-//	}
 }
 
 void AudioEngine::SetBackgroundVolume(float volume)
