@@ -167,6 +167,11 @@
           <Image Name="RedWire M.png" />
           <Image Name="Blue s.png" />
           <Image Name="RedWire S.png" />
+          <Image Name="Green M.png" />
+          <Image Name="Green S.png" />
+          <Image Name="Purple M.png" />
+          <Image Name="Purple S.png" />
+          <Image Name="Purple.png" />
         </Folder>
       </RootFolder>
     </Group>
