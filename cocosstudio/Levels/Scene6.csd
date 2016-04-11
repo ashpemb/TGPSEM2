@@ -716,7 +716,7 @@
             <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Right_On.png" Plist="" />
             <DisableBackFileData Type="Normal" Path="Main Objects/Switch_Right_Off.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_Down_3" ActionTag="-381437826" Tag="212" IconVisible="False" LeftMargin="55.1952" RightMargin="1974.8048" TopMargin="1045.1997" BottomMargin="455.8002" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_Down_3" ActionTag="-381437826" Tag="212" IconVisible="False" LeftMargin="55.1952" RightMargin="1974.8048" TopMargin="1045.1998" BottomMargin="455.8002" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="18.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="64.1952" Y="473.3002" />
@@ -750,7 +750,7 @@
             <FileData Type="Normal" Path="Main Objects/Temp_Art.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Temp_Art_66_1" ActionTag="531725331" Tag="216" IconVisible="False" LeftMargin="1833.1396" RightMargin="205.8604" TopMargin="1269.9680" BottomMargin="254.0319" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Temp_Art_66_1" ActionTag="531725331" Tag="216" IconVisible="False" LeftMargin="1833.1396" RightMargin="205.8604" TopMargin="1269.9681" BottomMargin="254.0319" ctype="SpriteObjectData">
             <Size X="9.0000" Y="12.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1837.6396" Y="260.0319" />
@@ -814,6 +814,28 @@
             <PrePosition X="0.6368" Y="0.8656" />
             <PreSize X="0.0044" Y="0.0078" />
             <FileData Type="Normal" Path="Main Objects/Temp_Art.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Sector_66" ActionTag="790741411" Alpha="178" Tag="428" IconVisible="False" LeftMargin="238.5884" RightMargin="1694.4116" TopMargin="805.3910" BottomMargin="705.6090" ctype="SpriteObjectData">
+            <Size X="115.0000" Y="25.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="296.0884" Y="718.1090" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1446" Y="0.4675" />
+            <PreSize X="0.0562" Y="0.0163" />
+            <FileData Type="Normal" Path="Art/Sector.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="NT_67" ActionTag="-892085796" Alpha="178" Tag="429" IconVisible="False" LeftMargin="374.9404" RightMargin="1638.0596" TopMargin="805.3900" BottomMargin="705.6100" ctype="SpriteObjectData">
+            <Size X="35.0000" Y="25.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="392.4404" Y="718.1100" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1916" Y="0.4675" />
+            <PreSize X="0.0171" Y="0.0163" />
+            <FileData Type="Normal" Path="Art/NT.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>

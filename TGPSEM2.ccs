@@ -108,6 +108,7 @@
             <Image Name="Stacked Crates.png" />
             <Image Name="L1.png" />
             <Image Name="FR.png" />
+            <Image Name="Pipe.png" />
           </Folder>
           <Image Name="Cabinet.png" />
           <Image Name="Detail.png" />
@@ -153,6 +154,19 @@
           <Image Name="eq.png" />
           <Image Name="Computers.png" />
           <Image Name="Window Small.png" />
+          <Image Name="WE.png" />
+          <Image Name="NT.png" />
+          <Image Name="Chair.png" />
+          <Image Name="Table.png" />
+          <Image Name="RedWire.png" />
+          <Image Name="Blue m.png" />
+          <Image Name="Blue.png" />
+          <Image Name="Green.png" />
+          <Image Name="Yellow m.png" />
+          <Image Name="Yellow.png" />
+          <Image Name="RedWire M.png" />
+          <Image Name="Blue s.png" />
+          <Image Name="RedWire S.png" />
         </Folder>
       </RootFolder>
     </Group>
