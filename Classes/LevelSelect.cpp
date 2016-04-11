@@ -3,10 +3,6 @@
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
-Label* labelTouchInfo;
-int screenSizeY;
-int screenSizeX;
-int timer;
 
 Scene* LevelSelect::createScene()
 {
@@ -55,92 +51,7 @@ bool LevelSelect::init()
 	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 
 	this->schedule(schedule_selector(LevelSelect::UpdateTimer), 1.0f);
-	/*_Background = Sprite::create("LevelSelect/Background.png");
-	_Background->setGlobalZOrder(0);
-	_Background->setScale(4);
-	_Background->setPosition3D(Vec3(screenSizeX, screenSizeY, -750));
-	addChild(_Background);*/
-	/*for (int i = 0; i < GALAXYCOUNT; i++)
-	{
-		ParticleGalaxy* temp = ParticleGalaxy::create();
-		temp->setScale(rand() % 3);
-		temp->setGlobalZOrder(10+i);
-		temp->setPosition3D(Vec3(rand() % screenSizeX,rand() % screenSizeY,-750));
-		_GalaxyParticle.push_back(temp);
-		addChild(_GalaxyParticle[i]);
-	}*/
-	float segdeg = 2 * Pi / LEVELCOUNT;
-	for (int i = 0; i < LEVELCOUNT; i++)
-	{
-		_LevelPositions.push_back(Vec3(sin(segdeg*i) * 640 + screenSizeX / 2, ((screenSizeY / 2) - 250), cos(segdeg*i) * 640));
-	}
-	for (int i = 0; i < LEVELCOUNT; i++)
-	{
-		Level temp;
-		temp._ID = i+1;
-		temp._CustomLevelName = "-";
-		temp._Scale = Vec3(100, 80, 60);
-		temp._Sprite = Sprite3D::create("cube.obj", "Level1Preview.png");
-		temp._Sprite->setGlobalZOrder(i+40);
-		temp._Sprite->setScale(temp._Scale.z);
-		temp._Sprite->setPosition3D(_LevelPositions[i]);
-		temp._IsFocused = false;
-		temp._RotationAngles = Vec3(0, 0, 0);
-		temp._RotationAngles.z = rand() % 1000 - 500;
-		temp._StarRating = _ScoreManager->getStarFromFile(temp._ID);
-		temp._BestTimeMinutes = _ScoreManager->getMinutesFromFile(temp._ID);
-		temp._BestTimeSeconds = _ScoreManager->getSecondsFromFile(temp._ID);
-		_AllLevels.push_back(temp);
-	}
-	_AllLevels[0]._CustomLevelName = "Where it all began.";
-	for (int i = 0; i < LEVELCOUNT; i++)
-	{
-		addChild(_AllLevels[i]._Sprite);
-	}
 
-	_InfoBox = Sprite::create("TempInfoBox.png");
-	_InfoBox->setPosition(Vec2(screenSizeX / 2, screenSizeY - 100));
-	_InfoBox->setScale(0.75f,0.5f);
-	_InfoBox->setGlobalZOrder(1);
-	addChild(_InfoBox);
-	touchMGR = new TouchManager;
-	auto touchesListener = EventListenerTouchAllAtOnce::create();
-
-	touchesListener->onTouchesBegan = CC_CALLBACK_2(TouchManager::onTouchesBegan, touchMGR);
-	touchesListener->onTouchesEnded = CC_CALLBACK_2(TouchManager::onTouchesEnded, touchMGR);
-	touchesListener->onTouchesMoved = CC_CALLBACK_2(TouchManager::onTouchesMoved, touchMGR);
-	touchesListener->onTouchesCancelled = CC_CALLBACK_2(TouchManager::onTouchesCancelled, touchMGR);
-
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchesListener, this);
-	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchesListener, this);
-
-	labelTouchInfo = Label::create();
-	labelTouchInfo->setPosition(Vec2(screenSizeX/2, screenSizeY -100));
-	labelTouchInfo->setSystemFontName("Franklin Gothic");
-	labelTouchInfo->setSystemFontSize(36);
-	labelTouchInfo->setGlobalZOrder(3);
-	//auto _textureCube = TextureCube::create("bluecloud_lf.jpg", "bluecloud_rt.jpg",
-	//	"bluecloud_dn.png", "bluecloud_up.jpg", "bluecloud_ft.jpg", "bluecloud_bk.jpg");
-
-	//Texture2D::TexParams tRepeatParams;
-	//tRepeatParams.magFilter = GL_NEAREST;
-	//tRepeatParams.minFilter = GL_NEAREST;
-	//tRepeatParams.wrapS = GL_MIRRORED_REPEAT;
-	//tRepeatParams.wrapT = GL_MIRRORED_REPEAT;
-	//_textureCube->setTexParameters(tRepeatParams);
-
-	//auto shader = GLProgram::createWithFilenames("cube_map.vert", "cube_map.frag");
-	//auto _state = GLProgramState::create(shader);
-
-	//_state->setUniformTexture("u_cubeTex", _textureCube);
-	//
-	//sprite->setTexture(_textureCube);
-	//addChild(sprite);
-	addChild(labelTouchInfo);
-
-	LevelSelected = 0;
-	timer = 0;
-	_LevelMovementSpeed = 3.25f;
 
 	_planet = Sprite::create("Planet.png");
 	_planet->setPosition(Vec2(0.0f, 0.0f - (_planet->getContentSize().height / 8)));
@@ -173,27 +84,91 @@ bool LevelSelect::init()
 	_rotateShipTimer = 0.0f;
 	_rotateShipLeft = true;
 
-	auto playItem = MenuItemImage::create("Play Button.png", "Play Button Clicked.png", CC_CALLBACK_1(LevelSelect::GoToGameScene, this));
+
+	float segdeg = 2 * Pi / LEVELCOUNT;
+	for (int i = 0; i < LEVELCOUNT; i++)
+	{
+		_LevelPositions.push_back(Vec3(sin(segdeg*i) * 640 + screenSizeX / 2, ((screenSizeY / 2) - 250), cos(segdeg*i) * 640));
+	}
+	for (int i = 0; i < LEVELCOUNT; i++)
+	{
+		Level temp;
+		temp._ID = i+1;
+		temp._CustomLevelName = "-";
+		temp._Scale = Vec3(100, 80, 60);
+		temp._Sprite = Sprite3D::create("cube.obj", "Level1Preview.png");
+		temp._Sprite->setGlobalZOrder(i+40);
+		temp._Sprite->setScale(temp._Scale.z);
+		temp._Sprite->setPosition3D(_LevelPositions[i]);
+		temp._IsFocused = false;
+		temp._RotationAngles = Vec3(0, 0, 0);
+		temp._RotationAngles.z = rand() % 1000 - 500;
+		temp._StarRating = _ScoreManager->getStarFromFile(temp._ID);
+		temp._BestTimeMinutes = _ScoreManager->getMinutesFromFile(temp._ID);
+		temp._BestTimeSeconds = _ScoreManager->getSecondsFromFile(temp._ID);
+		_AllLevels.push_back(temp);
+	}
+
+	_AllLevels[0]._CustomLevelName = "Learning to Walk";
+	_AllLevels[1]._CustomLevelName = "Topsy-Turvy";
+	_AllLevels[2]._CustomLevelName = "Open Sesame";
+	_AllLevels[3]._CustomLevelName = "The Depths Above";
+
+	for (int i = 0; i < LEVELCOUNT; i++)
+	{
+		addChild(_AllLevels[i]._Sprite);
+	}
+
+	_InfoBox = Sprite::create("TempInfoBox.png");
+	_InfoBox->setPosition(Vec2(screenSizeX / 2, screenSizeY - 100));
+	_InfoBox->setScale(0.75f,0.5f);
+	_InfoBox->setGlobalZOrder(1);
+	addChild(_InfoBox);
+	touchMGR = new TouchManager;
+	auto touchesListener = EventListenerTouchAllAtOnce::create();
+
+	touchesListener->onTouchesBegan = CC_CALLBACK_2(TouchManager::onTouchesBegan, touchMGR);
+	touchesListener->onTouchesEnded = CC_CALLBACK_2(TouchManager::onTouchesEnded, touchMGR);
+	touchesListener->onTouchesMoved = CC_CALLBACK_2(TouchManager::onTouchesMoved, touchMGR);
+	touchesListener->onTouchesCancelled = CC_CALLBACK_2(TouchManager::onTouchesCancelled, touchMGR);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchesListener, this);
+	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchesListener, this);
+
+	labelTouchInfo = Label::create();
+	labelTouchInfo->setPosition(Vec2(screenSizeX/2, screenSizeY -100));
+	labelTouchInfo->setSystemFontName("Franklin Gothic");
+	labelTouchInfo->setSystemFontSize(36);
+	labelTouchInfo->setGlobalZOrder(3);
+	addChild(labelTouchInfo);
+
+
 	auto leftItem = MenuItemImage::create("Left.png", "Left2.png", CC_CALLBACK_1(LevelSelect::LevelLeft, this));
-	leftItem->setPosition(Vec2(-840, screenSizeY - 300));
-	playItem->setGlobalZOrder(50);
+	leftItem->setScaleY(2);
+	leftItem->setPosition(Vec2(-750, 0));
 
 	auto rightItem = MenuItemImage::create("Right.png", "Right2.png", CC_CALLBACK_1(LevelSelect::LevelRight, this));
-	rightItem->setPosition(Vec2(840, screenSizeY - 300));
-
-	auto menu = Menu::create(playItem, leftItem, rightItem, NULL);
-	menu->setPosition(Vec2(screenSizeX / 2, screenSizeY / 8));
-	menu->setGlobalZOrder(50);
+	rightItem->setPosition(Vec2(750, 0));
+	rightItem->setScaleY(2);
+	auto menu = Menu::create(leftItem,rightItem,NULL);
+	menu->setPosition3D(Vec3(screenSizeX / 2, screenSizeY/2, 250));
+	menu->setGlobalZOrder(100);
+	menu->setLocalZOrder(100);
+	menu->setZOrder(100);
 	addChild(menu);
+	// Var init
+	LevelSelected = 1;
+	timer = 0;
+	_LevelMovementSpeed = 10.25f;
 
 	return true;
 }
 
 void LevelSelect::LevelRight(cocos2d::Ref *sender)
 {
-	if (LevelSelected >= LEVELCOUNT-1)
+	if (LevelSelected >= LEVELCOUNT)
 	{
-		LevelSelected = 0;
+		LevelSelected = 1;
 	}
 	else
 	{
@@ -203,9 +178,9 @@ void LevelSelect::LevelRight(cocos2d::Ref *sender)
 
 void LevelSelect::LevelLeft(cocos2d::Ref *sender)
 {
-	if (LevelSelected <= 0)
+	if (LevelSelected <= 1)
 	{
-		LevelSelected = LEVELCOUNT-1;
+		LevelSelected = LEVELCOUNT;
 	}
 	else
 	{
@@ -218,19 +193,20 @@ void LevelSelect::UpdateTimer(float dt)
 {
 
 	std::stringstream ss;
-	ss << _AllLevels[LevelSelected]._ID;
+	ss << _AllLevels[LevelSelected - 1]._ID;
 	std::string str = ss.str();
 
 	std::stringstream _StringStream;
-	_StringStream << _AllLevels[LevelSelected]._StarRating;
+	_StringStream << _AllLevels[LevelSelected - 1]._StarRating;
 	std::string _FinalString = _StringStream.str();
 	for (int i = 0; i < _AllLevels.size(); i++)
 	{
+
 		if (_AllLevels[i]._IsFocused)
 		{
 			if (_AllLevels[i]._CustomLevelName.length() != 1)
 			{
-				labelTouchInfo->setString("Level: " + _AllLevels[i]._CustomLevelName + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[LevelSelected]._BestTimeMinutes + "." + _AllLevels[LevelSelected]._BestTimeSeconds);
+				labelTouchInfo->setString("Level " + str + ": " + _AllLevels[i]._CustomLevelName + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[i]._BestTimeMinutes + "." + _AllLevels[i]._BestTimeSeconds);
 			}
 			else
 			{
@@ -247,7 +223,7 @@ void LevelSelect::LevelScaling()
 		int _Scale = _AllLevels[i]._Sprite->getScale() + 0.5f;
 		int _NScale = _AllLevels[i]._Sprite->getScale() - 0.5f;
 
-		if (LevelSelected == i)
+		if (LevelSelected - 1 == i)
 		{
 			if (_AllLevels[i]._Sprite->getScale() < _AllLevels[i]._Scale.x)
 			{
@@ -266,7 +242,7 @@ void LevelSelect::LevelMovement()
 
 	for (int i = 0; i < _AllLevels.size(); i++)
 	{
-		if (LevelSelected == i)
+		if (LevelSelected - 1 == i)
 		{
 			_AllLevels[i]._IsFocused = true;
 			_AllLevels[i]._Sprite->setTexture("LevelSelect/Level1Preview.png");
@@ -297,30 +273,36 @@ void LevelSelect::LevelMovement()
 		Vec3 _Position = _AllLevels[i]._Sprite->getPosition3D();
 		if (_Position != _AllLevels[i]._Destination)
 		{
-			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5 && _Position.y + 5 < _AllLevels[i]._Destination.y - 5)
+			float newX = _Position.x;
+			float newY = _Position.y;
+			float newZ = _Position.z;
+
+			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x - _LevelMovementSpeed), _Position.y, _Position.z));
+				newX -= _LevelMovementSpeed;
 			}
 			if (_Position.x + 5  < _AllLevels[i]._Destination.x - 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x + _LevelMovementSpeed), _Position.y, _Position.z));
+				newX += _LevelMovementSpeed;
 			}
 			if (_Position.y - 5  > _AllLevels[i]._Destination.y + 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, (_Position.y - _LevelMovementSpeed), _Position.z));
+				newY -= _LevelMovementSpeed;
 			}
 			if (_Position.y + 5 < _AllLevels[i]._Destination.y - 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, (_Position.y + _LevelMovementSpeed), _Position.z));
+				newY += _LevelMovementSpeed;
 			}
 			if (_Position.z - 5  > _AllLevels[i]._Destination.z + 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, _Position.y, (_Position.z - _LevelMovementSpeed)));
+				newZ -= _LevelMovementSpeed;
 			}
 			if (_Position.z + 5 < _AllLevels[i]._Destination.z - 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, _Position.y, (_Position.z + _LevelMovementSpeed)));
+				newZ += _LevelMovementSpeed;
 			}
+
+			_AllLevels[i]._Sprite->setPosition3D(Vec3(newX, newY, newZ));
 		}
 	}
 }
@@ -343,6 +325,8 @@ void LevelSelect::update(float delta)
 	//LevelRotation();
 	LevelMovement();
 
+
+	// Background updates
 	_rotateShipTimer -= delta;
 
 	_planet->setRotation(_planet->getRotation() + (M_PI / _rotatePlanetTimerDefault));
@@ -368,7 +352,7 @@ void LevelSelect::update(float delta)
 void LevelSelect::GoToGameScene(cocos2d::Ref *sender)
 {
 	//auto scene = SceneManager::createScene(SceneSelected);
-	auto scene = SceneManager::createScene((LevelSelected + 1));
+	auto scene = SceneManager::createScene((LevelSelected));
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
@@ -377,17 +361,13 @@ bool LevelSelect::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	cocos2d::Vec2 p = touch->getLocation();
 	
+	Ref* sender =0;
 	for (int i = 0; i < LEVELCOUNT; i++)
 	{
 		cocos2d::Rect rect = _AllLevels[i]._Sprite->getBoundingBox();
-		if (rect.containsPoint(p))
+		if (rect.containsPoint(p) && _AllLevels[i]._IsFocused == true)
 		{
-			LevelSelected = i;
-			_AllLevels[i]._IsFocused = true;
-		}
-		else
-		{
-			_AllLevels[i]._IsFocused = false;
+			GoToGameScene(sender);
 		}
 	}
 	return true;

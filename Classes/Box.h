@@ -7,6 +7,8 @@
 #include "ui/CocosGUI.h"
 #include "GameManager.h"
 #include "ScalingObject.h"
+#include "TouchManager.h"
+
 USING_NS_CC;
 
 

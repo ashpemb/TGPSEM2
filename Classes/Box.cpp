@@ -77,6 +77,11 @@ void Box::update(float delta)
 		Scaling();
 		//UpdateBoxScale();
 	}
+
+	//float TotalDiff = TouchManager().totalDiff;
+
+	//ScalingObject().update(delta, TotalDiff);
+
 	// Add box movement when pushed by player
 }
 
