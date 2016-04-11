@@ -22,14 +22,14 @@
         <Image Name="MuteUnPressedGO.png" />
         <Image Name="highlight.png" />
         <Folder Name="Levels">
-          <Project Name="Scene3.csd" Type="Scene" />
-          <Project Name="Scene4.csd" Type="Scene" />
-          <Project Name="Scene2.csd" Type="Scene" />
           <Project Name="Scene1.csd" Type="Scene" />
           <Project Name="Sceneold3.csd" Type="Scene" />
           <Project Name="Sceneold2.csd" Type="Scene" />
           <Project Name="SceneTest.csd" Type="Scene" />
           <Project Name="Scene8.csd" Type="Scene" />
+          <Project Name="Scene3.csd" Type="Scene" />
+          <Project Name="Scene4.csd" Type="Scene" />
+          <Project Name="Scene2.csd" Type="Scene" />
         </Folder>
         <Folder Name="Main Objects">
           <Image Name="Button_Down_Pressed.png" />
