@@ -6,13 +6,13 @@
       <ObjectData Name="Scene" Tag="48" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="Second BG Panel 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="29.5313" RightMargin="18.4688" TopMargin="74.3699" BottomMargin="128.6301" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Second BG Panel 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="31.2653" RightMargin="16.7347" TopMargin="74.3699" BottomMargin="128.6301" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1029.5313" Y="795.1301" />
+            <Position X="1031.2653" Y="795.1301" />
             <Scale ScaleX="1.0236" ScaleY="0.6568" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5027" Y="0.5177" />
+            <PrePosition X="0.5035" Y="0.5177" />
             <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -28,13 +28,13 @@
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 2" ActionTag="1716075307" Tag="66" IconVisible="False" LeftMargin="48.0940" RightMargin="-0.0940" TopMargin="78.8430" BottomMargin="124.1570" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Panel 2" ActionTag="1716075307" Tag="66" IconVisible="False" LeftMargin="49.1210" RightMargin="-1.1211" TopMargin="77.6160" BottomMargin="125.3840" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1048.0940" Y="790.6570" />
+            <Position X="1049.1210" Y="791.8840" />
             <Scale ScaleX="0.8498" ScaleY="0.4480" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5118" Y="0.5148" />
+            <PrePosition X="0.5123" Y="0.5155" />
             <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -468,13 +468,13 @@
             <FileData Type="Normal" Path="Art/Light.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Locker_27" ActionTag="2039256208" Alpha="175" Tag="204" IconVisible="False" LeftMargin="846.3876" RightMargin="991.6124" TopMargin="925.3619" BottomMargin="485.6381" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Locker_27" ActionTag="2039256208" Alpha="175" Tag="204" IconVisible="False" LeftMargin="810.8001" RightMargin="1027.2000" TopMargin="931.6038" BottomMargin="479.3962" ctype="SpriteObjectData">
             <Size X="210.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="951.3876" Y="548.1381" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Position X="915.8001" Y="541.8962" />
+            <Scale ScaleX="0.8685" ScaleY="0.9314" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4645" Y="0.3569" />
+            <PrePosition X="0.4472" Y="0.3528" />
             <PreSize X="0.1025" Y="0.0814" />
             <FileData Type="Normal" Path="Art/Locker.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -1042,7 +1042,7 @@
             <FileData Type="Normal" Path="Art/RedWire S.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138" ActionTag="250941005" Alpha="101" Tag="559" IconVisible="False" LeftMargin="708.0839" RightMargin="1334.9161" TopMargin="977.3202" BottomMargin="483.6798" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138" ActionTag="250941005" Alpha="50" Tag="559" IconVisible="False" LeftMargin="708.0839" RightMargin="1334.9161" TopMargin="977.3202" BottomMargin="483.6798" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.5839" Y="521.1798" />
@@ -1053,7 +1053,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138_0" ActionTag="-356236529" Alpha="101" Tag="560" IconVisible="False" LeftMargin="708.0800" RightMargin="1334.9199" TopMargin="907.1885" BottomMargin="553.8115" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138_0" ActionTag="-356236529" Alpha="50" Tag="560" IconVisible="False" LeftMargin="708.0800" RightMargin="1334.9199" TopMargin="907.1885" BottomMargin="553.8115" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.5800" Y="591.3115" />
@@ -1064,7 +1064,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138_1" ActionTag="723628262" Alpha="101" Tag="561" IconVisible="False" LeftMargin="708.0013" RightMargin="1334.9987" TopMargin="837.5759" BottomMargin="623.4241" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138_1" ActionTag="723628262" Alpha="50" Tag="561" IconVisible="False" LeftMargin="708.0013" RightMargin="1334.9987" TopMargin="837.5759" BottomMargin="623.4241" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.5013" Y="660.9241" />
@@ -1075,7 +1075,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138_0_0" ActionTag="-69453054" Alpha="101" Tag="562" IconVisible="False" LeftMargin="707.9976" RightMargin="1335.0024" TopMargin="767.4472" BottomMargin="693.5528" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138_0_0" ActionTag="-69453054" Alpha="50" Tag="562" IconVisible="False" LeftMargin="707.9976" RightMargin="1335.0024" TopMargin="767.4472" BottomMargin="693.5528" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.4976" Y="731.0528" />
@@ -1086,7 +1086,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138_2" ActionTag="214148208" Alpha="101" Tag="563" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="697.1045" BottomMargin="763.8955" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138_2" ActionTag="214148208" Alpha="50" Tag="563" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="697.1045" BottomMargin="763.8955" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.5000" Y="801.3955" />
@@ -1097,7 +1097,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138_0_1" ActionTag="551543772" Alpha="101" Tag="564" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="626.9746" BottomMargin="834.0254" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138_0_1" ActionTag="551543772" Alpha="50" Tag="564" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="626.9746" BottomMargin="834.0254" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.5000" Y="871.5254" />
@@ -1108,7 +1108,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138_1_0" ActionTag="1341479119" Alpha="101" Tag="565" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="557.3619" BottomMargin="903.6381" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138_1_0" ActionTag="1341479119" Alpha="50" Tag="565" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="557.3619" BottomMargin="903.6381" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.5000" Y="941.1381" />
@@ -1119,7 +1119,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="RedWire_138_0_0_0" ActionTag="-2013410641" Alpha="101" Tag="566" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="487.2329" BottomMargin="973.7671" ctype="SpriteObjectData">
+          <AbstractNodeData Name="RedWire_138_0_0_0" ActionTag="-2013410641" Alpha="50" Tag="566" IconVisible="False" LeftMargin="708.0000" RightMargin="1335.0000" TopMargin="487.2329" BottomMargin="973.7671" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.5000" Y="1011.2671" />
@@ -1130,7 +1130,7 @@
             <FileData Type="Normal" Path="Art/RedWire.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_147" ActionTag="1280779089" Alpha="103" Tag="568" IconVisible="False" LeftMargin="707.9847" RightMargin="1335.0153" TopMargin="457.0750" BottomMargin="1043.9250" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite_147" ActionTag="1280779089" Alpha="50" Tag="568" IconVisible="False" LeftMargin="707.9847" RightMargin="1335.0153" TopMargin="457.0750" BottomMargin="1043.9250" ctype="SpriteObjectData">
             <Size X="5.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="710.4847" Y="1061.4250" />
@@ -1504,7 +1504,7 @@
             <FileData Type="Normal" Path="Art/Green M.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Green_192" ActionTag="1892247658" Alpha="101" Tag="613" IconVisible="False" LeftMargin="1013.9586" RightMargin="1029.0415" TopMargin="976.4916" BottomMargin="484.5084" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Green_192" ActionTag="1892247658" Alpha="52" Tag="613" IconVisible="False" LeftMargin="1013.9586" RightMargin="1029.0415" TopMargin="976.4916" BottomMargin="484.5084" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1016.4586" Y="522.0084" />
@@ -1515,7 +1515,7 @@
             <FileData Type="Normal" Path="Art/Green.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Green_192_0" ActionTag="263711934" Alpha="101" Tag="614" IconVisible="False" LeftMargin="1013.6657" RightMargin="1029.3342" TopMargin="907.3204" BottomMargin="553.6796" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Green_192_0" ActionTag="263711934" Alpha="52" Tag="614" IconVisible="False" LeftMargin="1013.6657" RightMargin="1029.3342" TopMargin="907.3204" BottomMargin="553.6796" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.3359" ScaleY="0.4653" />
             <Position X="1015.3452" Y="588.5747" />
@@ -1526,7 +1526,7 @@
             <FileData Type="Normal" Path="Art/Green.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Green_192_0_0" ActionTag="713316526" Alpha="101" Tag="615" IconVisible="False" LeftMargin="1013.6517" RightMargin="1029.3484" TopMargin="837.1447" BottomMargin="623.8553" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Green_192_0_0" ActionTag="713316526" Alpha="52" Tag="615" IconVisible="False" LeftMargin="1013.6517" RightMargin="1029.3484" TopMargin="837.1447" BottomMargin="623.8553" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.3359" ScaleY="0.4653" />
             <Position X="1015.3312" Y="658.7504" />
@@ -1548,7 +1548,7 @@
             <FileData Type="Normal" Path="Art/Green.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_197" ActionTag="479889574" Alpha="102" Tag="618" IconVisible="False" LeftMargin="1013.9822" RightMargin="1029.0178" TopMargin="807.5114" BottomMargin="693.4886" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite_197" ActionTag="479889574" Alpha="52" Tag="618" IconVisible="False" LeftMargin="1013.9822" RightMargin="1029.0178" TopMargin="807.5114" BottomMargin="693.4886" ctype="SpriteObjectData">
             <Size X="5.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1016.4822" Y="710.9886" />
@@ -1592,7 +1592,7 @@
             <FileData Type="Normal" Path="Art/Green.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Green_196_2" ActionTag="659549691" Alpha="103" Tag="622" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="769.5341" RightMargin="1273.4658" TopMargin="742.0331" BottomMargin="718.9669" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Green_196_2" ActionTag="659549691" Alpha="48" Tag="622" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="769.5341" RightMargin="1273.4658" TopMargin="742.0331" BottomMargin="718.9669" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="772.0341" Y="756.4669" />
@@ -1603,7 +1603,7 @@
             <FileData Type="Normal" Path="Art/Green.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Green_196_2_0" ActionTag="-1613920853" Alpha="103" Tag="623" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="699.7177" RightMargin="1343.2823" TopMargin="741.7898" BottomMargin="719.2102" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Green_196_2_0" ActionTag="-1613920853" Alpha="48" Tag="623" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="699.7177" RightMargin="1343.2823" TopMargin="741.7898" BottomMargin="719.2102" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="702.2177" Y="756.7102" />
@@ -1614,7 +1614,7 @@
             <FileData Type="Normal" Path="Art/Green.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Green_196_2_1" ActionTag="-770380242" Alpha="103" Tag="624" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="629.6624" RightMargin="1413.3376" TopMargin="741.7944" BottomMargin="719.2056" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Green_196_2_1" ActionTag="-770380242" Alpha="48" Tag="624" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="629.6624" RightMargin="1413.3376" TopMargin="741.7944" BottomMargin="719.2056" ctype="SpriteObjectData">
             <Size X="5.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="632.1624" Y="756.7056" />

@@ -109,6 +109,9 @@
             <Image Name="L1.png" />
             <Image Name="FR.png" />
             <Image Name="Pipe.png" />
+            <Image Name="Danger.png" />
+            <Image Name="Wires 2.png" />
+            <Image Name="Holo.png" />
           </Folder>
           <Image Name="Cabinet.png" />
           <Image Name="Detail.png" />
@@ -172,6 +175,12 @@
           <Image Name="Purple M.png" />
           <Image Name="Purple S.png" />
           <Image Name="Purple.png" />
+          <Image Name="Rifle.png" />
+          <Image Name="Power.png" />
+          <Image Name="Bg 1.png" />
+          <Image Name="Vent 2.png" />
+          <Image Name="Eyes.png" />
+          <Image Name="Daisy.png" />
         </Folder>
       </RootFolder>
     </Group>
