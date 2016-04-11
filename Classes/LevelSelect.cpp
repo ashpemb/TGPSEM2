@@ -245,7 +245,23 @@ void LevelSelect::LevelMovement()
 		if (LevelSelected - 1 == i)
 		{
 			_AllLevels[i]._IsFocused = true;
-			_AllLevels[i]._Sprite->setTexture("LevelSelect/Level1Preview.png");
+			if (i == 0)
+			{
+				_AllLevels[i]._Sprite->setTexture("LevelSelect/Level1Preview.png");
+			}
+			else if (i == 1)
+			{
+				_AllLevels[i]._Sprite->setTexture("LevelSelect/Level2Preview.png");
+			}
+			else if (i == 2)
+			{
+				_AllLevels[i]._Sprite->setTexture("LevelSelect/Level3Preview.png");
+			}
+			else if (i == 3)
+			{
+				_AllLevels[i]._Sprite->setTexture("LevelSelect/Level4Preview.png");
+			}
+			
 		}
 		else
 		{
