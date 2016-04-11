@@ -10,6 +10,9 @@ Player::Player()
 
 	_timeFalling = 0.0f;
 	_speed = 0.0f;
+	_frame = 1;
+	_running = false;
+	_spriteTimer = _spriteTimerDefault;
 
 	_orientationHorizontal = false;
 	_orientationVertical = true;
@@ -76,6 +79,71 @@ void Player::update(float delta)
 		else if (_orientationHorizontal) {
 			if (_targetPos.y != GetSprite()->getPositionY()) {
 				MoveToTarget(delta);
+			}
+		}
+	}
+
+	if (GameManager::sharedGameManager()->getIsGamePaused()) {
+		GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Husky.png"));
+	}
+	else {
+		if (_orientationVertical) {
+			if (GetSprite()->getPosition().x <= _targetPos.x - 2.0f || GetSprite()->getPosition().x >= _targetPos.x + 2.0f) {
+				_spriteTimer -= delta;
+
+				if (!_running) {
+					_running = true;
+					_frame = 1;
+					GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Husky_Run_" + StringUtils::format("%d", _frame) + ".png"));
+				}
+
+				if (_spriteTimer <= 0.0f) {
+					_spriteTimer = _spriteTimerDefault;
+					++_frame;
+
+					if (_frame > 6) {
+						_frame = 1;
+					}
+
+					GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Husky_Run_" + StringUtils::format("%d", _frame) + ".png"));
+				}
+			}
+			else {
+				_frame = 1;
+				_spriteTimer = _spriteTimerDefault;
+
+				if (_running) {
+					_running = false;
+
+					GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Husky.png"));
+				}
+			}
+		}
+		else {
+			if (GetSprite()->getPosition().y <= _targetPos.y - 2.0f || GetSprite()->getPosition().y >= _targetPos.y + 2.0f) {
+				_spriteTimer -= delta;
+				_running = true;
+
+				if (_spriteTimer <= 0.0f) {
+					_spriteTimer = _spriteTimerDefault;
+					++_frame;
+
+					if (_frame > 6) {
+						_frame = 1;
+					}
+
+					GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Husky_Run_" + StringUtils::format("%d", _frame) + ".png"));
+				}
+			}
+			else {
+				_frame = 1;
+				_spriteTimer = _spriteTimerDefault;
+
+				if (_running) {
+					_running = false;
+
+					GetSprite()->setTexture(Director::getInstance()->getTextureCache()->addImage("Husky.png"));
+				}
 			}
 		}
 	}
@@ -309,6 +377,43 @@ void Player::Fall(float delta)
 
 void Player::SetTarget(Vec2 target)
 {
+	if (!GetOrientationHorizontal()) {
+		if (_gravity < 0.0f) {
+			if (GetSprite()->getPosition().x > target.x) {
+				GetSprite()->setFlippedX(true);
+			}
+			else {
+				GetSprite()->setFlippedX(false);
+			}
+		}
+		else {
+			if (GetSprite()->getPosition().x < target.x) {
+				GetSprite()->setFlippedX(true);
+			}
+			else {
+				GetSprite()->setFlippedX(false);
+			}
+		}
+	}
+	else if (!GetOrientationVertical()) {
+		if (_gravity < 0.0f) {
+			if (GetSprite()->getPosition().y < target.y) {
+				GetSprite()->setFlippedX(true);
+			}
+			else {
+				GetSprite()->setFlippedX(false);
+			}
+		}
+		else {
+			if (GetSprite()->getPosition().y > target.y) {
+				GetSprite()->setFlippedX(true);
+			}
+			else {
+				GetSprite()->setFlippedX(false);
+			}
+		}
+	}
+
 	_targetPos = target;
 }
 

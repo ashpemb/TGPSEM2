@@ -66,6 +66,12 @@
           <Image Name="Test.png" />
           <Image Name="Wall 2.png" />
           <Image Name="Temp_Art.png" />
+          <Image Name="Husky_Run_1.png" />
+          <Image Name="Husky_Run_2.png" />
+          <Image Name="Husky_Run_3.png" />
+          <Image Name="Husky_Run_4.png" />
+          <Image Name="Husky_Run_5.png" />
+          <Image Name="Husky_Run_6.png" />
         </Folder>
         <Folder Name="Level Backgrounds">
           <Image Name="Main BG.png" />
