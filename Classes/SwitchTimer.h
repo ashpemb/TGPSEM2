@@ -27,6 +27,7 @@ private:
 	bool _revertGravity;
 	bool _isTimerPlaying;
 	int _tickerSoundID;
+	bool timerSoundOn;
 public:
 	SwitchTimer();
 	~SwitchTimer();
