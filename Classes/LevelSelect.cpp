@@ -4,8 +4,6 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-int timer;
-
 Scene* LevelSelect::createScene()
 {
 	// 'scene' is an autorelease object
@@ -32,7 +30,7 @@ bool LevelSelect::init()
 	}
 	srand(time(NULL));
 
-
+	auto winSize = Director::getInstance()->getVisibleSize();
 	auto rootNode = CSLoader::createNode("MainScene.csb");
 
 	addChild(rootNode);
@@ -54,11 +52,36 @@ bool LevelSelect::init()
 
 	this->schedule(schedule_selector(LevelSelect::UpdateTimer), 1.0f);
 
-	_Background = Sprite::create("LevelSelect/Background.png");
-	_Background->setGlobalZOrder(0);
-	_Background->setScale(4);
-	_Background->setPosition3D(Vec3(screenSizeX, screenSizeY, -750));
-	addChild(_Background);
+	_planet = Sprite::create("Planet.png");
+	_planet->setPosition(Vec2(0.0f, 0.0f - (_planet->getContentSize().height / 8)));
+	//_planet->setScale(8.0f);
+	this->addChild(_planet);
+
+	_ship = Sprite::create("HuskySpaceShipDamage.png");
+	_ship->setPosition(Vec2(winSize.width*0.3f, winSize.height*0.55f));
+	_ship->setScale(0.25f);
+	_ship->setRotation(30);
+
+	this->addChild(_ship);
+
+	for (int i = 0; i < 100; i++) {
+		_stars.push_back(Sprite::create("SpaceStar.png"));
+
+		int randomWidth = cocos2d::RandomHelper::random_real(0.0f, winSize.width);
+		int randomHeight = cocos2d::RandomHelper::random_real(0.0f, winSize.height);
+
+		_stars.at(i)->setPosition(Vec2(randomWidth, randomHeight));
+		_stars.at(i)->setGlobalZOrder(-2);
+
+		this->addChild(_stars.at(i));
+	}
+
+	_rotatePlanetTimerDefault = 240.0f;
+	_rotatePlanetTimer = 0.0f;
+
+	_rotateShipTimerDefault = 10.0f;
+	_rotateShipTimer = 0.0f;
+	_rotateShipLeft = true;
 
 	float segdeg = 2 * Pi / LEVELCOUNT;
 	for (int i = 0; i < LEVELCOUNT; i++)
@@ -125,17 +148,17 @@ bool LevelSelect::init()
 	menu->setZOrder(100);
 	addChild(menu);
 	// Var init
-	LevelSelected = 0;
+	LevelSelected = 1;
 	timer = 0;
-	_LevelMovementSpeed = 5.25f;
+	_LevelMovementSpeed = 10.25f;
 	return true;
 }
 
 void LevelSelect::LevelRight(cocos2d::Ref *sender)
 {
-	if (LevelSelected >= LEVELCOUNT-1)
+	if (LevelSelected >= LEVELCOUNT)
 	{
-		LevelSelected = 0;
+		LevelSelected = 1;
 	}
 	else
 	{
@@ -145,9 +168,9 @@ void LevelSelect::LevelRight(cocos2d::Ref *sender)
 
 void LevelSelect::LevelLeft(cocos2d::Ref *sender)
 {
-	if (LevelSelected <= 0)
+	if (LevelSelected <= 1)
 	{
-		LevelSelected = LEVELCOUNT-1;
+		LevelSelected = LEVELCOUNT;
 	}
 	else
 	{
@@ -160,21 +183,21 @@ void LevelSelect::UpdateTimer(float dt)
 {
 
 	std::stringstream ss;
-	ss << _AllLevels[LevelSelected]._ID;
+	ss << _AllLevels[LevelSelected - 1]._ID;
 	std::string str = ss.str();
 
 	std::stringstream _StringStream;
-	_StringStream << _AllLevels[LevelSelected]._StarRating;
+	_StringStream << _AllLevels[LevelSelected - 1]._StarRating;
 	std::string _FinalString = _StringStream.str();
 	for (int i = 0; i < _AllLevels.size(); i++)
 	{
 		if (_AllLevels[i]._CustomLevelName.length() != 1)
 		{
-			labelTouchInfo->setString("Level " + _AllLevels[i]._CustomLevelName + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[LevelSelected]._BestTimeMinutes + "." + _AllLevels[LevelSelected]._BestTimeSeconds);
+			labelTouchInfo->setString("Level " + _AllLevels[i]._CustomLevelName + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[LevelSelected - 1]._BestTimeMinutes + "." + _AllLevels[LevelSelected - 1]._BestTimeSeconds);
 		}
 		else
 		{
-			labelTouchInfo->setString("Level " + str + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[LevelSelected]._BestTimeMinutes + "." + _AllLevels[LevelSelected]._BestTimeSeconds);
+			labelTouchInfo->setString("Level " + str + "\nHighest Star Rating : " + _FinalString + "\nFastest Time : " + _AllLevels[LevelSelected - 1]._BestTimeMinutes + "." + _AllLevels[LevelSelected - 1]._BestTimeSeconds);
 		}
 	}
 }
@@ -186,7 +209,7 @@ void LevelSelect::LevelScaling()
 		int _Scale = _AllLevels[i]._Sprite->getScale() + 0.5f;
 		int _NScale = _AllLevels[i]._Sprite->getScale() - 0.5f;
 
-		if (LevelSelected == i)
+		if (LevelSelected - 1 == i)
 		{
 			if (_AllLevels[i]._Sprite->getScale() < _AllLevels[i]._Scale.x)
 			{
@@ -205,7 +228,7 @@ void LevelSelect::LevelMovement()
 
 	for (int i = 0; i < _AllLevels.size(); i++)
 	{
-		if (LevelSelected == i)
+		if (LevelSelected - 1 == i)
 		{
 			_AllLevels[i]._IsFocused = true;
 			_AllLevels[i]._Sprite->setTexture("LevelSelect/Level1Preview.png");
@@ -236,30 +259,36 @@ void LevelSelect::LevelMovement()
 		Vec3 _Position = _AllLevels[i]._Sprite->getPosition3D();
 		if (_Position != _AllLevels[i]._Destination)
 		{
+			float newX = _Position.x;
+			float newY = _Position.y;
+			float newZ = _Position.z;
+
 			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x - _LevelMovementSpeed), _Position.y, _Position.z));
+				newX -= _LevelMovementSpeed;
 			}
 			if (_Position.x + 5  < _AllLevels[i]._Destination.x - 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x + _LevelMovementSpeed), _Position.y, _Position.z));
+				newX += _LevelMovementSpeed;
 			}
 			if (_Position.y - 5  > _AllLevels[i]._Destination.y + 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, (_Position.y - _LevelMovementSpeed), _Position.z));
+				newY -= _LevelMovementSpeed;
 			}
 			if (_Position.y + 5 < _AllLevels[i]._Destination.y - 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, (_Position.y + _LevelMovementSpeed), _Position.z));
+				newY += _LevelMovementSpeed;
 			}
 			if (_Position.z - 5  > _AllLevels[i]._Destination.z + 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, _Position.y, (_Position.z - _LevelMovementSpeed)));
+				newZ -= _LevelMovementSpeed;
 			}
 			if (_Position.z + 5 < _AllLevels[i]._Destination.z - 5)
 			{
-				_AllLevels[i]._Sprite->setPosition3D(Vec3(_Position.x, _Position.y, (_Position.z + _LevelMovementSpeed)));
+				newZ += _LevelMovementSpeed;
 			}
+
+			_AllLevels[i]._Sprite->setPosition3D(Vec3(newX, newY, newZ));
 		}
 	}
 }
@@ -281,12 +310,34 @@ void LevelSelect::update(float delta)
 	LevelScaling();
 	//LevelRotation();
 	LevelMovement();
+
+	// Background updates
+	_rotateShipTimer -= delta;
+
+	_planet->setRotation(_planet->getRotation() + (M_PI / _rotatePlanetTimerDefault));
+
+	if (_rotateShipTimer <= 0.0f) {
+		_rotateShipTimer = _rotateShipTimerDefault;
+
+		if (_rotateShipLeft) {
+			_rotateShipLeft = false;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 25.0f);
+			_ship->runAction(rotateTo);
+		}
+		else {
+			_rotateShipLeft = true;
+
+			auto rotateTo = RotateTo::create(_rotateShipTimerDefault, 35.0f);
+			_ship->runAction(rotateTo);
+		}
+	}
 }
 
 void LevelSelect::GoToGameScene(cocos2d::Ref *sender)
 {
 	//auto scene = SceneManager::createScene(SceneSelected);
-	auto scene = SceneManager::createScene(LevelSelected + 1);
+	auto scene = SceneManager::createScene(LevelSelected);
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1, scene));
 }
