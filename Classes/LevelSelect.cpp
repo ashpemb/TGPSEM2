@@ -3,9 +3,7 @@
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
-Label* labelTouchInfo;
-int screenSizeY;
-int screenSizeX;
+
 int timer;
 
 Scene* LevelSelect::createScene()
@@ -55,20 +53,13 @@ bool LevelSelect::init()
 	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 
 	this->schedule(schedule_selector(LevelSelect::UpdateTimer), 1.0f);
+
 	_Background = Sprite::create("LevelSelect/Background.png");
 	_Background->setGlobalZOrder(0);
 	_Background->setScale(4);
 	_Background->setPosition3D(Vec3(screenSizeX, screenSizeY, -750));
 	addChild(_Background);
-	for (int i = 0; i < GALAXYCOUNT; i++)
-	{
-		ParticleGalaxy* temp = ParticleGalaxy::create();
-		temp->setScale(rand() % 3);
-		temp->setGlobalZOrder(10+i);
-		temp->setPosition3D(Vec3(rand() % screenSizeX,rand() % screenSizeY,-750));
-		_GalaxyParticle.push_back(temp);
-		addChild(_GalaxyParticle[i]);
-	}
+
 	float segdeg = 2 * Pi / LEVELCOUNT;
 	for (int i = 0; i < LEVELCOUNT; i++)
 	{
@@ -92,7 +83,6 @@ bool LevelSelect::init()
 		temp._BestTimeSeconds = _ScoreManager->getSecondsFromFile(temp._ID);
 		_AllLevels.push_back(temp);
 	}
-	_AllLevels[0]._CustomLevelName = "Where it all began.";
 	for (int i = 0; i < LEVELCOUNT; i++)
 	{
 		addChild(_AllLevels[i]._Sprite);
@@ -119,38 +109,25 @@ bool LevelSelect::init()
 	labelTouchInfo->setSystemFontName("Franklin Gothic");
 	labelTouchInfo->setSystemFontSize(36);
 	labelTouchInfo->setGlobalZOrder(3);
-	//auto _textureCube = TextureCube::create("bluecloud_lf.jpg", "bluecloud_rt.jpg",
-	//	"bluecloud_dn.png", "bluecloud_up.jpg", "bluecloud_ft.jpg", "bluecloud_bk.jpg");
-
-	//Texture2D::TexParams tRepeatParams;
-	//tRepeatParams.magFilter = GL_NEAREST;
-	//tRepeatParams.minFilter = GL_NEAREST;
-	//tRepeatParams.wrapS = GL_MIRRORED_REPEAT;
-	//tRepeatParams.wrapT = GL_MIRRORED_REPEAT;
-	//_textureCube->setTexParameters(tRepeatParams);
-
-	//auto shader = GLProgram::createWithFilenames("cube_map.vert", "cube_map.frag");
-	//auto _state = GLProgramState::create(shader);
-
-	//_state->setUniformTexture("u_cubeTex", _textureCube);
-	//
-	//sprite->setTexture(_textureCube);
-	//addChild(sprite);
 	addChild(labelTouchInfo);
-	auto playItem = MenuItemImage::create("Play Button.png", "Play Button Clicked.png", CC_CALLBACK_1(LevelSelect::GoToGameScene, this));
+
 	auto leftItem = MenuItemImage::create("Left.png", "Left2.png", CC_CALLBACK_1(LevelSelect::LevelLeft, this));
-	leftItem->setPosition(Vec2(-840, screenSizeY - 300));
+	leftItem->setScaleY(2);
+	leftItem->setPosition(Vec2(-750, 0));
 
 	auto rightItem = MenuItemImage::create("Right.png", "Right2.png", CC_CALLBACK_1(LevelSelect::LevelRight, this));
-	rightItem->setPosition(Vec2(840, screenSizeY - 300));
-
-	auto menu = Menu::create(playItem, leftItem,rightItem,NULL);
-	menu->setPosition(Vec2(screenSizeX / 2, screenSizeY / 8));
-	menu->setGlobalZOrder(2);
+	rightItem->setPosition(Vec2(750, 0));
+	rightItem->setScaleY(2);
+	auto menu = Menu::create(leftItem,rightItem,NULL);
+	menu->setPosition3D(Vec3(screenSizeX / 2, screenSizeY/2, 250));
+	menu->setGlobalZOrder(100);
+	menu->setLocalZOrder(100);
+	menu->setZOrder(100);
 	addChild(menu);
+	// Var init
 	LevelSelected = 0;
 	timer = 0;
-	_LevelMovementSpeed = 3.25f;
+	_LevelMovementSpeed = 5.25f;
 	return true;
 }
 
@@ -259,7 +236,7 @@ void LevelSelect::LevelMovement()
 		Vec3 _Position = _AllLevels[i]._Sprite->getPosition3D();
 		if (_Position != _AllLevels[i]._Destination)
 		{
-			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5 && _Position.y + 5 < _AllLevels[i]._Destination.y - 5)
+			if (_Position.x - 5 > _AllLevels[i]._Destination.x + 5)
 			{
 				_AllLevels[i]._Sprite->setPosition3D(Vec3((_Position.x - _LevelMovementSpeed), _Position.y, _Position.z));
 			}
@@ -318,17 +295,13 @@ bool LevelSelect::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	cocos2d::Vec2 p = touch->getLocation();
 	
+	Ref* sender =0;
 	for (int i = 0; i < LEVELCOUNT; i++)
 	{
 		cocos2d::Rect rect = _AllLevels[i]._Sprite->getBoundingBox();
-		if (rect.containsPoint(p))
+		if (rect.containsPoint(p) && _AllLevels[i]._IsFocused == true)
 		{
-			LevelSelected = i;
-			_AllLevels[i]._IsFocused = true;
-		}
-		else
-		{
-			_AllLevels[i]._IsFocused = false;
+			GoToGameScene(sender);
 		}
 	}
 	return true;
