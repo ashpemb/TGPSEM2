@@ -21,6 +21,8 @@ SwitchTimer* SwitchTimer::create()
 	gravSwitchTimer->_isTimerStarted = false;
 	gravSwitchTimer->auManager = new AudioEngine();
 	gravSwitchTimer->_tickerSoundID = 0;
+	gravSwitchTimer->_revertGravity = false;
+	gravSwitchTimer->timerSoundOn = false;
 	return gravSwitchTimer;
 }
 
@@ -67,11 +69,16 @@ void SwitchTimer::UpdateAudio(float dt)
 {
 	if (_isTimerStarted == true)
 	{
-		_tickerSoundID = auManager->PlaySoundEffect("TickingClock.wav", false);
+		if (!timerSoundOn)
+		{
+			_tickerSoundID = auManager->PlaySoundEffect("TickingClock.wav", false);
+			timerSoundOn = true;
+		}	
 	}
 	else
 	{
 		auManager->StopSoundEffect(_tickerSoundID);
+		timerSoundOn = false;
 	}
 	//setColor(Color3B(255, 255, 255));
 }

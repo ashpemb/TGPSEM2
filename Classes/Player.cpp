@@ -321,12 +321,12 @@ void Player::Fall(float delta)
 			_timeFalling += delta;
 
 			// Calculate and set new velocity
-			if (_verticalVelocity > -18.0f) {
-				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling);
+			if (_verticalVelocity > -28.0f) {
+				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling / 1.5);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x, GetSprite()->getPosition().y + _verticalVelocity));
 			}
-			else if (_verticalVelocity < 18.0f) {
-				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling);
+			else if (_verticalVelocity < 28.0f) {
+				_verticalVelocity = _verticalVelocityLast + ((_gravity / 2) * _timeFalling / 1.5);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x, GetSprite()->getPosition().y + _verticalVelocity));
 			}
 			else {
@@ -350,12 +350,12 @@ void Player::Fall(float delta)
 			_timeFalling += delta;
 
 			// Calculate and set new velocity
-			if (_horizontalVelocity > -18.0f) {
-				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling);
+			if (_horizontalVelocity > -28.0f) {
+				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling / 1.5);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x + _horizontalVelocity, GetSprite()->getPosition().y));
 			}
-			else if (_horizontalVelocity < 18.0f) {
-				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling);
+			else if (_horizontalVelocity < 28.0f) {
+				_horizontalVelocity = _horizontalVelocityLast + ((_gravity / 2) * _timeFalling / 1.5);
 				GetSprite()->setPosition(Vec2(GetSprite()->getPosition().x + _horizontalVelocity, GetSprite()->getPosition().y));
 			}
 			else {

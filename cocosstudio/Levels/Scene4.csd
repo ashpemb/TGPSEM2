@@ -237,13 +237,13 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_4" ActionTag="622616855" Tag="126" IconVisible="False" LeftMargin="698.0022" RightMargin="1341.9978" TopMargin="1206.8516" BottomMargin="201.1485" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_4" ActionTag="622616855" Tag="126" IconVisible="False" LeftMargin="698.0022" RightMargin="1341.9978" TopMargin="1207.1516" BottomMargin="200.8484" FlipX="True" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="702.0022" Y="265.1485" />
-            <Scale ScaleX="1.8418" ScaleY="1.6227" />
+            <Position X="702.0022" Y="264.8484" />
+            <Scale ScaleX="1.8418" ScaleY="1.6180" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3428" Y="0.1726" />
+            <PrePosition X="0.3428" Y="0.1724" />
             <PreSize X="0.0039" Y="0.0833" />
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
