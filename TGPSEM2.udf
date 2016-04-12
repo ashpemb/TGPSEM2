@@ -3,7 +3,7 @@
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="VS" />
-        <IsLastPublish Value="False" />
+        <IsLastPublish Value="True" />
         <LastRunType Value="Windows" />
       </Value>
     </Item>
@@ -36,7 +36,7 @@
           <FilePathData Path="Levels/Scene3.csd" />
           <FilePathData Path="Levels/Scene4.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="Levels/Scene2.csd" />
+        <ActiveDocument Path="Levels/Scene3.csd" />
       </Value>
     </Item>
   </Properties>

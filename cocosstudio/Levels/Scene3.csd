@@ -2970,6 +2970,17 @@
             <FileData Type="Normal" Path="Art/Daisy.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Tutorial1_1" ActionTag="-2103392711" Tag="556" IconVisible="False" LeftMargin="366.0792" RightMargin="1421.9209" TopMargin="522.2233" BottomMargin="853.7767" ctype="SpriteObjectData">
+            <Size X="260.0000" Y="160.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="496.0792" Y="933.7767" />
+            <Scale ScaleX="1.3137" ScaleY="1.3137" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2422" Y="0.6079" />
+            <PreSize X="0.1270" Y="0.1042" />
+            <FileData Type="Normal" Path="Tutorial1.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
