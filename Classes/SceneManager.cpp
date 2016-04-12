@@ -173,9 +173,19 @@ void SceneManager::SetupButtons(Node* root)
 	_retryButton->loadTexturePressed("RetryButtonPressed.png");
 	_retryButton->loadTextureDisabled("RetryButtonUnPressed.png");
 	_retryButton->addTouchEventListener(CC_CALLBACK_2(SceneManager::RetryButtonPressed, this));
-	_retryButton->setPosition(Vec2(0.0f + (_retryButton->getSize().width / 2), winSize.height - (_retryButton->getSize().height / 2)));
+	_retryButton->setPosition(Vec2(winSize.width - (_retryButton->getSize().width / 2), winSize.height - (_retryButton->getSize().height / 2)));
 
 	addChild(_retryButton);
+
+	// Back Button
+	_backButton = ui::Button::create();
+	_backButton->loadTextureNormal("BackButtonUnPressed.png");
+	_backButton->loadTexturePressed("BackButtonPressed.png");
+	_backButton->loadTextureDisabled("BackButtonUnPressed.png");
+	_backButton->addTouchEventListener(CC_CALLBACK_2(SceneManager::BackButtonPressed, this));
+	_backButton->setPosition(Vec2(0.0f + (_retryButton->getSize().width / 2), winSize.height - (_retryButton->getSize().height / 2)));
+
+	addChild(_backButton);
 }
 
 void SceneManager::SetupSprites(Node* root)
@@ -1326,6 +1336,15 @@ void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType 
 			auto scene = GameWinScene::createScene();
 			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
 		}
+	}
+}
+
+void SceneManager::BackButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		auto scene = LevelSelect::createScene();
+		Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
 	}
 }
 

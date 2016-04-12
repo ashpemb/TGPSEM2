@@ -206,6 +206,8 @@
           <Image Name="Daisy.png" />
         </Folder>
         <Image Name="Tutorial1.png" />
+        <Image Name="BackButtonPressed.png" />
+        <Image Name="BackButtonUnPressed.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -101,13 +101,17 @@ bool LevelSelect::init()
 		temp._Sprite->setScale(temp._Scale.z);
 		temp._Sprite->setPosition3D(_LevelPositions[i]);
 		temp._IsFocused = false;
+		temp._Rotation = 0.0f;
+		temp._Destination = _LevelPositions[i];
 		temp._RotationAngles = Vec3(0, 0, 0);
 		temp._RotationAngles.z = rand() % 1000 - 500;
-		temp._StarRating = _ScoreManager->getStarFromFile(temp._ID);
-		temp._BestTimeMinutes = _ScoreManager->getMinutesFromFile(temp._ID);
-		temp._BestTimeSeconds = _ScoreManager->getSecondsFromFile(temp._ID);
+		temp._StarRating = ScoreManager::sharedScoreManager()->getStarFromFile(temp._ID);
+		temp._BestTimeMinutes = ScoreManager::sharedScoreManager()->getMinutesFromFile(temp._ID);
+		temp._BestTimeSeconds = ScoreManager::sharedScoreManager()->getSecondsFromFile(temp._ID);
 		_AllLevels.push_back(temp);
 	}
+
+	_FocusedDestination = Vec3(screenSizeX / 2, screenSizeY / 2 + 125, 600);
 
 	_AllLevels[0]._CustomLevelName = "Learning to Walk";
 	_AllLevels[1]._CustomLevelName = "Topsy-Turvy";

@@ -32,6 +32,7 @@ private:
 	cocos2d::ui::Text*		_timeLabel;
 	cocos2d::ui::Button*	_startGame;
 	cocos2d::ui::Button*	_retryButton;
+	cocos2d::ui::Button*	_backButton;
 
 	// AUDIO
 	AudioEngine* auEngine;
@@ -176,6 +177,7 @@ public:
 
 	void SwitchPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void BackButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	void RetryButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	void StartButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	void SwitchTimerPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);

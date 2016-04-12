@@ -36,7 +36,6 @@ class LevelSelect : public cocos2d::Layer
 {
 private:
 	// Level Data
-	ScoreManager*		_ScoreManager;
 	Sprite*				_InfoBox;
 	std::vector<Vec3>	_LevelPositions;
 	std::vector<Level>	_AllLevels;
@@ -46,16 +45,14 @@ private:
 	int					LevelSelected;
 
 	int timer;
+
 	// Buttons
-	cocos2d::ui::Button*	_startGame;
 	Label*					labelTouchInfo;
 
 	// Background and screen
-	Sprite*							_Background;
 	cocos2d::Sprite*				_planet;
 	cocos2d::Sprite*				_ship;
 	std::vector<cocos2d::Sprite*>	_stars;
-	std::vector<ParticleGalaxy*>	_GalaxyParticle;
 	int								screenSizeY;
 	int								screenSizeX;
 
