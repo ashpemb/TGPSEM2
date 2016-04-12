@@ -48,6 +48,7 @@ private:
 
 	// Buttons
 	Label*					labelTouchInfo;
+	cocos2d::ui::Button*	_backButton;
 
 	// Background and screen
 	cocos2d::Sprite*				_planet;
@@ -79,6 +80,8 @@ public:
 	void onTouchCancelled(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onAcceleration(cocos2d::Acceleration* accel, cocos2d::Event* event);
 
+	void BackButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+
 	// World Cube Methods
 	void LevelLeft(cocos2d::Ref *sender);
 	void LevelRight(cocos2d::Ref *sender);
@@ -93,7 +96,6 @@ public:
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(LevelSelect);
-
 };
 
 #endif // __LevelSelect_SCENE_H__

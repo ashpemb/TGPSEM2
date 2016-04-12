@@ -84,6 +84,15 @@ bool LevelSelect::init()
 	_rotateShipTimer = 0.0f;
 	_rotateShipLeft = true;
 
+	// Back Button
+	_backButton = ui::Button::create();
+	_backButton->loadTextureNormal("BackButtonUnPressed.png");
+	_backButton->loadTexturePressed("BackButtonPressed.png");
+	_backButton->loadTextureDisabled("BackButtonUnPressed.png");
+	_backButton->addTouchEventListener(CC_CALLBACK_2(LevelSelect::BackButtonPressed, this));
+	_backButton->setPosition(Vec2(0.0f + (_backButton->getSize().width / 2), winSize.height - (_backButton->getSize().height / 2)));
+
+	addChild(_backButton);
 
 	float segdeg = 2 * Pi / LEVELCOUNT;
 	for (int i = 0; i < LEVELCOUNT; i++)
@@ -412,4 +421,13 @@ void LevelSelect::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 void LevelSelect::onTouchCancelled(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 
+}
+
+void LevelSelect::BackButtonPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		auto scene = MenuScene::createScene();
+		Director::getInstance()->replaceScene(TransitionFade::create(1.5f, scene));
+	}
 }
