@@ -6,13 +6,13 @@
       <ObjectData Name="Scene" Tag="48" ctype="GameNodeObjectData">
         <Size X="2048.0000" Y="1536.0000" />
         <Children>
-          <AbstractNodeData Name="Second BG Panel 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="31.2653" RightMargin="16.7347" TopMargin="74.3699" BottomMargin="128.6301" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Second BG Panel 1" ActionTag="-370398011" Tag="68" IconVisible="False" LeftMargin="31.2649" RightMargin="16.7351" TopMargin="75.6827" BottomMargin="127.3173" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1031.2653" Y="795.1301" />
+            <Position X="1031.2649" Y="793.8173" />
             <Scale ScaleX="1.0236" ScaleY="0.6568" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5035" Y="0.5177" />
+            <PrePosition X="0.5035" Y="0.5168" />
             <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -28,13 +28,13 @@
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 2" ActionTag="1716075307" Tag="66" IconVisible="False" LeftMargin="49.1210" RightMargin="-1.1211" TopMargin="77.6160" BottomMargin="125.3840" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Panel 2" ActionTag="1716075307" Tag="66" IconVisible="False" LeftMargin="49.8802" RightMargin="-1.8804" TopMargin="77.6158" BottomMargin="125.3842" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1049.1210" Y="791.8840" />
+            <Position X="1049.8802" Y="791.8842" />
             <Scale ScaleX="0.8498" ScaleY="0.4480" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5123" Y="0.5155" />
+            <PrePosition X="0.5126" Y="0.5155" />
             <PreSize X="0.9766" Y="0.8678" />
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -644,13 +644,13 @@
             <FileData Type="Normal" Path="Hardlight_Hatch.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Switch_Up_1" ActionTag="1156363944" Tag="138" IconVisible="False" LeftMargin="1227.7522" RightMargin="802.2478" TopMargin="995.9425" BottomMargin="505.0575" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+          <AbstractNodeData Name="Switch_Up_1" ActionTag="1156363944" Tag="138" IconVisible="False" LeftMargin="1153.7542" RightMargin="876.2458" TopMargin="995.9425" BottomMargin="505.0575" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
             <Size X="18.0000" Y="35.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1236.7522" Y="522.5575" />
+            <Position X="1162.7542" Y="522.5575" />
             <Scale ScaleX="2.0000" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6039" Y="0.3402" />
+            <PrePosition X="0.5678" Y="0.3402" />
             <PreSize X="0.0088" Y="0.0228" />
             <NormalBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
             <PressedBackFileData Type="Normal" Path="Main Objects/Switch_Up_On.png" Plist="" />
@@ -730,13 +730,13 @@
             <NodeNormalFileData Type="Normal" Path="transparent.png" Plist="" />
             <NodeDisableFileData Type="Normal" Path="transparent.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Solid_Door_3" ActionTag="-428796888" Tag="147" IconVisible="False" LeftMargin="2036.7151" RightMargin="3.2849" TopMargin="968.5675" BottomMargin="533.4325" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Solid_Door_3" ActionTag="-428796888" Tag="147" IconVisible="False" LeftMargin="2040.7155" RightMargin="-0.7153" TopMargin="968.5675" BottomMargin="533.4325" ctype="SpriteObjectData">
             <Size X="8.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="2040.7151" Y="550.4325" />
+            <Position X="2044.7155" Y="550.4325" />
             <Scale ScaleX="2.0000" ScaleY="4.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.9964" Y="0.3584" />
+            <PrePosition X="0.9984" Y="0.3584" />
             <PreSize X="0.0039" Y="0.0221" />
             <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -862,13 +862,13 @@
             <FileData Type="Normal" Path="Main Objects/Button_Down_Unpressed.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_9" ActionTag="2072192630" Tag="473" IconVisible="False" LeftMargin="1355.8500" RightMargin="684.1500" TopMargin="436.5649" BottomMargin="971.4351" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_9" ActionTag="2072192630" Tag="473" IconVisible="False" LeftMargin="1353.9971" RightMargin="686.0029" TopMargin="436.5649" BottomMargin="971.4351" FlipX="True" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1359.8500" Y="1035.4351" />
+            <Position X="1357.9971" Y="1035.4351" />
             <Scale ScaleX="1.8418" ScaleY="0.7661" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6640" Y="0.6741" />
+            <PrePosition X="0.6631" Y="0.6741" />
             <PreSize X="0.0039" Y="0.0833" />
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -2246,6 +2246,72 @@
             <PrePosition X="0.9425" Y="0.4937" />
             <PreSize X="0.0024" Y="0.0488" />
             <FileData Type="Normal" Path="Art/Purple.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Sprite_308" ActionTag="-1742139170" Alpha="153" Tag="633" IconVisible="False" LeftMargin="1223.3301" RightMargin="729.6699" TopMargin="918.4635" BottomMargin="487.5365" ctype="SpriteObjectData">
+            <Size X="95.0000" Y="130.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1270.8301" Y="552.5365" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6205" Y="0.3597" />
+            <PreSize X="0.0464" Y="0.0846" />
+            <FileData Type="Normal" Path="Art/Locked Locker.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Sprite_309" ActionTag="1021246266" Alpha="153" Tag="634" IconVisible="False" LeftMargin="1223.3296" RightMargin="729.6704" TopMargin="558.8632" BottomMargin="847.1368" ctype="SpriteObjectData">
+            <Size X="95.0000" Y="130.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1270.8296" Y="912.1368" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6205" Y="0.5938" />
+            <PreSize X="0.0464" Y="0.0846" />
+            <FileData Type="Normal" Path="Art/Locked Locker.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Light_41_0" ActionTag="-1138253157" Tag="635" IconVisible="False" LeftMargin="1135.3503" RightMargin="872.6497" TopMargin="456.1703" BottomMargin="1064.8297" ctype="SpriteObjectData">
+            <Size X="40.0000" Y="15.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1155.3503" Y="1072.3297" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5641" Y="0.6981" />
+            <PreSize X="0.0195" Y="0.0098" />
+            <FileData Type="Normal" Path="Art/Light.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Daisy_311" ActionTag="-572756899" Alpha="153" Tag="638" IconVisible="False" LeftMargin="1191.0989" RightMargin="826.9011" TopMargin="582.0780" BottomMargin="893.9220" ctype="SpriteObjectData">
+            <Size X="30.0000" Y="60.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1206.0989" Y="923.9220" />
+            <Scale ScaleX="0.4000" ScaleY="0.4000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5889" Y="0.6015" />
+            <PreSize X="0.0146" Y="0.0391" />
+            <FileData Type="Normal" Path="Art/Daisy.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Daisy_311_0" ActionTag="230865861" Alpha="153" Tag="639" IconVisible="False" LeftMargin="1191.7875" RightMargin="826.2125" TopMargin="939.7850" BottomMargin="536.2150" ctype="SpriteObjectData">
+            <Size X="30.0000" Y="60.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1206.7875" Y="566.2150" />
+            <Scale ScaleX="0.4000" ScaleY="0.4000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5893" Y="0.3686" />
+            <PreSize X="0.0146" Y="0.0391" />
+            <FileData Type="Normal" Path="Art/Daisy.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Wall_15" ActionTag="-1794470482" Tag="640" IconVisible="False" LeftMargin="2041.0173" RightMargin="-1.0173" TopMargin="804.8668" BottomMargin="603.1332" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+            <Size X="8.0000" Y="128.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="2045.0173" Y="667.1332" />
+            <Scale ScaleX="1.8418" ScaleY="0.8070" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9985" Y="0.4343" />
+            <PreSize X="0.0039" Y="0.0833" />
+            <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>

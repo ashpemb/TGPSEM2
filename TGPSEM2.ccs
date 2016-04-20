@@ -204,6 +204,8 @@
           <Image Name="Vent 2.png" />
           <Image Name="Eyes.png" />
           <Image Name="Daisy.png" />
+          <Image Name="Level 1 screen.png" />
+          <Image Name="Screen Level 3.png" />
         </Folder>
         <Image Name="Tutorial1.png" />
         <Image Name="BackButtonPressed.png" />
