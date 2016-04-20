@@ -17,7 +17,7 @@
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="30.4493" RightMargin="17.5507" TopMargin="98.7531" BottomMargin="104.2469" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BG Panel 1" ActionTag="651321290" Tag="64" IconVisible="False" LeftMargin="30.4493" RightMargin="17.5507" TopMargin="98.7532" BottomMargin="104.2469" ctype="SpriteObjectData">
             <Size X="2000.0000" Y="1333.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1030.4493" Y="770.7469" />
@@ -878,7 +878,7 @@
             <FileData Type="Normal" Path="Art/Space Port (Small).png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wall_15" ActionTag="-223666178" Tag="650" RotationSkewX="0.6791" RotationSkewY="0.6788" IconVisible="False" LeftMargin="268.3593" RightMargin="1771.6407" TopMargin="1098.5604" BottomMargin="309.4396" FlipX="True" FlipY="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wall_15" ActionTag="-223666178" Tag="650" RotationSkewY="-0.0003" IconVisible="False" LeftMargin="268.3593" RightMargin="1771.6406" TopMargin="1098.5604" BottomMargin="309.4396" FlipX="True" FlipY="True" ctype="SpriteObjectData">
             <Size X="8.0000" Y="128.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="272.3593" Y="373.4396" />

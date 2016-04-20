@@ -28,15 +28,15 @@
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Holo_102" ActionTag="165200067" Alpha="151" Tag="708" IconVisible="False" LeftMargin="832.3087" RightMargin="1160.6913" TopMargin="1173.3125" BottomMargin="232.6875" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Holo_102" ActionTag="165200067" Alpha="151" Tag="708" IconVisible="False" LeftMargin="836.8087" RightMargin="1165.1913" TopMargin="1215.3125" BottomMargin="274.6875" ctype="SpriteObjectData">
             <Size X="55.0000" Y="130.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="859.8087" Y="297.6875" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4198" Y="0.1938" />
-            <PreSize X="0.0269" Y="0.0846" />
-            <FileData Type="Normal" Path="Art/Art/Holo.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Holo.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="BG Panel 2" ActionTag="1716075307" Tag="66" IconVisible="False" LeftMargin="27.7832" RightMargin="20.2168" TopMargin="101.9097" BottomMargin="101.0903" ctype="SpriteObjectData">
@@ -127,48 +127,48 @@
             <FileData Type="Normal" Path="Level Backgrounds/Main BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Pipe_37_0_0" ActionTag="-807412392" Alpha="177" Tag="692" IconVisible="False" LeftMargin="1575.2417" RightMargin="452.7583" TopMargin="156.4116" BottomMargin="1274.5884" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Pipe_37_0_0" ActionTag="-807412392" Alpha="177" Tag="692" IconVisible="False" LeftMargin="1562.2417" RightMargin="439.7583" TopMargin="185.9116" BottomMargin="1304.0884" ctype="SpriteObjectData">
             <Size X="20.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1585.2417" Y="1327.0884" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.7740" Y="0.8640" />
-            <PreSize X="0.0098" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Pipe.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Pipe.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Pipe_37_1" ActionTag="103154888" Alpha="177" Tag="691" IconVisible="False" LeftMargin="1575.2458" RightMargin="452.7542" TopMargin="261.1277" BottomMargin="1169.8723" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Pipe_37_1" ActionTag="103154888" Alpha="177" Tag="691" IconVisible="False" LeftMargin="1562.2458" RightMargin="439.7542" TopMargin="290.6277" BottomMargin="1199.3723" ctype="SpriteObjectData">
             <Size X="20.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1585.2458" Y="1222.3723" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.7740" Y="0.7958" />
-            <PreSize X="0.0098" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Pipe.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Pipe.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Pipe_37_0" ActionTag="793720376" Alpha="177" Tag="690" IconVisible="False" LeftMargin="1575.2500" RightMargin="452.7500" TopMargin="365.4141" BottomMargin="1065.5859" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Pipe_37_0" ActionTag="793720376" Alpha="177" Tag="690" IconVisible="False" LeftMargin="1562.2500" RightMargin="439.7500" TopMargin="394.9141" BottomMargin="1095.0859" ctype="SpriteObjectData">
             <Size X="20.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1585.2500" Y="1118.0859" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.7740" Y="0.7279" />
-            <PreSize X="0.0098" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Pipe.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Pipe.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wires_92" ActionTag="-661563625" Alpha="151" Tag="698" IconVisible="False" LeftMargin="1600.5187" RightMargin="212.4813" TopMargin="1006.6561" BottomMargin="424.3439" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wires_92" ActionTag="-661563625" Alpha="151" Tag="698" IconVisible="False" LeftMargin="1695.0187" RightMargin="306.9813" TopMargin="1036.1561" BottomMargin="453.8439" ctype="SpriteObjectData">
             <Size X="235.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1718.0187" Y="476.8439" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8389" Y="0.3104" />
-            <PreSize X="0.1147" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Wires.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Wires.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_66" ActionTag="-919849310" Tag="451" IconVisible="False" LeftMargin="766.8054" RightMargin="776.1946" TopMargin="749.2474" BottomMargin="716.7526" ctype="SpriteObjectData">
@@ -226,26 +226,26 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_91" ActionTag="-1500150036" Alpha="151" Tag="697" IconVisible="False" LeftMargin="873.7183" RightMargin="1069.2817" TopMargin="1008.8004" BottomMargin="482.1996" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite_91" ActionTag="-1500150036" Alpha="151" Tag="697" IconVisible="False" LeftMargin="903.2183" RightMargin="1098.7817" TopMargin="1008.3004" BottomMargin="481.6996" ctype="SpriteObjectData">
             <Size X="105.0000" Y="45.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="926.2183" Y="504.6996" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4523" Y="0.3286" />
-            <PreSize X="0.0513" Y="0.0293" />
-            <FileData Type="Normal" Path="Art/Art/Wires 2.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Wires 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Wires_92_0" ActionTag="807656004" Alpha="151" Tag="704" IconVisible="False" LeftMargin="1047.6354" RightMargin="765.3646" TopMargin="1007.1440" BottomMargin="423.8560" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Wires_92_0" ActionTag="807656004" Alpha="151" Tag="704" IconVisible="False" LeftMargin="1142.1354" RightMargin="859.8646" TopMargin="1036.6440" BottomMargin="453.3560" ctype="SpriteObjectData">
             <Size X="235.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1165.1354" Y="476.3560" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5689" Y="0.3101" />
-            <PreSize X="0.1147" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Wires.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Wires.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Platform_1" ActionTag="-1500330469" Tag="49" IconVisible="False" LeftMargin="885.6169" RightMargin="1034.3831" TopMargin="1247.7081" BottomMargin="280.2919" ctype="SpriteObjectData">
@@ -847,7 +847,7 @@
             <FileData Type="Normal" Path="Main Objects/Solid_Door.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sector_32" ActionTag="301776147" Alpha="178" Tag="413" IconVisible="False" LeftMargin="352.0677" RightMargin="1580.9324" TopMargin="1199.3640" BottomMargin="311.6359" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sector_32" ActionTag="301776147" Alpha="178" Tag="413" IconVisible="False" LeftMargin="352.0677" RightMargin="1580.9324" TopMargin="1199.3641" BottomMargin="311.6359" ctype="SpriteObjectData">
             <Size X="115.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="409.5677" Y="324.1359" />
@@ -858,18 +858,18 @@
             <FileData Type="Normal" Path="Art/Sector.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_70" ActionTag="304532432" Tag="637" IconVisible="False" LeftMargin="52.2388" RightMargin="1735.7612" TopMargin="1063.7986" BottomMargin="312.2014" ctype="SpriteObjectData">
-            <Size X="260.0000" Y="160.0000" />
+          <AbstractNodeData Name="Sprite_70" ActionTag="304532432" Tag="637" IconVisible="False" LeftMargin="159.2388" RightMargin="1842.7612" TopMargin="1120.7986" BottomMargin="369.2014" ctype="SpriteObjectData">
+            <Size X="140.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="182.2388" Y="392.2014" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0890" Y="0.2553" />
-            <PreSize X="0.1270" Y="0.1042" />
-            <FileData Type="Normal" Path="Art/Screen Level 3.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Rifle.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="WE_34" ActionTag="1221307873" Alpha="178" Tag="415" IconVisible="False" LeftMargin="487.9687" RightMargin="1515.0314" TopMargin="1199.1414" BottomMargin="311.8587" ctype="SpriteObjectData">
+          <AbstractNodeData Name="WE_34" ActionTag="1221307873" Alpha="178" Tag="415" IconVisible="False" LeftMargin="487.9687" RightMargin="1515.0313" TopMargin="1199.1414" BottomMargin="311.8587" ctype="SpriteObjectData">
             <Size X="45.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="510.4687" Y="324.3587" />
@@ -1177,48 +1177,48 @@
             <FileData Type="Normal" Path="Main Objects/Wall 2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Pipe_37_0_1" ActionTag="-1929599259" Alpha="177" Tag="693" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1637.0585" RightMargin="390.9415" TopMargin="407.8000" BottomMargin="1023.2000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Pipe_37_0_1" ActionTag="-1929599259" Alpha="177" Tag="693" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1624.0585" RightMargin="377.9415" TopMargin="437.3000" BottomMargin="1052.7000" ctype="SpriteObjectData">
             <Size X="20.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1647.0585" Y="1075.7000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8042" Y="0.7003" />
-            <PreSize X="0.0098" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Pipe.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Pipe.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Pipe_37_0_1_0" ActionTag="140598414" Alpha="177" Tag="694" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1742.2300" RightMargin="285.7700" TopMargin="407.8000" BottomMargin="1023.2000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Pipe_37_0_1_0" ActionTag="140598414" Alpha="177" Tag="694" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1729.2300" RightMargin="272.7700" TopMargin="437.3000" BottomMargin="1052.7000" ctype="SpriteObjectData">
             <Size X="20.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1752.2300" Y="1075.7000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8556" Y="0.7003" />
-            <PreSize X="0.0098" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Pipe.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Pipe.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Pipe_37_0_1_0_0" ActionTag="1112106286" Alpha="177" Tag="695" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1839.7993" RightMargin="188.2007" TopMargin="407.8000" BottomMargin="1023.2000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Pipe_37_0_1_0_0" ActionTag="1112106286" Alpha="177" Tag="695" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1826.7993" RightMargin="175.2007" TopMargin="437.3000" BottomMargin="1052.7000" ctype="SpriteObjectData">
             <Size X="20.0000" Y="105.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1849.7993" Y="1075.7000" />
             <Scale ScaleX="1.0000" ScaleY="0.8640" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.9032" Y="0.7003" />
-            <PreSize X="0.0098" Y="0.0684" />
-            <FileData Type="Normal" Path="Art/Art/Pipe.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Pipe.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Danger_90" ActionTag="-2129113404" Alpha="151" Tag="696" IconVisible="False" LeftMargin="259.1922" RightMargin="1743.8079" TopMargin="798.0634" BottomMargin="687.9366" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Danger_90" ActionTag="-2129113404" Alpha="151" Tag="696" IconVisible="False" LeftMargin="258.6922" RightMargin="1743.3079" TopMargin="800.0634" BottomMargin="689.9366" ctype="SpriteObjectData">
             <Size X="45.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="281.6922" Y="712.9366" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.1375" Y="0.4642" />
-            <PreSize X="0.0220" Y="0.0326" />
-            <FileData Type="Normal" Path="Art/Art/Danger.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Danger.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Rifle_93" ActionTag="-2142290337" Alpha="204" Tag="699" IconVisible="False" LeftMargin="1835.3088" RightMargin="72.6912" TopMargin="765.7786" BottomMargin="720.2214" ctype="SpriteObjectData">
@@ -1266,47 +1266,47 @@
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_103" ActionTag="152829218" Tag="709" IconVisible="False" LeftMargin="311.2101" RightMargin="1366.7899" TopMargin="444.3013" BottomMargin="766.6987" ctype="SpriteObjectData">
-            <Size X="370.0000" Y="325.0000" />
+            <Size X="46.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="496.2101" Y="929.1987" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.2423" Y="0.6049" />
             <PreSize X="0.1807" Y="0.2116" />
-            <FileData Type="Normal" Path="Art/Art/Panel 3.png" Plist="" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_105" ActionTag="-501636336" Tag="711" IconVisible="False" LeftMargin="1355.9971" RightMargin="547.0029" TopMargin="719.9456" BottomMargin="661.0544" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite_105" ActionTag="-501636336" Tag="711" IconVisible="False" LeftMargin="1405.4971" RightMargin="596.5029" TopMargin="774.4456" BottomMargin="715.5544" ctype="SpriteObjectData">
             <Size X="145.0000" Y="155.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1428.4971" Y="738.5544" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6975" Y="0.4808" />
-            <PreSize X="0.0708" Y="0.1009" />
-            <FileData Type="Normal" Path="Art/Art/Panel 11.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Panel 11.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_106" ActionTag="627713360" Tag="712" IconVisible="False" LeftMargin="540.8930" RightMargin="1417.1069" TopMargin="800.4252" BottomMargin="410.5748" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite_106" ActionTag="627713360" Tag="712" IconVisible="False" LeftMargin="562.8930" RightMargin="1439.1069" TopMargin="939.9252" BottomMargin="550.0748" ctype="SpriteObjectData">
             <Size X="90.0000" Y="325.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="585.8930" Y="573.0748" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.2861" Y="0.3731" />
-            <PreSize X="0.0439" Y="0.2116" />
-            <FileData Type="Normal" Path="Art/Art/Panel 10.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Panel 10.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Vent_107" ActionTag="-299988601" Alpha="151" Tag="713" IconVisible="False" LeftMargin="1237.0793" RightMargin="765.9207" TopMargin="1190.0002" BottomMargin="295.9997" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Vent_107" ActionTag="-299988601" Alpha="151" Tag="713" IconVisible="False" LeftMargin="1236.5793" RightMargin="765.4207" TopMargin="1192.0002" BottomMargin="297.9997" ctype="SpriteObjectData">
             <Size X="45.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1259.5793" Y="320.9997" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6150" Y="0.2090" />
-            <PreSize X="0.0220" Y="0.0326" />
-            <FileData Type="Normal" Path="Art/Art/Vent.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/Vent.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_16_0" ActionTag="-195116649" Tag="717" IconVisible="False" LeftMargin="-130.6547" RightMargin="178.6548" TopMargin="618.6131" BottomMargin="-415.6131" ctype="SpriteObjectData">
@@ -1320,15 +1320,15 @@
             <FileData Type="Normal" Path="Level Backgrounds/Second BG.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="L1_112" ActionTag="900477781" Alpha="153" Tag="718" IconVisible="False" LeftMargin="1116.0939" RightMargin="821.9061" TopMargin="1144.1633" BottomMargin="326.8367" ctype="SpriteObjectData">
+          <AbstractNodeData Name="L1_112" ActionTag="900477781" Alpha="153" Tag="718" IconVisible="False" LeftMargin="1148.0939" RightMargin="853.9061" TopMargin="1153.6633" BottomMargin="336.3367" ctype="SpriteObjectData">
             <Size X="110.0000" Y="65.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1171.0939" Y="359.3367" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5718" Y="0.2339" />
-            <PreSize X="0.0537" Y="0.0423" />
-            <FileData Type="Normal" Path="Art/Art/L1.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/L1.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Computers_96_0" ActionTag="-993600316" Alpha="151" Tag="703" IconVisible="False" LeftMargin="1059.0422" RightMargin="778.9578" TopMargin="1043.8201" BottomMargin="452.1800" ctype="SpriteObjectData">
@@ -2937,7 +2937,7 @@
             <FileData Type="Normal" Path="Art/Daisy.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Tutorial1_1" ActionTag="-2103392711" Tag="556" IconVisible="False" LeftMargin="366.0792" RightMargin="1421.9209" TopMargin="522.2233" BottomMargin="853.7767" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Tutorial1_1" ActionTag="-2103392711" Tag="556" IconVisible="False" LeftMargin="366.0792" RightMargin="1421.9208" TopMargin="522.2233" BottomMargin="853.7767" ctype="SpriteObjectData">
             <Size X="260.0000" Y="160.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="496.0792" Y="933.7767" />

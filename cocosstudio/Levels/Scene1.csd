@@ -237,15 +237,15 @@
             <FileData Type="Normal" Path="Art/Sector.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="FR_86" ActionTag="-2091686459" Alpha="178" Tag="229" IconVisible="False" LeftMargin="359.5683" RightMargin="1653.4316" TopMargin="829.6630" BottomMargin="681.3370" ctype="SpriteObjectData">
+          <AbstractNodeData Name="FR_86" ActionTag="-2091686459" Alpha="178" Tag="229" IconVisible="False" LeftMargin="354.0683" RightMargin="1647.9316" TopMargin="819.1630" BottomMargin="670.8370" ctype="SpriteObjectData">
             <Size X="35.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="377.0683" Y="693.8370" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.1841" Y="0.4517" />
-            <PreSize X="0.0171" Y="0.0163" />
-            <FileData Type="Normal" Path="Art/Art/FR.png" Plist="" />
+            <PreSize X="0.0225" Y="0.0299" />
+            <FileData Type="Normal" Path="Art/FR.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Exit_1" ActionTag="-1943391294" Tag="51" IconVisible="False" LeftMargin="50.6556" RightMargin="1817.3444" TopMargin="741.1417" BottomMargin="638.8583" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
