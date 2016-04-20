@@ -363,6 +363,7 @@ void SceneManager::SetupSprites(Node* root)
 	while ((exit = static_cast<ui::CheckBox*>(root->getChildByName("Exit_" + StringUtils::format("%d", i)))) != nullptr) {
 
 		exit->addTouchEventListener(CC_CALLBACK_2(SceneManager::DoorPressed, this));
+		exit->setEnabled(false);
 		_exit.push_back(exit);
 
 		i++;
@@ -1331,10 +1332,14 @@ void SceneManager::DoorPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType 
 {
 	cocos2d::ui::CheckBox* findCheckBox = (cocos2d::ui::CheckBox*)sender;
 
-	for (int i = 0; i < (int)_exit.size(); i++) {
-		if (findCheckBox->getName() == _exit.at(i)->getName()) {
-			auto scene = GameWinScene::createScene();
-			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+	if (GameManager::sharedGameManager()->getIsGameLive()) {
+		if (!GameManager::sharedGameManager()->getIsGamePaused()) {
+			for (int i = 0; i < (int)_exit.size(); i++) {
+				if (findCheckBox->getName() == _exit.at(i)->getName()) {
+					auto scene = GameWinScene::createScene();
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+				}
+			}
 		}
 	}
 }
