@@ -204,10 +204,13 @@ void Player::CheckPlatformCollisions(cocos2d::Sprite* collider)
 		{
 			if (GetSprite()->getPositionY() < collider->getPositionY()) {
 				GetSprite()->setPositionY(collider->getPositionY() - (scaledHeight / 2) - (scaledPlayerWidth / 2));
+				SetTarget(Vec2(_targetPos.x, GetSprite()->getPositionY()));
 			}
 			else {
 				GetSprite()->setPositionY(collider->getPositionY() + (scaledHeight / 2) + (scaledPlayerWidth / 2));
+				SetTarget(Vec2(_targetPos.x, GetSprite()->getPositionY()));
 			}
+
 		}
 	}
 }
@@ -229,10 +232,13 @@ void Player::CheckWallCollisions(cocos2d::Sprite* collider)
 		{
 			if (GetSprite()->getPositionX() < collider->getPositionX()) {
 				GetSprite()->setPositionX(collider->getPositionX() - (scaledWidth / 2) - (scaledPlayerWidth / 2));
+				SetTarget(Vec2(GetSprite()->getPositionX(), _targetPos.y));
 			}
 			else {
 				GetSprite()->setPositionX(collider->getPositionX() + (scaledWidth / 2) + (scaledPlayerWidth / 2));
+				SetTarget(Vec2(GetSprite()->getPositionX(), _targetPos.y));
 			}
+
 		}
 	}
 	else if (_orientationHorizontal) {
@@ -382,6 +388,9 @@ void Player::SetTarget(Vec2 target)
 			if (GetSprite()->getPosition().x > target.x) {
 				GetSprite()->setFlippedX(true);
 			}
+			else if (GetSprite()->getPosition().x == target.x) {
+				// Do nothing
+			}
 			else {
 				GetSprite()->setFlippedX(false);
 			}
@@ -389,6 +398,9 @@ void Player::SetTarget(Vec2 target)
 		else {
 			if (GetSprite()->getPosition().x < target.x) {
 				GetSprite()->setFlippedX(true);
+			}
+			else if (GetSprite()->getPosition().x == target.x) {
+				// Do nothing
 			}
 			else {
 				GetSprite()->setFlippedX(false);
@@ -400,6 +412,9 @@ void Player::SetTarget(Vec2 target)
 			if (GetSprite()->getPosition().y < target.y) {
 				GetSprite()->setFlippedX(true);
 			}
+			else if (GetSprite()->getPosition().y == target.y) {
+				// Do nothing
+			}
 			else {
 				GetSprite()->setFlippedX(false);
 			}
@@ -407,6 +422,9 @@ void Player::SetTarget(Vec2 target)
 		else {
 			if (GetSprite()->getPosition().y > target.y) {
 				GetSprite()->setFlippedX(true);
+			}
+			else if (GetSprite()->getPosition().y == target.y) {
+				// Do nothing
 			}
 			else {
 				GetSprite()->setFlippedX(false);
